@@ -1,4 +1,4 @@
 
 <?php
-echo"SnorBot";
+echo"SnorBot!";
 ?>
