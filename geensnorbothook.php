@@ -1,15 +1,11 @@
 <?php
-
-
 include (__DIR__ . '/vendor/autoload.php');
 include("advies.php");
-include("config.php");
 
-$telegram = new Telegram($telegramId);
+$telegram = new Telegram(getenv('telegramId'));
 
 $antwoordenArray = json_decode(file_get_contents("snorBotAntwoorden.json"));
 $weetjesArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/weetjes/master/snorBotWeetjes.json"));
-
 
 $text = $telegram->Text();
 $chat_id = $telegram->ChatID();
@@ -21,7 +17,6 @@ $send = FALSE;
 
     if($telegram->Location()){
     	$locatieGebruiker = $telegram->Location();
-		//$adviesJson = json_decode(file_get_contents("https://advies.geensnor.nl/list.php?output=json&lat=".$locatieGebruiker["latitude"]."&lon=".$locatieGebruiker["longitude"]));
 		$adviesJson = getAdviesArray($locatieGebruiker["latitude"], $locatieGebruiker["longitude"]);
 
 		$contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name." zit in de buurt:"];
