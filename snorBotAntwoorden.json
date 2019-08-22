@@ -1,0 +1,98 @@
+[
+  {
+    "trigger": "website",
+    "antwoord": "Website van geensnor is uiteraard: https://www.geensnor.nl"
+  },
+  {
+    "trigger": "omloop",
+    "antwoord": "Al het nieuws rondom Omloop De Snor staat op http://www.omloopdensnor.nl"
+  },
+  {
+    "trigger": "asdf",
+    "antwoord": "asdf ben je zelf"
+  },
+  {
+    "trigger": "Hallo",
+    "antwoord": "Hallo daar, geensnor vriend!"
+  },
+  {
+    "trigger": "Vet",
+    "antwoord": "Zeker vet!"
+  },
+  {
+    "trigger": "lala",
+    "antwoord": "Lalala"
+  },
+  {
+    "trigger": "recepten",
+    "antwoord": "Kijk eens op http://www.geensnor.nl/watetenwevandaag"
+  },
+  {
+    "trigger": "eten",
+    "antwoord": "Kijk eens op http://www.geensnor.nl/watetenwevandaag"
+  },
+  {
+    "trigger": "koken",
+    "antwoord": "Kijk eens op http://www.geensnor.nl/watetenwevandaag"
+  },
+  {
+    "trigger": "help",
+    "antwoord": "Deze bot geeft interessante weetjes en nog wat anderen dingen maar die moet je maar zelf uitvinden."
+  },
+  {
+    "trigger": "wielrennen",
+    "antwoord": "Wierennen is vet. Geensnor staat ermee vol: https://www.geensnor.nl/wp/category/wielrennerij/"
+  },
+  {
+    "trigger": "advies",
+    "antwoord": "Alle adviezen van geensnor staan op https://advies.geensnor.nl"
+  },
+  {
+    "trigger": "ow",
+    "antwoord": "ja echt"
+  },
+  {
+    "trigger": "ellende",
+    "antwoord": "ja, erg he"
+  },
+  {
+    "trigger": "gedoe",
+    "antwoord": "ik hou niet van gedoe"
+  },
+  {
+    "trigger": "strava",
+    "antwoord": "Tuurlijk zit Geensnor ook op strava. Hiero: https://www.strava.com/clubs/geensnor"
+  },
+  {
+    "trigger": "hi",
+    "antwoord": "Hallo"
+  },
+  {
+    "trigger": "hoe is het",
+    "antwoord": "Prima, z'n gangetje."
+  },
+  {
+    "trigger": "ja?",
+    "antwoord": "ja!"
+  },
+  {
+    "trigger": "mop",
+    "antwoord": "De telefoon gaat, een hond neemt op en zegt: 'Waf!'\n'Wat zegt u?' vraagt een stem aan de andere kant.\n De hond herhaalt: 'Waf!'\n'Wat zegt u?' \n Zegt de hond: 'Waf! met de W van Willem, de A van Anton en de F van Ferdinand!'"
+  },
+  {
+    "trigger": "haha",
+    "antwoord": "hahaha"
+  },
+  {
+    "trigger": "git",
+    "antwoord": "Geensnor.nl zit ook op git! https://github.com/geensnor"
+  },
+  {
+    "trigger": "nou nou",
+    "antwoord": "jaja"
+  },
+  {
+    "trigger": "haiku",
+    "antwoord": "Blender Haiku: Een nieuwe blender. Groter dan die vorige. De oude moet weg"
+  }
+]
