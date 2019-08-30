@@ -6,7 +6,7 @@ $telegram = new Telegram(getenv('telegramId'));
 
 $antwoordenArray = json_decode(file_get_contents("snorBotAntwoorden.json"));
 $weetjesArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/weetjes/master/snorBotWeetjes.json"));
-$DooddoenerArray = json_decode(file_get_contents("dooddoener.json"));
+$DooddoenerArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/dooddoeners/master/dooddoener.json"));
 
 $text = $telegram->Text();
 $chat_id = $telegram->ChatID();
