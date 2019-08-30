@@ -6,6 +6,7 @@ $telegram = new Telegram(getenv('telegramId'));
 
 $antwoordenArray = json_decode(file_get_contents("snorBotAntwoorden.json"));
 $weetjesArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/weetjes/master/snorBotWeetjes.json"));
+$DooddoenerArray = json_decode(file_get_contents("dooddoener.json"));
 
 $text = $telegram->Text();
 $chat_id = $telegram->ChatID();
@@ -43,7 +44,13 @@ $send = FALSE;
     		$randKey = array_rand($weetjesArray, 1);
     		$antwoord = "Interessant weetje: ".$weetjesArray[$randKey];
     		$send = TRUE;
-    	}
+		}
+		}
+		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
+			$randKey = array_rand($DooddoenerArray, 1);
+			$antwoord = "Geensnor helpt je de discussie dood te slaan met de volgende dooddoener: ".$DooddoenerArray[$randKey];
+			$send = TRUE;
+		}
     }
 
 
