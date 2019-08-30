@@ -45,7 +45,7 @@ $send = FALSE;
     		$antwoord = "Interessant weetje: ".$weetjesArray[$randKey];
     		$send = TRUE;
 		}
-		}
+		
 		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
 			$randKey = array_rand($DooddoenerArray, 1);
 			$antwoord = "Geensnor helpt je de discussie dood te slaan met de volgende dooddoener: ".$DooddoenerArray[$randKey];
