@@ -94,5 +94,9 @@
   {
     "trigger": "haiku",
     "antwoord": "Blender Haiku: Een nieuwe blender. Groter dan die vorige. De oude moet weg"
+  },
+  {
+    "trigger":"best crypto",
+    "antwoord":"DutchCryptoTalk"
   }
 ]
