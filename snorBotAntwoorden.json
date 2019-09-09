@@ -24,6 +24,10 @@
     "antwoord": "Lalala"
   },
   {
+    "trigger": "geen zin",
+    "antwoord": "Dan maak je maar zin!"
+  },
+  {
     "trigger": "recepten",
     "antwoord": "Kijk eens op http://www.geensnor.nl/watetenwevandaag"
   },
