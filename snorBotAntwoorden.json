@@ -29,15 +29,19 @@
   },
   {
     "trigger": "eten",
-    "antwoord": "Kijk eens op http://www.geensnor.nl/watetenwevandaag"
+    "antwoord": "Honger? \nKijk eens op http://www.geensnor.nl/watetenwevandaag"
   },
   {
     "trigger": "koken",
     "antwoord": "Kijk eens op http://www.geensnor.nl/watetenwevandaag"
   },
   {
+    "trigger": "honger",
+    "antwoord": "Honger? \nKijk eens op http://www.geensnor.nl/watetenwevandaag"
+  },
+  {
     "trigger": "help",
-    "antwoord": "Deze bot geeft interessante weetjes en nog wat anderen dingen maar die moet je maar zelf uitvinden."
+    "antwoord": "Deze bot geeft interessante weetjes, dooddoeners en nog wat anderen dingen maar die moet je maar zelf uitvinden. Hier staat de code: https://github.com/geensnor/SnorBot"
   },
   {
     "trigger": "wielrennen",
