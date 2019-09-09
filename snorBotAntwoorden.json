@@ -96,6 +96,10 @@
     "antwoord": "jaja"
   },
   {
+    "trigger": "jaja",
+    "antwoord": "nou nou"
+  },
+  {
     "trigger": "haiku",
     "antwoord": "Blender Haiku: \nEen nieuwe blender. \nGroter dan die vorige. \nDe oude moet weg"
   },
