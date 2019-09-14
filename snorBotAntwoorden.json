@@ -110,5 +110,9 @@
   {
     "trigger":"best crypto",
     "antwoord":"DutchCryptoTalk"
+  },
+  {
+    "trigger":"all your base",
+    "antwoord":"are belong to us!"
   }
 ]
