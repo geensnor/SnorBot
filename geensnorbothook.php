@@ -92,7 +92,7 @@ $send = FALSE;
 		$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";
 	}
 	if($antwoord){
-		$content = ['chat_id' => $chat_id, 'text' => $antwoord];
+		$content = ['chat_id' => $chat_id, 'text' => $antwoord, 'parse_mode' => 'Markdown'];
 		$telegram->sendMessage($content);
 	}
 
