@@ -21,6 +21,7 @@ $send = FALSE;
 		$randomComicObject = json_decode(file_get_contents("http://xkcd.com/".$randomComicNumber."/info.0.json"));
         $content = array('chat_id' => $chat_id, 'photo' => $randomComicObject->img);
         $telegram->sendPhoto($content);
+        $antwoord = "Typ 'xkcd laatste' voor de nieuwe comic";
         $send = TRUE;
     }
 
