@@ -44,8 +44,7 @@ $send = FALSE;
     		$randKey = array_rand($weetjesArray, 1);
     		$antwoord = "Interessant weetje: ".$weetjesArray[$randKey];
     		$send = TRUE;
-		}
-		
+		}		
 		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
 			$randKey = array_rand($DooddoenerArray, 1);
 			$antwoord = "Dooddoener: ".$DooddoenerArray[$randKey];
@@ -76,7 +75,7 @@ $send = FALSE;
 	    	}
     	}
     }	
-	if(!$send){
+	if(!$send && $text){
 		$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";
 	}
 	$content = ['chat_id' => $chat_id, 'text' => $antwoord];
