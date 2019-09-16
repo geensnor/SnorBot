@@ -17,8 +17,7 @@ $send = FALSE;
 
 	if($text == 'xkcd' || $text == 'Xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
-        $img = curl_file_create($xkcdData->img,'image/png'); 
-        $content = array('chat_id' => $chat_id, 'photo' => $img );
+        $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
         $telegram->sendPhoto($content);
         $send = TRUE;
     }
