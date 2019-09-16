@@ -22,6 +22,12 @@ $send = FALSE;
         $send = TRUE;
     }
     
+	if($text == 'verjaardag' || $text == 'Verjaardag') {
+		include("cl_verjaardagen.php");
+		$v = new verjaardag;
+		$antwoord = $v->getVerjaardagTekst();
+        $send = TRUE;
+    }
 
     if($telegram->Location()){
     	$locatieGebruiker = $telegram->Location();
