@@ -134,5 +134,9 @@
   {
     "trigger":"truste",
     "antwoord":"slaap lekker"
+  },
+  {
+    "trigger":"hehe",
+    "antwoord":"gheghe"
   }
 ]
