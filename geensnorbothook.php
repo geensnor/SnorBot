@@ -22,7 +22,7 @@ $send = FALSE;
         $send = TRUE;
     }
     
-	if($text == 'verjaardag' || $text == 'Verjaardag') {
+	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'Jarig' || $text == 'jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
 		$v = new verjaardag;
 		$antwoord = $v->getVerjaardagTekst();

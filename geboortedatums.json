@@ -1,0 +1,26 @@
+[
+	{
+		"naam": "Joris",
+		"geboortedatum": "1982-05-19"
+	},
+	{
+		"naam": "Loes",
+		"geboortedatum": "1983-02-14"
+	},
+	{
+		"naam": "Floris",
+		"geboortedatum": "1981-12-16"
+	},
+	{
+		"naam": "Erik",
+		"geboortedatum": "1982-07-19"
+	},
+	{
+		"naam": "Morgen jarig",
+		"geboortedatum": "2015-09-17"
+	},
+	{
+		"naam": "Vandaag jarig",
+		"geboortedatum": "2015-09-16"
+	}
+]
