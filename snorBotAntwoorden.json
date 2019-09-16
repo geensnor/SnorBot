@@ -114,5 +114,25 @@
   {
     "trigger":"all your base",
     "antwoord":"are belong to us!"
+  },
+  {
+    "trigger":"ik ga eten",
+    "antwoord":"smakelijk"
+  },
+  {
+    "trigger":"dank je",
+    "antwoord":"de nada!"
+  },
+  {
+    "trigger":"ik ga slapen",
+    "antwoord":"slaap lekker"
+  },
+  {
+    "trigger":"slaap lekker",
+    "antwoord":"truste"
+  },
+  {
+    "trigger":"truste",
+    "antwoord":"slaap lekker"
   }
 ]
