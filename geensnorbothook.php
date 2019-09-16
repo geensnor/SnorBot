@@ -17,6 +17,15 @@ $send = FALSE;
 
 	if($text == 'xkcd' || $text == 'Xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
+		$randomComicNumber = rand(0, $xkcdData->num);
+		$randomComicObject = json_decode(file_get_contents("http://xkcd.com/".$randomComicNumber."/info.0.json"));
+        $content = array('chat_id' => $chat_id, 'photo' => $randomComicObject->img);
+        $telegram->sendPhoto($content);
+        $send = TRUE;
+    }
+
+    if($text == 'xkcd laatste' || $text == 'Xkcd laatste') {
+		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
         $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
         $telegram->sendPhoto($content);
         $send = TRUE;
