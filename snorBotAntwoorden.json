@@ -138,5 +138,9 @@
   {
     "trigger":"hehe",
     "antwoord":"gheghe"
+  },
+  {
+    "trigger":"yarr",
+    "antwoord":"ahoy, me hearties!"
   }
 ]
