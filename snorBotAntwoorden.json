@@ -142,5 +142,13 @@
   {
     "trigger":"yarr",
     "antwoord":"ahoy, me hearties!"
+  },
+  {
+    "trigger":"poe poe",
+    "antwoord":"zo zo"
+  },
+  {
+    "trigger":"man, man, man",
+    "antwoord":"Het is me wat he?"
   }
 ]
