@@ -148,6 +148,10 @@
     "antwoord":"zo zo"
   },
   {
+    "trigger":"Wat hebben we",
+    "antwoord":"We hebben helemaal niks"
+  },
+  {
     "trigger":"man, man, man",
     "antwoord":"Het is me wat he?"
   }
