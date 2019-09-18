@@ -154,5 +154,9 @@
   {
     "trigger":"man, man, man",
     "antwoord":"Het is me wat he?"
+  },
+  {
+    "trigger":"is het al biertijd?",
+    "antwoord":"boeie, pak gewoon een biertje als je daar zin in hebt..."
   }
 ]
