@@ -15,6 +15,19 @@ $losseWoorden = explode(" ", $text);
 $antwoord = "";
 $send = FALSE;
 
+
+//bitcoin koers in euro
+
+	if($text == 'Bitcoin' || $text == 'bitcoin') {
+		$BCData = json_decode(file_get_contents("https://blockchain.info/ticker"));
+		$BCEuroObject = json_decode(file_get_contents("https://blockchain.info/ticker"))
+		$content = array('chat_id' => $chat_id, 'text' => $BCData);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+
+// end of bitcoin koers in euro
+
 	if($text == 'xkcd' || $text == 'Xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
 		$randomComicNumber = rand(0, $xkcdData->num);
