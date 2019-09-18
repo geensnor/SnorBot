@@ -20,7 +20,7 @@ $send = FALSE;
 
 	if($text == 'Bitcoin' || $text == 'bitcoin') {
 		$BCData = json_decode(file_get_contents("https://blockchain.info/ticker"));
-		$BCEuroObject = json_decode(file_get_contents("https://blockchain.info/ticker"))
+		$BCEuroObject = json_decode(file_get_contents("https://blockchain.info/ticker"));
 		$content = array('chat_id' => $chat_id, 'text' => $BCData);
 		$telegram->sendMessage($content);
 		$send = TRUE;
