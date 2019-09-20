@@ -156,6 +156,10 @@
     "antwoord":"Het is me wat he?"
   },
   {
+    "trigger":"test",
+    "antwoord":"test je moeder"
+  },
+  {
     "trigger":"is het al biertijd?",
     "antwoord":"boeie, pak gewoon een biertje als je daar zin in hebt..."
   }
