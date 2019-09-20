@@ -77,7 +77,7 @@ $send = FALSE;
 		}
 		if($losseWoorden[$wKey] == "weetje" || $losseWoorden[$wKey] == "Weetje"){
     		$randKey = array_rand($weetjesArray, 1);
-    		$antwoord = "Interessant weetje: \n".$weetjesArray[$randKey];
+    		$antwoord = $weetjesArray[$randKey];
     		$send = TRUE;
 		}		
 		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
