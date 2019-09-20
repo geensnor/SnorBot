@@ -82,7 +82,7 @@ $send = FALSE;
 		}		
 		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
 			$randKey = array_rand($DooddoenerArray, 1);
-			$antwoord = "Dooddoener: \n".$DooddoenerArray[$randKey];
+			$antwoord = $DooddoenerArray[$randKey];
 			$send = TRUE;
 		}
     }
