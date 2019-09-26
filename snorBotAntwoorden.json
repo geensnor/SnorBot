@@ -162,5 +162,9 @@
   {
     "trigger":"is het al biertijd?",
     "antwoord":"boeie, pak gewoon een biertje als je daar zin in hebt..."
+  },
+  {
+    "trigger":"hodl",
+    "antwoord":"hodl hodl hodl"
   }
 ]
