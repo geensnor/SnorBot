@@ -167,4 +167,8 @@
     "trigger":"hodl",
     "antwoord":"hodl hodl hodl"
   }
+  {
+    "trigger":"klusvraag",
+    "antwoord":"http://www.geensnor.nl/upload/files/Klusvraag.gif"
+  }
 ]
