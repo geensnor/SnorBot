@@ -19,11 +19,13 @@ $send = FALSE;
 //bitcoin koers in euro
 
 	if($text == 'Bitcoin' || $text == 'bitcoin') {
-		$BCEuroObject = json_decode(file_get_contents("https://blockchain.info/ticker"));
-		$content = array('chat_id' => $chat_id, 'text' => $BCEuroObject->EUR->symbol." ".$BCEuroObject->EUR->last);
+		$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
+		$content = array('chat_id' => $chat_id, 'text' => "€ ".$BCEuroObject->data[9]->ask_eur);
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
+
+
 
 // end of bitcoin koers in euro
 
