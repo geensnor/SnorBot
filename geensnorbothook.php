@@ -20,7 +20,7 @@ $send = FALSE;
 
 	if($text == 'Bitcoin' || $text == 'bitcoin') {
 		$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
-		$content = array('chat_id' => $chat_id, 'text' => "€ ".$BCEuroObject->data[9]->ask_eur." (".$BCEuroObject->data[9]->pct_change_24hr."% in laatste 24 uur");
+		$content = array('chat_id' => $chat_id, 'text' => "€ ".$BCEuroObject->data[9]->ask_eur." (".$BCEuroObject->data[9]->pct_change_24hr."% in laatste 24 uur)");
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
