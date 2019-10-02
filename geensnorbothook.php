@@ -90,9 +90,7 @@ $send = FALSE;
     		$send = TRUE;
 		}
 		if($losseWoorden[$wKey] == "nieuwste weetje" || $losseWoorden[$wKey] == "Nieuwste weetje"){
-    		end($weetjesArray);
-    		$lastKey = key($weetjesArray);
-    		$antwoord = $weetjesArray[$lastKey];
+    		$antwoord = end($weetjesArray);
     		$send = TRUE;
 		}	    
 		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
