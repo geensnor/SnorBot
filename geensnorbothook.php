@@ -60,6 +60,11 @@ $send = FALSE;
         $send = TRUE;
     }
 
+	if($text == "nieuwste weetje" || $text == "Nieuwste weetje"){
+		$antwoord = end($weetjesArray);
+		$send = TRUE;
+	}	
+
     if($telegram->Location()){
     	$locatieGebruiker = $telegram->Location();
 		$adviesJson = getAdviesArray($locatieGebruiker["latitude"], $locatieGebruiker["longitude"]);
@@ -84,10 +89,6 @@ $send = FALSE;
 			$telegram->sendMessage($content);
 			$send = TRUE;
 		}
-		if($losseWoorden[$wKey] == "nieuwste weetje" || $losseWoorden[$wKey] == "Nieuwste weetje"){
-    		$antwoord = end($weetjesArray);
-    		$send = TRUE;
-		}	
 		if($losseWoorden[$wKey] == "weetje" || $losseWoorden[$wKey] == "Weetje"){
     		$randKey = array_rand($weetjesArray, 1);
     		$antwoord = $weetjesArray[$randKey];
