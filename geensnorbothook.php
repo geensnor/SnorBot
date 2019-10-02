@@ -25,8 +25,6 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-
-
 // end of bitcoin koers in euro
 
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
@@ -79,9 +77,9 @@ $send = FALSE;
 
     }
 
-    foreach ($losseWoorden as $wKey => $wValue){
+    //foreach ($losseWoorden as $wKey => $wValue){
     	//Dit werkt niet op heroku. Wel lokaal. Als dit uitstaat werkt dat if verhaal hierboven met location ook niet. Dus die staat gewoon aan.
-    	if($losseWoorden[$wKey] == "advies" || $losseWoorden[$wKey] == "Advies"){
+    	if($text == "advies" || $text  == "Advies"){
 		
 			$option = array(array($telegram->buildKeyBoardButton("Klik hier om je locatie te delen", $request_contact=false, $request_location=true)));
 			$keyb = $telegram->buildKeyBoard($option, $onetime=false);
@@ -89,17 +87,17 @@ $send = FALSE;
 			$telegram->sendMessage($content);
 			$send = TRUE;
 		}
-		if($losseWoorden[$wKey] == "weetje" || $losseWoorden[$wKey] == "Weetje"){
+		if($text  == "weetje" || $text  == "Weetje"){
     		$randKey = array_rand($weetjesArray, 1);
     		$antwoord = $weetjesArray[$randKey];
     		$send = TRUE;
 		}    
-		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
+		if($text  == "dooddoener" || $text  == "Dooddoener"){
 			$randKey = array_rand($DooddoenerArray, 1);
 			$antwoord = $DooddoenerArray[$randKey];
 			$send = TRUE;
 		}
-    }
+   // }
 
 
     if(!$send){
