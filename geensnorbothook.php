@@ -25,8 +25,6 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-
-
 // end of bitcoin koers in euro
 
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
@@ -74,27 +72,29 @@ $send = FALSE;
 
     }
 
-    foreach ($losseWoorden as $wKey => $wValue){
-    	//Dit werkt niet op heroku. Wel lokaal. Als dit uitstaat werkt dat if verhaal hierboven met location ook niet. Dus die staat gewoon aan.
-    	if($losseWoorden[$wKey] == "advies" || $losseWoorden[$wKey] == "Advies"){
-		
-			$option = array(array($telegram->buildKeyBoardButton("Klik hier om je locatie te delen", $request_contact=false, $request_location=true)));
-			$keyb = $telegram->buildKeyBoard($option, $onetime=false);
-			$content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.");
-			$telegram->sendMessage($content);
-			$send = TRUE;
-		}
-		if($losseWoorden[$wKey] == "weetje" || $losseWoorden[$wKey] == "Weetje"){
-    		$randKey = array_rand($weetjesArray, 1);
-    		$antwoord = $weetjesArray[$randKey];
-    		$send = TRUE;
-		}		
-		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
-			$randKey = array_rand($DooddoenerArray, 1);
-			$antwoord = $DooddoenerArray[$randKey];
-			$send = TRUE;
-		}
-    }
+	if($text == "advies" || $text  == "Advies"){
+		$option = array(array($telegram->buildKeyBoardButton("Klik hier om je locatie te delen", $request_contact=false, $request_location=true)));
+		$keyb = $telegram->buildKeyBoard($option, $onetime=false);
+		$content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.");
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+
+	if($text == "nieuwste weetje" || $text == "Nieuwste weetje"){
+		$antwoord = end($weetjesArray);
+		$send = TRUE;
+	}
+
+	if($text  == "weetje" || $text  == "Weetje"){
+		$randKey = array_rand($weetjesArray, 1);
+		$antwoord = $weetjesArray[$randKey];
+		$send = TRUE;
+	}    
+	if($text  == "dooddoener" || $text  == "Dooddoener"){
+		$randKey = array_rand($DooddoenerArray, 1);
+		$antwoord = $DooddoenerArray[$randKey];
+		$send = TRUE;
+	}
 
 
     if(!$send){
