@@ -88,7 +88,13 @@ $send = FALSE;
     		$randKey = array_rand($weetjesArray, 1);
     		$antwoord = $weetjesArray[$randKey];
     		$send = TRUE;
-		}		
+		}
+		if($losseWoorden[$wKey] == "nieuwste weetje" || $losseWoorden[$wKey] == "Nieuwste weetje"){
+    		end($weetjesArray);
+    		$lastKey = key($weetjesArray);
+    		$antwoord = $weetjesArray[$lastKey];
+    		$send = TRUE;
+		}	    
 		if($losseWoorden[$wKey] == "dooddoener" || $losseWoorden[$wKey] == "Dooddoener"){
 			$randKey = array_rand($DooddoenerArray, 1);
 			$antwoord = $DooddoenerArray[$randKey];
