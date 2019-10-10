@@ -174,5 +174,17 @@
   {
     "trigger":"nuance",
     "antwoord":"Nuance....is dat niet die blonde van lingo?"
+  },
+  {
+    "trigger":"patat",
+    "antwoord":"FOUT, het is friet!"
+  },
+  {
+    "trigger":"mening",
+    "antwoord":"Het koningshuis is een ondemocratische poppenkast"
+  },
+  {
+    "trigger":"ennu?",
+    "antwoord":"nu niets"
   }
 ]
