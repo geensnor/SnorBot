@@ -7,6 +7,7 @@ $telegram = new Telegram(getenv('telegramId'));
 $antwoordenArray = json_decode(file_get_contents("snorBotAntwoorden.json"));
 $weetjesArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/weetjes/master/snorBotWeetjes.json"));
 $DooddoenerArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/dooddoeners/master/dooddoener.json"));
+$verveelArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/verveellijst/master/verveellijst.json"));
 
 $text = ltrim($telegram->Text(), '/');
 $chat_id = $telegram->ChatID();
@@ -95,7 +96,11 @@ $send = FALSE;
 		$antwoord = $DooddoenerArray[$randKey];
 		$send = TRUE;
 	}
-
+	if($text  == "verveel" || $text  == "wat zal ik doen"){
+		$randKey = array_rand($verveelArray, 1);
+		$antwoord = $verveelArray[$randKey];
+		$send = TRUE;
+	}
 
     if(!$send){
 //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
