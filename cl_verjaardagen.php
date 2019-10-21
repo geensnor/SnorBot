@@ -63,7 +63,7 @@ class verjaardag{
     function getVerjaardagTekst(){
         $verjaardagenData = $this->getVerjaardagenData();
         if($verjaardagenData[0]["dagenTotVerjaardag"] == 0)
-            return "Hoera! ".$verjaardagenData[0]["naam"]." wordt vandaag ".($verjaardagenData[0]["leeftijd"])." jaar oud!";
+            return "Hoera! ".$verjaardagenData[0]["naam"]." wordt vandaag ".($verjaardagenData[0]["leeftijd"] + 1)." jaar oud!";
         else
             return $verjaardagenData[0]["naam"]." is de volgende die jarig is. Hij/zij wordt over ".$verjaardagenData[0]["dagenTotVerjaardag"]." dagen (".$verjaardagenData[0]["datumVerjaardag"].") ".($verjaardagenData[0]["leeftijd"] + 1)." jaar.";
     }
@@ -71,7 +71,7 @@ class verjaardag{
     function checkKomendeDagen(){
         $verjaardagenData = $this->getVerjaardagenData();
         if($verjaardagenData[0]["dagenTotVerjaardag"] == 0)
-            $returnString = "Hoera! ".$verjaardagenData[0]["naam"]." wordt vandaag ".($verjaardagenData[0]["leeftijd"] + 1)." jaar oud!";
+            $returnString = "Hoera! ".$verjaardagenData[0]["naam"]." wordt vandaag ".($verjaardagenData[0]["leeftijd"])." jaar oud!";
         if($verjaardagenData[0]["dagenTotVerjaardag"] == 1)
             $returnString = "Morgen wordt ".$verjaardagenData[0]["naam"]." al weer ".($verjaardagenData[0]["leeftijd"] + 1)." jaar oud!";
         
