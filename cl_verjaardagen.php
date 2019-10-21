@@ -71,7 +71,7 @@ class verjaardag{
     function checkKomendeDagen(){
         $verjaardagenData = $this->getVerjaardagenData();
         if($verjaardagenData[0]["dagenTotVerjaardag"] == 0)
-            $returnString = "Hoera! ".$verjaardagenData[0]["naam"]." wordt vandaag ".($verjaardagenData[0]["leeftijd"])." jaar oud!";
+            $returnString = "Hoera! ".$verjaardagenData[0]["naam"]." wordt vandaag ".($verjaardagenData[0]["leeftijd"] + 1)." jaar oud!";
         if($verjaardagenData[0]["dagenTotVerjaardag"] == 1)
             $returnString = "Morgen wordt ".$verjaardagenData[0]["naam"]." al weer ".($verjaardagenData[0]["leeftijd"] + 1)." jaar oud!";
         
