@@ -186,5 +186,9 @@
   {
     "trigger":"ennu?",
     "antwoord":"nu niets"
+  },
+  {
+    "trigger":"is het VK al uit de EU?",
+    "antwoord":"nee, nog steeds niet"
   }
 ]
