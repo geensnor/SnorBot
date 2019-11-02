@@ -201,6 +201,10 @@
   },
   {
     "trigger":"bonuskaart",
-    "antwoord":"https://tweakers.net/ext/f/o4zYpzIYxtqlFRxHvk3EnKet/full.png"
+    "antwoord":"https://tweakers.net/ext/f/a8y4m3lfdaOXJYljsZCzFJ1Z/full.jpg"
+  },
+  {
+    "trigger":"buienradar",
+    "antwoord":"http://windwatch.net/weer/items/knmiradar.gif"
   }
 ]
