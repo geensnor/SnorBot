@@ -209,7 +209,7 @@
   },
   {
     "trigger":"klantenkaart",
-    "antwoord":"Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma"
+    "antwoord":"Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma\n - /praxis voor de praxis plus"
   },
   {
     "trigger":"gamma",
@@ -217,6 +217,6 @@
   },
   {
     "trigger":"praxis",
-    "antwoord":"Praxis bouwmarkt korting: 10% korting artikel naar keuze | 1 jaar extra garantie | 90 dagen retour | 2 uur gratis aanhanger huren | molenev@imail8.net / coocoocoo | https://img.techpowerup.org/191104/barcode-praxis.gif"
-  }
+    "antwoord":"Praxis bouwmarkt korting: 10% korting artikel naar keuze | 1 jaar extra garantie | 90 dagen retour | 2 uur gratis aanhanger huren | molenev@imail8.net / coocoocoo | https://img.techpowerup.org/191104/barcode-praxis.png"
+   }
 ]
