@@ -208,6 +208,10 @@
     "antwoord":"http://windwatch.net/weer/items/knmiradar.gif"
   },
   {
+    "trigger":"klantenkaart",
+    "antwoord":"Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma"
+  },
+  {
     "trigger":"gamma",
     "antwoord":"Gamma Bouwmarkt korting: Met de GAMMA Voordeelpas: automatisch de hoogste korting verrekend | Ontvang bij aankopen Voordeelpascoupons die korting geven op je volgende aankoop | huur van aanhangwagen eerste 2 uur gratis | plaatmateriaal gratis transportklaar | Toegang account: pewima6702@imailto.net / coocoocoo https://img.techpowerup.org/191103/screenshot-2019-11-03-at-19-45-51.png"
   }
