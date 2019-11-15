@@ -104,7 +104,7 @@ $send = FALSE;
 	if($text == "volgende 1337" || "Volgende 1337"}{
 		$antwoord = nextLeet();
 		$send = TRUE;
-
+	}
     if(!$send){
 //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
 		foreach ($antwoordenArray as $key => $value) {
