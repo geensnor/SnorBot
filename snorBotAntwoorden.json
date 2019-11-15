@@ -201,7 +201,7 @@
   },
   {
     "trigger":"bonuskaart",
-    "antwoord":"https://tweakers.net/ext/f/a8y4m3lfdaOXJYljsZCzFJ1Z/full.jpg"
+    "antwoord":"https://tweakers.net/ext/f/o4zYpzIYxtqlFRxHvk3EnKet/full.png"
   },
   {
     "trigger":"buienradar",
@@ -209,10 +209,18 @@
   },
   {
     "trigger":"klantenkaart",
-    "antwoord":"Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma"
+    "antwoord":"Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma\n - /praxis voor de praxis plus\n -/ikea voor ikea :) "
   },
   {
     "trigger":"gamma",
     "antwoord":"Gamma Bouwmarkt korting: Met de GAMMA Voordeelpas: automatisch de hoogste korting verrekend | Ontvang bij aankopen Voordeelpascoupons die korting geven op je volgende aankoop | huur van aanhangwagen eerste 2 uur gratis | plaatmateriaal gratis transportklaar | Toegang account: pewima6702@imailto.net / coocoocoo https://img.techpowerup.org/191103/screenshot-2019-11-03-at-19-45-51.png"
-  }
+  },
+  {
+    "trigger":"praxis",
+    "antwoord":"Praxis bouwmarkt korting: 10% korting artikel naar keuze | 1 jaar extra garantie | 90 dagen retour | 2 uur gratis aanhanger huren | molenev@imail8.net / coocoocoo | https://img.techpowerup.org/191104/barcode-praxis.png"
+   },
+   {
+     "trigger":"ikea",
+     "antwoord":"Ikea Family: Gratis koffie! en her en der wat korting. https://img.techpowerup.org/191112/screenshot-2019-11-12-at-12-02-09.png"
+   }
 ]
