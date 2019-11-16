@@ -28,12 +28,23 @@ $send = FALSE;
 
 // end of bitcoin koers in euro
 
+//Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
 		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
 		$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
+
+	if($text == 'temperatuur nijmegen') {
+		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/51.827359,5.853042?lang=nl&units=ca"));
+		$content = array('chat_id' => $chat_id, 'text' => "In Nijmegen is het nu ".$weerObject->daily->temperature." graden");
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+
+
+//Hierboven staan weerdingen
 
 	if($text == 'xkcd' || $text == 'Xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
