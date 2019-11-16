@@ -222,5 +222,9 @@
    {
      "trigger":"ikea",
      "antwoord":"Ikea Family: Gratis koffie! en her en der wat korting. https://img.techpowerup.org/191112/screenshot-2019-11-12-at-12-02-09.png"
+   },
+    {
+     "trigger":"temperatuur",
+     "antwoord":"Altijd verstandig om even de temperatuur te checken. Dan weet je bijvoorbeeld of je een jas aan moet doen of een setje thermisch ondergoed. Voor welke plaats in Nederland wil je de temperatuur weten? \n\n /temperatuur utrecht voor Utrecht\n /temperatuur nijmegen voor Nijmegen"
    }
 ]
