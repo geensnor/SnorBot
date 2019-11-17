@@ -50,8 +50,19 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-
 //Hierboven staan weerdingen
+
+//Beetje nieuws.....
+	if($text == 'nieuws' || $text == 'Nieuws') {
+		$nosxml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
+		$content = array('chat_id' => $chat_id, 'text' => $nosxml->channel->item[0]->title);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+//Nieuws hierboven
+
+$xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
+
 
 	if($text == 'xkcd' || $text == 'Xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
