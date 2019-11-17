@@ -55,7 +55,7 @@ $send = FALSE;
 //Beetje nieuws.....
 	if($text == 'nieuws' || $text == 'Nieuws') {
 		$nuxml = simplexml_load_file("https://www.nu.nl/rss");
-		$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van [nu.nl](https://www.nu.nl): \n".$nuxml->channel->item[0]->title);
+		$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
