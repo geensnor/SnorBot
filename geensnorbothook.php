@@ -54,7 +54,7 @@ $send = FALSE;
 
 //Beetje nieuws.....
 	if($text == 'nieuws' || $text == 'Nieuws') {
-		$nosxml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
+		$nosxml = simplexml_load_file("https://www.nu.nl/rss");
 		$content = array('chat_id' => $chat_id, 'text' => $nosxml->channel->item[0]->title);
 		$telegram->sendMessage($content);
 		$send = TRUE;
