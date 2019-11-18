@@ -143,7 +143,7 @@ function pastleetCheck()
 		$antwoord = $verveelArray[$randKey];
 		$send = TRUE;
 	}
-	if($text == "volgende 1337" || "Volgende 1337"){
+	if($text == "volgende 1337" || $text == "Volgende 1337"){
 		$antwoord = nextLeet();
 		$send = TRUE;
 	}
