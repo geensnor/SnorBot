@@ -21,8 +21,12 @@ $send = FALSE;
 		$dagVanDeArray = json_decode(file_get_contents("snorBotDagVanDe.json"));
     foreach ($dagVanDeArray as $key => $value) {
       if($dagVanDeArray[$key]->dag == date('d-m'))
-        $content = array('chat_id' => $chat_id, 'text' => "Het is vandaag: \n".$dagVanDeArray[$key]->onderwerp);
+        $dagText =  "Het is vandaag: \n".$dagVanDeArray[$key]->onderwerp;
     }
+    if(!$dagText)
+    	$dagText =  "Ik heb geen idee waar het vandaag een dag van is. Probeer het morgen nog een keer zou ik zeggen.";
+
+    $content = array('chat_id' => $chat_id, 'text' => $dagText);	
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
