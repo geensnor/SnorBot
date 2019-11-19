@@ -35,14 +35,14 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-	if($text == 'temperatuur nijmegen') {
+	if($text == 'temperatuur Nijmegen') {
 		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/51.827359,5.853042?lang=nl&units=ca"));
 		$content = array('chat_id' => $chat_id, 'text' => "In Nijmegen is het nu ".$weerObject->currently->temperature." graden celsius");
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
 
-	if($text == 'temperatuur utrecht') {
+	if($text == 'temperatuur Utrecht') {
 		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.092921,5.123173?lang=nl&units=ca"));
 		$content = array('chat_id' => $chat_id, 'text' => "In Utrecht is het nu ".$weerObject->currently->temperature." graden celsius");
 		$telegram->sendMessage($content);
@@ -122,28 +122,6 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 	if($text  == "dooddoener" || $text  == "Dooddoener"){
 		$randKey = array_rand($DooddoenerArray, 1);
 		$antwoord = $DooddoenerArray[$randKey];
-		$send = TRUE;
-	}
-	if($text == "1337"){
-	    	$dateString = date('y-m-d H:i:s');
-    		$timeZone = 'Europe/Amsterdam';
-    		$timeZoneSource = date_default_timezone_get();
-    		$currentTime = new DateTime($dateString, new DateTimeZone($timeZoneSource));
-    		$currentTime->setTimezone(new DateTimeZone($timeZone));
-    
-    		$currentHour = $currentTime->format('H');
-    		$currentMinute = $currentTime->format('i');
-    		$dayCompensator = 1;
-    		if (14 > $currentHour or ($currentHour == 13 and $currentMinute < 37))
-        		{$dayCompensator = 0;}
-    		$dayDate = date("y-m-d", strtotime("+ $dayCompensator day"));
-    		$completedTime = new DateTime("$dayDate 13:37:00", new DateTimeZone($timeZone));
-
-    		$interval = $completedTime->diff($currentTime);
-    		$leetTime = $interval->format('%H uur, %I minuten, %S seconden');
-
-    		$leetText = "Tijd tot volgende 1337: $leetTime.";
-		$antwoord = $leetText;
 		$send = TRUE;
 	}
 	if($text  == "verveel" || $text  == "wat zal ik doen"){
