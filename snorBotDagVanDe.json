@@ -1,8 +1,10 @@
 [
   {
-    "19-11": "Dag van de Snorbot"
+    "dag": "19-11",
+    "onderwerp": "Dag van de Snorbot"
   },
   {
-    "20-11": "Dag na de dag van de Snorbot"
+    "dag": "20-11",
+    "onderwerp": "flapflop"
   }
 ]

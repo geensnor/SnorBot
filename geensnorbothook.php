@@ -19,7 +19,10 @@ $send = FALSE;
 //Dag van de - Start
 	if($text == 'dag van de' || $text == 'Dag van de') {
 		$dagVanDeArray = json_decode(file_get_contents("snorBotDagVanDe.json"));
-		$content = $dagVanDeArray[date('d-m')];
+    foreach ($dagVanDeArray as $key => $value) {
+      if($dagVanDeArray[$key]->dag == date('d-m'))
+        $content = $dagVanDeArray[$key]->onderwerp;
+    }
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
