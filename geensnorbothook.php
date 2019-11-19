@@ -49,8 +49,19 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-
 //Hierboven staan weerdingen
+
+//Beetje nieuws.....
+	if($text == 'nieuws' || $text == 'Nieuws') {
+		$nuxml = simplexml_load_file("https://www.nu.nl/rss");
+		$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+//Nieuws hierboven
+
+$xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
+
 
 	if($text == 'xkcd' || $text == 'Xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
@@ -140,6 +151,34 @@ $send = FALSE;
 		$antwoord = $verveelArray[$randKey];
 		$send = TRUE;
 	}
+	if($text == "1337"){	
+		$dateString = date('y-m-d H:i:s');
+		
+		//Tijdzonde conversie, voor het geval de server niet op onze tijdzone zit
+		$timeZone = 'Europe/Amsterdam';
+		$timeZoneSource = date_default_timezone_get();
+		$currentTime = new DateTime($dateString, new DateTimeZone($timeZoneSource));
+		$currentTime->setTimezone(new DateTimeZone($timeZone));
+		
+		$currentHour = $currentTime->format('H');
+		$currentMinute = $currentTime->format('i');
+		
+		//Truukje te zorgen dat hij altijd het verschil met een toekomstige tijd berekent (anders neemt ie vandaag)
+		$dayCompensator = 1;
+		if (14 > $currentHour or ($currentHour == 13 and $currentMinute < 37))
+			{$dayCompensator = 0;}
+		$dayDate = date("y-m-d", strtotime("+ $dayCompensator day"));
+		
+		//Verschil berekenen en in tekst zetten
+		$completedTime = new DateTime("$dayDate 13:37:00", new DateTimeZone($timeZone));
+		$interval = $completedTime->diff($currentTime);
+		$leetTime = $interval->format('%H uur, %I minuten, %S seconden');
+		$leetText = "Tijd tot volgende 1337: $leetTime.";
+		
+		$antwoord = $leetText;
+		$send = TRUE;
+	}
+
 
     if(!$send){
 //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
