@@ -15,49 +15,6 @@ $chat_id = $telegram->ChatID();
 $losseWoorden = explode(" ", $text);
 $antwoord = "";
 $send = FALSE;
-
-//Functies
-
-//Functie om volgende 1337 te berekenen
-function nextLeet()
-	{
-	$newDate = changeTimeZone(date('y-m-d H:i:s'),'','Europe/Amsterdam');
-	$assignedTime= $newDate;
-	$dayCompensator = pastleetCheck();
-	$dayDate = date("y-m-d", strtotime("+ $dayCompensator day"));
-	$completedTime   = "$dayDate 13:37:00";
-
-	$d1 = new DateTime($assignedTime);
-	$d2 = new DateTime($completedTime);
-	$interval = $d2->diff($d1);
-	$leetTime = $interval->format('%H uur, %I minuten, %S seconden');
-	$tmzn = date_default_timezone_get();
-
-	return "Tijd tot volgende 1337: $leetTime.";
-	}
-
-//Functie om te zorgen dat de juiste tijdzonde gebruikte wordt
-function changeTimeZone($dateString, $timeZoneSource = null, $timeZoneTarget = null)
-	{
-  	if (empty($timeZoneSource)) 
-		{$timeZoneSource = date_default_timezone_get();}
-  	if (empty($timeZoneTarget)) 
-		{$timeZoneTarget = date_default_timezone_get();}
-	$dt = new DateTime($dateString, new DateTimeZone($timeZoneSource));
-  	$dt->setTimezone(new DateTimeZone($timeZoneTarget));
-	return $dt->format('y-m-d H:i:s');
-	}
-
-//Functie om te kijken of 1337 vandaag al geweest is om morgen (tijdsverschil werkt anders niet)
-function pastleetCheck()
-	{
-	$currentHour = Date('H');
-	$currentMinute = Date('i');
-	if (14 > $currentHour or ($currentHour = 13 and $currentMinute < 37))
-		{$dayCompensator = 0;}
-	else
-		{$dayCompensator = 1;}
-	}
 	
 //bitcoin koers in euro
 
@@ -157,36 +114,33 @@ function pastleetCheck()
 		$send = TRUE;
 	}
 	if($text == "1337"){
-	    $dateString = date('y-m-d H:i:s');
-    	$timeZone = 'Europe/Amsterdam';
-    	$timeZoneSource = date_default_timezone_get();
-    	$currentTime = new DateTime($dateString, new DateTimeZone($timeZoneSource));
-    	$currentTime->setTimezone(new DateTimeZone($timeZone));
+	    	$dateString = date('y-m-d H:i:s');
+    		$timeZone = 'Europe/Amsterdam';
+    		$timeZoneSource = date_default_timezone_get();
+    		$currentTime = new DateTime($dateString, new DateTimeZone($timeZoneSource));
+    		$currentTime->setTimezone(new DateTimeZone($timeZone));
     
-    	$currentHour = $currentTime->format('H');
-    	$currentMinute = $currentTime->format('i');
-    	$dayCompensator = 1;
-    	if (14 > $currentHour or ($currentHour == 13 and $currentMinute < 37))
-        	{$dayCompensator = 0;}
-    	$dayDate = date("y-m-d", strtotime("+ $dayCompensator day"));
-    	$completedTime = new DateTime("$dayDate 13:37:00", new DateTimeZone($timeZone));
+    		$currentHour = $currentTime->format('H');
+    		$currentMinute = $currentTime->format('i');
+    		$dayCompensator = 1;
+    		if (14 > $currentHour or ($currentHour == 13 and $currentMinute < 37))
+        		{$dayCompensator = 0;}
+    		$dayDate = date("y-m-d", strtotime("+ $dayCompensator day"));
+    		$completedTime = new DateTime("$dayDate 13:37:00", new DateTimeZone($timeZone));
 
-    	$interval = $completedTime->diff($currentTime);
-    	$leetTime = $interval->format('%H uur, %I minuten, %S seconden');
+    		$interval = $completedTime->diff($currentTime);
+    		$leetTime = $interval->format('%H uur, %I minuten, %S seconden');
 
-    	$leetText = "Tijd tot volgende 1337: $leetTime.";
-	$antwoord = $leetText;
-	$send = TRUE;
+    		$leetText = "Tijd tot volgende 1337: $leetTime.";
+		$antwoord = $leetText;
+		$send = TRUE;
 	}
 	if($text  == "verveel" || $text  == "wat zal ik doen"){
 		$randKey = array_rand($verveelArray, 1);
 		$antwoord = $verveelArray[$randKey];
 		$send = TRUE;
 	}
-	if($text == "volgende 1337" || $text == "Volgende 1337"){
-		$antwoord = nextLeet();
-		$send = TRUE;
-	}
+
     if(!$send){
 //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
 		foreach ($antwoordenArray as $key => $value) {
