@@ -15,7 +15,17 @@ $chat_id = $telegram->ChatID();
 $losseWoorden = explode(" ", $text);
 $antwoord = "";
 $send = FALSE;
-	
+
+//Dag van de - Start
+	if($text == 'dag van de' || $text == 'Dag van de') {
+		$dagVanDeArray = json_decode(file_get_contents("snorBotDagVanDe.json"));
+		$content = $dagVanDeArray[date('d-m')];
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+//Dag van de - Einde
+
+
 //bitcoin koers in euro
 
 	if($text == 'Bitcoin' || $text == 'bitcoin') {
@@ -74,18 +84,18 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
     }
 
     if($text == 'xkcd nieuwste' || $text == 'Xkcd nieuwste') {
-		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
-        $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
-        $telegram->sendPhoto($content);
-        $send = TRUE;
+			$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
+      $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
+      $telegram->sendPhoto($content);
+      $send = TRUE;
     }
     
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
 		$v = new verjaardag;
 		$antwoord = $v->getVerjaardagTekst();
-        $send = TRUE;
-    }
+    $send = TRUE;
+  }
 
     if($telegram->Location()){
     	$locatieGebruiker = $telegram->Location();
