@@ -17,7 +17,7 @@ $antwoord = "";
 $send = FALSE;
 
 //Dag van de - Start
-	if($text == 'dag van de' || $text == 'Dag van de') {
+	if($text == 'dag van de' || $text == 'Dag van de' || $text == 'Het is vandaag' || $text == 'het is vandaag') {
 		$dagVanDeArray = json_decode(file_get_contents("snorBotDagVanDe.json"));
     foreach ($dagVanDeArray as $key => $value) {
       if($dagVanDeArray[$key]->dag == date('d-m'))
