@@ -97,8 +97,7 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 		$telegram->sendPhoto($content);
 		$send = TRUE;
     }
-	
-
+	 
 	if($text == 'genereer wachtwoord') {
 		$wachtwoord = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=password&format=json&count=10"));
 		$content = array('chat_id' => $chat_id, 'text' => "Random wachtwoord: ".$wachtwoord->char[1]);
@@ -113,8 +112,7 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 		$send = TRUE;
 	}
 	
-
-
+	
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
 		$v = new verjaardag;
