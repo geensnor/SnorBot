@@ -9,6 +9,7 @@ $weetjesArray = json_decode(file_get_contents("https://raw.githubusercontent.com
 $DooddoenerArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/dooddoeners/master/dooddoener.json"));
 $verveelArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/verveellijst/master/verveellijst.json"));
 
+
 $text = ltrim($telegram->Text(), '/');
 $chat_id = $telegram->ChatID();
 
@@ -91,12 +92,23 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
     }
 
     if($text == 'xkcd nieuwste' || $text == 'Xkcd nieuwste') {
-			$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
-      $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
-      $telegram->sendPhoto($content);
-      $send = TRUE;
+		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
+		$content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
+		$telegram->sendPhoto($content);
+		$send = TRUE;
     }
-    
+	
+	// IP adres
+
+	if($text == 'ip') {
+		$ipData = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=ip&format=json"));
+		$content = array('chat_id' => $chat_id, 'text' => "Jouw Ip Adres".$ipData->ip);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+	
+
+
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
 		$v = new verjaardag;
