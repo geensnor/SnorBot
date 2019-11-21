@@ -98,11 +98,10 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 		$send = TRUE;
     }
 	
-	// IP adres
 
-	if($text == 'ip') {
-		$ipData = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=ip&format=json"));
-		$content = array('chat_id' => $chat_id, 'text' => "Jouw Ip Adres".$ipData->ip);
+	if($text == 'genereer wachtwoord') {
+		$wachtwoord = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=password&format=json&count=1"));
+		$content = array('chat_id' => $chat_id, 'text' => "Jouw Ip Adres".$wachtwoord->char);
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
