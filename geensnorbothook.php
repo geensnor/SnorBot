@@ -9,13 +9,31 @@ $weetjesArray = json_decode(file_get_contents("https://raw.githubusercontent.com
 $DooddoenerArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/dooddoeners/master/dooddoener.json"));
 $verveelArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/verveellijst/master/verveellijst.json"));
 
+
 $text = ltrim($telegram->Text(), '/');
 $chat_id = $telegram->ChatID();
 
 $losseWoorden = explode(" ", $text);
 $antwoord = "";
 $send = FALSE;
-	
+
+//Dag van de - Start
+	if($text == 'dag van de' || $text == 'Dag van de' || $text == 'Het is vandaag' || $text == 'het is vandaag') {
+		$dagVanDeArray = json_decode(file_get_contents("snorBotDagVanDe.json"));
+    foreach ($dagVanDeArray as $key => $value) {
+      if($dagVanDeArray[$key]->dag == date('d-m'))
+        $dagText =  "Het is vandaag: \n".$dagVanDeArray[$key]->onderwerp;
+    }
+    if(!$dagText)
+    	$dagText =  "Ik heb geen idee waar het vandaag een dag van is. Probeer het morgen nog een keer zou ik zeggen.";
+
+    $content = array('chat_id' => $chat_id, 'text' => $dagText);	
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+//Dag van de - Einde
+
+
 //bitcoin koers in euro
 
 	if($text == 'Bitcoin' || $text == 'bitcoin') {
@@ -75,17 +93,28 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 
     if($text == 'xkcd nieuwste' || $text == 'Xkcd nieuwste') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
-        $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
-        $telegram->sendPhoto($content);
-        $send = TRUE;
+		$content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
+		$telegram->sendPhoto($content);
+		$send = TRUE;
     }
-    
+	
+	// IP adres
+
+	if($text == 'ip') {
+		$ipData = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=ip&format=json"));
+		$content = array('chat_id' => $chat_id, 'text' => "Jouw Ip Adres".$ipData->ip);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+	
+
+
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
 		$v = new verjaardag;
 		$antwoord = $v->getVerjaardagTekst();
-        $send = TRUE;
-    }
+    $send = TRUE;
+  }
 
     if($telegram->Location()){
     	$locatieGebruiker = $telegram->Location();
@@ -142,9 +171,9 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 		$currentMinute = $currentTime->format('i');
 		
 		//Truukje te zorgen dat hij altijd het verschil met een toekomstige tijd berekent (anders neemt ie vandaag)
-		$dayCompensator = 1;
-		if (14 > $currentHour or ($currentHour == 13 and $currentMinute < 37))
-			{$dayCompensator = 0;}
+		$dayCompensator = 0;
+		if (14 <= $currentHour or ($currentHour == 13 and $currentMinute > 36))
+			{$dayCompensator = 1;}
 		$dayDate = date("y-m-d", strtotime("+ $dayCompensator day"));
 		
 		//Verschil berekenen en in tekst zetten
