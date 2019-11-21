@@ -108,7 +108,7 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 	
 	if($text == 'guid') {
 		$guid = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=guid&format=json&count=10"));
-		$content = array('chat_id' => $chat_id, 'text' => "Random wachtwoord: ".$guid->char[1]);
+		$content = array('chat_id' => $chat_id, 'text' => "Random guid: ".$guid->char[1]);
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
