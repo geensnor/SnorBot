@@ -114,8 +114,9 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 	
 
 	if($text == 'random word') {
-		$word = json_decode (file_get_contents("https://random-word-api.herokuapp.com/word?key=6TOWC0MA&number=10"));
-		$content = array('chat_id' => $chat_id, 'text' => "Random engels woord: ".$word[1]);
+		$word = json_decode (file_get_contents("https://raw.githubusercontent.com/RazorSh4rk/random-word-api/master/words.json"));
+		$randword = array_rand ($word, 1);
+		$content = array('chat_id' => $chat_id, 'text' => "Random engels woord: ".$randword[1]);
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
