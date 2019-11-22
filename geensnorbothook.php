@@ -112,6 +112,13 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 		$send = TRUE;
 	}
 	
+
+	if($text == 'random word') {
+		$word = json_decode (file_get_contents("https://random-word-api.herokuapp.com/word?key=6TOWC0MA&number=10"));
+		$content = array('chat_id' => $chat_id, 'text' => "Random engels woord: ".$word[1]);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
 	
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
