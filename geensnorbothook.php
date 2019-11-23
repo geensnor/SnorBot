@@ -112,14 +112,14 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 		$send = TRUE;
 	}
 	
-
-	if($text == 'random word') {
-		$word = json_decode (file_get_contents("https://raw.githubusercontent.com/RazorSh4rk/random-word-api/master/words.json"));
-		$randword = array_rand ($word);
-		$content = array('chat_id' => $chat_id, 'text' => "Random engels woord: ".$randword[1]);
-		$telegram->sendMessage($content);
-		$send = TRUE;
-	}
+//nog niet klaar
+	//if($text == 'random word') {
+	//	$word = json_decode (file_get_contents("https://raw.githubusercontent.com/RazorSh4rk/random-word-api/master/words.json"));
+	//	$randword = array_rand ($word, 1);
+	//	$content = array('chat_id' => $chat_id, 'text' => "Random engels woord: ".word[]);
+	//	$telegram->sendMessage($content);
+	//	$send = TRUE;
+	//}
 	
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
