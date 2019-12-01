@@ -3,11 +3,6 @@ Middelpunt van de "Conversational UI" van geensnor.nl.
 
 Live te bewonderen op: [https://t.me/geensnorbot](https://t.me/geensnorbot)
 
-## Weetjes en Dooddoeners
-De weetjes en dooddoeners waarvan de bot gebruik maakt staan hier:
-
-[https://github.com/geensnor/Dooddoeners](https://github.com/geensnor/Dooddoeners)
-
-[https://github.com/geensnor/Weetjes](https://github.com/geensnor/Weetjes)
-
-[https://github.com/geensnor/Verveellijst](https://github.com/geensnor/Verveellijst)
+## Lijsten
+De SnorBot maakt gebruik van allerlei handige lijsten. Deze staan hier:
+https://github.com/geensnor/SnorLijsten

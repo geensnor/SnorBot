@@ -5,9 +5,12 @@ include("advies.php");
 $telegram = new Telegram(getenv('telegramId'));
 
 $antwoordenArray = json_decode(file_get_contents("snorBotAntwoorden.json"));
-$weetjesArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/weetjes/master/snorBotWeetjes.json"));
-$DooddoenerArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/dooddoeners/master/dooddoener.json"));
-$verveelArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/verveellijst/master/verveellijst.json"));
+
+$weetjesLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/weetjes.json";
+$dooddoenerLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dooddoeners.json";
+$verveelLocatie = "https://raw.githubusercontent.com/geensnor/verveellijst/master/verveellijst.json";
+$dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
+
 
 
 $text = ltrim($telegram->Text(), '/');
@@ -19,7 +22,7 @@ $send = FALSE;
 
 //Dag van de - Start
 	if($text == 'dag van de' || $text == 'Dag van de' || $text == 'Het is vandaag' || $text == 'het is vandaag') {
-		$dagVanDeArray = json_decode(file_get_contents("snorBotDagVanDe.json"));
+		$dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
     foreach ($dagVanDeArray as $key => $value) {
       if($dagVanDeArray[$key]->dag == date('d-m'))
         $dagText =  "Het is vandaag: \n".$dagVanDeArray[$key]->onderwerp;
@@ -46,7 +49,7 @@ $send = FALSE;
 // end of bitcoin koers in euro
 
 //Hieronder staan weerdingen
-	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
+	if($text == 'weer'|| $text == 'Weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
 		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
 		$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
 		$telegram->sendMessage($content);
@@ -78,25 +81,22 @@ $send = FALSE;
 	}
 //Nieuws hierboven
 
-$xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
-
-
 	if($text == 'xkcd' || $text == 'Xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
 		$randomComicNumber = rand(0, $xkcdData->num);
 		$randomComicObject = json_decode(file_get_contents("http://xkcd.com/".$randomComicNumber."/info.0.json"));
-        $content = array('chat_id' => $chat_id, 'photo' => $randomComicObject->img);
-        $telegram->sendPhoto($content);
-        $antwoord = "Random XKCD comic. Typ 'xkcd nieuwste' voor de nieuwste";
-        $send = TRUE;
-    }
+    $content = array('chat_id' => $chat_id, 'photo' => $randomComicObject->img);
+    $telegram->sendPhoto($content);
+    $antwoord = "Random XKCD comic. Typ 'xkcd nieuwste' voor de nieuwste";
+    $send = TRUE;
+  }
 
-    if($text == 'xkcd nieuwste' || $text == 'Xkcd nieuwste') {
+  if($text == 'xkcd nieuwste' || $text == 'Xkcd nieuwste') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
-		$content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
-		$telegram->sendPhoto($content);
-		$send = TRUE;
-    }
+    $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
+    $telegram->sendPhoto($content);
+    $send = TRUE;
+  }
 	 
 	if($text == 'genereer wachtwoord') {
 		$wachtwoord = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=password&format=json&count=10"));
@@ -120,7 +120,7 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 	//	$telegram->sendMessage($content);
 	//	$send = TRUE;
 	//}
-	
+
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
 		$v = new verjaardag;
@@ -128,8 +128,8 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
     $send = TRUE;
   }
 
-    if($telegram->Location()){
-    	$locatieGebruiker = $telegram->Location();
+  if($telegram->Location()){
+  	$locatieGebruiker = $telegram->Location();
 		$adviesJson = getAdviesArray($locatieGebruiker["latitude"], $locatieGebruiker["longitude"]);
 
 		$contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name." zit in de buurt:"];
@@ -139,8 +139,7 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 		$telegram->sendLocation($contentLocation);
 		$telegram->sendMessage($contentAdviesToelichting);
 		$send = TRUE;
-
-    }
+  }
 
 	if($text == "advies" || $text  == "Advies"){
 		$option = array(array($telegram->buildKeyBoardButton("Klik hier om je locatie te delen", $request_contact=false, $request_location=true)));
@@ -151,25 +150,32 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 	}
 
 	if($text == "nieuwste weetje" || $text == "Nieuwste weetje"){
+		$weetjesArray = json_decode(file_get_contents($weetjesLocatie));
 		$antwoord = end($weetjesArray);
 		$send = TRUE;
 	}
 
 	if($text  == "weetje" || $text  == "Weetje"){
+		$weetjesArray = json_decode(file_get_contents($weetjesLocatie));
 		$randKey = array_rand($weetjesArray, 1);
 		$antwoord = $weetjesArray[$randKey];
 		$send = TRUE;
 	}    
+
 	if($text  == "dooddoener" || $text  == "Dooddoener"){
-		$randKey = array_rand($DooddoenerArray, 1);
-		$antwoord = $DooddoenerArray[$randKey];
+		$dooddoenerArray = json_decode(file_get_contents($dooddoenerLocatie));
+		$randKey = array_rand($dooddoenerArray, 1);
+		$antwoord = $dooddoenerArray[$randKey];
 		$send = TRUE;
 	}
+
 	if($text  == "verveel" || $text  == "wat zal ik doen"){
+		$verveelArray = json_decode(file_get_contents($verveelLocatie));
 		$randKey = array_rand($verveelArray, 1);
 		$antwoord = $verveelArray[$randKey];
 		$send = TRUE;
 	}
+
 	if($text == "1337"){	
 		$dateString = date('y-m-d H:i:s');
 		
@@ -186,6 +192,7 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 		$dayCompensator = 0;
 		if (14 <= $currentHour or ($currentHour == 13 and $currentMinute > 36))
 			{$dayCompensator = 1;}
+		
 		$dayDate = date("y-m-d", strtotime("+ $dayCompensator day"));
 		
 		//Verschil berekenen en in tekst zetten
@@ -199,27 +206,27 @@ $xml = simplexml_load_file("http://feeds.nos.nl/nosjournaal?format=xml");
 	}
 
 
-    if(!$send){
+  if(!$send){
 //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
-		foreach ($antwoordenArray as $key => $value) {
-	    	if(strstr($text, strtolower($antwoordenArray[$key]->trigger)) || strstr($text, ucfirst($antwoordenArray[$key]->trigger))){
-	    		echo $text." ".$key." antwoord: ".$antwoordenArray[$key]->antwoord;
-	    		$antwoord = $antwoordenArray[$key]->antwoord;
-	    		$send = TRUE;	    			    		
-	    	}
-	    }
-	    	
-//Daarna kijken naar de losse woorden
-    	if(!$send){
-	    	foreach ($losseWoorden as $wKey => $wValue){
-	 			foreach ($antwoordenArray as $key => $value) {
-			    	if(strstr($losseWoorden[$wKey], strtolower($antwoordenArray[$key]->trigger)) || strstr($losseWoorden[$wKey], ucfirst($antwoordenArray[$key]->trigger))){
-			    		$antwoord = $antwoordenArray[$key]->antwoord;
-			    		$send = TRUE;	    			    		
-			    	}
-			    }
-	    	}
+	foreach ($antwoordenArray as $key => $value) {
+    	if(strstr($text, strtolower($antwoordenArray[$key]->trigger)) || strstr($text, ucfirst($antwoordenArray[$key]->trigger))){
+    		echo $text." ".$key." antwoord: ".$antwoordenArray[$key]->antwoord;
+    		$antwoord = $antwoordenArray[$key]->antwoord;
+    		$send = TRUE;	    			    		
     	}
+    }
+    	
+//Daarna kijken naar de losse woorden
+  	if(!$send){
+    	foreach ($losseWoorden as $wKey => $wValue){
+ 			foreach ($antwoordenArray as $key => $value) {
+		    	if(strstr($losseWoorden[$wKey], strtolower($antwoordenArray[$key]->trigger)) || strstr($losseWoorden[$wKey], ucfirst($antwoordenArray[$key]->trigger))){
+		    		$antwoord = $antwoordenArray[$key]->antwoord;
+		    		$send = TRUE;	    			    		
+		    	}
+		    }
+    	}
+  	}
     }	
 	if(!$send && $text){
 		$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";

@@ -230,5 +230,9 @@
    {
      "trigger":"hoera",
      "antwoord":"Gefeliciteerd!"
+   },
+   {
+     "trigger":"is dit kunst?",
+     "antwoord":"nee, kan weg."
    }
 ]
