@@ -12,6 +12,7 @@ $verveelLocatie = "https://raw.githubusercontent.com/geensnor/verveellijst/maste
 $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
 
 
+
 $text = ltrim($telegram->Text(), '/');
 $chat_id = $telegram->ChatID();
 
@@ -96,7 +97,30 @@ $send = FALSE;
     $telegram->sendPhoto($content);
     $send = TRUE;
   }
-    
+	 
+	if($text == 'genereer wachtwoord') {
+		$wachtwoord = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=password&format=json&count=10"));
+		$content = array('chat_id' => $chat_id, 'text' => "Random wachtwoord: ".$wachtwoord->char[1]);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+	
+	if($text == 'guid') {
+		$guid = json_decode (file_get_contents("https://www.passwordrandom.com/query?command=guid&format=json&count=10"));
+		$content = array('chat_id' => $chat_id, 'text' => "Random guid: ".$guid->char[1]);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+	
+//nog niet klaar
+	//if($text == 'random word') {
+	//	$word = json_decode (file_get_contents("https://raw.githubusercontent.com/RazorSh4rk/random-word-api/master/words.json"));
+	//	$randword = array_rand ($word, 1);
+	//	$content = array('chat_id' => $chat_id, 'text' => "Random engels woord: ".word[]);
+	//	$telegram->sendMessage($content);
+	//	$send = TRUE;
+	//}
+
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
 		$v = new verjaardag;
