@@ -81,6 +81,15 @@ $send = FALSE;
 	}
 //Nieuws hierboven
 
+
+//Is het al 5 uur?
+	if($text == 'is het al vijf uur' || $text == 'Is het al vijf uur' || $text == 'Is het al 5 uur' || $text == 'is het al 5 uur') {
+		$content = array('chat_id' => $chat_id, 'text' => "Nee, het is ".date("H:i:s"));
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+////////////////
+
 	if($text == 'xkcd' || $text == 'Xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
 		$randomComicNumber = rand(0, $xkcdData->num);
