@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Amsterdam');
 include (__DIR__ . '/vendor/autoload.php');
 include("advies.php");
 
