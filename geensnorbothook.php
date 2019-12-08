@@ -11,6 +11,7 @@ $weetjesLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master
 $dooddoenerLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dooddoeners.json";
 $verveelLocatie = "https://raw.githubusercontent.com/geensnor/verveellijst/master/verveellijst.json";
 $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
+$haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/haiku.json";
 
 
 
@@ -183,6 +184,13 @@ $send = FALSE;
 		$verveelArray = json_decode(file_get_contents($verveelLocatie));
 		$randKey = array_rand($verveelArray, 1);
 		$antwoord = $verveelArray[$randKey];
+		$send = TRUE;
+	}
+
+	if($text  == "haiku" || $text  == "Haiku"){
+		$haikuArray = json_decode(file_get_contents($haikuLocatie));
+		$randKey = array_rand($haikuArray, 1);
+		$antwoord = $haikuArray[$randKey];
 		$send = TRUE;
 	}
 
