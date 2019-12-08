@@ -104,8 +104,12 @@
     "antwoord": "nou nou"
   },
   {
-    "trigger": "haiku",
-    "antwoord": "Blender Haiku: \nEen nieuwe blender. \nGroter dan die vorige. \nDe oude moet weg"
+    "trigger": "wat is een haiku?",
+    "antwoord": "Haiku (俳句; meervoud: haiku of haiku's) is een vorm van Japanse dichtkunst, geschreven in drie regels waarvan de eerste regel 5, de tweede regel 7 en de derde regel weer 5 lettergrepen telt. De haiku is een vingerhoed vol emotie, waarin weinig ruimte is voor ontledingen en benaderende omschrijvingen. Belangrijk bij een haiku: er is maar ruimte voor 1 gedachte!"
+  },
+  {
+    "trigger": "kigo",
+    "antwoord": "Kigo (季語, kigo) is in de haiku (een Japans natuurgedicht) het seizoenswoord waarmee naar het betreffende seizoen verwezen wordt. Zo staat bloesem voor lente en sneeuw voor winter."
   },
   {
     "trigger":"best crypto",
