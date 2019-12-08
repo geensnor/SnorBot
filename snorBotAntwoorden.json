@@ -108,6 +108,10 @@
     "antwoord": "Haiku (俳句; meervoud: haiku of haiku's) is een vorm van Japanse dichtkunst, geschreven in drie regels waarvan de eerste regel 5, de tweede regel 7 en de derde regel weer 5 lettergrepen telt. De haiku is een vingerhoed vol emotie, waarin weinig ruimte is voor ontledingen en benaderende omschrijvingen."
   },
   {
+    "trigger": "kigo",
+    "antwoord": "Kigo (季語, kigo) is in de haiku (een Japans natuurgedicht) het seizoenswoord waarmee naar het betreffende seizoen verwezen wordt. Zo staat bloesem voor lente en sneeuw voor winter."
+  },
+  {
     "trigger":"best crypto",
     "antwoord":"DutchCryptoTalk"
   },
