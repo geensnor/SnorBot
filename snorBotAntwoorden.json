@@ -238,5 +238,9 @@
    {
      "trigger":"is dit kunst?",
      "antwoord":"nee, kan weg."
+   },
+   {
+     "trigger":"bedankt snorbot",
+     "antwoord":"At your service!"
    }
 ]
