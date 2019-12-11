@@ -168,8 +168,12 @@ $send = FALSE;
 
 	if($text  == "weetje" || $text  == "Weetje"){
 		$weetjesArray = json_decode(file_get_contents($weetjesLocatie));
-		$randKey = array_rand($weetjesArray, 1);
-		$antwoord = $weetjesArray[$randKey];
+		if(json_last_error() === JSON_ERROR_NONE) {
+			$randKey = array_rand($weetjesArray, 1);
+			$antwoord = $weetjesArray[$randKey];
+		}
+		else
+			$antwoord = "De weetjes json is niet helemaal lekker";
 		$send = TRUE;
 	}    
 
