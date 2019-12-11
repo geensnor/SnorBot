@@ -208,6 +208,7 @@ $send = FALSE;
 			$randKey = array_rand($haikuArray, 1);
 			$antwoord = $haikuArray[$randKey];
 		}
+		else
 			$antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
 		$send = TRUE;
 	}
