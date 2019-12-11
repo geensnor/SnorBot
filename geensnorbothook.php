@@ -162,35 +162,54 @@ $send = FALSE;
 
 	if($text == "nieuwste weetje" || $text == "Nieuwste weetje"){
 		$weetjesArray = json_decode(file_get_contents($weetjesLocatie));
-		$antwoord = end($weetjesArray);
+		if(json_last_error() === JSON_ERROR_NONE)
+			$antwoord = end($weetjesArray);
+		else
+			$antwoord = "Kan geen nieuw weetje ophalen. De weetjes json is niet helemaal lekker.";
 		$send = TRUE;
 	}
 
 	if($text  == "weetje" || $text  == "Weetje"){
 		$weetjesArray = json_decode(file_get_contents($weetjesLocatie));
-		$randKey = array_rand($weetjesArray, 1);
-		$antwoord = $weetjesArray[$randKey];
+		if(json_last_error() === JSON_ERROR_NONE) {
+			$randKey = array_rand($weetjesArray, 1);
+			$antwoord = $weetjesArray[$randKey];
+		}
+		else
+			$antwoord = "Kan geen weetje ophalen. De weetjes json is niet helemaal lekker.";
 		$send = TRUE;
 	}    
 
 	if($text  == "dooddoener" || $text  == "Dooddoener"){
 		$dooddoenerArray = json_decode(file_get_contents($dooddoenerLocatie));
-		$randKey = array_rand($dooddoenerArray, 1);
-		$antwoord = $dooddoenerArray[$randKey];
+		if(json_last_error() === JSON_ERROR_NONE){
+			$randKey = array_rand($dooddoenerArray, 1);
+			$antwoord = $dooddoenerArray[$randKey];
+		}
+		else
+			$antwoord = "Kan geen dooddoener vinden. De json file is naar de vaantjes";
 		$send = TRUE;
 	}
 
 	if($text  == "verveel" || $text  == "wat zal ik doen"){
 		$verveelArray = json_decode(file_get_contents($verveelLocatie));
-		$randKey = array_rand($verveelArray, 1);
-		$antwoord = $verveelArray[$randKey];
+		if(json_last_error() === JSON_ERROR_NONE){
+			$randKey = array_rand($verveelArray, 1);
+			$antwoord = $verveelArray[$randKey];
+		}
+		else 
+			$antwoord = "Verveel je je ja? Nou, ik kan je ook niet helpen want ik kan de json met leuke dingen om te doen niet vinden.";
 		$send = TRUE;
 	}
 
 	if($text  == "haiku" || $text  == "Haiku"){
 		$haikuArray = json_decode(file_get_contents($haikuLocatie));
-		$randKey = array_rand($haikuArray, 1);
-		$antwoord = $haikuArray[$randKey];
+		if(json_last_error() === JSON_ERROR_NONE){
+			$randKey = array_rand($haikuArray, 1);
+			$antwoord = $haikuArray[$randKey];
+		}
+		else
+			$antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
 		$send = TRUE;
 	}
 
