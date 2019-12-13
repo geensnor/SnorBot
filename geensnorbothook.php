@@ -23,7 +23,7 @@ $antwoord = "";
 $send = FALSE;
 
 //Dag van de - Start
-	if($text == 'dag van de' || $text == 'Dag van de' || $text == 'Het is vandaag' || $text == 'het is vandaag') {
+	if($text == 'dag van de' || $text == 'Dag van de' || $text == 'Het is vandaag' || $text == 'het is vandaag' || $text == 'dag' || $text == 'Dag' || $text == 'dag van' || $text == 'Dag van') {
 		$dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
     foreach ($dagVanDeArray as $key => $value) {
       if($dagVanDeArray[$key]->dag == date('d-m'))
