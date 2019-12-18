@@ -28,7 +28,7 @@ function getAdviesArray($inputLat, $inputLon){
 /*	$inputLat = 51.8589811;
 	$inputLon = 5.8702883;*/
 
-	$adviesArray = json_decode(file_get_contents("snorBotAdvies.json"));
+	$adviesArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/SnorLijsten/master/advies.json"));
 
 	foreach ($adviesArray as $key => $value) {
 		$adviesArray[$key]->distance = round(distanceGeoPoints($inputLat, $inputLon, $adviesArray[$key]->lat, $adviesArray[$key]->lon),2);
