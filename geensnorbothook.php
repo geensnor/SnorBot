@@ -213,6 +213,15 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
+	if($text == "nieuwste haiku" || $text == "Nieuwste haiku"){
+		$haikuArray = json_decode(file_get_contents($haikuLocatie));
+		if(json_last_error() === JSON_ERROR_NONE)
+			$antwoord = end($haikuArray);
+		else
+			$antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
+		$send = TRUE;
+	}
+
 	if($text == "1337"){	
 		$dateString = date('y-m-d H:i:s');
 		
