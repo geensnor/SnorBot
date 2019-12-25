@@ -242,5 +242,9 @@
    {
      "trigger":"bedankt snorbot",
      "antwoord":"At your service!"
+   },
+   {
+     "trigger":"vrolijk kerstfeest",
+     "antwoord":"vrolijk kerstfeest allemaal!"
    }
 ]
