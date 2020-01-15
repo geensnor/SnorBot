@@ -253,6 +253,10 @@
    },
    {
      "trigger":"waar is willem",
-     "antwoord":"die zit alleen op Signal en niet op telegram :( "
-   }
+     "antwoord":"die zit alleen op Signal en niet op telegram :("
+   },
+   {
+     "trigger":"plaattaart",
+     "antwoord":"https://uitpaulineskeuken.nl/?s=plaattaart"
+   } 
 ]
