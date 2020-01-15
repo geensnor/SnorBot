@@ -246,5 +246,9 @@
    {
      "trigger":"vrolijk kerstfeest",
      "antwoord":"vrolijk kerstfeest allemaal!"
+   },
+   {
+    "trigger":"helaas",
+    "antwoord":"...die vlieger gaat niet op."
    }
 ]
