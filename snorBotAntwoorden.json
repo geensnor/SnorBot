@@ -250,5 +250,9 @@
    {
     "trigger":"helaas",
     "antwoord":"...die vlieger gaat niet op."
+   },
+   {
+     "trigger":"waar is willem",
+     "antwoord":"die zit alleen op Signal en niet op telegram :( "
    }
 ]
