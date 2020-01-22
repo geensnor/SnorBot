@@ -77,8 +77,12 @@ $send = FALSE;
 //Hieronder de wiki dingen
 
 	if(substr($text, 0, 4) == 'wiki') {
-		//$nuxml = simplexml_load_file("https://www.nu.nl/rss");
-		$content = array('chat_id' => $chat_id, 'text' => "[wiki](http://www.wiki.nl)", 'parse_mode' => 'Markdown');
+		$wikiResult = json_decode(file_get_contents("https://nl.wikipedia.org/w/api.php?action=opensearch&search=".substr($text, 5)."&limit=10&namespace=0&format=json"));
+
+		foreach ($wikiResult[1] as $key => $value) {
+  		$markdownList .= "[".$wikiResult[1][$key]."](". $wikiResult[3][$key].")\n";
+		}
+		$content = array('chat_id' => $chat_id, 'text' => $markdownList, 'parse_mode' => 'Markdown');
 		//$content = "lalalaalal";
 		$telegram->sendMessage($content);
 		$send = TRUE;
