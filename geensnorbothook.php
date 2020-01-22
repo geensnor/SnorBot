@@ -82,7 +82,7 @@ $send = FALSE;
 		foreach ($wikiResult[1] as $key => $value) {
   		$markdownList .= "[".$wikiResult[1][$key]."](". $wikiResult[3][$key].")\n";
 		}
-		$content = array('chat_id' => $chat_id, 'text' => $markdownList, 'parse_mode' => 'Markdown');
+		$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van ".substr($text, 5)." weten. Staat hier iets tussen?\n\n"$markdownList, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => FALSE);
 		//$content = "lalalaalal";
 		$telegram->sendMessage($content);
 		$send = TRUE;
