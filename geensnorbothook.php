@@ -85,7 +85,7 @@ $send = FALSE;
 			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Dit vond ik op Wikipedia:\n\n".$markdownList, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
 		}
 		else{
-			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Daar heb ik alleen niets van kunnen vinden op Wikipedia", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
+			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
 		}
 		
 		$telegram->sendMessage($content);
