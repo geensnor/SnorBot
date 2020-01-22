@@ -78,8 +78,8 @@ $send = FALSE;
 
 	if(substr($text, 0, 4) == 'wiki') {
 		//$nuxml = simplexml_load_file("https://www.nu.nl/rss");
-		//$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
-		$content = $text;
+		$content = array('chat_id' => $chat_id, 'text' => $text);
+		//$content = "lalalaalal";
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
