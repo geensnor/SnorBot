@@ -78,7 +78,7 @@ $send = FALSE;
 
 	if(substr($text, 0, 4) == 'wiki') {
 		//$nuxml = simplexml_load_file("https://www.nu.nl/rss");
-		$content = array('chat_id' => $chat_id, 'text' => "[wiki](http://www.wiki.nl)");
+		$content = array('chat_id' => $chat_id, 'text' => "[wiki](http://www.wiki.nl)", 'parse_mode' => 'Markdown');
 		//$content = "lalalaalal";
 		$telegram->sendMessage($content);
 		$send = TRUE;
