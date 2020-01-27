@@ -80,9 +80,17 @@ $send = FALSE;
     $wikiResult = json_decode(file_get_contents("https://nl.wikipedia.org/w/api.php?action=opensearch&search=".substr($text, 5)."&limit=10&namespace=0&format=json"));
     if($wikiResult[1]){
       foreach ($wikiResult[1] as $key => $value) {
-        $newWikiLink = "[".$wikiResult[1][$key]."](". $wikiResult[3][$key].")";
-        if(substr($newWikiLink, -2) == "))")// Haakje eraf halen als er twee zijn
-          $newWikiLink = substr($newWikiLink, 0, -1);
+        if(substr($wikiResult[3][$key], -2) == ")")// Haakje aan het einde van de url erbij als er al 1 staat. Moet blijkbaar..
+          $newWikiURL = $wikiResult[3][$key].")";
+				else
+					$newWikiURL = $wikiResult[3][$key];
+
+				/*      if(substr($newWikiLink, -2) == "))")// Haakje eraf halen als er op het einde er toch 
+          $newWikiLink = substr($newWikiLink, 0, -1);*/
+
+
+        $newWikiLink = "[".$wikiResult[1][$key]."](".$newWikiURL.")";
+
 
         $markdownList .= $newWikiLink."\n"; 
       }
