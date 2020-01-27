@@ -80,9 +80,13 @@ $send = FALSE;
 		$wikiResult = json_decode(file_get_contents("https://nl.wikipedia.org/w/api.php?action=opensearch&search=".substr($text, 5)."&limit=10&namespace=0&format=json"));
 		if($wikiResult[1]){
 			foreach ($wikiResult[1] as $key => $value) {
-	  		//$htmlList .= "<a href='".$wikiResult[1][$key]."'>". $wikiResult[3][$key]."</a><br>";
+	  		$newWikiLink = "[".$wikiResult[1][$key]."](". $wikiResult[3][$key].")";
+	  		if(substr($text, -2) == "))")// Haakje eraf halen als er twee zijn
+	  			$newWikiLink = substr($newWikiLink, 0, -1);
+
+	  		$markdownList .= $newWikiLink; 
 			}
-			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van <strong>".substr($text, 5)."</strong> weten. Dit vond ik op Wikipedia:<br><br>".$htmlList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => TRUE);
+			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Dit vond ik op Wikipedia:\n\n".$markdownList, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
 		}
 		else{
 			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
