@@ -84,7 +84,7 @@ $send = FALSE;
         if(substr($newWikiLink, -2) == "))")// Haakje eraf halen als er twee zijn
           $newWikiLink = substr($newWikiLink, 0, -1);
 
-        $markdownList .= $newWikiLink; 
+        $markdownList .= $newWikiLink."\n"; 
       }
       $content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Dit vond ik op Wikipedia:\n\n".$markdownList, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
     }
