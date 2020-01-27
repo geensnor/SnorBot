@@ -80,9 +80,9 @@ $send = FALSE;
 		$wikiResult = json_decode(file_get_contents("https://nl.wikipedia.org/w/api.php?action=opensearch&search=".substr($text, 5)."&limit=10&namespace=0&format=json"));
 		if($wikiResult[1]){
 			foreach ($wikiResult[1] as $key => $value) {
-	  		$markdownList .= "[".$wikiResult[1][$key]."](". $wikiResult[3][$key].")\n";
+	  		$htmlList .= "<a href='".$wikiResult[1][$key]."'>". $wikiResult[3][$key]."</a><br>";
 			}
-			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Dit vond ik op Wikipedia:\n\n".$markdownList, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
+			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Dit vond ik op Wikipedia:\n\n".$markdownList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => TRUE);
 		}
 		else{
 			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
