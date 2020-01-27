@@ -81,7 +81,7 @@ $send = FALSE;
 		if($wikiResult[1]){
 			foreach ($wikiResult[1] as $key => $value) {
 	  		$newWikiLink = "[".$wikiResult[1][$key]."](". $wikiResult[3][$key].")";
-	  		if(substr($text, -2) == "))")// Haakje eraf halen als er twee zijn
+	  		if(substr($newWikiLink, -2) == "))")// Haakje eraf halen als er twee zijn
 	  			$newWikiLink = substr($newWikiLink, 0, -1);
 
 	  		$markdownList .= $newWikiLink; 
