@@ -85,12 +85,12 @@ $send = FALSE;
 				else
 					$newWikiURL = $wikiResult[3][$key];
 
-				/*      if(substr($newWikiLink, -2) == "))")// Haakje eraf halen als er op het einde er toch 
-          $newWikiLink = substr($newWikiLink, 0, -1);*/
+
 
 
         $newWikiLink = "[".$wikiResult[1][$key]."](".$newWikiURL.")";
-
+        if(substr($newWikiLink, -2) == "))")// Haakje eraf halen als er op het einde er toch 
+          $newWikiLink = substr($newWikiLink, 0, -1);
 
         $markdownList .= $newWikiLink."\n"; 
       }
