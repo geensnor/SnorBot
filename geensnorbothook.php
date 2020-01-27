@@ -80,7 +80,7 @@ $send = FALSE;
 		$wikiResult = json_decode(file_get_contents("https://nl.wikipedia.org/w/api.php?action=opensearch&search=".substr($text, 5)."&limit=10&namespace=0&format=json"));
 		if($wikiResult[1]){
 			foreach ($wikiResult[1] as $key => $value) {
-	  		$htmlList .= "<a href='".$wikiResult[1][$key]."'>". $wikiResult[3][$key]."</a><br>";
+	  		//$htmlList .= "<a href='".$wikiResult[1][$key]."'>". $wikiResult[3][$key]."</a><br>";
 			}
 			$content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van <strong>".substr($text, 5)."</strong> weten. Dit vond ik op Wikipedia:<br><br>".$htmlList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => TRUE);
 		}
