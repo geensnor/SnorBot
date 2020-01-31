@@ -30,7 +30,7 @@ $send = FALSE;
         $dagText =  "Het is vandaag: \n".$dagVanDeArray[$key]->onderwerp;
     }
     if(!$dagText)
-    	$dagText =  "Ik heb geen idee waar het vandaag een dag van is. Probeer het morgen nog een keer zou ik zeggen.";
+    	$dagText =  "Ik heb geen idee waar het vandaag een dag van is. Maar op https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen. En de lijst van de bot staat op Github: https://github.com/geensnor/SnorLijsten/blob/master/dagvande.json, dus voeg er maar een paar toe!";
 
     $content = array('chat_id' => $chat_id, 'text' => $dagText);	
 		$telegram->sendMessage($content);
