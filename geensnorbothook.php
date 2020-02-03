@@ -83,7 +83,7 @@ $send = FALSE;
       	$htmlList .= "<a href='".$wikiResult[3][$key]."'>". $wikiResult[1][$key]."</a><br>";
         
       }*/
-      $content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van <strong>".substr($text, 5)."</strong> weten. Dit vond ik op Wikipedia:<br><br><a href='http://www.nu.nl'>nu.nl</a>".var_dump($wikiResult), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
+      $content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van <strong>".substr($text, 5)."</strong> weten. Dit vond ik op Wikipedia:<br><br><a href='http://www.nu.nl'>nu.nl</a>".var_dump($wikiResult), 'parse_mode' => 'HTML', 'disable_web_page_preview' => TRUE);
     //}
 /*    else{
       $content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *".substr($text, 5)."* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
