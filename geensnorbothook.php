@@ -12,6 +12,7 @@ $dooddoenerLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/mas
 $verveelLocatie = "https://raw.githubusercontent.com/geensnor/verveellijst/master/verveellijst.json";
 $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
 $haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/haiku.json";
+$podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/podcasts.json";
 
 
 
@@ -181,6 +182,8 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
+
+	
 	if($text == "nieuwste weetje" || $text == "Nieuwste weetje"){
 		$weetjesArray = json_decode(file_get_contents($weetjesLocatie));
 		if(json_last_error() === JSON_ERROR_NONE)
@@ -242,6 +245,17 @@ $send = FALSE;
 			$antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
 		$send = TRUE;
 	}
+
+// woop woop podcast!
+	if($text == "podcast" ){
+		$podcastArray = json_decode(file_get_contents($podcastLocatie));
+		if(json_last_error() === JSON_ERROR_NONE)
+			$antwoord = end($podcastArray);
+		else
+			$antwoord = "De JSON is stuk \n geen podcast voor jou vandaag!?";
+		$send = TRUE;
+	}
+//podcast einde doei
 
 	if($text == "1337"){	
 		$dateString = date('y-m-d H:i:s');
