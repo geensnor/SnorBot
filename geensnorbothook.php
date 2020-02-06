@@ -9,7 +9,7 @@ $antwoordenArray = json_decode(file_get_contents("snorBotAntwoorden.json"));
 
 $weetjesLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/weetjes.json";
 $dooddoenerLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dooddoeners.json";
-$verveelLocatie = "https://raw.githubusercontent.com/geensnor/verveellijst/master/verveellijst.json";
+$verveelLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/verveellijst.json";
 $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
 $haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/haiku.json";
 $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/podcasts.json";
