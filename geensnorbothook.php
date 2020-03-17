@@ -40,8 +40,13 @@ $send = FALSE;
 //bitcoin koers in euro
 
 	if($text == 'Bitcoin' || $text == 'bitcoin') {
-		$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
-		$content = array('chat_id' => $chat_id, 'text' => "€ ".$BCEuroObject->data[9]->ask_eur." (".$BCEuroObject->data[9]->pct_change_24hr."% in laatste 24 uur)");
+		//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
+
+		$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
+		$price  = $bitcoinPriceObject->result->price->last;
+		$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2)
+		
+		$content = array('chat_id' => $chat_id, 'text' => "€ ".$price" (".$percentage24Hour."% in laatste 24 uur)");
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
