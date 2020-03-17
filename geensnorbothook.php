@@ -46,7 +46,7 @@ $send = FALSE;
 		$price  = $bitcoinPriceObject->result->price->last;
 		$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
 		
-		$content = array('chat_id' => $chat_id, 'text' => "€ ".$price" (".$percentage24Hour."% in laatste 24 uur)");
+		$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
