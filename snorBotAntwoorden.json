@@ -258,5 +258,9 @@
    {
      "trigger":"plaattaart",
      "antwoord":"https://uitpaulineskeuken.nl/?s=plaattaart"
+   },
+   {
+     "trigger":"ach",
+     "antwoord":"och"
    } 
 ]
