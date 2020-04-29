@@ -270,5 +270,10 @@
    {
      "trigger":"zozo",
      "antwoord":"nou inderdaad"
-   }  
+   },
+   {
+     "trigger":"die bitcoin toch",
+     "antwoord":"Nou je zegt het. Het niet te voorspellen die koers...."
+   }
+
 ]
