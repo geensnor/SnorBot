@@ -262,5 +262,9 @@
    {
      "trigger":"ach",
      "antwoord":"och"
+   },
+   {
+     "trigger":"ocht",
+     "antwoord":"och toch"
    } 
 ]
