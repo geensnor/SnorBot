@@ -278,6 +278,14 @@
    {
      "trigger":"die bitcoin toch",
      "antwoord":"Nou je zegt het. Het niet te voorspellen die koers...."
+   },
+   {
+     "trigger":"covid19",
+     "antwoord":"ook wel corona in de volksmond."
+   },
+   {
+     "trigger":"Corona",
+     "antwoord":"of om precies te zijn Covid19"
    }
 
 ]
