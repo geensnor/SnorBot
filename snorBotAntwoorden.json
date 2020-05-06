@@ -287,9 +287,13 @@
      "trigger":"Corona",
      "antwoord":"of om precies te zijn Covid19"
    },
-    {
+   {
      "trigger":"moederdag",
-     "antwoord":"Moederdag is meestal ergens begin mei."
+     "antwoord":"Moederdag is meestal ergens begin mei"
+   },
+   {
+     "trigger":"vaderdag",
+     "antwoord":"Vaderdag is meestal ergens midden juni"
    }
 
 ]
