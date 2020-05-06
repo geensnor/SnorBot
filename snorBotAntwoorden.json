@@ -286,6 +286,10 @@
    {
      "trigger":"Corona",
      "antwoord":"of om precies te zijn Covid19"
+   },
+    {
+     "trigger":"moederdag",
+     "antwoord":"Moederdag is meestal ergens begin mei."
    }
 
 ]
