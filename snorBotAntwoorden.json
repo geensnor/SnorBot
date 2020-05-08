@@ -298,6 +298,10 @@
    {
     "trigger":"wat vind je van het idee?",
     "antwoord":"Ik vind het een topidee. Echt heel vet!"
+    },
+    {
+      "trigger":"ovenbitterbal",
+      "antwoord":"Het beste kun je Mora kopen. Ondanks het authentieke karakter valt zowel Kwekkeboom als van Dobben een beetje tegen"
     }
 
 ]
