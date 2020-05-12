@@ -81,7 +81,9 @@ $send = FALSE;
 //Hierboven staat "getal onder de"
 
 	if(substr($text, 0, 14) == 'getal onder de') {
-		$content = array('chat_id' => $chat_id, 'text' => rand(1, substr($text, 15)));
+		//$content = array('chat_id' => $chat_id, 'text' => rand(1, substr($text, 15)));
+
+		$content = array('chat_id' => $chat_id, 'text' => substr($text, 15));
 	    $telegram->sendMessage($content);
     	$send = TRUE;
 	}
