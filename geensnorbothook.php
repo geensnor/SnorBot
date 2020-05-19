@@ -78,7 +78,13 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-//Hierboven staan weerdingen
+//Hierboven staat 'getal onder de'. Werkt niet in een groep
+
+	if(substr($text, 0, 14) == 'getal onder de') {
+		$content = array('chat_id' => $chat_id, 'text' => rand(1, (substr($text, 15)-1)));
+	    $telegram->sendMessage($content);
+    	$send = TRUE;
+	}
 
 //Hieronder de wiki dingen
 
