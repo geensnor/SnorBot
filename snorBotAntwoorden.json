@@ -302,6 +302,10 @@
     {
       "trigger":"ovenbitterbal",
       "antwoord":"Het beste kun je Mora kopen. Ondanks het authentieke karakter valt zowel Kwekkeboom als van Dobben een beetje tegen"
+    },
+    {
+      "trigger":"is Garmin nog kapot?",
+      "antwoord":"Ja uiteraard, stelletje prutsers zijn het."
     }
 
 ]
