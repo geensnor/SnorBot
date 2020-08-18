@@ -306,6 +306,10 @@
     {
       "trigger":"is Garmin nog kapot?",
       "antwoord":"Ja uiteraard, stelletje prutsers zijn het."
+    },
+    {
+      "trigger":"wat doe je eraan?",
+      "antwoord":"helemaal niets!"
     }
 
 ]
