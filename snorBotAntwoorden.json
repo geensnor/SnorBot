@@ -310,6 +310,10 @@
     {
       "trigger":"wat doe je eraan?",
       "antwoord":"helemaal niets!"
+    },
+    {
+      "trigger":"parijs is nog ver",
+      "antwoord":"...en de tour wacht op niemand...."
     }
 
 ]
