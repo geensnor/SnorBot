@@ -314,6 +314,10 @@
     {
       "trigger":"parijs is nog ver",
       "antwoord":"...en de tour wacht op niemand...."
+    },
+    {
+      "trigger":"slechte wifi",
+      "antwoord":"Slechte wifi is des duivels oorkussen!"
     }
 
 ]
