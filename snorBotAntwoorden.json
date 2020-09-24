@@ -318,6 +318,10 @@
     {
       "trigger":"slechte wifi",
       "antwoord":"Slechte wifi is des duivels oorkussen!"
+    },
+    {
+      "trigger":"snorbot",
+      "antwoord":"ja hier ben ik, zeg het eens...."
     }
 
 ]
