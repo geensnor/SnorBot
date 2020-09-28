@@ -88,7 +88,7 @@ $send = FALSE;
 
 	if($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 		$geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
-		$content = array('chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl: '.$geensnorFeed->entry[0]->title;);
+		$content = array('chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl: '.$geensnorFeed->entry[0]->title);
 	    $telegram->sendMessage($content);
     	$send = TRUE;
 	}
