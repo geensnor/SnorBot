@@ -88,7 +88,7 @@ $send = FALSE;
 
 	if($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 		$geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
-		$content = array('chat_id' => $chat_id, 'text' => "Nieuwste bericht op geensnor.nl: [".$geensnorFeed->entry[0]->title."](https://geensnor.netlify.app".$geensnorFeed->entry[0]->link->attributes()->href.")", 'parse_mode' => 'Markdown');
+		$content = array('chat_id' => $chat_id, 'text' => "Nieuwste bericht op geensnor.nl: [".$geensnorFeed->entry[0]->title."](".$geensnorFeed->entry[0]->link->attributes()->href.")", 'parse_mode' => 'Markdown');
 	    $telegram->sendMessage($content);
     	$send = TRUE;
 	}
@@ -96,7 +96,7 @@ $send = FALSE;
 	if($text == 'random post' || $text == 'random bericht') {
 		$geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
 		$randomPostNummer = rand(0, count($geensnorFeed->entry));
-		$content = array('chat_id' => $chat_id, 'text' => "Een van de laatste 10 berichten op geensnor.nl: [".$geensnorFeed->entry[$randomPostNummer]->title."](https://geensnor.netlify.app".$geensnorFeed->entry[$randomPostNummer]->link->attributes()->href.")", 'parse_mode' => 'Markdown');
+		$content = array('chat_id' => $chat_id, 'text' => "Een van de laatste 10 berichten op geensnor.nl: [".$geensnorFeed->entry[$randomPostNummer]->title."](".$geensnorFeed->entry[$randomPostNummer]->link->attributes()->href.")", 'parse_mode' => 'Markdown');
 	    $telegram->sendMessage($content);
     	$send = TRUE;
 	}
