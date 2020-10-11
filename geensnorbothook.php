@@ -188,10 +188,18 @@ $send = FALSE;
 	}
 
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
-		include("cl_verjaardagen.php");
-		$v = new verjaardag;
-		$antwoord = $v->getVerjaardagTekst();
-    $send = TRUE;
+		if($chat_id = getenv('verjaardagenGroupId')){
+			include("cl_verjaardagen.php");
+			$v = new verjaardag;
+			$antwoord = $v->getVerjaardagTekst();
+			$send = TRUE;
+		}
+		else{
+			$content = array('chat_id' => $chat_id, 'text' => "Geen verjaardagsinformatie in deze groep");
+			$telegram->sendMessage($content);
+			$send = TRUE;
+
+		}
   }
 
   if($telegram->Location()){
