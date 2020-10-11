@@ -180,6 +180,13 @@ $send = FALSE;
 	//	$send = TRUE;
 	//}
 
+//Geeft het chat id van de huidige groep weer	
+	if($text == 'chatid') {
+		$content = array('chat_id' => $chat_id, 'text' => "Chat id van deze groep: ".$chat_id);
+		$telegram->sendMessage($content);
+		$send = TRUE;
+	}
+
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
 		include("cl_verjaardagen.php");
 		$v = new verjaardag;
