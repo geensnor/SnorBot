@@ -322,6 +322,10 @@
     {
       "trigger":"snorbot",
       "antwoord":"ja hier ben ik, zeg het eens...."
+    },
+    {
+      "trigger":"echt?",
+      "antwoord":"ja, echt!"
     }
 
 ]
