@@ -326,6 +326,10 @@
     {
       "trigger":"echt?",
       "antwoord":"ja, echt!"
+    },
+    {
+      "trigger":"sorry",
+      "antwoord":"maakt niet uit, iedereen maakt fouten"
     }
 
 ]
