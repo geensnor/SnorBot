@@ -330,6 +330,14 @@
     {
       "trigger":"sorry",
       "antwoord":"maakt niet uit, iedereen maakt fouten"
+    },
+    {
+      "trigger":"het is wat",
+      "antwoord":"nou, zeg dat wel..."
+    },
+    {
+      "trigger":"het is me wat",
+      "antwoord":"nou, zeg dat wel..."
     }
 
 ]
