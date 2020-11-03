@@ -188,10 +188,12 @@ $send = FALSE;
 	}
 
 	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
-		if($chat_id = getenv('verjaardagenGroupId')){
+		if($chat_id == getenv('verjaardagenGroupId')){
 			include("cl_verjaardagen.php");
 			$v = new verjaardag;
 			$antwoord = $v->getVerjaardagTekst();
+			$content = array('chat_id' => $chat_id, 'text' => $antwoord);
+			$telegram->sendMessage($content);
 			$send = TRUE;
 		}
 		else{
