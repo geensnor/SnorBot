@@ -42,7 +42,7 @@ $send = FALSE;
 
 //bitcoin koers in euro
 
-	if($text == 'Bitcoin' || $text == 'bitcoin') {
+	if(strtolower($text) == 'bitcoin') {
 		//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
 
 		$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
@@ -57,7 +57,7 @@ $send = FALSE;
 // end of bitcoin koers in euro
 
 //Hieronder staan weerdingen
-	if($text == 'weer'|| $text == 'Weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
+	if(strtolower($text) == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
 		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
 		$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
 		$telegram->sendMessage($content);
@@ -123,7 +123,7 @@ $send = FALSE;
 //Hierboven de wiki dingen	
 
 //Beetje nieuws.....
-	if($text == 'nieuws' || $text == 'Nieuws') {
+	if(strtolower($text) == 'nieuws') {
 		$nuxml = simplexml_load_file("https://www.nu.nl/rss");
 		$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
 		$telegram->sendMessage($content);
