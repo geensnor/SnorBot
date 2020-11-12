@@ -16,7 +16,7 @@ $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master
 
 
 
-$text = ltrim($telegram->Text(), '/');
+$text = strtolower(ltrim($telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
 
 $losseWoorden = explode(" ", $text);
@@ -24,7 +24,7 @@ $antwoord = "";
 $send = FALSE;
 
 //Dag van de - Start
-	if($text == 'dag van de' || $text == 'Dag van de' || $text == 'Het is vandaag' || $text == 'het is vandaag' || $text == 'dag' || $text == 'Dag' || $text == 'dag van' || $text == 'Dag van') {
+	if($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van') {
 		$dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
     foreach ($dagVanDeArray as $key => $value) {
       if($dagVanDeArray[$key]->dag == date('d-m'))
@@ -42,7 +42,7 @@ $send = FALSE;
 
 //bitcoin koers in euro
 
-	if(strtolower($text) == 'bitcoin') {
+	if($text == 'bitcoin') {
 		//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
 
 		$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
@@ -57,7 +57,7 @@ $send = FALSE;
 // end of bitcoin koers in euro
 
 //Hieronder staan weerdingen
-	if(strtolower($text) == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
+	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
 		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
 		$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
 		$telegram->sendMessage($content);
@@ -123,7 +123,7 @@ $send = FALSE;
 //Hierboven de wiki dingen	
 
 //Beetje nieuws.....
-	if(strtolower($text) == 'nieuws') {
+	if($text == 'nieuws') {
 		$nuxml = simplexml_load_file("https://www.nu.nl/rss");
 		$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
 		$telegram->sendMessage($content);
@@ -133,14 +133,14 @@ $send = FALSE;
 
 
 //Is het al 5 uur?
-	if($text == 'is het al vijf uur' || $text == 'Is het al vijf uur' || $text == 'Is het al 5 uur' || $text == 'is het al 5 uur') {
+	if($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
 		$content = array('chat_id' => $chat_id, 'text' => "Nee, het is ".date("H:i:s"));
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
 ////////////////
 
-	if($text == 'xkcd' || $text == 'Xkcd') {
+	if($text == 'xkcd') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
 		$randomComicNumber = rand(0, $xkcdData->num);
 		$randomComicObject = json_decode(file_get_contents("http://xkcd.com/".$randomComicNumber."/info.0.json"));
@@ -150,7 +150,7 @@ $send = FALSE;
     $send = TRUE;
   }
 
-  if($text == 'xkcd nieuwste' || $text == 'Xkcd nieuwste') {
+  if($text == 'xkcd nieuwste') {
 		$xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
     $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
     $telegram->sendPhoto($content);
@@ -187,7 +187,7 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-	if($text == 'verjaardag' || $text == 'Verjaardag' || $text == 'jarig' || $text == 'Jarig' || $text == 'Verjaardagen' || $text == 'verjaardagen') {
+	if($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
 		if($chat_id == getenv('verjaardagenGroupId')){
 			include("cl_verjaardagen.php");
 			$v = new verjaardag;
@@ -204,8 +204,8 @@ $send = FALSE;
 		}
   }
 
-  if($telegram->Location()){
-  	$locatieGebruiker = $telegram->Location();
+	if($telegram->Location()){
+		$locatieGebruiker = $telegram->Location();
 		$adviesJson = getAdviesArray($locatieGebruiker["latitude"], $locatieGebruiker["longitude"]);
 
 		$contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name." zit in de buurt:"];
@@ -215,9 +215,9 @@ $send = FALSE;
 		$telegram->sendLocation($contentLocation);
 		$telegram->sendMessage($contentAdviesToelichting);
 		$send = TRUE;
-  }
+	}
 
-	if($text == "advies" || $text  == "Advies"){
+	if($text == "advies"){
 		$option = array(array($telegram->buildKeyBoardButton("Klik hier om je locatie te delen", $request_contact=false, $request_location=true)));
 		$keyb = $telegram->buildKeyBoard($option, $onetime=false);
 		$content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.");
@@ -227,7 +227,7 @@ $send = FALSE;
 
 
 	
-	if($text == "nieuwste weetje" || $text == "Nieuwste weetje"){
+	if($text == "nieuwste weetje"){
 		$weetjesArray = json_decode(file_get_contents($weetjesLocatie));
 		if(json_last_error() === JSON_ERROR_NONE)
 			$antwoord = end($weetjesArray);
@@ -236,7 +236,7 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-	if($text  == "weetje" || $text  == "Weetje"){
+	if($text  == "weetje"){
 		$weetjesArray = json_decode(file_get_contents($weetjesLocatie));
 		if(json_last_error() === JSON_ERROR_NONE) {
 			$randKey = array_rand($weetjesArray, 1);
@@ -247,7 +247,7 @@ $send = FALSE;
 		$send = TRUE;
 	}    
 
-	if($text  == "dooddoener" || $text  == "Dooddoener"){
+	if($text  == "dooddoener"){
 		$dooddoenerArray = json_decode(file_get_contents($dooddoenerLocatie));
 		if(json_last_error() === JSON_ERROR_NONE){
 			$randKey = array_rand($dooddoenerArray, 1);
@@ -269,7 +269,7 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-	if($text  == "haiku" || $text  == "Haiku"){
+	if($text  == "haiku"){
 		$haikuArray = json_decode(file_get_contents($haikuLocatie));
 		if(json_last_error() === JSON_ERROR_NONE){
 			$randKey = array_rand($haikuArray, 1);
@@ -280,7 +280,7 @@ $send = FALSE;
 		$send = TRUE;
 	}
 
-	if($text == "nieuwste haiku" || $text == "Nieuwste haiku"){
+	if($text == "nieuwste haiku"){
 		$haikuArray = json_decode(file_get_contents($haikuLocatie));
 		if(json_last_error() === JSON_ERROR_NONE)
 			$antwoord = end($haikuArray);
