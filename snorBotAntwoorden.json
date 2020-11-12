@@ -338,6 +338,10 @@
     {
       "trigger":"het is me wat",
       "antwoord":"nou, zeg dat wel..."
+    },
+    {
+      "trigger":"tip",
+      "antwoord":"Op geensnor.nl wordt een mooi overzicht van allerlei tips bijgehouden: https://geensnor.netlify.app/pages/tips"
     }
 
 ]
