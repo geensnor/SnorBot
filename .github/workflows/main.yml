@@ -1,0 +1,12 @@
+
+name: Dag van de posten naar Telegram Bot
+on:
+  schedule:
+    - cron: '0 9 * * *' # Elke ochtend om 9:00
+jobs:
+  build:
+    name: Telegram Snorbot Webhook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl request
+        run: curl -X POST -d {} ${{ secrets.DAGVANDE_HOOK }}
