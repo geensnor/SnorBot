@@ -28,7 +28,7 @@ $send = FALSE;
 		$dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
     foreach ($dagVanDeArray as $key => $value) {
       if($dagVanDeArray[$key]->dag == date('d-m'))
-        $dagText =  "Het is vandaag: \n".$dagVanDeArray[$key]->onderwerp;
+        $dagText =  "Het is vandaag ".$dagVanDeArray[$key]->onderwerp;
     }
     if(!$dagText)
     	$dagText =  "Ik heb geen idee waar het vandaag een dag van is. Maar op bijvoorbeeld https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen.\n\nDe lijst van de bot staat op Github: https://github.com/geensnor/SnorLijsten/blob/master/dagvande.json, dus ga je gang!";
