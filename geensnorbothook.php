@@ -2,6 +2,7 @@
 date_default_timezone_set('Europe/Amsterdam');
 include (__DIR__ . '/vendor/autoload.php');
 include("advies.php");
+include("prijzenparade.php");
 
 $telegram = new Telegram(getenv('telegramId'));
 
@@ -316,6 +317,15 @@ $send = FALSE;
 		$leetText = "Tijd tot volgende 1337: $leetTime.";
 		
 		$antwoord = $leetText;
+		$send = TRUE;
+	}
+
+	if (in_array($text, array("winnen", "prijzenparade"))) {
+		$prijzenparade_url = get_prijzen_parade_url();
+		if($prijzenparade_url)
+			$antwoord = "De link van de Tweakers December Prijzen Parade van vandaag is: " . $prijzenparade_url;
+		else
+			$antwoord = "Helaas, voor vandaag is er geen prijzenlink beschikbaar. Probeer het morgen nog eens!";
 		$send = TRUE;
 	}
 
