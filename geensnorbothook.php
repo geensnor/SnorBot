@@ -190,10 +190,9 @@ $send = FALSE;
 
 	if($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
 		if($chat_id == getenv('verjaardagenGroupId')){
-			// include("cl_verjaardagen.php");
-			// $v = new verjaardag;
-			// $antwoord = $v->getVerjaardagTekst();
-			$antwoord = "geen idee wie er jarig is (test)";
+			include("cl_verjaardagen.php");
+			$v = new verjaardag;
+			$antwoord = $v->getVerjaardagTekst();
 			$content = array('chat_id' => $chat_id, 'text' => $antwoord);
 			$telegram->sendMessage($content);
 			$send = TRUE;
