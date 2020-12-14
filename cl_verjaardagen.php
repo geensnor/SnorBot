@@ -53,9 +53,11 @@ class verjaardag{
         	
         }
 
-        usort($verjaardagenData, function($a, $b) {
-            return $a['dagenTotVerjaardag'] - $b['dagenTotVerjaardag'];
-        });
+        if($verjaardagenData){// usort geeft vervelende error als er geen data opgehaald kan worden.
+            usort($verjaardagenData, function($a, $b) {
+                return $a['dagenTotVerjaardag'] - $b['dagenTotVerjaardag'];
+            });
+        }
 
         return $verjaardagenData;
     }
