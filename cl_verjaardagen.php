@@ -22,13 +22,7 @@ class verjaardag{
 
         curl_close($curl);
 
-        $geboortedatums = json_decode(file_get_contents($curlResult[0]->download_url));
-
-        if($geboortedatums){
-            $this->geboortedatums = $geboortedatums;
-        }
-        else
-            error_log("geen geboortedatums op kunnen halen");
+        $this->geboortedatums = json_decode(file_get_contents($curlResult[0]->download_url));
     }
 
     function getVerjaardagenData(){
