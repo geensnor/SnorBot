@@ -3,7 +3,7 @@ class verjaardag{
 
     var $geboortedatums;
 
-    function verjaardag(){
+    function __construct(){
         $GithHubAPIUrl = "https://api.github.com/repos/reithose/geboortedatums/contents/";
 
         $curl = curl_init();
@@ -23,7 +23,8 @@ class verjaardag{
         curl_close($curl);
 
         $geboortedatums = json_decode(file_get_contents($curlResult[0]->download_url));
-        if(!$geboortedatums){
+
+        if($geboortedatums){
             $this->geboortedatums = $geboortedatums;
         }
         else
