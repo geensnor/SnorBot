@@ -192,8 +192,7 @@ $send = FALSE;
 		if($chat_id == getenv('verjaardagenGroupId')){
 			include("cl_verjaardagen.php");
 			$v = new verjaardag;
-			$antwoord = $v->getVerjaardagTekst();
-			$content = array('chat_id' => $chat_id, 'text' => $antwoord);
+			$content = array('chat_id' => $chat_id, 'text' => $v->getVerjaardagTekst());
 			$telegram->sendMessage($content);
 			$send = TRUE;
 		}
@@ -201,9 +200,8 @@ $send = FALSE;
 			$content = array('chat_id' => $chat_id, 'text' => "Geen verjaardagsinformatie in deze groep");
 			$telegram->sendMessage($content);
 			$send = TRUE;
-
 		}
-  }
+  	}
 
 	if($telegram->Location()){
 		$locatieGebruiker = $telegram->Location();
