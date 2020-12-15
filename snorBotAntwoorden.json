@@ -342,6 +342,25 @@
     {
       "trigger":"tip",
       "antwoord":"Op geensnor.nl wordt een mooi overzicht van allerlei tips bijgehouden: https://geensnor.netlify.app/pages/tips"
+    },
+    {
+      "trigger":"ath",
+      "antwoord":"All Time High van de bitcoin was op 17 december 2017. Hij was toen €16.530,21 waard."
+    },
+    {
+      "trigger":"precies",
+      "antwoord":"zo is het maar net"
+    },
+    {
+      "trigger":"lockdown",
+      "antwoord":"slimme of domme?"
+    },
+    {
+      "trigger":"wat je zegt",
+      "antwoord":"nou, inderdaad"
+    },
+    {
+      "trigger":"moe",
+      "antwoord":"ga dan slapen in plaats van hier een beetje te zeiken...."
     }
-
 ]
