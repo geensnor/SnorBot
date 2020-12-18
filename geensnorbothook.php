@@ -14,6 +14,7 @@ $verveelLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master
 $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
 $haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/haiku.json";
 $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/podcasts.json";
+$brabantsLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/brabants.json";
 
 
 
@@ -245,6 +246,17 @@ $send = FALSE;
 			$antwoord = "Kan geen weetje ophalen. De weetjes json is niet helemaal lekker.";
 		$send = TRUE;
 	}    
+
+	if($text  == "brabants"){
+		$brabantsArray = json_decode(file_get_contents($brabantsLocatie));
+		if(json_last_error() === JSON_ERROR_NONE) {
+			$randKey = array_rand($brabantsArray, 1);
+			$antwoord = $brabantsArray[$randKey];
+		}
+		else
+			$antwoord = "Kan geen brabants ophalen. De brabant json is niet helemaal lekker.";
+		$send = TRUE;
+	}  
 
 	if($text  == "dooddoener"){
 		$dooddoenerArray = json_decode(file_get_contents($dooddoenerLocatie));
