@@ -247,7 +247,7 @@ $send = FALSE;
 		$send = TRUE;
 	}    
 
-	if($text  == "brabants"){
+	if($text  == "brabants" || $text  == "alaaf" || $text  == "brabant" || $text  == "wa zedde gij"){
 		$brabantsArray = json_decode(file_get_contents($brabantsLocatie));
 		if(json_last_error() === JSON_ERROR_NONE) {
 			$randKey = array_rand($brabantsArray, 1);
