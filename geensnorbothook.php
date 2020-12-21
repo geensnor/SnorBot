@@ -363,7 +363,12 @@ $send = FALSE;
   	}
     }	
 	if(!$send && $text){
-		$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";
+		//Random antwoord geven als hij niets weet...
+		$randKey = array_rand($antwoordenArray, 1);
+		$antwoord = $antwoordenArray[$randKey]->antwoord;
+
+		//Vroeger deed de Snorbot dit
+		//$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";
 	}
 	if($antwoord){
 		$content = ['chat_id' => $chat_id, 'text' => $antwoord, 'parse_mode' => 'Markdown'];
