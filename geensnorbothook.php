@@ -365,7 +365,7 @@ $send = FALSE;
 	if(!$send && $text){
 		//Random antwoord geven als hij niets weet...
 		$randKey = array_rand($antwoordenArray, 1);
-		$antwoord = $antwoordenArray[$randKey];
+		$antwoord = $antwoordenArray[$randKey]->antwoord;
 
 		//Vroeger deed de Snorbot dit
 		//$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";
