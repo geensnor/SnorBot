@@ -370,5 +370,9 @@
     {
       "trigger":"athene",
       "antwoord":"Athene is de hoofdstad en grootste stad van Griekenland en tevens het bestuurlijk centrum van de regio Attica."
+    },
+    {
+      "trigger":"kreta",
+      "antwoord":"Stom eiland"
     }
 ]
