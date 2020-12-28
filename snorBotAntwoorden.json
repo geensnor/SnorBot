@@ -374,5 +374,9 @@
     {
       "trigger":"kreta",
       "antwoord":"Stom eiland"
+    },
+    {
+      "trigger":"Cadiz",
+      "antwoord":"Misschien wel de oudste stad van europa"
     }
 ]
