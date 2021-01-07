@@ -378,5 +378,9 @@
     {
       "trigger":"Cadiz",
       "antwoord":"Misschien wel de oudste stad van europa"
+    },
+    {
+      "trigger":"Amerika",
+      "antwoord":"Gastvrij land. Lekker eten ook, maar niet overal."
     }
 ]
