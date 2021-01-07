@@ -301,7 +301,7 @@
     },
     {
       "trigger":"ovenbitterbal",
-      "antwoord":"Het beste kun je Mora kopen. Ondanks het authentieke karakter valt zowel Kwekkeboom als van Dobben een beetje tegen"
+      "antwoord":"Het beste kun je Mora kopen. Ondanks het authentieke karakter vallen zowel Kwekkeboom als van Dobben een beetje tegen"
     },
     {
       "trigger":"is Garmin nog kapot?",
@@ -345,7 +345,7 @@
     },
     {
       "trigger":"ath",
-      "antwoord":"All Time High van de bitcoin was op 3 januari 2021. Hij was toen € 28.204,97 waard."
+      "antwoord":"Bitcoin gaan totaal loco waardoor een All Time High een beetje lastig is op dit moment...."
     },
     {
       "trigger":"precies",
@@ -382,5 +382,9 @@
     {
       "trigger":"Amerika",
       "antwoord":"Gastvrij land. Lekker eten ook, maar niet overal."
+    },
+    {
+      "trigger":"welja",
+      "antwoord":"...dat doet allemaal maar..."
     }
 ]
