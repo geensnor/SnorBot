@@ -386,5 +386,9 @@
     {
       "trigger":"welja",
       "antwoord":"...dat doet allemaal maar..."
+    },
+    {
+      "trigger":"leve",
+      "antwoord":"de republiek!"
     }
 ]
