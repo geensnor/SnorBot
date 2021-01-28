@@ -390,5 +390,9 @@
     {
       "trigger":"leve",
       "antwoord":"de republiek!"
+    },
+    {
+      "trigger":"lol",
+      "antwoord":"rofl!"
     }
 ]
