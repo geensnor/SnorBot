@@ -394,5 +394,9 @@
     {
       "trigger":"lol",
       "antwoord":"rofl!"
+    },
+    {
+      "trigger":"iphone?",
+      "antwoord":"geen iphone..."
     }
 ]
