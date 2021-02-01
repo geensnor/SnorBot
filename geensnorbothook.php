@@ -58,6 +58,22 @@ $send = FALSE;
 
 // end of bitcoin koers in euro
 
+//ETC koers in euro
+
+if($text == 'eth') {
+	//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
+
+	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
+	$price  = $ethPriceObject->result->price->last;
+	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
+	
+	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
+	$telegram->sendMessage($content);
+	$send = TRUE;
+}
+
+// end of ETC koers in euro
+
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
 		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
