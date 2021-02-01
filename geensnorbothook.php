@@ -14,6 +14,7 @@ $verveelLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master
 $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
 $haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/haiku.json";
 $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/podcasts.json";
+$brabantsLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/brabants.json";
 
 
 
@@ -56,6 +57,22 @@ $send = FALSE;
 	}
 
 // end of bitcoin koers in euro
+
+//ETC koers in euro
+
+if($text == 'eth') {
+	//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
+
+	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
+	$price  = $ethPriceObject->result->price->last;
+	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
+	
+	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
+	$telegram->sendMessage($content);
+	$send = TRUE;
+}
+
+// end of ETC koers in euro
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
@@ -192,8 +209,7 @@ $send = FALSE;
 		if($chat_id == getenv('verjaardagenGroupId')){
 			include("cl_verjaardagen.php");
 			$v = new verjaardag;
-			$antwoord = $v->getVerjaardagTekst();
-			$content = array('chat_id' => $chat_id, 'text' => $antwoord);
+			$content = array('chat_id' => $chat_id, 'text' => $v->getVerjaardagTekst());
 			$telegram->sendMessage($content);
 			$send = TRUE;
 		}
@@ -201,9 +217,8 @@ $send = FALSE;
 			$content = array('chat_id' => $chat_id, 'text' => "Geen verjaardagsinformatie in deze groep");
 			$telegram->sendMessage($content);
 			$send = TRUE;
-
 		}
-  }
+  	}
 
 	if($telegram->Location()){
 		$locatieGebruiker = $telegram->Location();
@@ -247,6 +262,17 @@ $send = FALSE;
 			$antwoord = "Kan geen weetje ophalen. De weetjes json is niet helemaal lekker.";
 		$send = TRUE;
 	}    
+
+	if($text  == "brabants" || $text  == "alaaf" || $text  == "brabant" || $text  == "wa zedde gij"){
+		$brabantsArray = json_decode(file_get_contents($brabantsLocatie));
+		if(json_last_error() === JSON_ERROR_NONE) {
+			$randKey = array_rand($brabantsArray, 1);
+			$antwoord = $brabantsArray[$randKey];
+		}
+		else
+			$antwoord = "Kan geen brabants ophalen. De brabant json is niet helemaal lekker.";
+		$send = TRUE;
+	}  
 
 	if($text  == "dooddoener"){
 		$dooddoenerArray = json_decode(file_get_contents($dooddoenerLocatie));
@@ -353,7 +379,12 @@ $send = FALSE;
   	}
     }	
 	if(!$send && $text){
-		$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";
+		//Random antwoord geven als hij niets weet...
+		$randKey = array_rand($antwoordenArray, 1);
+		$antwoord = $antwoordenArray[$randKey]->antwoord;
+
+		//Vroeger deed de Snorbot dit
+		//$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";
 	}
 	if($antwoord){
 		$content = ['chat_id' => $chat_id, 'text' => $antwoord, 'parse_mode' => 'Markdown'];

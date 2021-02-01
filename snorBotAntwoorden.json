@@ -49,7 +49,7 @@
   },
   {
     "trigger": "wielrennen",
-    "antwoord": "Wierennen is vet. Geensnor staat ermee vol: https://www.geensnor.nl/wp/category/wielrennerij/"
+    "antwoord": "Wierennen is vet. Geensnor staat ermee vol: https://geensnor.netlify.app/pages/alle_berichten.html#Wielrennerij"
   },
   {
     "trigger": "advies",
@@ -301,7 +301,7 @@
     },
     {
       "trigger":"ovenbitterbal",
-      "antwoord":"Het beste kun je Mora kopen. Ondanks het authentieke karakter valt zowel Kwekkeboom als van Dobben een beetje tegen"
+      "antwoord":"Het beste kun je Mora kopen. Ondanks het authentieke karakter vallen zowel Kwekkeboom als van Dobben een beetje tegen"
     },
     {
       "trigger":"is Garmin nog kapot?",
@@ -342,6 +342,61 @@
     {
       "trigger":"tip",
       "antwoord":"Op geensnor.nl wordt een mooi overzicht van allerlei tips bijgehouden: https://geensnor.netlify.app/pages/tips"
+    },
+    {
+      "trigger":"ath",
+      "antwoord":"De All Time High van de Bitcoin was op 5 januari 2021. Hij was toen €34,501 waard."
+    },
+    {
+      "trigger":"precies",
+      "antwoord":"zo is het maar net"
+    },
+    {
+      "trigger":"lockdown",
+      "antwoord":"slimme of domme?"
+    },
+    {
+      "trigger":"wat je zegt",
+      "antwoord":"nou, inderdaad"
+    },
+    {
+      "trigger":"moe",
+      "antwoord":"ga dan slapen in plaats van hier een beetje te zeiken...."
+    },
+    {
+      "trigger":"gekkenhuis",
+      "antwoord":"crazy dit gek!"
+    },
+    {
+      "trigger":"athene",
+      "antwoord":"Athene is de hoofdstad en grootste stad van Griekenland en tevens het bestuurlijk centrum van de regio Attica."
+    },
+    {
+      "trigger":"kreta",
+      "antwoord":"Stom eiland"
+    },
+    {
+      "trigger":"Cadiz",
+      "antwoord":"Misschien wel de oudste stad van europa"
+    },
+    {
+      "trigger":"Amerika",
+      "antwoord":"Gastvrij land. Lekker eten ook, maar niet overal."
+    },
+    {
+      "trigger":"welja",
+      "antwoord":"...dat doet allemaal maar..."
+    },
+    {
+      "trigger":"leve",
+      "antwoord":"de republiek!"
+    },
+    {
+      "trigger":"lol",
+      "antwoord":"rofl!"
+    },
+    {
+      "trigger":"iphone?",
+      "antwoord":"geen iphone..."
     }
-
 ]
