@@ -44,7 +44,7 @@ $send = FALSE;
 
 //bitcoin koers in euro
 
-	if($text == 'bitcoin') {
+	if($text == 'bitcoin' || $text == 'btc') {
 		//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
 
 		$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
@@ -61,7 +61,6 @@ $send = FALSE;
 //ETC koers in euro
 
 if($text == 'eth') {
-	//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
 
 	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
 	$price  = $ethPriceObject->result->price->last;
