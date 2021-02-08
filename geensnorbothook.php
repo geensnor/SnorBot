@@ -44,7 +44,7 @@ $send = FALSE;
 
 //bitcoin koers in euro
 
-	if($text == 'bitcoin') {
+	if($text == 'bitcoin' || $test == 'btc') {
 		//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
 
 		$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
