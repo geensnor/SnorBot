@@ -213,7 +213,7 @@
   },
   {
     "trigger":"klantenkaart",
-    "antwoord":"Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma\n - /praxis voor de praxis plus\n -/ikea voor ikea :) "
+    "antwoord":"Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma\n -/ikea voor ikea :) "
   },
   {
     "trigger":"gamma",
@@ -222,10 +222,6 @@
   {
     "trigger":"praxis",
     "antwoord":"Praxis bouwmarkt korting: 10% korting artikel naar keuze | 1 jaar extra garantie | 90 dagen retour | 2 uur gratis aanhanger huren | molenev@imail8.net / coocoocoo | https://img.techpowerup.org/191104/barcode-praxis.png"
-   },
-   {
-     "trigger":"ikea",
-     "antwoord":"Ikea Family: Gratis koffie! en her en der wat korting. https://img.techpowerup.org/191112/screenshot-2019-11-12-at-12-02-09.png"
    },
    {
      "trigger":"temperatuur",

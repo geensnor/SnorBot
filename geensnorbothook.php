@@ -58,7 +58,7 @@ $send = FALSE;
 
 // end of bitcoin koers in euro
 
-//ETC koers in euro
+//ETH koers in euro
 
 if($text == 'eth') {
 
@@ -71,7 +71,7 @@ if($text == 'eth') {
 	$send = TRUE;
 }
 
-// end of ETC koers in euro
+// end of ETH koers in euro
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
@@ -188,14 +188,6 @@ if($text == 'eth') {
 		$send = TRUE;
 	}
 	
-//nog niet klaar
-	//if($text == 'random word') {
-	//	$word = json_decode (file_get_contents("https://raw.githubusercontent.com/RazorSh4rk/random-word-api/master/words.json"));
-	//	$randword = array_rand ($word, 1);
-	//	$content = array('chat_id' => $chat_id, 'text' => "Random engels woord: ".word[]);
-	//	$telegram->sendMessage($content);
-	//	$send = TRUE;
-	//}
 
 //Geeft het chat id van de huidige groep weer	
 	if($text == 'chatid') {
@@ -203,6 +195,8 @@ if($text == 'eth') {
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
+
+// Wie is er jarig?
 
 	if($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
 		if($chat_id == getenv('verjaardagenGroupId')){
