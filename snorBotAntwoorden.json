@@ -397,6 +397,6 @@
     },
     {
       "trigger":"keuze",
-      "antwoord":"/assets/keuzevraag.gif"
+      "antwoord":"https://snor-bot.herokuapp.com/assets/keuzevraag.gif"
     }
 ]
