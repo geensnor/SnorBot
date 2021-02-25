@@ -400,7 +400,7 @@
       "antwoord":"https://snor-bot.herokuapp.com/assets/keuzevraag.gif"
     },
     {
-      "trigger":"open vraag",
+      "trigger":"openvraag",
       "antwoord":"https://snor-bot.herokuapp.com/assets/openvraag.gif"
     }
 ]
