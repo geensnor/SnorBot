@@ -396,7 +396,7 @@
       "antwoord":"geen iphone..."
     },
     {
-      "trigger":"keuze",
+      "trigger":"keuze vraag",
       "antwoord":"https://snor-bot.herokuapp.com/assets/keuzevraag.gif"
     },
     {
