@@ -15,7 +15,7 @@ $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/maste
 $haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/haiku.json";
 $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/podcasts.json";
 $brabantsLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/brabants.json";
-
+$complotLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/complot.json";
 
 
 $text = strtolower(ltrim($telegram->Text(), '/'));
@@ -304,6 +304,17 @@ if($text == 'eth') {
 		$haikuArray = json_decode(file_get_contents($haikuLocatie));
 		if(json_last_error() === JSON_ERROR_NONE)
 			$antwoord = end($haikuArray);
+		else
+			$antwoord = "Ik kan geen complotten vinden, maar dat is precies wat de MSM je wil doen geloven!!";
+		$send = TRUE;
+	}
+
+	if($text  == "complot" || $text  == "complottheorie"){
+		$complotArray = json_decode(file_get_contents($complotLocatie));
+		if(json_last_error() === JSON_ERROR_NONE){
+			$randKey = array_rand($complotArray, 1);
+			$antwoord = $complotArray[$randKey];
+		}
 		else
 			$antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
 		$send = TRUE;
