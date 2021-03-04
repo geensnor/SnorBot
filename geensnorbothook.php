@@ -16,7 +16,7 @@ $haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/h
 $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/podcasts.json";
 $brabantsLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/brabants.json";
 $complotLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/complot.json";
-
+$covidLocatie = "https://raw.githubusercontent.com/hungrxyz/infected-data/main/data/latest/national.json";
 
 $text = strtolower(ltrim($telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
@@ -317,6 +317,20 @@ if($text == 'eth') {
 		}
 		else
 			$antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
+		$send = TRUE;
+	}
+
+	if($text == "corona" || $text == "covid"){
+		$covidObject = json_decode(file_get_contents($covidLocatie));
+
+		$displayTrend = substr($covidObject->positiveCases->trend, 1);
+
+		if(substr($covidObject->positiveCases->trend, 0, 1) == "-")
+			$trendText = $displayTrend." minder";
+		else
+			$trendText = $displayTrend." meer";
+
+		$antwoord = "Op ".date("d-m-Y", strtotime($covidObject->numbersDate))." zijn er ".$covidObject->positiveCases->new." besmettingen gemeld. Dat zijn er ".$trendText." dan de dag ervoor.";
 		$send = TRUE;
 	}
 
