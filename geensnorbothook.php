@@ -334,6 +334,12 @@ if($text == 'eth') {
 		$send = TRUE;
 	}
 
+	if($text == "vaccinaties" || $text == "vaccin"){
+		$covidObject = json_decode(file_get_contents($covidLocatie));
+		$antwoord = "Tot ".date("d-m-Y", strtotime($covidObject->updatedAt))." hebben ".$covidObject->vaccinations->total." mensen een vaccin in hun arm gehad. Dat zijn er ".$covidObject->vaccinations->new." meer dan de dag ervoor. Ongeveer ".round($covidObject->vaccinations->percentageOfPopulation*100, 2)."% van Nederland is nu gevaccineerd.";
+		$send = TRUE;
+	}
+
 
 	if($text == "1337"){	
 		$dateString = date('y-m-d H:i:s');
