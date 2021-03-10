@@ -323,13 +323,14 @@ if($text == 'eth') {
 	if($text == "corona" || $text == "covid"){
 		$covidObject = json_decode(file_get_contents($covidLocatie));
 
-		$displayTrend = substr($covidObject->positiveCases->trend, 1);
-
-		if(substr($covidObject->positiveCases->trend, 0, 1) == "-")
+		if(substr($covidObject->positiveCases->trend, 0, 1) == "-"){
+			$displayTrend = substr($covidObject->positiveCases->trend, 1);
 			$trendText = $displayTrend." minder";
-		else
-			$trendText = $displayTrend." meer";
-
+		}
+		else{
+			$trendText = $covidObject->positiveCases->trend." meer";
+		}
+		
 		$antwoord = "Op ".date("d-m-Y", strtotime($covidObject->numbersDate))." zijn er ".$covidObject->positiveCases->new." besmettingen gemeld. Dat zijn er ".$trendText." dan de dag ervoor.";
 		$send = TRUE;
 	}
