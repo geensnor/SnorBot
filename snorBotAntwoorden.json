@@ -402,5 +402,9 @@
     {
       "trigger":"open vraag",
       "antwoord":"https://snor-bot.herokuapp.com/assets/openvraag.gif"
+    },
+    {
+      "trigger":"schaapenkaas",
+      "antwoord":"Op Texel hebben ze lekkere schapenkaas"
     }
 ]
