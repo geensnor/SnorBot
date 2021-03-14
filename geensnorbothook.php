@@ -346,7 +346,7 @@ if($text == 'eth') {
 		$voornaamObject = json_decode(file_get_contents($voornaamLocatie));
 		if(json_last_error() === JSON_ERROR_NONE){
 			$randKey = array_rand($voornaamObject, 1);
-			$antwoord = $voornaamObject[$randKey];
+			$antwoord = $voornaamObject[$randKey]->naam;
 		}
 		else
 			$antwoord = "De namen zijn foetsie";
