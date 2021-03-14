@@ -17,6 +17,7 @@ $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master
 $brabantsLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/brabants.json";
 $complotLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/complot.json";
 $covidLocatie = "https://raw.githubusercontent.com/hungrxyz/infected-data/main/data/latest/national.json";
+$voornaamLocatie = "https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json";
 
 $text = strtolower(ltrim($telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
@@ -338,6 +339,17 @@ if($text == 'eth') {
 	if($text == "vaccinaties" || $text == "vaccin"){
 		$covidObject = json_decode(file_get_contents($covidLocatie));
 		$antwoord = "Tot ".date("d-m-Y", strtotime($covidObject->updatedAt))." hebben ".$covidObject->vaccinations->total." mensen een vaccin in hun arm gehad. Dat zijn er ".$covidObject->vaccinations->new." meer dan de dag ervoor. Ongeveer ".round($covidObject->vaccinations->percentageOfPopulation*100, 2)."% van Nederland is nu gevaccineerd.";
+		$send = TRUE;
+	}
+
+	if($text == "voornaam" || $text == "naam" || $text == "babynaam"){
+		$voornaamObject = json_decode(file_get_contents($voornaamLocatie));
+		if(json_last_error() === JSON_ERROR_NONE){
+			$randKey = array_rand($voornaamObject, 1);
+			$antwoord = $voornaamObject[$randKey];
+		}
+		else
+			$antwoord = "De namen zijn foetsie";
 		$send = TRUE;
 	}
 
