@@ -406,5 +406,9 @@
     {
       "trigger":"schapenkaas",
       "antwoord":"Op Texel hebben ze lekkere schapenkaas"
+    },
+    {
+      "trigger":"smile",
+      "antwoord":"😊"
     }
 ]
