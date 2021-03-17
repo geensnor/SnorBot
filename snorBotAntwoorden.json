@@ -410,5 +410,9 @@
     {
       "trigger":"smile",
       "antwoord":"😊"
+    },
+    {
+      "trigger":"doei",
+      "antwoord":"👋"
     }
 ]
