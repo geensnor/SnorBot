@@ -36,7 +36,7 @@ function bitcoinFunction() {
 	$price  = $bitcoinPriceObject->result->price->last;
 	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
 	
-	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
+	$content = array('chat_id' => $chat_id, 'text' => "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)");
 	$telegram->sendMessage($content);
 	}
 
@@ -49,7 +49,7 @@ function ethereumFunction() {
 	$price  = $ethPriceObject->result->price->last;
 	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
 	
-	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
+	$content = array('chat_id' => $chat_id, 'text' => "Ethereum koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)");
 	$telegram->sendMessage($content);
 }
 
