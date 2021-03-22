@@ -56,6 +56,7 @@ $send = FALSE;
 		$telegram->sendMessage($content);
 		$send = TRUE;
 		}
+		bitcoinFunction();
 	}
 
 
