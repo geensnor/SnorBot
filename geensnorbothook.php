@@ -26,6 +26,18 @@ $losseWoorden = explode(" ", $text);
 $antwoord = "";
 $send = FALSE;
 
+// functies die hergebruikt kunnen worden
+function bitcoinFunction() {
+	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
+	$price  = $bitcoinPriceObject->result->price->last;
+	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
+	
+	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
+	$telegram->sendMessage($content);
+	$send = TRUE;
+	}
+
+
 //Dag van de - Start
 	if($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van') {
 		$dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
@@ -46,16 +58,6 @@ $send = FALSE;
 //bitcoin koers in euro
 
 	if($text == 'bitcoin' || $text == 'btc') {
-		//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
-		function bitcoinFunction() {
-		$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
-		$price  = $bitcoinPriceObject->result->price->last;
-		$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
-		
-		$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
-		$telegram->sendMessage($content);
-		$send = TRUE;
-		}
 		bitcoinFunction();
 	}
 
