@@ -74,10 +74,9 @@ Function getWeather() {
 	$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
 	$telegram->sendMessage($content);
 }
-
-
-
 // einde functies
+
+//Begin van de commando's
 
 //Dag van de - Start
 	if($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van') {
@@ -127,7 +126,7 @@ Function getWeather() {
 		
 		$send = TRUE;
 	}
-
+// Einde goedemorgen
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
@@ -466,8 +465,9 @@ Function getWeather() {
     	}
   	}
     }	
+
+//Random antwoord geven als hij niets weet...
 	if(!$send && $text){
-		//Random antwoord geven als hij niets weet...
 		$randKey = array_rand($antwoordenArray, 1);
 		$antwoord = $antwoordenArray[$randKey]->antwoord;
 
