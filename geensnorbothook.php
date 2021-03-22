@@ -128,6 +128,16 @@ Function getWeather() {
 	}
 // Einde goedemorgen
 
+// Crypto overzicht
+if($text == 'crypto') {
+
+	getBitcoinPrice();
+	getEtheriumPrice();
+	
+	$send = TRUE;
+}
+// Einde goedemorgen
+
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
 		getWeather();
