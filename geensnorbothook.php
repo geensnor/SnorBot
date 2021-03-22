@@ -32,7 +32,8 @@ function bitcoinFunction() {
 //	global $telegram;
 	$telegram = new Telegram(getenv('telegramId'));
 
-	global $chat_id;
+//	global $chat_id;
+	$chat_id = $telegram->ChatID();
 
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
