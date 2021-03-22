@@ -24,7 +24,59 @@ $chat_id = $telegram->ChatID();
 
 $losseWoorden = explode(" ", $text);
 $antwoord = "";
-$send = FALSE;
+$send = FALSE;	
+
+// Functies
+function getBitcoinPrice() {
+
+	global $telegram;
+	global $chat_id;
+	
+	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
+	$price  = $bitcoinPriceObject->result->price->last;
+	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
+	
+	$content = array('chat_id' => $chat_id, 'text' => "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)");
+	$telegram->sendMessage($content);
+	}
+
+function getEtheriumPrice() {
+
+	global $telegram;
+	global $chat_id;
+
+	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
+	$price  = $ethPriceObject->result->price->last;
+	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
+	
+	$content = array('chat_id' => $chat_id, 'text' => "Ethereum koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)");
+	$telegram->sendMessage($content);
+}
+
+function getNews() {
+
+	global $telegram;
+	global $chat_id;
+
+	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
+	
+	$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
+	$telegram->sendMessage($content);	
+}
+
+Function getWeather() {
+
+	global $telegram;
+	global $chat_id;
+
+	$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
+	
+	$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
+	$telegram->sendMessage($content);
+}
+// einde functies
+
+//Begin van de commando's
 
 //Dag van de - Start
 	if($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van') {
@@ -43,42 +95,42 @@ $send = FALSE;
 //Dag van de - Einde
 
 
-//bitcoin koers in euro
-
+//BTC (bitcoin) koers 
 	if($text == 'bitcoin' || $text == 'btc') {
-		//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
-
-		$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
-		$price  = $bitcoinPriceObject->result->price->last;
-		$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
+		getBitcoinPrice();
 		
-		$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
-		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
+// end of bitcoin
 
-// end of bitcoin koers in euro
+//ETH koers
+	if($text == 'eth') {
+		getEtheriumPrice();
+		
+		$send = TRUE;
+	}
+// end of ETH koers
 
-//ETH koers in euro
+// Goedemorgen! Een dag overzicht!
+	if($text == 'goedemorgen') {
 
-if($text == 'eth') {
+		// Welkomswoord
+		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen vriend van Geensnor! Het beloofd weer een prachtige dag te worden. Laat mij beginnen met een mooi dagoverzicht van belangrijke zaken.");
+		$telegram->sendMessage($content);
 
-	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
-	$price  = $ethPriceObject->result->price->last;
-	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
-	
-	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
-	$telegram->sendMessage($content);
-	$send = TRUE;
-}
-
-// end of ETH koers in euro
+		// plus uitvoeren aantal handige functies
+		getBitcoinPrice();
+		getEtheriumPrice();
+		getNews();
+		getWeather();
+		
+		$send = TRUE;
+	}
+// Einde goedemorgen
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
-		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
-		$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
-		$telegram->sendMessage($content);
+		getWeather();
 		$send = TRUE;
 	}
 
@@ -142,9 +194,7 @@ if($text == 'eth') {
 
 //Beetje nieuws.....
 	if($text == 'nieuws') {
-		$nuxml = simplexml_load_file("https://www.nu.nl/rss");
-		$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
-		$telegram->sendMessage($content);
+		getNews();
 		$send = TRUE;
 	}
 //Nieuws hierboven
@@ -415,8 +465,9 @@ if($text == 'eth') {
     	}
   	}
     }	
+
+//Random antwoord geven als hij niets weet...
 	if(!$send && $text){
-		//Random antwoord geven als hij niets weet...
 		$randKey = array_rand($antwoordenArray, 1);
 		$antwoord = $antwoordenArray[$randKey]->antwoord;
 
