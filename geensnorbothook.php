@@ -93,26 +93,26 @@ function nieuwsFunction() {
 // end of bitcoin
 
 //ETH koers
-if($text == 'eth') {
-	ethereumFunction();
-	$send = TRUE;
-}
+	if($text == 'eth') {
+		ethereumFunction();
+		$send = TRUE;
+	}
 // end of ETH koers
 
 // Goedemorgen! Een dag overzicht!
-if($text == 'Goedemorgen') {
+	if($text == 'Goedemorgen') {
 
-	// Welkomswoord
-	$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen vriend van Geensnor! Het beloofd weer een prachtige dag te worden. Laat mij beginnen met een mooi dagoverzicht van belangrijke zaken. ");
-	$telegram->sendMessage($content);
+		// Welkomswoord
+		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen vriend van Geensnor! Het beloofd weer een prachtige dag te worden. Laat mij beginnen met een mooi dagoverzicht van belangrijke zaken. ");
+		$telegram->sendMessage($content);
 
-	// plus uitvoeren aantal handige functies
-	bitcoinFunction();
-	ethereumFunction();
-	nieuwsFunction();
-	
-	$send = TRUE;
-}
+		// plus uitvoeren aantal handige functies
+		bitcoinFunction();
+		ethereumFunction();
+		nieuwsFunction();
+		
+		$send = TRUE;
+	}
 
 
 //Hieronder staan weerdingen
