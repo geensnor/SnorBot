@@ -27,7 +27,7 @@ $antwoord = "";
 $send = FALSE;	
 
 // Functies
-function bitcoinFunction() {
+function getBitcoinPrice() {
 
 	global $telegram;
 	global $chat_id;
@@ -40,7 +40,7 @@ function bitcoinFunction() {
 	$telegram->sendMessage($content);
 	}
 
-function ethereumFunction() {
+function getEtheriumPrice() {
 
 	global $telegram;
 	global $chat_id;
@@ -53,15 +53,26 @@ function ethereumFunction() {
 	$telegram->sendMessage($content);
 }
 
-function nieuwsFunction() {
+function getNews() {
 
 	global $telegram;
 	global $chat_id;
 
 	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
-	$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
-	$telegram->sendMessage($content);
 	
+	$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
+	$telegram->sendMessage($content);	
+}
+
+Function getWeather() {
+
+	global $telegram;
+	global $chat_id;
+
+	$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
+	
+	$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
+	$telegram->sendMessage($content);
 }
 
 
@@ -87,14 +98,16 @@ function nieuwsFunction() {
 
 //BTC (bitcoin) koers 
 	if($text == 'bitcoin' || $text == 'btc') {
-		bitcoinFunction();
+		getBitcoinPrice();
+		
 		$send = TRUE;
 	}
 // end of bitcoin
 
 //ETH koers
 	if($text == 'eth') {
-		ethereumFunction();
+		getEtheriumPrice();
+		
 		$send = TRUE;
 	}
 // end of ETH koers
@@ -103,13 +116,14 @@ function nieuwsFunction() {
 	if($text == 'goedemorgen') {
 
 		// Welkomswoord
-		//$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen vriend van Geensnor! Het beloofd weer een prachtige dag te worden. Laat mij beginnen met een mooi dagoverzicht van belangrijke zaken. ");
-		//$telegram->sendMessage($content);
+		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen vriend van Geensnor! Het beloofd weer een prachtige dag te worden. Laat mij beginnen met een mooi dagoverzicht van belangrijke zaken.");
+		$telegram->sendMessage($content);
 
 		// plus uitvoeren aantal handige functies
-		bitcoinFunction();
-		ethereumFunction();
-		nieuwsFunction();
+		getBitcoinPrice();
+		getEtheriumPrice();
+		getNews();
+		getWeather();
 		
 		$send = TRUE;
 	}
@@ -117,9 +131,7 @@ function nieuwsFunction() {
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
-		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
-		$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
-		$telegram->sendMessage($content);
+		getWeather();
 		$send = TRUE;
 	}
 
@@ -183,7 +195,7 @@ function nieuwsFunction() {
 
 //Beetje nieuws.....
 	if($text == 'nieuws') {
-		nieuwsFunction();
+		getNews();
 		$send = TRUE;
 	}
 //Nieuws hierboven
