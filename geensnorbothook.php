@@ -136,7 +136,7 @@ if($text == 'crypto') {
 	
 	$send = TRUE;
 }
-// Einde goedemorgen
+// Einde crypto overzicht
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
