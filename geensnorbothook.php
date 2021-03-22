@@ -47,7 +47,7 @@ $send = FALSE;
 
 	if($text == 'bitcoin' || $text == 'btc') {
 		//$BCEuroObject = json_decode(file_get_contents("https://api.bitvavo.com/v1/currencies"));
-
+		function bitcoinFunction() {
 		$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 		$price  = $bitcoinPriceObject->result->price->last;
 		$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
@@ -55,7 +55,9 @@ $send = FALSE;
 		$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
 		$telegram->sendMessage($content);
 		$send = TRUE;
+		}
 	}
+
 
 // end of bitcoin koers in euro
 
