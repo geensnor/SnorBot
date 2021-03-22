@@ -66,6 +66,8 @@ function bitcoinFunction() {
 
 	if($text == 'bitcoin' || $text == 'btc') {
 		bitcoinFunction();
+		$send = TRUE;
+
 	}
 
 
