@@ -15,8 +15,9 @@ $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/maste
 $haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/haiku.json";
 $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/podcasts.json";
 $brabantsLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/brabants.json";
-
-
+$complotLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/complot.json";
+$covidLocatie = "https://raw.githubusercontent.com/hungrxyz/infected-data/main/data/latest/national.json";
+$voornaamLocatie = "https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json";
 
 $text = strtolower(ltrim($telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
@@ -305,7 +306,50 @@ if($text == 'eth') {
 		if(json_last_error() === JSON_ERROR_NONE)
 			$antwoord = end($haikuArray);
 		else
+			$antwoord = "Ik kan geen complotten vinden, maar dat is precies wat de MSM je wil doen geloven!!";
+		$send = TRUE;
+	}
+
+	if($text  == "complot" || $text  == "complottheorie"){
+		$complotArray = json_decode(file_get_contents($complotLocatie));
+		if(json_last_error() === JSON_ERROR_NONE){
+			$randKey = array_rand($complotArray, 1);
+			$antwoord = $complotArray[$randKey];
+		}
+		else
 			$antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
+		$send = TRUE;
+	}
+
+	if($text == "corona" || $text == "covid"){
+		$covidObject = json_decode(file_get_contents($covidLocatie));
+
+		if(substr($covidObject->positiveCases->trend, 0, 1) == "-"){
+			$displayTrend = substr($covidObject->positiveCases->trend, 1);
+			$trendText = $displayTrend." minder";
+		}
+		else{
+			$trendText = $covidObject->positiveCases->trend." meer";
+		}
+		
+		$antwoord = "Op ".date("d-m-Y", strtotime($covidObject->numbersDate))." zijn er ".$covidObject->positiveCases->new." besmettingen gemeld. Dat zijn er ".$trendText." dan de dag ervoor.";
+		$send = TRUE;
+	}
+
+	if($text == "vaccinaties" || $text == "vaccin"){
+		$covidObject = json_decode(file_get_contents($covidLocatie));
+		$antwoord = "Tot ".date("d-m-Y", strtotime($covidObject->updatedAt))." hebben ".$covidObject->vaccinations->total." mensen een vaccin in hun arm gehad. Dat zijn er ".$covidObject->vaccinations->new." meer dan de dag ervoor. Ongeveer ".round($covidObject->vaccinations->percentageOfPopulation*100, 2)."% van Nederland is nu gevaccineerd.";
+		$send = TRUE;
+	}
+
+	if($text == "voornaam" || $text == "naam" || $text == "babynaam"){
+		$voornaamObject = json_decode(file_get_contents($voornaamLocatie));
+		if(json_last_error() === JSON_ERROR_NONE){
+			$randKey = array_rand($voornaamObject, 1);
+			$antwoord = $voornaamObject[$randKey]->naam;
+		}
+		else
+			$antwoord = "De namen zijn foetsie";
 		$send = TRUE;
 	}
 

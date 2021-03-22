@@ -341,7 +341,7 @@
     },
     {
       "trigger":"ath",
-      "antwoord":"De All Time High van de Bitcoin was op 21 februari 2021. Hij was toen €48.004 waard."
+      "antwoord":"De All Time High van de Bitcoin was op 13 maart 2021. Hij was toen €51.709,83 waard."
     },
     {
       "trigger":"precies",
@@ -396,11 +396,27 @@
       "antwoord":"geen iphone..."
     },
     {
-      "trigger":"keuze",
+      "trigger":"keuze vraag",
       "antwoord":"https://snor-bot.herokuapp.com/assets/keuzevraag.gif"
     },
     {
       "trigger":"openvraag",
       "antwoord":"https://snor-bot.herokuapp.com/assets/openvraag.gif"
+    },
+    {
+      "trigger":"schapenkaas",
+      "antwoord":"Op Texel hebben ze lekkere schapenkaas"
+    },
+    {
+      "trigger":"smile",
+      "antwoord":"😊"
+    },
+    {
+      "trigger":"doei",
+      "antwoord":"👋"
+    },
+      {
+      "trigger":"pedant",
+      "antwoord":"Agnes en Sylvana"
     }
 ]
