@@ -53,9 +53,17 @@ function ethereumFunction() {
 	$telegram->sendMessage($content);
 }
 
-function nieuwsFunction(){
-	// Hier komt de nieuws functie
+function nieuwsFunction() {
+
+	global $telegram;
+	global $chat_id;
+
+	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
+	$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
+	$telegram->sendMessage($content);
+	
 }
+
 
 
 // einde functies
@@ -77,7 +85,7 @@ function nieuwsFunction(){
 //Dag van de - Einde
 
 
-//bitcoin 
+//BTC (bitcoin) koers 
 	if($text == 'bitcoin' || $text == 'btc') {
 		bitcoinFunction();
 		$send = TRUE;
@@ -89,14 +97,22 @@ if($text == 'eth') {
 	ethereumFunction();
 	$send = TRUE;
 }
+// end of ETH koers
 
-if($text == 'goedemorgen') {
+// Goedemorgen! Een dag overzicht!
+if($text == 'Goedemorgen') {
+
+	// Welkomswoord
+	$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen vriend van Geensnor! Het beloofd weer een prachtige dag te worden. Laat mij beginnen met een mooi dagoverzicht van belangrijke zaken. ");
+	$telegram->sendMessage($content);
+
+	// plus uitvoeren aantal handige functies
 	bitcoinFunction();
 	ethereumFunction();
+	nieuwsFunction();
+	
 	$send = TRUE;
 }
-
-// end of ETH koers
 
 
 //Hieronder staan weerdingen
@@ -167,9 +183,7 @@ if($text == 'goedemorgen') {
 
 //Beetje nieuws.....
 	if($text == 'nieuws') {
-		$nuxml = simplexml_load_file("https://www.nu.nl/rss");
-		$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
-		$telegram->sendMessage($content);
+		nieuwsFunction();
 		$send = TRUE;
 	}
 //Nieuws hierboven
