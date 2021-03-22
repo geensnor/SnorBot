@@ -26,24 +26,39 @@ $losseWoorden = explode(" ", $text);
 $antwoord = "";
 $send = FALSE;	
 
-// functies die hergebruikt kunnen worden
+// Functies
 function bitcoinFunction() {
 
-//	global $telegram;
-	$telegram = new Telegram(getenv('telegramId'));
-
-//	global $chat_id;
-	$chat_id = $telegram->ChatID();
-
+	global $telegram;
+	global $chat_id;
+	
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
 	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
 	
 	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
 	$telegram->sendMessage($content);
-	$send = TRUE;
 	}
 
+function ethereumFunction() {
+
+	global $telegram;
+	global $chat_id;
+
+	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
+	$price  = $ethPriceObject->result->price->last;
+	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
+	
+	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
+	$telegram->sendMessage($content);
+}
+
+function nieuwsFunction(){
+	// Hier komt de nieuws functie
+}
+
+
+// einde functies
 
 //Dag van de - Start
 	if($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van') {
@@ -62,31 +77,27 @@ function bitcoinFunction() {
 //Dag van de - Einde
 
 
-//bitcoin koers in euro
-
+//bitcoin 
 	if($text == 'bitcoin' || $text == 'btc') {
 		bitcoinFunction();
 		$send = TRUE;
-
 	}
+// end of bitcoin
 
-
-// end of bitcoin koers in euro
-
-//ETH koers in euro
-
+//ETH koers
 if($text == 'eth') {
-
-	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
-	$price  = $ethPriceObject->result->price->last;
-	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
-	
-	$content = array('chat_id' => $chat_id, 'text' => "€ ".$price." (".$percentage24Hour."% in laatste 24 uur)");
-	$telegram->sendMessage($content);
+	ethereumFunction();
 	$send = TRUE;
 }
 
-// end of ETH koers in euro
+if($text == 'goedemorgen') {
+	bitcoinFunction();
+	ethereumFunction();
+	$send = TRUE;
+}
+
+// end of ETH koers
+
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
