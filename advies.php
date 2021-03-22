@@ -25,9 +25,6 @@ function distanceGeoPoints ($lat1, $lng1, $lat2, $lng2) {
 
 function getAdviesArray($inputLat, $inputLon){
 
-/*	$inputLat = 51.8589811;
-	$inputLon = 5.8702883;*/
-
 	$adviesArray = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/SnorLijsten/master/advies.json"));
 
 	foreach ($adviesArray as $key => $value) {
