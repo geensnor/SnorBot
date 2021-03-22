@@ -28,6 +28,8 @@ $send = FALSE;
 
 // functies die hergebruikt kunnen worden
 function bitcoinFunction() {
+	$chat_id = $telegram->ChatID();
+
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
 	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
