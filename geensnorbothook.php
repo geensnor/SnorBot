@@ -28,9 +28,9 @@ $send = FALSE;
 
 // functies die hergebruikt kunnen worden
 function bitcoinFunction() {
-	$telegram = new Telegram(getenv('telegramId'));
 
-	$chat_id = $telegram->ChatID();
+	global $telegram;
+	global $chat_id;
 
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
