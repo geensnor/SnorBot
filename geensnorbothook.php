@@ -28,9 +28,6 @@ $send = FALSE;
 
 // Functies
 function getBitcoinPrice() {
-
-	global $telegram;
-	global $chat_id;
 	
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
@@ -42,9 +39,6 @@ function getBitcoinPrice() {
 
 function getEthereumPrice() {
 
-	global $telegram;
-	global $chat_id;
-
 	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
 	$price  = $ethPriceObject->result->price->last;
 	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
@@ -55,24 +49,18 @@ function getEthereumPrice() {
 
 function getNews() {
 
-	global $telegram;
-	global $chat_id;
-
 	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
 	
-	$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
-	$telegram->sendMessage($content);	
+	return "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title;
+
 }
 
 Function getWeather() {
 
-	global $telegram;
-	global $chat_id;
-
 	$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
 	
-	$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
-	$telegram->sendMessage($content);
+	return "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary;
+
 }
 // einde functies
 
@@ -118,17 +106,7 @@ Function getWeather() {
 // Goedemorgen! Een dag overzicht!
 	if($text == 'goedemorgen') {
 
-		// Welkomswoord
-		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen vriend van Geensnor! Het beloofd weer een prachtige dag te worden. Laat mij beginnen met een mooi dagoverzicht van belangrijke zaken.");
-		$telegram->sendMessage($content);
-
-		// plus uitvoeren aantal handige functies
-		//getBitcoinPrice();
-		//getEthereumPrice();
-		//getNews();
-		//getWeather();
-		
-		$content = array('chat_id' => $chat_id, 'text' => "De koersen :" .getBitcoinPrice(). "| " .getEthereumPrice());
+		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen, hier volgt het dagoverzicht. De koersen: " .getBitcoinPrice(). " | " .getEthereumPrice(). " | " .getWeather(). " | " .getNews());
 		$telegram->sendMessage($content);
 
 
@@ -148,7 +126,9 @@ if($text == 'crypto') {
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
-		getWeather();
+		$content = array('chat_id' => $chat_id, 'text' => getWeather());
+		$telegram->sendMessage($content);
+
 		$send = TRUE;
 	}
 
@@ -212,7 +192,10 @@ if($text == 'crypto') {
 
 //Beetje nieuws.....
 	if($text == 'nieuws') {
-		getNews();
+
+		$content = array('chat_id' => $chat_id, 'text' => getNews());
+		$telegram->sendMessage($content);
+
 		$send = TRUE;
 	}
 //Nieuws hierboven
