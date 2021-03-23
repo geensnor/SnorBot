@@ -27,8 +27,7 @@ $antwoord = "";
 $send = FALSE;
 
 // Functies
-function getBitcoinPrice() {
-	
+function getBitcoinPrice() {	
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
 	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
@@ -38,7 +37,6 @@ function getBitcoinPrice() {
 }
 
 function getEthereumPrice() {
-
 	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
 	$price  = $ethPriceObject->result->price->last;
 	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
@@ -48,19 +46,15 @@ function getEthereumPrice() {
 }
 
 function getNews() {
-
 	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
 	
 	return "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title;
-
 }
 
 Function getWeather() {
-
 	$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
 	
-	return "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary;
-
+	return "Het weer voor de komende dagen in De Bilt:\n".$weerObject->daily->summary;
 }
 // einde functies
 
