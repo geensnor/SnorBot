@@ -42,17 +42,18 @@ function getBitcoinPrice() {
 	
 }
 
-function getEtheriumPrice() {
+function getEthereumPrice() {
 
 	global $telegram;
 	global $chat_id;
+	global $EthereumPrice;
 
 	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
 	$price  = $ethPriceObject->result->price->last;
 	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
 	
-	$content = array('chat_id' => $chat_id, 'text' => "Ethereum koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)");
-	$telegram->sendMessage($content);
+	$EthereumPrice = "Ethereum koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
+
 }
 
 function getNews() {
@@ -110,7 +111,11 @@ Function getWeather() {
 
 //ETH koers
 	if($text == 'eth') {
-		getEtheriumPrice();
+		getEthereumPrice();
+
+
+		$content = array('chat_id' => $chat_id, 'text' => $EthereumPrice);
+		$telegram->sendMessage($content);
 		
 		$send = TRUE;
 	}
@@ -125,10 +130,14 @@ Function getWeather() {
 
 		// plus uitvoeren aantal handige functies
 		getBitcoinPrice();
-		getEtheriumPrice();
-		getNews();
-		getWeather();
+		getEthereumPrice();
+		//getNews();
+		//getWeather();
 		
+		$content = array('chat_id' => $chat_id, 'text' => "De koersen" .$EthereumPrice. "en natuurlijk ook" .$BitcoinPrice);
+		$telegram->sendMessage($content);
+
+
 		$send = TRUE;
 	}
 // Einde goedemorgen
@@ -137,7 +146,7 @@ Function getWeather() {
 if($text == 'crypto') {
 
 	getBitcoinPrice();
-	getEtheriumPrice();
+	getEthereumPrice();
 	
 	$send = TRUE;
 }
