@@ -104,12 +104,10 @@ Function getWeather() {
 // end of ETH koers
 
 // Goedemorgen! Een dag overzicht!
-	if($text == 'goedemorgen') {
-
-		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen, hier volgt het dagoverzicht. De koersen: " .getBitcoinPrice(). " | " .getEthereumPrice(). " | " .getWeather(). " | " .getNews());
+	if($text == 'goedemorgen'){
+		
+		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen, hier volgt het dagoverzicht.\n\nDe koersen\n" .getBitcoinPrice(). " | " .getEthereumPrice(). " | " .getWeather(). " | " .getNews());
 		$telegram->sendMessage($content);
-
-
 		$send = TRUE;
 	}
 // Einde goedemorgen
