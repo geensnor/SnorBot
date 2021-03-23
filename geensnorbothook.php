@@ -24,55 +24,43 @@ $chat_id = $telegram->ChatID();
 
 $losseWoorden = explode(" ", $text);
 $antwoord = "";
-$send = FALSE;	
+$send = FALSE;
 
 // Functies
 function getBitcoinPrice() {
-
-	global $telegram;
-	global $chat_id;
 	
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
 	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
 	
-	$content = array('chat_id' => $chat_id, 'text' => "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)");
-	$telegram->sendMessage($content);
-	}
+	return "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
 
-function getEtheriumPrice() {
+}
 
-	global $telegram;
-	global $chat_id;
+function getEthereumPrice() {
 
 	$ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
 	$price  = $ethPriceObject->result->price->last;
 	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
 	
-	$content = array('chat_id' => $chat_id, 'text' => "Ethereum koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)");
-	$telegram->sendMessage($content);
+	return "Ethereum koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
+
 }
 
 function getNews() {
 
-	global $telegram;
-	global $chat_id;
-
 	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
 	
-	$content = array('chat_id' => $chat_id, 'text' => "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title);
-	$telegram->sendMessage($content);	
+	return "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title;
+
 }
 
 Function getWeather() {
 
-	global $telegram;
-	global $chat_id;
-
 	$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
 	
-	$content = array('chat_id' => $chat_id, 'text' => "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary);
-	$telegram->sendMessage($content);
+	return "Het weer voor de komende dagen in De Bilt: ".$weerObject->daily->summary;
+
 }
 // einde functies
 
@@ -97,15 +85,19 @@ Function getWeather() {
 
 //BTC (bitcoin) koers 
 	if($text == 'bitcoin' || $text == 'btc') {
-		getBitcoinPrice();
 		
+		$content = array('chat_id' => $chat_id, 'text' => getBitcoinPrice());
+		$telegram->sendMessage($content);
+
 		$send = TRUE;
 	}
 // end of bitcoin
 
 //ETH koers
 	if($text == 'eth') {
-		getEtheriumPrice();
+
+		$content = array('chat_id' => $chat_id, 'text' => getEthereumPrice());
+		$telegram->sendMessage($content);
 		
 		$send = TRUE;
 	}
@@ -114,16 +106,10 @@ Function getWeather() {
 // Goedemorgen! Een dag overzicht!
 	if($text == 'goedemorgen') {
 
-		// Welkomswoord
-		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen vriend van Geensnor! Het beloofd weer een prachtige dag te worden. Laat mij beginnen met een mooi dagoverzicht van belangrijke zaken.");
+		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen, hier volgt het dagoverzicht. De koersen: " .getBitcoinPrice(). " | " .getEthereumPrice(). " | " .getWeather(). " | " .getNews());
 		$telegram->sendMessage($content);
 
-		// plus uitvoeren aantal handige functies
-		getBitcoinPrice();
-		getEtheriumPrice();
-		getNews();
-		getWeather();
-		
+
 		$send = TRUE;
 	}
 // Einde goedemorgen
@@ -131,8 +117,8 @@ Function getWeather() {
 // Crypto overzicht
 if($text == 'crypto') {
 
-	getBitcoinPrice();
-	getEtheriumPrice();
+	$content = array('chat_id' => $chat_id, 'text' => "De koersen: " .getBitcoinPrice(). " | " .getEthereumPrice());
+	$telegram->sendMessage($content);
 	
 	$send = TRUE;
 }
@@ -140,7 +126,9 @@ if($text == 'crypto') {
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
-		getWeather();
+		$content = array('chat_id' => $chat_id, 'text' => getWeather());
+		$telegram->sendMessage($content);
+
 		$send = TRUE;
 	}
 
@@ -204,7 +192,10 @@ if($text == 'crypto') {
 
 //Beetje nieuws.....
 	if($text == 'nieuws') {
-		getNews();
+
+		$content = array('chat_id' => $chat_id, 'text' => getNews());
+		$telegram->sendMessage($content);
+
 		$send = TRUE;
 	}
 //Nieuws hierboven
