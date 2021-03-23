@@ -48,7 +48,7 @@ function getEthereumPrice() {
 function getNews() {
 	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
 	
-	return "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title;
+	return "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title. "...<a href='" .$nuxml->channel->item[0]->link ."'>Lees meer</a>";
 }
 
 Function getWeather() {
