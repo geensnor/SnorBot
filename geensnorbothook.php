@@ -24,21 +24,23 @@ $chat_id = $telegram->ChatID();
 
 $losseWoorden = explode(" ", $text);
 $antwoord = "";
-$send = FALSE;	
+$send = FALSE;
 
 // Functies
 function getBitcoinPrice() {
 
 	global $telegram;
 	global $chat_id;
+	global $BitcoinPrice;
 	
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
 	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
 	
-	$content = array('chat_id' => $chat_id, 'text' => "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)");
-	$telegram->sendMessage($content);
-	}
+	$BitcoinPrice = "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
+
+	
+}
 
 function getEtheriumPrice() {
 
@@ -99,6 +101,9 @@ Function getWeather() {
 	if($text == 'bitcoin' || $text == 'btc') {
 		getBitcoinPrice();
 		
+		$content = array('chat_id' => $chat_id, 'text' => $BitcoinPrice);
+		$telegram->sendMessage($content);
+
 		$send = TRUE;
 	}
 // end of bitcoin
