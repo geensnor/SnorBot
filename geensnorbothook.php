@@ -31,15 +31,13 @@ function getBitcoinPrice() {
 
 	global $telegram;
 	global $chat_id;
-	global $BitcoinPrice;
 	
 	$bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
 	$price  = $bitcoinPriceObject->result->price->last;
 	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
 	
-	$BitcoinPrice = "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
+	return "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
 
-	
 }
 
 function getEthereumPrice() {
@@ -100,9 +98,9 @@ Function getWeather() {
 
 //BTC (bitcoin) koers 
 	if($text == 'bitcoin' || $text == 'btc') {
-		getBitcoinPrice();
+		//getBitcoinPrice();
 		
-		$content = array('chat_id' => $chat_id, 'text' => $BitcoinPrice);
+		$content = array('chat_id' => $chat_id, 'text' => getBitcoinPrice());
 		$telegram->sendMessage($content);
 
 		$send = TRUE;
@@ -134,7 +132,7 @@ Function getWeather() {
 		//getNews();
 		//getWeather();
 		
-		$content = array('chat_id' => $chat_id, 'text' => "De koersen" .$EthereumPrice. "en natuurlijk ook" .$BitcoinPrice);
+		$content = array('chat_id' => $chat_id, 'text' => "De koersen :" .$EthereumPrice. "| " .$BitcoinPrice);
 		$telegram->sendMessage($content);
 
 
