@@ -53,7 +53,7 @@ function getNews() {
 
 Function getWeather() {
 	$weerObject = simplexml_load_string(file_get_contents("https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIverwachtingen.xml"));
-	return "Het weer voor de komende dagen:\n".$weerObject->channel->item[0]->title;
+	return "Het weer:\n".$weerObject->channel->item[0]->title;
 }
 // einde functies
 
