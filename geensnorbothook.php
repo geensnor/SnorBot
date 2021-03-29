@@ -52,9 +52,8 @@ function getNews() {
 }
 
 Function getWeather() {
-	$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.100699,5.1542481?lang=nl&units=ca"));
-	
-	return "Het weer voor de komende dagen in De Bilt:\n".$weerObject->daily->summary;
+	$weerObject = simplexml_load_string(file_get_contents("https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIverwachtingen.xml"));
+	return "Het weer:\n".$weerObject->channel->item[0]->title;
 }
 // einde functies
 
