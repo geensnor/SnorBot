@@ -415,8 +415,12 @@
       "trigger":"doei",
       "antwoord":"👋"
     },
-      {
+    {
       "trigger":"pedant",
       "antwoord":"Agnes en Sylvana"
+    },
+    {
+      "trigger":"feest",
+      "antwoord":"op tafel!"
     }
 ]
