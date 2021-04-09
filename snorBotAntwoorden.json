@@ -422,5 +422,9 @@
     {
       "trigger":"feest",
       "antwoord":"op tafel!"
+    },
+    {
+      "trigger":"tjeenk",
+      "antwoord":"Herman Diederik Tjeenk Willink"
     }
 ]
