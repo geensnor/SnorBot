@@ -48,7 +48,7 @@ function getEthereumPrice() {
 function getNews() {
 	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
 	
-	return "Laatste nieuws van nu.nl: \n".$nuxml->channel->item[0]->title;
+	return "Laatste nieuws van nu.nl: \n[".$nuxml->channel->item[0]->title."](".$nuxml->channel->item[0]->link.")";
 }
 
 Function getWeather() {
@@ -99,7 +99,7 @@ Function getWeather() {
 // Goedemorgen! Een dag overzicht!
 	if($text == 'goedemorgen'){
 		
-		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen, hier volgt het dagoverzicht.\n\nDe koersen\n" .getBitcoinPrice(). "\n" .getEthereumPrice(). "\n\n" .getWeather(). "\n\n" .getNews());
+		$content = array('chat_id' => $chat_id, 'text' => "Goedemorgen, hier volgt het dagoverzicht.\n\nDe koersen\n" .getBitcoinPrice(). "\n" .getEthereumPrice(). "\n\n" .getWeather(). "\n\n" .getNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
@@ -184,7 +184,7 @@ if($text == 'crypto') {
 //Beetje nieuws.....
 	if($text == 'nieuws') {
 
-		$content = array('chat_id' => $chat_id, 'text' => getNews());
+		$content = array('chat_id' => $chat_id, 'text' => getNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
 		$telegram->sendMessage($content);
 
 		$send = TRUE;
