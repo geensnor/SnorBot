@@ -426,5 +426,9 @@
     {
       "trigger":"tjeenk",
       "antwoord":"Herman Diederik Tjeenk Willink"
+    },
+    {
+      "trigger":"nieuwe ath",
+      "antwoord":"https://snor-bot.herokuapp.com/assets/nieuweath.gif"
     }
 ]
