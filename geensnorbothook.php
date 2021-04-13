@@ -108,7 +108,7 @@ Function getWeather() {
 // Crypto overzicht
 if($text == 'crypto') {
 
-	$content = array('chat_id' => $chat_id, 'text' => getBitcoinPrice(). " \n " .getEthereumPrice());
+	$content = array('chat_id' => $chat_id, 'text' => getBitcoinPrice(). " \n" .getEthereumPrice());
 	$telegram->sendMessage($content);
 	
 	$send = TRUE;
