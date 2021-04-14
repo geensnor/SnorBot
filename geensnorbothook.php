@@ -53,7 +53,7 @@ function getNews() {
 
 Function getWeather() {
 	$weerObject = simplexml_load_string(file_get_contents("https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIverwachtingen.xml"));
-	return "Het weer:\n".$weerObject->channel->item[0]->title;
+	return "Het weer:\n[".$weerObject->channel->item[0]->title."](".https://www.knmi.nl/nederland-nu/weer/verwachtingen.")";
 }
 // einde functies
 
