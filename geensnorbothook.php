@@ -32,7 +32,7 @@ function getBitcoinPrice() {
 	$price  = $bitcoinPriceObject->result->price->last;
 	$percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
 	
-	return "Bitcoin koers: €".$price." (".$percentage24Hour."% in laatste 24 uur)";
+	return "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
 
 }
 
@@ -41,7 +41,7 @@ function getEthereumPrice() {
 	$price  = $ethPriceObject->result->price->last;
 	$percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
 	
-	return "Ethereum koers: €".$price." (".$percentage24Hour."% in laatste 24 uur)";
+	return "Ethereum koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
 
 }
 
