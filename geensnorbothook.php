@@ -76,7 +76,7 @@ Function getWeather() {
 	if($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van') {
 		$dagVanDeText = getDagVanDe();
 		if($dagVanDeText)
-			$sendText= $dagVanDeText;
+			$sendText = $dagVanDeText;
 		else
 			$sendText =  "Ik heb geen idee waar het vandaag een dag van is. Maar op bijvoorbeeld https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen.\n\nDe lijst van de bot staat op Github: https://github.com/geensnor/SnorLijsten/blob/master/dagvande.json, dus ga je gang!";
 
