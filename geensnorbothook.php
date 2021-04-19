@@ -11,7 +11,6 @@ $antwoordenArray = json_decode(file_get_contents("snorBotAntwoorden.json"));
 $weetjesLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/weetjes.json";
 $dooddoenerLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dooddoeners.json";
 $verveelLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/verveellijst.json";
-$dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
 $haikuLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/haiku.json";
 $podcastLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/podcasts.json";
 $brabantsLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/brabants.json";
@@ -46,6 +45,7 @@ function getEthereumPrice() {
 }
 
 function getDagVanDe() {
+	$dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/SnorLijsten/master/dagvande.json";
 	$dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
     foreach ($dagVanDeArray as $key => $value) {
       if($dagVanDeArray[$key]->dag == date('d-m'))
