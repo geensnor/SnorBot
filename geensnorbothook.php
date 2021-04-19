@@ -109,7 +109,14 @@ Function getWeather() {
 
 // Goedemorgen! Een dag overzicht!
 	if($text == 'goedemorgen'){
-		$goedeMorgenText = "Goedemorgen, hier volgt het dagoverzicht..\n\n".getDagVanDe()."\n\nDe koersen\n" .getBitcoinPrice(). "\n" .getEthereumPrice(). "\n\n" .getWeather(). "\n\n" .getNews();
+
+		$dagVanDeText = getDagVanDe();
+
+		$goedeMorgenText = "Goedemorgen, hier volgt het dagoverzicht..";
+		if($dagVanDeText)
+			$goedeMorgenText.= "\n\n".$goedeMorgenText;
+
+		$goedeMorgenText.="\n\nDe koersen\n" .getBitcoinPrice(). "\n" .getEthereumPrice(). "\n\n" .getWeather(). "\n\n" .getNews();
 
 		$content = array('chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
 		$telegram->sendMessage($content);
