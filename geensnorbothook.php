@@ -45,6 +45,19 @@ function getEthereumPrice() {
 
 }
 
+function getDagVanDe() {
+	$dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
+    foreach ($dagVanDeArray as $key => $value) {
+      if($dagVanDeArray[$key]->dag == date('d-m'))
+        $dagText =  "Het is vandaag ".$dagVanDeArray[$key]->onderwerp;
+    }
+
+    if($dagText)
+		return $dagText;
+	else
+		return false;
+}
+
 function getNews() {
 	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
 	
@@ -61,15 +74,13 @@ Function getWeather() {
 
 //Dag van de - Start
 	if($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van') {
-		$dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
-    foreach ($dagVanDeArray as $key => $value) {
-      if($dagVanDeArray[$key]->dag == date('d-m'))
-        $dagText =  "Het is vandaag ".$dagVanDeArray[$key]->onderwerp;
-    }
-    if(!$dagText)
-    	$dagText =  "Ik heb geen idee waar het vandaag een dag van is. Maar op bijvoorbeeld https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen.\n\nDe lijst van de bot staat op Github: https://github.com/geensnor/SnorLijsten/blob/master/dagvande.json, dus ga je gang!";
+		$dagVanDeText = getDagVanDe();
+		if($dagVanDeText)
+			$sendText= $dagVanDeText;
+		else
+			$sendText =  "Ik heb geen idee waar het vandaag een dag van is. Maar op bijvoorbeeld https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen.\n\nDe lijst van de bot staat op Github: https://github.com/geensnor/SnorLijsten/blob/master/dagvande.json, dus ga je gang!";
 
-    $content = array('chat_id' => $chat_id, 'text' => $dagText, 'disable_web_page_preview' => TRUE);	
+    	$content = array('chat_id' => $chat_id, 'text' => $sendText, 'disable_web_page_preview' => TRUE);	
 		$telegram->sendMessage($content);
 		$send = TRUE;
 	}
