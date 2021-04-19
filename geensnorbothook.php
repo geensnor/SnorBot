@@ -114,7 +114,7 @@ Function getWeather() {
 
 		$goedeMorgenText = "Goedemorgen, hier volgt het dagoverzicht..";
 		if($dagVanDeText)
-			$goedeMorgenText.= "\n\n".$goedeMorgenText;
+			$goedeMorgenText.= "\n\n".$dagVanDeText;
 
 		$goedeMorgenText.="\n\nDe koersen\n" .getBitcoinPrice(). "\n" .getEthereumPrice(). "\n\n" .getWeather(). "\n\n" .getNews();
 
