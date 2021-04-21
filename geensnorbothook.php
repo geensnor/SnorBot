@@ -112,7 +112,7 @@ Function getWeather() {
 
 		$dagVanDeText = getDagVanDe();
 
-		$goedeMorgenText = "Goedemorgen, hier volgt het dagoverzicht..";
+		$goedeMorgenText = "Goedemorgen, hier volgt het dagoverzicht ...";
 		if($dagVanDeText)
 			$goedeMorgenText.= "\n\n".$dagVanDeText;
 
