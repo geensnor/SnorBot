@@ -136,7 +136,7 @@ if($text == 'crypto') {
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
-		$content = array('chat_id' => $chat_id, 'text' => getWeather());
+		$content = array('chat_id' => $chat_id, 'text' => getWeather(), 'parse_mode' => 'Markdown');
 		$telegram->sendMessage($content);
 
 		$send = TRUE;
