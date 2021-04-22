@@ -142,27 +142,15 @@ if($text == 'crypto') {
 		$send = TRUE;
 	}
 
-	if($text == 'temperatuur Nijmegen') {
-		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/51.827359,5.853042?lang=nl&units=ca"));
-		$content = array('chat_id' => $chat_id, 'text' => "In Nijmegen is het nu ".$weerObject->currently->temperature." graden celsius");
-		$telegram->sendMessage($content);
-		$send = TRUE;
-	}
 
-	if($text == 'temperatuur Utrecht') {
-		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.092921,5.123173?lang=nl&units=ca"));
-		$content = array('chat_id' => $chat_id, 'text' => "In Utrecht is het nu ".$weerObject->currently->temperature." graden celsius");
-		$telegram->sendMessage($content);
-		$send = TRUE;
-	}
-
-//Hierboven staat 'getal onder de'. Werkt niet in een groep
+//Hieronder staat 'getal onder de'. Werkt niet in een groep
 
 	if(substr($text, 0, 14) == 'getal onder de') {
 		$content = array('chat_id' => $chat_id, 'text' => rand(1, (substr($text, 15)-1)));
 	    $telegram->sendMessage($content);
     	$send = TRUE;
 	}
+
 
 	if($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 		$geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
