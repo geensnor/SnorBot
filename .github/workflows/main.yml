@@ -2,7 +2,7 @@
 name: Dag van de posten naar Telegram Bot
 on:
   schedule:
-    - cron: '0 8 * * *' # Elke ochtend om 9:00
+    - cron: '0 8 * * *' # Elke ochtend om 8:00 UTC
 jobs:
   build:
     name: Telegram Snorbot Webhook
