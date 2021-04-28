@@ -64,6 +64,13 @@ function getNews() {
 	return "Laatste nieuws van nu.nl: \n[".$nuxml->channel->item[0]->title."](".$nuxml->channel->item[0]->link.")";
 }
 
+function getHackerNews() {
+	$hackernewsxml = simplexml_load_file("https://hnrss.org/newest");
+
+	return "Laatste bericht op hackernews: \n[".$hackernewsxml->channel->item[0]->title."](".$hackernewsxml->channel->item[0]->link.")";
+
+}
+
 Function getWeather() {
 	$weerObject = simplexml_load_string(file_get_contents("https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIverwachtingen.xml"));
 	return "Het weer:\n[".$weerObject->channel->item[0]->title."](https://www.knmi.nl/nederland-nu/weer/verwachtingen)";
@@ -136,33 +143,21 @@ if($text == 'crypto') {
 
 //Hieronder staan weerdingen
 	if($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
-		$content = array('chat_id' => $chat_id, 'text' => getWeather());
+		$content = array('chat_id' => $chat_id, 'text' => getWeather(), 'parse_mode' => 'Markdown');
 		$telegram->sendMessage($content);
 
 		$send = TRUE;
 	}
 
-	if($text == 'temperatuur Nijmegen') {
-		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/51.827359,5.853042?lang=nl&units=ca"));
-		$content = array('chat_id' => $chat_id, 'text' => "In Nijmegen is het nu ".$weerObject->currently->temperature." graden celsius");
-		$telegram->sendMessage($content);
-		$send = TRUE;
-	}
 
-	if($text == 'temperatuur Utrecht') {
-		$weerObject = json_decode(file_get_contents("https://api.darksky.net/forecast/".getenv('DarkskyToken')."/52.092921,5.123173?lang=nl&units=ca"));
-		$content = array('chat_id' => $chat_id, 'text' => "In Utrecht is het nu ".$weerObject->currently->temperature." graden celsius");
-		$telegram->sendMessage($content);
-		$send = TRUE;
-	}
-
-//Hierboven staat 'getal onder de'. Werkt niet in een groep
+//Hieronder staat 'getal onder de'. Werkt niet in een groep
 
 	if(substr($text, 0, 14) == 'getal onder de') {
 		$content = array('chat_id' => $chat_id, 'text' => rand(1, (substr($text, 15)-1)));
 	    $telegram->sendMessage($content);
     	$send = TRUE;
 	}
+
 
 	if($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 		$geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
@@ -210,6 +205,15 @@ if($text == 'crypto') {
 	}
 //Nieuws hierboven
 
+//Beetje hacker nieuws.....
+if($text == 'hacker') {
+
+	$content = array('chat_id' => $chat_id, 'text' => getHackerNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
+	$telegram->sendMessage($content);
+
+	$send = TRUE;
+}
+//hackerNieuws hierboven
 
 //Is het al 5 uur?
 	if($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
