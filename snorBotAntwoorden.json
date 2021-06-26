@@ -426,5 +426,9 @@
     {
       "trigger":"nieuwe ath",
       "antwoord":"https://snor-bot.herokuapp.com/assets/nieuweath.gif"
+    },
+    {
+      "trigger":"Parijs",
+      "antwoord":"is nog ver."
     }
 ]
