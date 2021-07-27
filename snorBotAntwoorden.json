@@ -434,5 +434,9 @@
     {
       "trigger":"Japke",
       "antwoord":"Japke-d. Bouma is niet grappig. Wat is dat trouwens voor een rare naam, Japke-d.."
+    },
+    {
+      "trigger":"nieuwsbrief",
+      "antwoord":"De onvolprezen Geensnor Nieuwsbrief is te vinden op : http://www.tussenneusenlippendoor.nl"
     }
 ]
