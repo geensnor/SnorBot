@@ -59,9 +59,9 @@ function getDagVanDe() {
 }
 
 function getNews() {
-	$nuxml = simplexml_load_file("https://www.nu.nl/rss");
+	$nuxml = simplexml_load_file("http://feeds.nos.nl/nosjournaal");
 	
-	return "Laatste nieuws van nu.nl: \n[".$nuxml->channel->item[0]->title."](".$nuxml->channel->item[0]->link.")";
+	return "Laatste nieuws van nos.nl: \n[".$nuxml->channel->item[0]->title."](".$nuxml->channel->item[0]->link.")";
 }
 
 function getHackerNews() {
