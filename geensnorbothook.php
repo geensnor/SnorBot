@@ -64,6 +64,12 @@ function getNews() {
 	return "Laatste nieuws van nos.nl: \n[".$nuxml->channel->item[0]->title."](".$nuxml->channel->item[0]->link.")";
 }
 
+function getCyclingNews() {
+	$nuxml = simplexml_load_file("http://feeds.nos.nl/nossportwielrennen");
+	
+	return "Laatste wielrennieuws van nos.nl: \n[".$nuxml->channel->item[0]->title."](".$nuxml->channel->item[0]->link.")";
+}
+
 function getHackerNews() {
 	$hackernewsxml = simplexml_load_file("https://hnrss.org/newest");
 
@@ -204,6 +210,15 @@ if($text == 'crypto') {
 		$send = TRUE;
 	}
 //Nieuws hierboven
+
+if($text == 'wielrennieuws') {
+
+	$content = array('chat_id' => $chat_id, 'text' => getCyclingNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
+	$telegram->sendMessage($content);
+
+	$send = TRUE;
+}
+
 
 //Beetje hacker nieuws.....
 if($text == 'hacker') {
