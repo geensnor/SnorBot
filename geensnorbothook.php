@@ -180,7 +180,7 @@ if($text == 'crypto') {
     	$send = TRUE;
 	}
 
-/*Hieronder de wiki dingen
+/* Hieronder de wiki dingen
 
   if(substr($text, 0, 4) == 'wiki') {
     $wikiResult = json_decode(file_get_contents("https://nl.wikipedia.org/w/api.php?action=opensearch&search=".substr($text, 5)."&limit=10&namespace=0&format=json"));
@@ -196,12 +196,10 @@ if($text == 'crypto') {
     
     $telegram->sendMessage($content);
     $send = TRUE;
-  }
-
-
-*/Hierboven de wiki dingen	
+  } */
 
 //Beetje nieuws.....
+
 	if($text == 'nieuws') {
 
 		$content = array('chat_id' => $chat_id, 'text' => getNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => TRUE);
