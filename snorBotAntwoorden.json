@@ -438,5 +438,13 @@
     {
       "trigger":"nieuwsbrief",
       "antwoord":"De onvolprezen Geensnor Nieuwsbrief is te vinden op: http://www.tussenneusenlippendoor.nl"
+    },
+    {
+      "trigger":"die huizenmarkt toch",
+      "antwoord":"Ja, bizar. Waar gaat dit eindigen..."
+    },
+    {
+      "trigger":"huizenmarkt",
+      "antwoord":"nou, gekkigheid. Een nieuwe bubbel als je het mij vraagt..."
     }
 ]
