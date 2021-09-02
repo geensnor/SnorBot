@@ -446,5 +446,9 @@
     {
       "trigger":"huizenmarkt",
       "antwoord":"nou, gekkigheid. Een nieuwe bubbel als je het mij vraagt..."
+    },
+    {
+      "trigger":"koffie van de lidl",
+      "antwoord":"niet te zuipen.."
     }
 ]
