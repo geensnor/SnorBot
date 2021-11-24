@@ -3,6 +3,7 @@ date_default_timezone_set('Europe/Amsterdam');
 include(__DIR__ . '/vendor/autoload.php');
 include("advies.php");
 include("prijzenparade.php");
+include("tourpoule.php");
 
 $telegram = new Telegram(getenv('telegramId'));
 
@@ -456,6 +457,17 @@ if ($text == 'hacker') {
             $antwoord = "De link van de Tweakers December Prijzen Parade van vandaag is: " . $prijzenparade_url;
         } else {
             $antwoord = "Helaas, voor vandaag is er geen prijzenlink beschikbaar. Probeer het morgen nog eens!";
+        }
+        $send = true;
+    }
+
+    //Tourpoule. Functie staat in apart bestand.
+    if (in_array($text, array("tourpoule", "tour", "poule"))) {
+        $tourInfo = getTourInfo();
+        if ($tourInfo) {
+            $antwoord = $tourInfo;
+        } else {
+            $antwoord = "Er is even geen tourpoule info nu.";
         }
         $send = true;
     }
