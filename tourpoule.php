@@ -17,12 +17,12 @@ function getTourInfo()
     $tourConfig = json_decode(file_get_contents("https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main".$currentTourLocationJSON->currentTourLocation."/tourConfig.json"));
 
     if ($tourConfig->status != "open") {
-        $returnText = "De volgende tour is ".$tourConfig->name." die op ".$tourConfig->start." start. Zodra er meer renners bekend zijn, kun je hier je eigen ploeg samenstellen!";
+        $returnText = "De volgende tour is ".$tourConfig->name." die op ".$tourConfig->start." start. \nZodra er meer renners bekend zijn, kun je je eigen team maken op \n[https://www.geensnor.nl/tourpoule/](https://www.geensnor.nl/tourpoule/)";
     } else {//Tour is geopend.
         if (strtotime($tourConfig->start) < time()) {
             $returnText = getTourRanking($currentTourLocationJSON->currentTourLocation, $tourConfig->name);
         } else {
-            $returnText = "Je kan je team voor ".$tourConfig->name." samenstellen op https://www.geensnor.nl/tourpoule";
+            $returnText = "Je kan je team voor ".$tourConfig->name." samenstellen op https://www.geensnor.nl/tourpoule. (even toegangscode regelen...) \nJe hebt de tijd tot de start op ".$tourConfig->start;
         }
     }
 
