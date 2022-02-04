@@ -91,7 +91,7 @@ function getWeather()
 //Begin van de commando's
 
 //Dag van de - Start
-    if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van') {
+    if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van' || $text == 'dagvan') {
         $dagVanDeText = getDagVanDe();
         if ($dagVanDeText) {
             $sendText = $dagVanDeText;
