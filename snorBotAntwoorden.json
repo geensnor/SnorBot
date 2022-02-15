@@ -85,7 +85,7 @@
   },
   {
     "trigger": "mop",
-    "antwoord": "De telefoon gaat, een hond neemt op en zegt: 'Waf!'\n'Wat zegt u?' vraagt een stem aan de andere kant.\n De hond herhaalt: 'Waf!'\n'Wat zegt u?' \n Zegt de hond: 'Waf! met de W van Willem, de A van Anton en de F van Ferdinand!'"
+    "antwoord": "'What’s the best thing about living in Switzerland?'\n'Well, the flag is a big plus'"
   },
   {
     "trigger": "haha",
@@ -112,339 +112,339 @@
     "antwoord": "Kigo (季語, kigo) is in de haiku (een Japans natuurgedicht) het seizoenswoord waarmee naar het betreffende seizoen verwezen wordt. Zo staat bloesem voor lente en sneeuw voor winter."
   },
   {
-    "trigger":"best crypto",
-    "antwoord":"DutchCryptoTalk"
+    "trigger": "best crypto",
+    "antwoord": "DutchCryptoTalk"
   },
   {
-    "trigger":"all your base",
-    "antwoord":"are belong to us!"
+    "trigger": "all your base",
+    "antwoord": "are belong to us!"
   },
   {
-    "trigger":"ik ga eten",
-    "antwoord":"smakelijk"
+    "trigger": "ik ga eten",
+    "antwoord": "smakelijk"
   },
   {
-    "trigger":"dank je",
-    "antwoord":"de nada!"
+    "trigger": "dank je",
+    "antwoord": "de nada!"
   },
   {
-    "trigger":"ik ga slapen",
-    "antwoord":"slaap lekker"
+    "trigger": "ik ga slapen",
+    "antwoord": "slaap lekker"
   },
   {
-    "trigger":"slaap lekker",
-    "antwoord":"truste"
+    "trigger": "slaap lekker",
+    "antwoord": "truste"
   },
   {
-    "trigger":"truste",
-    "antwoord":"slaap lekker"
+    "trigger": "truste",
+    "antwoord": "slaap lekker"
   },
   {
-    "trigger":"hehe",
-    "antwoord":"gheghe"
+    "trigger": "hehe",
+    "antwoord": "gheghe"
   },
   {
-    "trigger":"yarr",
-    "antwoord":"ahoy, me hearties!"
+    "trigger": "yarr",
+    "antwoord": "ahoy, me hearties!"
   },
   {
-    "trigger":"poe poe",
-    "antwoord":"zo zo"
+    "trigger": "poe poe",
+    "antwoord": "zo zo"
   },
   {
-    "trigger":"Wat hebben we",
-    "antwoord":"We hebben helemaal niks"
+    "trigger": "Wat hebben we",
+    "antwoord": "We hebben helemaal niks"
   },
   {
-    "trigger":"man, man, man",
-    "antwoord":"Het is me wat he?"
+    "trigger": "man, man, man",
+    "antwoord": "Het is me wat he?"
   },
   {
-    "trigger":"test",
-    "antwoord":"test je moeder"
+    "trigger": "test",
+    "antwoord": "test je moeder"
   },
   {
-    "trigger":"is het al biertijd?",
-    "antwoord":"boeie, pak gewoon een biertje als je daar zin in hebt..."
+    "trigger": "is het al biertijd?",
+    "antwoord": "boeie, pak gewoon een biertje als je daar zin in hebt..."
   },
   {
-    "trigger":"hodl",
-    "antwoord":"hodl hodl hodl"
+    "trigger": "hodl",
+    "antwoord": "hodl hodl hodl"
   },
   {
-    "trigger":"klusvraag",
-    "antwoord":"http://www.geensnor.nl/upload/files/Klusvraag.gif"
+    "trigger": "klusvraag",
+    "antwoord": "http://www.geensnor.nl/upload/files/Klusvraag.gif"
   },
   {
-    "trigger":"nuance",
-    "antwoord":"Nuance....is dat niet die blonde van lingo?"
+    "trigger": "nuance",
+    "antwoord": "Nuance....is dat niet die blonde van lingo?"
   },
   {
-    "trigger":"patat",
-    "antwoord":"FOUT, het is friet!"
+    "trigger": "patat",
+    "antwoord": "FOUT, het is friet!"
   },
   {
-    "trigger":"mening",
-    "antwoord":"Het koningshuis is een ondemocratische poppenkast."
+    "trigger": "mening",
+    "antwoord": "Het koningshuis is een ondemocratische poppenkast."
   },
   {
-    "trigger":"ennu?",
-    "antwoord":"nu niets"
+    "trigger": "ennu?",
+    "antwoord": "nu niets"
   },
   {
-    "trigger":"wat ben je toch slim snorbot",
-    "antwoord":"dank je. Maar vlak jezelf ook niet uit!"
+    "trigger": "wat ben je toch slim snorbot",
+    "antwoord": "dank je. Maar vlak jezelf ook niet uit!"
   },
   {
-    "trigger":"bonuskaart",
-    "antwoord":"https://tweakers.net/ext/f/o4zYpzIYxtqlFRxHvk3EnKet/full.png"
+    "trigger": "bonuskaart",
+    "antwoord": "https://tweakers.net/ext/f/o4zYpzIYxtqlFRxHvk3EnKet/full.png"
   },
   {
-    "trigger":"buienradar",
-    "antwoord":"http://windwatch.net/weer/items/knmiradar.gif"
+    "trigger": "buienradar",
+    "antwoord": "http://windwatch.net/weer/items/knmiradar.gif"
   },
   {
-    "trigger":"klantenkaart",
-    "antwoord":"Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma\n -/ikea voor ikea :) "
+    "trigger": "klantenkaart",
+    "antwoord": "Ik heb diverse klantenkaarten in de aanbieding: \n - /bonuskaart voor de bonuskaart van de AH\n - /gamma voor de gamma\n -/ikea voor ikea :) "
   },
   {
-    "trigger":"gamma",
-    "antwoord":"Gamma Bouwmarkt korting: Met de GAMMA Voordeelpas: automatisch de hoogste korting verrekend | Ontvang bij aankopen Voordeelpascoupons die korting geven op je volgende aankoop | huur van aanhangwagen eerste 2 uur gratis | plaatmateriaal gratis transportklaar | Toegang account: pewima6702@imailto.net / coocoocoo https://img.techpowerup.org/191103/screenshot-2019-11-03-at-19-45-51.png"
+    "trigger": "gamma",
+    "antwoord": "Gamma Bouwmarkt korting: Met de GAMMA Voordeelpas: automatisch de hoogste korting verrekend | Ontvang bij aankopen Voordeelpascoupons die korting geven op je volgende aankoop | huur van aanhangwagen eerste 2 uur gratis | plaatmateriaal gratis transportklaar | Toegang account: pewima6702@imailto.net / coocoocoo https://img.techpowerup.org/191103/screenshot-2019-11-03-at-19-45-51.png"
   },
   {
-    "trigger":"praxis",
-    "antwoord":"Praxis bouwmarkt korting: 10% korting artikel naar keuze | 1 jaar extra garantie | 90 dagen retour | 2 uur gratis aanhanger huren | molenev@imail8.net / coocoocoo | https://img.techpowerup.org/191104/barcode-praxis.png"
-   },
-   {
-     "trigger":"hoera",
-     "antwoord":"Gefeliciteerd!"
-   },
-   {
-     "trigger":"is dit kunst?",
-     "antwoord":"nee, kan weg."
-   },
-   {
-     "trigger":"bedankt snorbot",
-     "antwoord":"At your service!"
-   },
-   {
-     "trigger":"vrolijk kerstfeest",
-     "antwoord":"vrolijk kerstfeest allemaal!"
-   },
-   {
-    "trigger":"helaas",
-    "antwoord":"...die vlieger gaat niet op."
-   },
-   {
-     "trigger":"waar is willem",
-     "antwoord":"die zit alleen op Signal en niet op telegram :("
-   },
-   {
-     "trigger":"plaattaart",
-     "antwoord":"https://uitpaulineskeuken.nl/?s=plaattaart"
-   },
-   {
-     "trigger":"ach",
-     "antwoord":"och"
-   },
-   {
-     "trigger":"ocht",
-     "antwoord":"och toch"
-   },
-   {
-    "trigger":"och",
-    "antwoord":"ocht toch"
-   },
-   {
-     "trigger":"zozo",
-     "antwoord":"nou inderdaad"
-   },
-   {
-     "trigger":"die bitcoin toch",
-     "antwoord":"Nou je zegt het. Het niet te voorspellen die koers...."
-   },
-   {
-     "trigger":"covid19",
-     "antwoord":"ook wel corona in de volksmond."
-   },
-   {
-     "trigger":"Corona",
-     "antwoord":"of om precies te zijn Covid19"
-   },
-   {
-     "trigger":"moederdag",
-     "antwoord":"Moederdag is meestal ergens begin mei"
-   },
-   {
-     "trigger":"vaderdag",
-     "antwoord":"Vaderdag is meestal ergens midden juni"
-   },
-   {
-    "trigger":"wat vind je van het idee?",
-    "antwoord":"Ik vind het een topidee. Echt heel vet!"
-    },
-    {
-      "trigger":"ovenbitterbal",
-      "antwoord":"Het beste kun je Mora kopen. Ondanks het authentieke karakter vallen zowel Kwekkeboom als van Dobben een beetje tegen"
-    },
-    {
-      "trigger":"is Garmin nog kapot?",
-      "antwoord":"Ja uiteraard, stelletje prutsers zijn het."
-    },
-    {
-      "trigger":"wat doe je eraan?",
-      "antwoord":"helemaal niets!"
-    },
-    {
-      "trigger":"parijs is nog ver",
-      "antwoord":"...en de tour wacht op niemand...."
-    },
-    {
-      "trigger":"slechte wifi",
-      "antwoord":"Slechte wifi is des duivels oorkussen!"
-    },
-    {
-      "trigger":"snorbot",
-      "antwoord":"ja hier ben ik, zeg het eens...."
-    },
-    {
-      "trigger":"echt?",
-      "antwoord":"ja, echt!"
-    },
-    {
-      "trigger":"sorry",
-      "antwoord":"maakt niet uit, iedereen maakt fouten"
-    },
-    {
-      "trigger":"het is wat",
-      "antwoord":"nou, zeg dat wel..."
-    },
-    {
-      "trigger":"het is me wat",
-      "antwoord":"nou, zeg dat wel..."
-    },
-    {
-      "trigger":"tip",
-      "antwoord":"Kijk eens in de digitale tuin van Geensnor! Daar is van alles te vinden. Recepten, leuke games, handige inpaklijsten, must have gadgets. Verzin het maar. Kijk op https://www.dedigitaletuin.nl"
-    },
-    {
-      "trigger":"ath",
-      "antwoord":"De All Time High van de Bitcoin was op 10 november 2021. Hij was toen € 60.096,41 waard."
-    },
-    {
-      "trigger":"precies",
-      "antwoord":"zo is het maar net"
-    },
-    {
-      "trigger":"lockdown",
-      "antwoord":"slimme of domme?"
-    },
-    {
-      "trigger":"wat je zegt",
-      "antwoord":"nou, inderdaad"
-    },
-    {
-      "trigger":"moe",
-      "antwoord":"ga dan slapen in plaats van hier een beetje te zeiken...."
-    },
-    {
-      "trigger":"gekkenhuis",
-      "antwoord":"crazy dit gek!"
-    },
-    {
-      "trigger":"athene",
-      "antwoord":"Athene is de hoofdstad en grootste stad van Griekenland en tevens het bestuurlijk centrum van de regio Attica."
-    },
-    {
-      "trigger":"kreta",
-      "antwoord":"Stom eiland"
-    },
-    {
-      "trigger":"Cadiz",
-      "antwoord":"Misschien wel de oudste stad van europa"
-    },
-    {
-      "trigger":"Amerika",
-      "antwoord":"Gastvrij land. Lekker eten ook, maar niet overal."
-    },
-    {
-      "trigger":"welja",
-      "antwoord":"...dat doet allemaal maar..."
-    },
-    {
-      "trigger":"leve",
-      "antwoord":"de republiek!"
-    },
-    {
-      "trigger":"lol",
-      "antwoord":"rofl!"
-    },
-    {
-      "trigger":"iphone?",
-      "antwoord":"geen iphone..."
-    },
-    {
-      "trigger":"keuzevraag",
-      "antwoord":"https://snor-bot.herokuapp.com/assets/keuzevraag.gif"
-    },
-    {
-      "trigger":"openvraag",
-      "antwoord":"https://snor-bot.herokuapp.com/assets/openvraag.gif"
-    },
-    {
-      "trigger":"schapenkaas",
-      "antwoord":"Op Texel hebben ze lekkere schapenkaas"
-    },
-    {
-      "trigger":"smile",
-      "antwoord":"😊"
-    },
-    {
-      "trigger":"doei",
-      "antwoord":"👋"
-    },
-    {
-      "trigger":"pedant",
-      "antwoord":"Agnes en Sylvana"
-    },
-    {
-      "trigger":"feest",
-      "antwoord":"op tafel!"
-    },
-    {
-      "trigger":"tjeenk",
-      "antwoord":"Herman Diederik Tjeenk Willink"
-    },
-    {
-      "trigger":"nieuwe ath",
-      "antwoord":"https://snor-bot.herokuapp.com/assets/nieuweath.gif"
-    },
-    {
-      "trigger":"Parijs",
-      "antwoord":"is nog ver."
-    },
-    {
-      "trigger":"Japke",
-      "antwoord":"Japke-d. Bouma is niet grappig. Wat is dat trouwens voor een rare naam, Japke-d.."
-    },
-    {
-      "trigger":"nieuwsbrief",
-      "antwoord":"De onvolprezen Geensnor Nieuwsbrief is te vinden op: http://www.tussenneusenlippendoor.nl"
-    },
-    {
-      "trigger":"die huizenmarkt toch",
-      "antwoord":"Ja, bizar. Waar gaat dit eindigen..."
-    },
-    {
-      "trigger":"huizenmarkt",
-      "antwoord":"nou, gekkigheid. Een nieuwe bubbel als je het mij vraagt..."
-    },
-    {
-      "trigger":"koffie van de lidl",
-      "antwoord":"niet te zuipen.."
-    },
-    {
-      "trigger":"poef",
-      "antwoord":"weg"
-    }
+    "trigger": "praxis",
+    "antwoord": "Praxis bouwmarkt korting: 10% korting artikel naar keuze | 1 jaar extra garantie | 90 dagen retour | 2 uur gratis aanhanger huren | molenev@imail8.net / coocoocoo | https://img.techpowerup.org/191104/barcode-praxis.png"
+  },
+  {
+    "trigger": "hoera",
+    "antwoord": "Gefeliciteerd!"
+  },
+  {
+    "trigger": "is dit kunst?",
+    "antwoord": "nee, kan weg."
+  },
+  {
+    "trigger": "bedankt snorbot",
+    "antwoord": "At your service!"
+  },
+  {
+    "trigger": "vrolijk kerstfeest",
+    "antwoord": "vrolijk kerstfeest allemaal!"
+  },
+  {
+    "trigger": "helaas",
+    "antwoord": "...die vlieger gaat niet op."
+  },
+  {
+    "trigger": "waar is willem",
+    "antwoord": "die zit alleen op Signal en niet op telegram :("
+  },
+  {
+    "trigger": "plaattaart",
+    "antwoord": "https://uitpaulineskeuken.nl/?s=plaattaart"
+  },
+  {
+    "trigger": "ach",
+    "antwoord": "och"
+  },
+  {
+    "trigger": "ocht",
+    "antwoord": "och toch"
+  },
+  {
+    "trigger": "och",
+    "antwoord": "ocht toch"
+  },
+  {
+    "trigger": "zozo",
+    "antwoord": "nou inderdaad"
+  },
+  {
+    "trigger": "die bitcoin toch",
+    "antwoord": "Nou je zegt het. Het niet te voorspellen die koers...."
+  },
+  {
+    "trigger": "covid19",
+    "antwoord": "ook wel corona in de volksmond."
+  },
+  {
+    "trigger": "Corona",
+    "antwoord": "of om precies te zijn Covid19"
+  },
+  {
+    "trigger": "moederdag",
+    "antwoord": "Moederdag is meestal ergens begin mei"
+  },
+  {
+    "trigger": "vaderdag",
+    "antwoord": "Vaderdag is meestal ergens midden juni"
+  },
+  {
+    "trigger": "wat vind je van het idee?",
+    "antwoord": "Ik vind het een topidee. Echt heel vet!"
+  },
+  {
+    "trigger": "ovenbitterbal",
+    "antwoord": "Het beste kun je Mora kopen. Ondanks het authentieke karakter vallen zowel Kwekkeboom als van Dobben een beetje tegen"
+  },
+  {
+    "trigger": "is Garmin nog kapot?",
+    "antwoord": "Ja uiteraard, stelletje prutsers zijn het."
+  },
+  {
+    "trigger": "wat doe je eraan?",
+    "antwoord": "helemaal niets!"
+  },
+  {
+    "trigger": "parijs is nog ver",
+    "antwoord": "...en de tour wacht op niemand...."
+  },
+  {
+    "trigger": "slechte wifi",
+    "antwoord": "Slechte wifi is des duivels oorkussen!"
+  },
+  {
+    "trigger": "snorbot",
+    "antwoord": "ja hier ben ik, zeg het eens...."
+  },
+  {
+    "trigger": "echt?",
+    "antwoord": "ja, echt!"
+  },
+  {
+    "trigger": "sorry",
+    "antwoord": "maakt niet uit, iedereen maakt fouten"
+  },
+  {
+    "trigger": "het is wat",
+    "antwoord": "nou, zeg dat wel..."
+  },
+  {
+    "trigger": "het is me wat",
+    "antwoord": "nou, zeg dat wel..."
+  },
+  {
+    "trigger": "tip",
+    "antwoord": "Kijk eens in de digitale tuin van Geensnor! Daar is van alles te vinden. Recepten, leuke games, handige inpaklijsten, must have gadgets. Verzin het maar. Kijk op https://www.dedigitaletuin.nl"
+  },
+  {
+    "trigger": "ath",
+    "antwoord": "De All Time High van de Bitcoin was op 10 november 2021. Hij was toen € 60.096,41 waard."
+  },
+  {
+    "trigger": "precies",
+    "antwoord": "zo is het maar net"
+  },
+  {
+    "trigger": "lockdown",
+    "antwoord": "slimme of domme?"
+  },
+  {
+    "trigger": "wat je zegt",
+    "antwoord": "nou, inderdaad"
+  },
+  {
+    "trigger": "moe",
+    "antwoord": "ga dan slapen in plaats van hier een beetje te zeiken...."
+  },
+  {
+    "trigger": "gekkenhuis",
+    "antwoord": "crazy dit gek!"
+  },
+  {
+    "trigger": "athene",
+    "antwoord": "Athene is de hoofdstad en grootste stad van Griekenland en tevens het bestuurlijk centrum van de regio Attica."
+  },
+  {
+    "trigger": "kreta",
+    "antwoord": "Stom eiland"
+  },
+  {
+    "trigger": "Cadiz",
+    "antwoord": "Misschien wel de oudste stad van europa"
+  },
+  {
+    "trigger": "Amerika",
+    "antwoord": "Gastvrij land. Lekker eten ook, maar niet overal."
+  },
+  {
+    "trigger": "welja",
+    "antwoord": "...dat doet allemaal maar..."
+  },
+  {
+    "trigger": "leve",
+    "antwoord": "de republiek!"
+  },
+  {
+    "trigger": "lol",
+    "antwoord": "rofl!"
+  },
+  {
+    "trigger": "iphone?",
+    "antwoord": "geen iphone..."
+  },
+  {
+    "trigger": "keuzevraag",
+    "antwoord": "https://snor-bot.herokuapp.com/assets/keuzevraag.gif"
+  },
+  {
+    "trigger": "openvraag",
+    "antwoord": "https://snor-bot.herokuapp.com/assets/openvraag.gif"
+  },
+  {
+    "trigger": "schapenkaas",
+    "antwoord": "Op Texel hebben ze lekkere schapenkaas"
+  },
+  {
+    "trigger": "smile",
+    "antwoord": "😊"
+  },
+  {
+    "trigger": "doei",
+    "antwoord": "👋"
+  },
+  {
+    "trigger": "pedant",
+    "antwoord": "Agnes en Sylvana"
+  },
+  {
+    "trigger": "feest",
+    "antwoord": "op tafel!"
+  },
+  {
+    "trigger": "tjeenk",
+    "antwoord": "Herman Diederik Tjeenk Willink"
+  },
+  {
+    "trigger": "nieuwe ath",
+    "antwoord": "https://snor-bot.herokuapp.com/assets/nieuweath.gif"
+  },
+  {
+    "trigger": "Parijs",
+    "antwoord": "is nog ver."
+  },
+  {
+    "trigger": "Japke",
+    "antwoord": "Japke-d. Bouma is niet grappig. Wat is dat trouwens voor een rare naam, Japke-d.."
+  },
+  {
+    "trigger": "nieuwsbrief",
+    "antwoord": "De onvolprezen Geensnor Nieuwsbrief is te vinden op: http://www.tussenneusenlippendoor.nl"
+  },
+  {
+    "trigger": "die huizenmarkt toch",
+    "antwoord": "Ja, bizar. Waar gaat dit eindigen..."
+  },
+  {
+    "trigger": "huizenmarkt",
+    "antwoord": "nou, gekkigheid. Een nieuwe bubbel als je het mij vraagt..."
+  },
+  {
+    "trigger": "koffie van de lidl",
+    "antwoord": "niet te zuipen.."
+  },
+  {
+    "trigger": "poef",
+    "antwoord": "weg"
+  }
 ]
