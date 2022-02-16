@@ -125,7 +125,7 @@ function getWeather()
 // end of ETH koers
 
 // Goedemorgen! Een dag overzicht!
-    if ($text == 'goedemorgen') {
+    if ($text == 'goedemorgen' || $text == 'goede morgen') {
         $dagVanDeText = getDagVanDe();
 
         $goedeMorgenText = "Goedemorgen, hier volgt het dagoverzicht ...";
