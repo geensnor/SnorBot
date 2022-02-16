@@ -86,6 +86,11 @@ function getWeather()
     $weerObject = simplexml_load_string(file_get_contents("https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIverwachtingen.xml"));
     return "Het weer:\n[".$weerObject->channel->item[0]->title."](https://www.knmi.nl/nederland-nu/weer/verwachtingen)";
 }
+
+function getDaysSince($date)
+{
+    return floor((time() - strtotime($date)) / (60 * 60 * 24));
+}
 // einde functies
 
 //Begin van de commando's
@@ -158,6 +163,13 @@ if ($text == 'crypto') {
         $send = true;
     }
 
+//Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
+
+if ($text == 'sywert' || $text == 'sywert van lienden') {
+    $antwoord = "Het is ".getDaysSince("06-06-2021")." dagen geleden dat Sywert van Lienden beloofde om de 9 miljoen euro die hij onterecht verdiende aan een goed doel te schenken.";
+
+    $send = true;
+}
 
 //Hieronder staat 'getal onder de'. Werkt niet in een groep
 
