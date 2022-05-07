@@ -475,12 +475,14 @@ if ($text == 'hacker') {
 
     //Tourpoule. Functie staat in apart bestand.
     if (in_array($text, array("tourpoule", "tour", "poule"))) {
-        $tourInfo = getTourInfo();
-        if ($tourInfo) {
-            $antwoord = $tourInfo;
-        } else {
-            $antwoord = "Er is even geen tourpoule info nu.";
-        }
+        // $tourInfo = getTourInfo();
+        // if ($tourInfo) {
+        //     $antwoord = $tourInfo;
+        // } else {
+        //     $antwoord = "Er is even geen tourpoule info nu.";
+        // }
+        // Dit hierboven is allemaal vet, maar het werkt natuurlijk weer net niet...
+        $antwoord = "Check https://www.geensnor.nl/tourpoule voor alle info!";
         $send = true;
     }
 
