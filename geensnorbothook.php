@@ -1,6 +1,7 @@
 <?php
 
 date_default_timezone_set('Europe/Amsterdam');
+include("config.php");
 include(__DIR__ . '/vendor/autoload.php');
 include("advies.php");
 include("prijzenparade.php");
