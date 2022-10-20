@@ -112,6 +112,12 @@ if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $tex
 }
 //Dag van de - Einde
 
+//Environment
+if ($text == 'env') {
+    $content = array('chat_id' => $chat_id, 'text' => getenv('environment'));
+    $telegram->sendMessage($content);
+    $send = true;
+}
 
 //BTC (bitcoin) koers
 if ($text == 'bitcoin' || $text == 'btc') {
