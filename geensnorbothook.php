@@ -140,7 +140,8 @@ if ($text == 'eth') {
 //Random snack
 if ($text == "random snack" || $text == "snack") {
     $snackResponse = json_decode(file_get_contents("https://europe-west1-speedy-realm-379713.cloudfunctions.net/generate-snack-v1"));
-    $telegram->sendMessage($snackResponse->snack);
+    $content = array('chat_id' => $chat_id, 'text' => $snackResponse->snack);
+    $telegram->sendMessage($content);
     $send = true;
 }
 
