@@ -450,5 +450,9 @@
   {
     "trigger": "miro",
     "antwoord": "ongelofelijke kuttool"
+  },
+  {
+    "trigger":"melk",
+    "antwoord":"de witter motor"
   }
 ]
