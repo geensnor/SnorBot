@@ -35,9 +35,9 @@ function getBitcoinPrice()
 
     if ($response && isset($response->data->rates->EUR)) {
         $price = $response->data->rates->EUR;
-       // $percentage24Hour = round($response->data->rates->EUR_change_percentage * 100, 2);
+        // $percentage24Hour = round($response->data->rates->EUR_change_percentage * 100, 2);
 
-        return "Bitcoin Price: €" . $price;
+        return "Bitcoin prijs: € " . number_format($price, 2, ',', '.');
     } else {
         return "Error: Unable to retrieve the Bitcoin price.";
     }
@@ -47,9 +47,9 @@ function getEthereumPrice()
 {
     $ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
     $price  = $ethPriceObject->result->price->last;
-    $percentage24Hour  = round($ethPriceObject->result->price->change->percentage *100, 2);
+    $percentage24Hour  = round($ethPriceObject->result->price->change->percentage * 100, 2);
 
-    return "Ethereum koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
+    return "Ethereum koers: € " . $price . " (" . $percentage24Hour . "% in laatste 24 uur)";
 }
 
 function getDagVanDe()
@@ -58,7 +58,7 @@ function getDagVanDe()
     $dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
     foreach ($dagVanDeArray as $key => $value) {
         if ($dagVanDeArray[$key]->dag == date('d-m')) {
-            $dagText =  "Het is vandaag ".$dagVanDeArray[$key]->onderwerp;
+            $dagText =  "Het is vandaag " . $dagVanDeArray[$key]->onderwerp;
         }
     }
 
@@ -73,27 +73,27 @@ function getNews()
 {
     $nuxml = simplexml_load_file("https://feeds.nos.nl/nosnieuwsalgemeen");
 
-    return "Laatste nieuws van nos.nl: \n[".$nuxml->channel->item[0]->title."](".$nuxml->channel->item[0]->link.")";
+    return "Laatste nieuws van nos.nl: \n[" . $nuxml->channel->item[0]->title . "](" . $nuxml->channel->item[0]->link . ")";
 }
 
 function getCyclingNews()
 {
     $nuxml = simplexml_load_file("http://feeds.nos.nl/nossportwielrennen");
 
-    return "Laatste wielrennieuws van nos.nl: \n[".$nuxml->channel->item[0]->title."](".$nuxml->channel->item[0]->link.")";
+    return "Laatste wielrennieuws van nos.nl: \n[" . $nuxml->channel->item[0]->title . "](" . $nuxml->channel->item[0]->link . ")";
 }
 
 function getHackerNews()
 {
     $hackernewsxml = simplexml_load_file("https://hnrss.org/newest");
 
-    return "Laatste bericht op hackernews: \n[".$hackernewsxml->channel->item[0]->title."](".$hackernewsxml->channel->item[0]->link.")";
+    return "Laatste bericht op hackernews: \n[" . $hackernewsxml->channel->item[0]->title . "](" . $hackernewsxml->channel->item[0]->link . ")";
 }
 
 function getWeather()
 {
     $weerObject = simplexml_load_string(file_get_contents("https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIverwachtingen.xml"));
-    return "Het weer:\n[".$weerObject->channel->item[0]->title."](https://www.knmi.nl/nederland-nu/weer/verwachtingen)";
+    return "Het weer:\n[" . $weerObject->channel->item[0]->title . "](https://www.knmi.nl/nederland-nu/weer/verwachtingen)";
 }
 
 function getDaysSince($date)
@@ -158,10 +158,10 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
 
     $goedeMorgenText = "Goedemorgen, hier volgt het dagoverzicht ...";
     if ($dagVanDeText) {
-        $goedeMorgenText.= "\n\n".$dagVanDeText;
+        $goedeMorgenText .= "\n\n" . $dagVanDeText;
     }
 
-    $goedeMorgenText.="\n\nDe koersen:\n" .getBitcoinPrice(). "\n" .getEthereumPrice(). "\n\n" .getWeather(). "\n\n" .getNews();
+    $goedeMorgenText .= "\n\nDe koersen:\n" . getBitcoinPrice() . "\n" . getEthereumPrice() . "\n\n" . getWeather() . "\n\n" . getNews();
 
     $content = array('chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
     $telegram->sendMessage($content);
@@ -171,7 +171,7 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
 
 // Crypto overzicht
 if ($text == 'crypto') {
-    $content = array('chat_id' => $chat_id, 'text' => getBitcoinPrice(). " \n" .getEthereumPrice());
+    $content = array('chat_id' => $chat_id, 'text' => getBitcoinPrice() . " \n" . getEthereumPrice());
     $telegram->sendMessage($content);
 
     $send = true;
@@ -189,7 +189,7 @@ if ($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' ||
 //Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
 
 if ($text == 'sywert' || $text == 'sywert van lienden') {
-    $antwoord = "Het is ".getDaysSince("06-06-2021")." dagen geleden dat Sywert van Lienden beloofde om de 9 miljoen euro die hij onterecht verdiende aan een goed doel te schenken.";
+    $antwoord = "Het is " . getDaysSince("06-06-2021") . " dagen geleden dat Sywert van Lienden beloofde om de 9 miljoen euro die hij onterecht verdiende aan een goed doel te schenken.";
 
     $send = true;
 }
@@ -197,7 +197,7 @@ if ($text == 'sywert' || $text == 'sywert van lienden') {
 //Hieronder staat 'getal onder de'. Werkt niet in een groep
 
 if (substr($text, 0, 14) == 'getal onder de') {
-    $content = array('chat_id' => $chat_id, 'text' => rand(1, (substr($text, 15)-1)));
+    $content = array('chat_id' => $chat_id, 'text' => rand(1, (substr($text, 15) - 1)));
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -205,7 +205,7 @@ if (substr($text, 0, 14) == 'getal onder de') {
 
 if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
-    $content = array('chat_id' => $chat_id, 'text' => "Nieuwste bericht op geensnor.nl: [".$geensnorFeed->entry[0]->title."](".$geensnorFeed->entry[0]->link->attributes()->href.")", 'parse_mode' => 'Markdown');
+    $content = array('chat_id' => $chat_id, 'text' => "Nieuwste bericht op geensnor.nl: [" . $geensnorFeed->entry[0]->title . "](" . $geensnorFeed->entry[0]->link->attributes()->href . ")", 'parse_mode' => 'Markdown');
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -213,7 +213,7 @@ if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 if ($text == 'random post' || $text == 'random bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
     $randomPostNummer = rand(0, count($geensnorFeed->entry));
-    $content = array('chat_id' => $chat_id, 'text' => "Een van de laatste 10 berichten op geensnor.nl: [".$geensnorFeed->entry[$randomPostNummer]->title."](".$geensnorFeed->entry[$randomPostNummer]->link->attributes()->href.")", 'parse_mode' => 'Markdown');
+    $content = array('chat_id' => $chat_id, 'text' => "Een van de laatste 10 berichten op geensnor.nl: [" . $geensnorFeed->entry[$randomPostNummer]->title . "](" . $geensnorFeed->entry[$randomPostNummer]->link->attributes()->href . ")", 'parse_mode' => 'Markdown');
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -265,7 +265,7 @@ if ($text == 'hacker') {
 
 //Is het al 5 uur?
 if ($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
-    $content = array('chat_id' => $chat_id, 'text' => "Nee, het is ".date("H:i:s"));
+    $content = array('chat_id' => $chat_id, 'text' => "Nee, het is " . date("H:i:s"));
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -274,7 +274,7 @@ if ($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
 if ($text == 'xkcd') {
     $xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
     $randomComicNumber = rand(0, $xkcdData->num);
-    $randomComicObject = json_decode(file_get_contents("http://xkcd.com/".$randomComicNumber."/info.0.json"));
+    $randomComicObject = json_decode(file_get_contents("http://xkcd.com/" . $randomComicNumber . "/info.0.json"));
     $content = array('chat_id' => $chat_id, 'photo' => $randomComicObject->img);
     $telegram->sendPhoto($content);
     $antwoord = "Random XKCD comic. Typ 'xkcd nieuwste' voor de nieuwste";
@@ -290,14 +290,14 @@ if ($text == 'xkcd nieuwste') {
 
 if ($text == 'genereer wachtwoord') {
     $wachtwoord = json_decode(file_get_contents("https://www.passwordrandom.com/query?command=password&format=json&count=10"));
-    $content = array('chat_id' => $chat_id, 'text' => "Random wachtwoord: ".$wachtwoord->char[1]);
+    $content = array('chat_id' => $chat_id, 'text' => "Random wachtwoord: " . $wachtwoord->char[1]);
     $telegram->sendMessage($content);
     $send = true;
 }
 
 if ($text == 'guid') {
     $guid = json_decode(file_get_contents("https://www.passwordrandom.com/query?command=guid&format=json&count=10"));
-    $content = array('chat_id' => $chat_id, 'text' => "Random guid: ".$guid->char[1]);
+    $content = array('chat_id' => $chat_id, 'text' => "Random guid: " . $guid->char[1]);
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -305,7 +305,7 @@ if ($text == 'guid') {
 
 //Geeft het chat id van de huidige groep weer
 if ($text == 'chatid') {
-    $content = array('chat_id' => $chat_id, 'text' => "Chat id van deze groep: ".$chat_id);
+    $content = array('chat_id' => $chat_id, 'text' => "Chat id van deze groep: " . $chat_id);
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -330,8 +330,8 @@ if ($telegram->Location()) {
     $locatieGebruiker = $telegram->Location();
     $adviesJson = getAdviesArray($locatieGebruiker["latitude"], $locatieGebruiker["longitude"]);
 
-    $contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name." zit in de buurt:"];
-    $contentAdviesToelichting = ['chat_id' => $chat_id, 'text' => "Geensnor zegt: '".$adviesJson[0]->description."'. Kijk op http://advies.geensnor.nl voor meer adviezen"];
+    $contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name . " zit in de buurt:"];
+    $contentAdviesToelichting = ['chat_id' => $chat_id, 'text' => "Geensnor zegt: '" . $adviesJson[0]->description . "'. Kijk op http://advies.geensnor.nl voor meer adviezen"];
     $contentLocation = ['chat_id' => $chat_id, 'latitude' => $adviesJson[0]->lat, 'longitude' => $adviesJson[0]->lon];
     $telegram->sendMessage($contentAdviesTitel);
     $telegram->sendLocation($contentLocation);
@@ -340,8 +340,8 @@ if ($telegram->Location()) {
 }
 
 if ($text == "advies") {
-    $option = array(array($telegram->buildKeyBoardButton("Klik hier om je locatie te delen", $request_contact=false, $request_location=true)));
-    $keyb = $telegram->buildKeyBoard($option, $onetime=false);
+    $option = array(array($telegram->buildKeyBoardButton("Klik hier om je locatie te delen", $request_contact = false, $request_location = true)));
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false);
     $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.");
     $telegram->sendMessage($content);
     $send = true;
@@ -429,18 +429,18 @@ if ($text == "corona" || $text == "covid") {
 
     if (substr($covidObject->positiveCases->trend, 0, 1) == "-") {
         $displayTrend = substr($covidObject->positiveCases->trend, 1);
-        $trendText = $displayTrend." minder";
+        $trendText = $displayTrend . " minder";
     } else {
-        $trendText = $covidObject->positiveCases->trend." meer";
+        $trendText = $covidObject->positiveCases->trend . " meer";
     }
 
-    $antwoord = "Op ".date("d-m-Y", strtotime($covidObject->numbersDate))." zijn er ".$covidObject->positiveCases->new." besmettingen gemeld. Dat zijn er ".$trendText." dan de dag ervoor.";
+    $antwoord = "Op " . date("d-m-Y", strtotime($covidObject->numbersDate)) . " zijn er " . $covidObject->positiveCases->new . " besmettingen gemeld. Dat zijn er " . $trendText . " dan de dag ervoor.";
     $send = true;
 }
 
 if ($text == "vaccinaties" || $text == "vaccin") {
     $covidObject = json_decode(file_get_contents($covidLocatie));
-    $antwoord = "Tot ".date("d-m-Y", strtotime($covidObject->updatedAt))." hebben ".$covidObject->vaccinations->total." mensen een vaccin in hun arm gehad. Dat zijn er ".$covidObject->vaccinations->new." meer dan de dag ervoor. Ongeveer ".round($covidObject->vaccinations->percentageOfPopulation*100, 2)."% van Nederland is nu gevaccineerd.";
+    $antwoord = "Tot " . date("d-m-Y", strtotime($covidObject->updatedAt)) . " hebben " . $covidObject->vaccinations->total . " mensen een vaccin in hun arm gehad. Dat zijn er " . $covidObject->vaccinations->new . " meer dan de dag ervoor. Ongeveer " . round($covidObject->vaccinations->percentageOfPopulation * 100, 2) . "% van Nederland is nu gevaccineerd.";
     $send = true;
 }
 
@@ -500,9 +500,9 @@ if (in_array($text, array("winnen", "prijzenparade"))) {
 if (in_array($text, array("tourpoule", "tour", "poule"))) {
     // $tourInfo = getTourInfo();
     // if ($tourInfo) {
-        //     $antwoord = $tourInfo;
+    //     $antwoord = $tourInfo;
     // } else {
-        //     $antwoord = "Er is even geen tourpoule info nu.";
+    //     $antwoord = "Er is even geen tourpoule info nu.";
     // }
     // Dit hierboven is allemaal vet, maar het werkt natuurlijk weer net niet...
     $antwoord = "Check https://www.geensnor.nl/tourpoule voor alle info!";
@@ -514,7 +514,7 @@ if (!$send) {
     //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
     foreach ($antwoordenArray as $key => $value) {
         if (strstr($text, strtolower($antwoordenArray[$key]->trigger)) || strstr($text, ucfirst($antwoordenArray[$key]->trigger))) {
-            echo $text." ".$key." antwoord: ".$antwoordenArray[$key]->antwoord;
+            echo $text . " " . $key . " antwoord: " . $antwoordenArray[$key]->antwoord;
             $antwoord = $antwoordenArray[$key]->antwoord;
             $send = true;
         }
