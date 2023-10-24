@@ -37,7 +37,7 @@ function getBitcoinPrice()
         $price = $response->data->rates->EUR;
        // $percentage24Hour = round($response->data->rates->EUR_change_percentage * 100, 2);
 
-        return "Bitcoin Price: €" . $price . ";
+        return "Bitcoin Price: €" . $price;
     } else {
         return "Error: Unable to retrieve the Bitcoin price.";
     }
