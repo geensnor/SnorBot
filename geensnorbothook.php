@@ -29,11 +29,18 @@ $send = false;
 // Functies
 function getBitcoinPrice()
 {
-    $bitcoinPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/btceur/summary"));
-    $price  = $bitcoinPriceObject->result->price->last;
-    $percentage24Hour  = round($bitcoinPriceObject->result->price->change->percentage *100, 2);
+    $url = "https://api.coinbase.com/v2/exchange-rates?currency=BTC";
+    $jsonData = file_get_contents($url);
+    $response = json_decode($jsonData);
 
-    return "Bitcoin koers: € ".$price." (".$percentage24Hour."% in laatste 24 uur)";
+    if ($response && isset($response->data->rates->EUR)) {
+        $price = $response->data->rates->EUR;
+        $percentage24Hour = round($response->data->rates->EUR_change_percentage * 100, 2);
+
+        return "Bitcoin Price: €" . $price . " (" . $percentage24Hour . "% in afgelopen 24 uur)";
+    } else {
+        return "Error: Unable to retrieve the Bitcoin price.";
+    }
 }
 
 function getEthereumPrice()
