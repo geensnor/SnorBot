@@ -45,11 +45,18 @@ function getBitcoinPrice()
 
 function getEthereumPrice()
 {
-    $ethPriceObject = json_decode(file_get_contents("https://api.cryptowat.ch/markets/kraken/etheur/summary"));
-    $price  = $ethPriceObject->result->price->last;
-    $percentage24Hour  = round($ethPriceObject->result->price->change->percentage * 100, 2);
+    $url = "https://api.coinbase.com/v2/exchange-rates?currency=ETH";
+    $jsonData = file_get_contents($url);
+    $response = json_decode($jsonData);
 
-    return "Ethereum koers: € " . $price . " (" . $percentage24Hour . "% in laatste 24 uur)";
+    if ($response && isset($response->data->rates->EUR)) {
+        $price = $response->data->rates->EUR;
+        // $percentage24Hour = round($response->data->rates->EUR_change_percentage * 100, 2);
+
+        return "Ethereum prijs: € " . number_format($price, 2, ',', '.');
+    } else {
+        return "Error: Unable to retrieve the ETH price.";
+    }
 }
 
 function getDagVanDe()
