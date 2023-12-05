@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - test
+  workflow_dispatch:
+  
 name: Upload Snorbot test
 jobs:
   web-deploy:
