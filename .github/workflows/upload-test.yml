@@ -3,7 +3,7 @@ on:
     branches:
       - test
   workflow_dispatch:
-  
+
 name: Upload Snorbot test
 jobs:
   web-deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.ftpservertest }}
+          server: ftpes://${{ secrets.ftpservertest }}
           username: ${{ secrets.ftpusernametest }}
           password: ${{ secrets.ftppasswordtest }}
           exclude: "[**/.git*/**, readme.md, **/vendor/**, /tests/**]"
