@@ -19,4 +19,4 @@ jobs:
           server: ${{ secrets.ftpservertest }}
           username: ${{ secrets.ftpusernametest }}
           password: ${{ secrets.ftppasswordtest }}
-          exclude: "[**/.git*/**, readme.md, **/vendor/**, /tests/**]"
+          exclude: "[**/.git*/**, **/.git/**, readme.md, **/vendor/**, /tests/**]"
