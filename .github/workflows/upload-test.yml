@@ -16,7 +16,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftpes://${{ secrets.ftpservertest }}
+          server: ${{ secrets.ftpservertest }}
           username: ${{ secrets.ftpusernametest }}
           password: ${{ secrets.ftppasswordtest }}
           exclude: "[**/.git*/**, readme.md, **/vendor/**, /tests/**]"
