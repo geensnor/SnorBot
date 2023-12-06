@@ -93,7 +93,6 @@ function getCyclingNews()
 function getHackerNews()
 {
     $hackernewsxml = simplexml_load_file("https://hnrss.org/newest");
-
     return "Laatste bericht op hackernews: \n[" . $hackernewsxml->channel->item[0]->title . "](" . $hackernewsxml->channel->item[0]->link . ")";
 }
 
