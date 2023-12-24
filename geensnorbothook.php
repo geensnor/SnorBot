@@ -96,6 +96,12 @@ function getHackerNews()
     return "Laatste bericht op hackernews: \n[" . $hackernewsxml->channel->item[0]->title . "](" . $hackernewsxml->channel->item[0]->link . ")";
 }
 
+function getMop()
+{
+    $jsonMop = json_decode(file_get_contents("https://moppenbot.nl/api/random/"));
+    return $jsonMop->joke->joke;
+}
+
 function getWeather()
 {
     $weerObject = simplexml_load_string(file_get_contents("https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIverwachtingen.xml"));
@@ -461,6 +467,14 @@ if ($text == "voornaam" || $text == "naam" || $text == "babynaam") {
     }
     $send = true;
 }
+
+
+if ($text == strtolower("mop")) {
+
+    $antwoord = getMop();
+    $send = true;
+}
+
 
 
 if ($text == "1337") {
