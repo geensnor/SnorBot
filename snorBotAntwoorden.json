@@ -84,10 +84,6 @@
     "antwoord": "ja!"
   },
   {
-    "trigger": "mop",
-    "antwoord": "'What’s the best thing about living in Switzerland?'\n'Well, the flag is a big plus'"
-  },
-  {
     "trigger": "haha",
     "antwoord": "hahaha"
   },
