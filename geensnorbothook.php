@@ -318,6 +318,22 @@ if ($text == 'xkcd nieuwste') {
     $send = true;
 }
 
+if (in_array($text, array("plaatje", "random plaatje", "vet plaatje", "kunst", "archillect"))) {
+
+    $randomId = rand(1, 408749);
+    $randomPageSource = file_get_contents("https://archillect.com/" . $randomId);
+
+    $start = stripos($randomPageSource, 'ii') + 9;
+    $end = stripos($randomPageSource, "\">", $start);
+    $length = $end - $start;
+
+    $content = array('chat_id' => $chat_id, 'photo' => substr($randomPageSource, $start, $length));
+    $telegram->sendPhoto($content);
+    $send = true;
+}
+
+
+
 if ($text == 'genereer wachtwoord') {
     $wachtwoord = json_decode(file_get_contents("https://www.passwordrandom.com/query?command=password&format=json&count=10"));
     $content = array('chat_id' => $chat_id, 'text' => "Random wachtwoord: " . $wachtwoord->char[1]);
