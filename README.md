@@ -13,10 +13,4 @@ Covid cijfers dankzij [hungrxyz](https://github.com/hungrxyz)
 
 ## Settings
 
-Bot heeft een config.php nodig om wat settings uit op te halen. Deze ziet er ongeveer zo uit
-
-```
-putenv("telegramId=<api key>");
-putenv("verjaardagenGroupId=<group id>");
-putenv("environment=Test");
-```
+Bot heeft een config.php nodig om wat settings uit op te halen. Hernoem config_example.php naar config.php en vul de key's e.d.
