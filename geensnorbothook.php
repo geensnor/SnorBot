@@ -104,15 +104,10 @@ function getMop()
 
 function getWeather()
 {
-    $weerObject = simplexml_load_string(file_get_contents("https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIverwachtingen.xml"));
-    return "Het weer:\n[" . $weerObject->channel->item[0]->title . "](https://www.knmi.nl/nederland-nu/weer/verwachtingen)";
+    $weerObject = json_decode(file_get_contents("https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=" . getenv('meteoserverKey')));
+    return "Het weer:\n" . $weerObject->liveweer[0]->verw;
 }
-function getWeather2()
-{
-    $weerObject = simplexml_load_string(file_get_contents("https://data.buienradar.nl/1.0/feed/xml/rssbuienradar"));
-    return "Het weer:\n[" . $weerObject->channel->item[0]->description . "](https://www.knmi.nl/nederland-nu/weer/verwachtingen)";
-}
-https://data.buienradar.nl/1.0/feed/xml/rssbuienradar
+
 
 function getDaysSince($date)
 {
