@@ -15,11 +15,11 @@ function isToday($date_str)
 function get_prijzen_parade_url()
 {
     // based on https://stackoverflow.com/q/4887300/204807
-    $rss = simplexml_load_file('http://feeds.feedburner.com/tweakers/mixed');
+    $rss = simplexml_load_file('https://tweakers.net/feeds/mixed.xml');
     foreach ($rss->channel->item as $item) {
         $title = $item->title;
         $publication_date = $item->pubDate;
-        if (strpos($title, ".Actie - December Prijzeparade") === 0 && isToday($publication_date)) {
+        if (strpos($title, ".Actie - December Prijzen") === 0 && isToday($publication_date)) {
             return $item->link;
         }
     }
