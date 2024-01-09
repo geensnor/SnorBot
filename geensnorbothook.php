@@ -208,7 +208,7 @@ if ($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' ||
 }
 
 
-if ($text == 'waarschuwing' || $text == 'code rood' || $text == 'code geel') {
+if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood' || $text == 'code geel') {
     $content = array('chat_id' => $chat_id, 'text' => getWaarschuwing(), 'parse_mode' => 'Markdown');
     $telegram->sendMessage($content);
 
