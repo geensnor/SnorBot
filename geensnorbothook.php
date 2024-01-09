@@ -109,6 +109,13 @@ function getWeather()
 }
 
 
+function getWaarschuwing()
+{
+    $weerObject = json_decode(file_get_contents("https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=" . getenv('meteoserverKey')));
+    return "[" . $weerObject->liveweer[0]->ltekst . "](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)";
+}
+
+
 function getDaysSince($date)
 {
     return floor((time() - strtotime($date)) / (60 * 60 * 24));
@@ -174,7 +181,7 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
         $goedeMorgenText .= "\n\n" . $dagVanDeText;
     }
 
-    $goedeMorgenText .= "\n\nDe koersen:\n" . getBitcoinPrice() . "\n" . getEthereumPrice() . "\n\n" . getWeather() . "\n\n" . getNews();
+    $goedeMorgenText .= "\n\nDe koersen:\n" . getBitcoinPrice() . "\n" . getEthereumPrice() . "\n\n" . getWeather() . "\n\n" . getWaarschuwing() . "\n\n" . getNews();
 
     $content = array('chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
     $telegram->sendMessage($content);
@@ -198,6 +205,15 @@ if ($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' ||
 
     $send = true;
 }
+
+
+if ($text == 'waarschuwing' || $text == 'code rood' || $text == 'code geel') {
+    $content = array('chat_id' => $chat_id, 'text' => getWaarschuwing(), 'parse_mode' => 'Markdown');
+    $telegram->sendMessage($content);
+
+    $send = true;
+}
+
 
 //Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
 
