@@ -338,6 +338,11 @@ if (in_array($text, array("plaatje", "random plaatje", "vet plaatje", "kunst", "
 
     $content = array('chat_id' => $chat_id, 'photo' => substr($randomPageSource, $start, $length));
     $telegram->sendPhoto($content);
+
+    $content = array('chat_id' => $chat_id, 'text' => "[bron](" . $randomPageSource . ")", 'parse_mode' => 'Markdown');
+
+    $telegram->sendMessage($content);
+
     $send = true;
 }
 
