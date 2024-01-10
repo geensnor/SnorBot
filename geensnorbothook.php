@@ -106,16 +106,14 @@ function getWeather()
 {
     $weerObject = json_decode(file_get_contents("https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=" . getenv('meteoserverKey')));
     return "Het weer:\n[" . $weerObject->liveweer[0]->verw . "](https://www.knmi.nl/nederland-nu/weer/verwachtingen)";
-}
 
+}
 
 function getWaarschuwing()
 {
     $weerObject = json_decode(file_get_contents("https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=" . getenv('meteoserverKey')));
     return "[" . $weerObject->liveweer[0]->ltekst . "](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)";
 }
-
-
 
 
 function getDaysSince($date)
@@ -209,12 +207,14 @@ if ($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' ||
 }
 
 
+
 if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood' || $text == 'code geel') {
     $content = array('chat_id' => $chat_id, 'text' => getWaarschuwing(), 'parse_mode' => 'Markdown');
     $telegram->sendMessage($content);
 
     $send = true;
 }
+
 
 
 if (in_array($text, array("temperatuur", "koud", "warm", "brr"))) {
@@ -224,8 +224,6 @@ if (in_array($text, array("temperatuur", "koud", "warm", "brr"))) {
     $telegram->sendMessage($content);
     $send = true;
 }
-
-
 
 //Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
 
