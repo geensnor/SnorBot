@@ -340,7 +340,7 @@ if (in_array($text, array("plaatje", "random plaatje", "vet plaatje", "kunst", "
     $content = array('chat_id' => $chat_id, 'photo' => substr($randomPageSource, $start, $length));
     $telegram->sendPhoto($content);
 
-    $content = array('chat_id' => $chat_id, 'text' => "[bron](" . $randomPageURL . ")", 'parse_mode' => 'Markdown');
+    $content = array('chat_id' => $chat_id, 'text' => "[bron](" . $randomPageURL . ")", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
 
     $telegram->sendMessage($content);
 
