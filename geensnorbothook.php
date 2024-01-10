@@ -330,7 +330,8 @@ if ($text == 'xkcd nieuwste') {
 if (in_array($text, array("plaatje", "random plaatje", "vet plaatje", "kunst", "archillect"))) {
 
     $randomId = rand(1, 408749);
-    $randomPageSource = file_get_contents("https://archillect.com/" . $randomId);
+    $randomPageURL = "https://archillect.com/" . $randomId;
+    $randomPageSource = file_get_contents($randomPageURL);
 
     $start = stripos($randomPageSource, 'ii') + 9;
     $end = stripos($randomPageSource, "\">", $start);
@@ -339,7 +340,7 @@ if (in_array($text, array("plaatje", "random plaatje", "vet plaatje", "kunst", "
     $content = array('chat_id' => $chat_id, 'photo' => substr($randomPageSource, $start, $length));
     $telegram->sendPhoto($content);
 
-    $content = array('chat_id' => $chat_id, 'text' => "[bron](" . $randomPageSource . ")", 'parse_mode' => 'Markdown');
+    $content = array('chat_id' => $chat_id, 'text' => "[bron](" . $randomPageURL . ")", 'parse_mode' => 'Markdown');
 
     $telegram->sendMessage($content);
 
