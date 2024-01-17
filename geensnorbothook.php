@@ -112,7 +112,7 @@ function getWeather()
 function getWaarschuwing()
 {
     $weerObject = json_decode(file_get_contents("https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=" . getenv('meteoserverKey')));
-    return "[" . $weerObject->liveweer[0]->ltekst . "](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)";
+    return "Waarschuwing!\n[" . $weerObject->liveweer[0]->lkop . "](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)";
 }
 
 
