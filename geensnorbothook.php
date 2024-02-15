@@ -139,6 +139,20 @@ if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $tex
 }
 //Dag van de - Einde
 
+//Historische gebeurtenissen van wikipedia
+if(in_array($text, array("vandaag", "geschiedenis", "deze dag"))) {
+    $todayResult = json_decode(file_get_contents("https://events.historylabs.io/date?day=" . date('j') . "&month=" . date('n')));
+    $randomEvent = $todayResult->events[array_rand($todayResult->events)];
+
+    $sendText = "**Vandaag in " . $randomEvent->year . "**:\n" . $randomEvent->content;
+
+    $content = array('chat_id' => $chat_id, 'text' => $sendText, 'parse_mode' => 'Markdown');
+    $telegram->sendMessage($content);
+    $send = true;
+
+}
+
+
 //Environment
 if ($text == 'env') {
     $content = array('chat_id' => $chat_id, 'text' => getenv('environment'));
