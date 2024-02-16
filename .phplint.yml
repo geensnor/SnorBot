@@ -1,0 +1,10 @@
+path: .
+jobs: 10
+extensions:
+  - php
+  - json
+exclude:
+  - vendor
+warning: true
+memory-limit: -1
+no-cache: true

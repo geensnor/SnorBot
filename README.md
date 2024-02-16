@@ -14,3 +14,13 @@ Covid cijfers dankzij [hungrxyz](https://github.com/hungrxyz)
 ## Settings
 
 Bot heeft een config.php nodig om wat settings uit op te halen. Hernoem config_example.php naar config.php en vul de key's e.d.
+
+## Linten
+
+`vendor/bin/phplint`
+
+## Fixer
+
+Soort Prettier
+
+`vendor/bin/php-cs-fixer fix .`

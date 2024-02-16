@@ -1,5 +1,7 @@
 composer.phar
 .DS_Store
+.phplint.cache
 vendor/
 config.php
 test.php
+.php-cs-fixer.cache
