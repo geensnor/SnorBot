@@ -8,7 +8,8 @@
     },
     "config": {
         "allow-plugins": {
-            "bamarni/composer-bin-plugin": true
+            "bamarni/composer-bin-plugin": true,
+            "pestphp/pest-plugin": true
         }
     }
 }
