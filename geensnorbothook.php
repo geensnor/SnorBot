@@ -1,128 +1,31 @@
 <?php
 
 date_default_timezone_set('Europe/Amsterdam');
-include("config.php");
-include(__DIR__ . '/vendor/autoload.php');
-include("advies.php");
-include("prijzenparade.php");
-include("tourpoule.php");
+include 'config.php';
+include __DIR__.'/vendor/autoload.php';
+include 'advies.php';
+include 'prijzenparade.php';
+include 'tourpoule.php';
+include 'functies.php';
 
 $telegram = new Telegram(getenv('telegramId'));
 
-$antwoordenArray = json_decode(file_get_contents("snorBotAntwoorden.json"));
+$antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
-$weetjesLocatie = "https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/weetjes.json";
-$dooddoenerLocatie = "https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/dooddoeners.json";
-$verveelLocatie = "https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/verveellijst.json";
-$haikuLocatie = "https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/haiku.json";
-$brabantsLocatie = "https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/brabants.json";
-$covidLocatie = "https://raw.githubusercontent.com/hungrxyz/infected-data/main/data/latest/national.json";
-$voornaamLocatie = "https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json";
+$weetjesLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/weetjes.json';
+$dooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/dooddoeners.json';
+$verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/verveellijst.json';
+$haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/haiku.json';
+$brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/brabants.json';
+$covidLocatie = 'https://raw.githubusercontent.com/hungrxyz/infected-data/main/data/latest/national.json';
+$voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 
 $text = strtolower(ltrim($telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
 
-$losseWoorden = explode(" ", $text);
-$antwoord = "";
+$losseWoorden = explode(' ', $text);
+$antwoord = '';
 $send = false;
-
-// Functies
-function getBitcoinPrice()
-{
-    $url = "https://api.coinbase.com/v2/exchange-rates?currency=BTC";
-    $jsonData = file_get_contents($url);
-    $response = json_decode($jsonData);
-
-    if ($response && isset($response->data->rates->EUR)) {
-        $price = $response->data->rates->EUR;
-        // $percentage24Hour = round($response->data->rates->EUR_change_percentage * 100, 2);
-
-        return "Bitcoin prijs: € " . number_format($price, 2, ',', '.');
-    } else {
-        return "Error: Unable to retrieve the Bitcoin price.";
-    }
-}
-
-function getEthereumPrice()
-{
-    $url = "https://api.coinbase.com/v2/exchange-rates?currency=ETH";
-    $jsonData = file_get_contents($url);
-    $response = json_decode($jsonData);
-
-    if ($response && isset($response->data->rates->EUR)) {
-        $price = $response->data->rates->EUR;
-        // $percentage24Hour = round($response->data->rates->EUR_change_percentage * 100, 2);
-
-        return "Ethereum prijs: € " . number_format($price, 2, ',', '.');
-    } else {
-        return "Error: Unable to retrieve the ETH price.";
-    }
-}
-
-function getDagVanDe()
-{
-    $dagVanDeLocatie = "https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/dagvande.json";
-    $dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
-    foreach ($dagVanDeArray as $key => $value) {
-        if ($dagVanDeArray[$key]->dag == date('d-m')) {
-            $dagText =  "Het is vandaag " . $dagVanDeArray[$key]->onderwerp;
-        }
-    }
-
-    if ($dagText) {
-        return $dagText;
-    } else {
-        return false;
-    }
-}
-
-function getNews()
-{
-    $nuxml = simplexml_load_file("https://feeds.nos.nl/nosnieuwsalgemeen");
-
-    return "Laatste nieuws van nos.nl: \n[" . $nuxml->channel->item[0]->title . "](" . $nuxml->channel->item[0]->link . ")";
-}
-
-function getCyclingNews()
-{
-    $nuxml = simplexml_load_file("http://feeds.nos.nl/nossportwielrennen");
-
-    return "Laatste wielrennieuws van nos.nl: \n[" . $nuxml->channel->item[0]->title . "](" . $nuxml->channel->item[0]->link . ")";
-}
-
-function getHackerNews()
-{
-    $hackernewsxml = simplexml_load_file("https://hnrss.org/newest");
-    return "Laatste bericht op hackernews: \n[" . $hackernewsxml->channel->item[0]->title . "](" . $hackernewsxml->channel->item[0]->link . ")";
-}
-
-function getMop()
-{
-    $jsonMop = json_decode(file_get_contents("https://moppenbot.nl/api/random/"));
-    return $jsonMop->joke->joke;
-}
-
-function getWeather()
-{
-    $weerObject = json_decode(file_get_contents("https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=" . getenv('meteoserverKey')));
-    return "Het weer:\n[" . $weerObject->liveweer[0]->verw . "](https://www.knmi.nl/nederland-nu/weer/verwachtingen)";
-
-}
-
-function getWaarschuwing()
-{
-    $weerObject = json_decode(file_get_contents("https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=" . getenv('meteoserverKey')));
-    return "Waarschuwing!\n[" . $weerObject->liveweer[0]->lkop . "](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)";
-}
-
-
-function getDaysSince($date)
-{
-    return floor((time() - strtotime($date)) / (60 * 60 * 24));
-}
-// einde functies
-
-//Begin van de commando's
 
 //Dag van de - Start
 if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van' || $text == 'dagvan') {
@@ -130,39 +33,42 @@ if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $tex
     if ($dagVanDeText) {
         $sendText = $dagVanDeText;
     } else {
-        $sendText =  "Ik heb geen idee waar het vandaag een dag van is. Maar op bijvoorbeeld https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen.\n\nDe lijst van de bot staat op Github: https://github.com/geensnor/DigitaleTuin/blob/master/_data/dagvande.json, dus ga je gang!";
+        $sendText = "Ik heb geen idee waar het vandaag een dag van is. Maar op bijvoorbeeld https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen.\n\nDe lijst van de bot staat op Github: https://github.com/geensnor/DigitaleTuin/blob/master/_data/dagvande.json, dus ga je gang!";
     }
 
-    $content = array('chat_id' => $chat_id, 'text' => $sendText, 'disable_web_page_preview' => true);
+    $content = ['chat_id' => $chat_id, 'text' => $sendText, 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
 }
 //Dag van de - Einde
 
 //Historische gebeurtenissen van wikipedia
-if(in_array($text, array("vandaag", "geschiedenis", "deze dag"))) {
-    $todayResult = json_decode(file_get_contents("https://events.historylabs.io/date?day=" . date('j') . "&month=" . date('n')));
-    $randomEvent = $todayResult->events[array_rand($todayResult->events)];
+if (in_array($text, ['vandaag', 'geschiedenis', 'deze dag'])) {
+    $event = getVandaag();
 
-    $sendText = "**Vandaag in " . $randomEvent->year . "**:\n" . $randomEvent->content;
+    $sendText = '**Vandaag in '.$event->year."**:\n".$event->content;
 
-    $content = array('chat_id' => $chat_id, 'text' => $sendText, 'parse_mode' => 'Markdown');
+    $content = ['chat_id' => $chat_id, 'text' => $sendText, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
-
 }
-
 
 //Environment
 if ($text == 'env') {
-    $content = array('chat_id' => $chat_id, 'text' => getenv('environment'));
+    $content = ['chat_id' => $chat_id, 'text' => getenv('environment')];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 //BTC (bitcoin) koers
 if ($text == 'bitcoin' || $text == 'btc') {
-    $content = array('chat_id' => $chat_id, 'text' => getBitcoinPrice());
+    $priceString = getBitcoinPrice();
+    if (! $priceString) {
+        $text = 'Kan bitcoinprijs niet ophalen';
+    } else {
+        $text = $priceString;
+    }
+    $content = ['chat_id' => $chat_id, 'text' => $text];
     $telegram->sendMessage($content);
 
     $send = true;
@@ -171,7 +77,7 @@ if ($text == 'bitcoin' || $text == 'btc') {
 
 //ETH koers
 if ($text == 'eth') {
-    $content = array('chat_id' => $chat_id, 'text' => getEthereumPrice());
+    $content = ['chat_id' => $chat_id, 'text' => getEthereumPrice()];
     $telegram->sendMessage($content);
 
     $send = true;
@@ -179,9 +85,9 @@ if ($text == 'eth') {
 // end of ETH koers
 
 //Random snack
-if ($text == "random snack" || $text == "snack") {
-    $snackResponse = json_decode(file_get_contents("https://europe-west1-speedy-realm-379713.cloudfunctions.net/generate-snack-v1"));
-    $content = array('chat_id' => $chat_id, 'text' => $snackResponse->snack);
+if ($text == 'random snack' || $text == 'snack') {
+    $snackResponse = json_decode(file_get_contents('https://europe-west1-speedy-realm-379713.cloudfunctions.net/generate-snack-v1'));
+    $content = ['chat_id' => $chat_id, 'text' => $snackResponse->snack];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -190,14 +96,14 @@ if ($text == "random snack" || $text == "snack") {
 if ($text == 'goedemorgen' || $text == 'goede morgen') {
     $dagVanDeText = getDagVanDe();
 
-    $goedeMorgenText = "Goedemorgen, hier volgt het dagoverzicht ...";
+    $goedeMorgenText = 'Goedemorgen, hier volgt het dagoverzicht ...';
     if ($dagVanDeText) {
-        $goedeMorgenText .= "\n\n" . $dagVanDeText;
+        $goedeMorgenText .= "\n\n".$dagVanDeText;
     }
 
-    $goedeMorgenText .= "\n\nDe koersen:\n" . getBitcoinPrice() . "\n" . getEthereumPrice() . "\n\n" . getWeather() . "\n\n" . getWaarschuwing() . "\n\n" . getNews();
+    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews();
 
-    $content = array('chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
+    $content = ['chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -205,7 +111,7 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
 
 // Crypto overzicht
 if ($text == 'crypto') {
-    $content = array('chat_id' => $chat_id, 'text' => getBitcoinPrice() . " \n" . getEthereumPrice());
+    $content = ['chat_id' => $chat_id, 'text' => getBitcoinPrice()." \n".getEthereumPrice()];
     $telegram->sendMessage($content);
 
     $send = true;
@@ -214,27 +120,22 @@ if ($text == 'crypto') {
 
 //Hieronder staan weerdingen
 if ($text == 'weer' || $text == 'weerbericht' || $text == 'weersvoorspelling' || $text == 'lekker weertje') {
-    $content = array('chat_id' => $chat_id, 'text' => getWeather(), 'parse_mode' => 'Markdown');
+    $content = ['chat_id' => $chat_id, 'text' => getWeather(), 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
 
     $send = true;
 }
-
-
 
 if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood' || $text == 'code geel') {
-    $content = array('chat_id' => $chat_id, 'text' => getWaarschuwing(), 'parse_mode' => 'Markdown');
+    $content = ['chat_id' => $chat_id, 'text' => getWaarschuwing(), 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
 
     $send = true;
 }
 
-
-
-if (in_array($text, array("temperatuur", "koud", "warm", "brr"))) {
-
-    $weerObject = json_decode(file_get_contents("https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=" . getenv('meteoserverKey')));
-    $content = array('chat_id' => $chat_id, 'text' => "Het is " . $weerObject->liveweer[0]->temp . " graden, maar het voelt als " . $weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown');
+if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'])) {
+    $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
+    $content = ['chat_id' => $chat_id, 'text' => 'Het is '.$weerObject->liveweer[0]->temp.' graden, maar het voelt als '.$weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -242,7 +143,7 @@ if (in_array($text, array("temperatuur", "koud", "warm", "brr"))) {
 //Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
 
 if ($text == 'sywert' || $text == 'sywert van lienden') {
-    $antwoord = "Het is " . getDaysSince("06-06-2021") . " dagen geleden dat Sywert van Lienden beloofde om de 9 miljoen euro die hij onterecht verdiende aan een goed doel te schenken.";
+    $antwoord = 'Het is '.getDaysSince('06-06-2021').' dagen geleden dat Sywert van Lienden beloofde om de 9 miljoen euro die hij onterecht verdiende aan een goed doel te schenken.';
 
     $send = true;
 }
@@ -250,38 +151,37 @@ if ($text == 'sywert' || $text == 'sywert van lienden') {
 //Hieronder staat 'getal onder de'. Werkt niet in een groep
 
 if (substr($text, 0, 14) == 'getal onder de') {
-    $content = array('chat_id' => $chat_id, 'text' => rand(1, (substr($text, 15) - 1)));
+    $content = ['chat_id' => $chat_id, 'text' => rand(1, (substr($text, 15) - 1))];
     $telegram->sendMessage($content);
     $send = true;
 }
 
-
 if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
-    $geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
-    $content = array('chat_id' => $chat_id, 'text' => "Nieuwste bericht op geensnor.nl: [" . $geensnorFeed->entry[0]->title . "](" . $geensnorFeed->entry[0]->link->attributes()->href . ")", 'parse_mode' => 'Markdown');
+    $geensnorFeed = new SimpleXMLElement(file_get_contents('https://geensnor.netlify.app/feed.xml'));
+    $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl: ['.$geensnorFeed->entry[0]->title.']('.$geensnorFeed->entry[0]->link->attributes()->href.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 if ($text == 'random post' || $text == 'random bericht') {
-    $geensnorFeed = new SimpleXMLElement(file_get_contents("https://geensnor.netlify.app/feed.xml"));
+    $geensnorFeed = new SimpleXMLElement(file_get_contents('https://geensnor.netlify.app/feed.xml'));
     $randomPostNummer = rand(0, count($geensnorFeed->entry));
-    $content = array('chat_id' => $chat_id, 'text' => "Een van de laatste 10 berichten op geensnor.nl: [" . $geensnorFeed->entry[$randomPostNummer]->title . "](" . $geensnorFeed->entry[$randomPostNummer]->link->attributes()->href . ")", 'parse_mode' => 'Markdown');
+    $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl: ['.$geensnorFeed->entry[$randomPostNummer]->title.']('.$geensnorFeed->entry[$randomPostNummer]->link->attributes()->href.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 // Hieronder de wiki dingen
 
-if(substr($text, 0, 4) == 'wiki') {
-    $wikiResult = json_decode(file_get_contents("https://nl.wikipedia.org/w/api.php?action=opensearch&search=" . substr($text, 5) . "&limit=10&namespace=0&format=json"));
-    if($wikiResult[1]) {
+if (substr($text, 0, 4) == 'wiki') {
+    $wikiResult = json_decode(file_get_contents('https://nl.wikipedia.org/w/api.php?action=opensearch&search='.substr($text, 5).'&limit=10&namespace=0&format=json'));
+    if ($wikiResult[1]) {
         foreach ($wikiResult[1] as $key => $value) {
-            $htmlList .= "<a href=\"" . $wikiResult[3][$key] . "\">" . $wikiResult[1][$key] . "</a>\n";
+            $htmlList .= '<a href="'.$wikiResult[3][$key].'">'.$wikiResult[1][$key]."</a>\n";
         }
-        $content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van <strong>" . substr($text, 5) . "</strong> weten. Dit vond ik op Wikipedia:\n\n" . $htmlList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => true);
+        $content = ['chat_id' => $chat_id, 'text' => 'Ah, je wil iets van <strong>'.substr($text, 5)."</strong> weten. Dit vond ik op Wikipedia:\n\n".$htmlList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => true];
     } else {
-        $content = array('chat_id' => $chat_id, 'text' => "Ah, je wil iets van *" . substr($text, 5) . "* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
+        $content = ['chat_id' => $chat_id, 'text' => 'Ah, je wil iets van *'.substr($text, 5).'* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia', 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     }
 
     $telegram->sendMessage($content);
@@ -291,7 +191,7 @@ if(substr($text, 0, 4) == 'wiki') {
 //Beetje nieuws.....
 
 if ($text == 'nieuws') {
-    $content = array('chat_id' => $chat_id, 'text' => getNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
+    $content = ['chat_id' => $chat_id, 'text' => getNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
 
     $send = true;
@@ -299,16 +199,15 @@ if ($text == 'nieuws') {
 //Nieuws hierboven
 
 if ($text == 'wielrennieuws') {
-    $content = array('chat_id' => $chat_id, 'text' => getCyclingNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
+    $content = ['chat_id' => $chat_id, 'text' => getCyclingNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
 
     $send = true;
 }
 
-
 //Beetje hacker nieuws.....
 if ($text == 'hacker') {
-    $content = array('chat_id' => $chat_id, 'text' => getHackerNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
+    $content = ['chat_id' => $chat_id, 'text' => getHackerNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
 
     $send = true;
@@ -317,69 +216,65 @@ if ($text == 'hacker') {
 
 //Is het al 5 uur?
 if ($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
-    $content = array('chat_id' => $chat_id, 'text' => "Nee, het is " . date("H:i:s"));
+    $content = ['chat_id' => $chat_id, 'text' => 'Nee, het is '.date('H:i:s')];
     $telegram->sendMessage($content);
     $send = true;
 }
 ////////////////
 
 if ($text == 'xkcd') {
-    $xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
+    $xkcdData = json_decode(file_get_contents('https://xkcd.com/info.0.json'));
     $randomComicNumber = rand(0, $xkcdData->num);
-    $randomComicObject = json_decode(file_get_contents("http://xkcd.com/" . $randomComicNumber . "/info.0.json"));
-    $content = array('chat_id' => $chat_id, 'photo' => $randomComicObject->img);
+    $randomComicObject = json_decode(file_get_contents('http://xkcd.com/'.$randomComicNumber.'/info.0.json'));
+    $content = ['chat_id' => $chat_id, 'photo' => $randomComicObject->img];
     $telegram->sendPhoto($content);
     $antwoord = "Random XKCD comic. Typ 'xkcd nieuwste' voor de nieuwste";
     $send = true;
 }
 
 if ($text == 'xkcd nieuwste') {
-    $xkcdData = json_decode(file_get_contents("https://xkcd.com/info.0.json"));
-    $content = array('chat_id' => $chat_id, 'photo' => $xkcdData->img);
+    $xkcdData = json_decode(file_get_contents('https://xkcd.com/info.0.json'));
+    $content = ['chat_id' => $chat_id, 'photo' => $xkcdData->img];
     $telegram->sendPhoto($content);
     $send = true;
 }
 
-if (in_array($text, array("plaatje", "random plaatje", "vet plaatje", "kunst", "archillect"))) {
-
+if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archillect'])) {
     $randomId = rand(1, 408749);
-    $randomPageURL = "https://archillect.com/" . $randomId;
+    $randomPageURL = 'https://archillect.com/'.$randomId;
     $randomPageSource = file_get_contents($randomPageURL);
 
     $start = stripos($randomPageSource, 'ii') + 9;
-    $end = stripos($randomPageSource, "\">", $start);
+    $end = stripos($randomPageSource, '">', $start);
     $length = $end - $start;
 
-    $content = array('chat_id' => $chat_id, 'photo' => substr($randomPageSource, $start, $length));
+    $content = ['chat_id' => $chat_id, 'photo' => substr($randomPageSource, $start, $length)];
     $telegram->sendPhoto($content);
 
-    $content = array('chat_id' => $chat_id, 'text' => "[bron](" . $randomPageURL . ")", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true);
+    $content = ['chat_id' => $chat_id, 'text' => '[bron]('.$randomPageURL.')', 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
 
     $telegram->sendMessage($content);
 
     $send = true;
 }
 
-
-
 if ($text == 'genereer wachtwoord') {
-    $wachtwoord = json_decode(file_get_contents("https://www.passwordrandom.com/query?command=password&format=json&count=10"));
-    $content = array('chat_id' => $chat_id, 'text' => "Random wachtwoord: " . $wachtwoord->char[1]);
+    $wachtwoord = json_decode(file_get_contents('https://www.passwordrandom.com/query?command=password&format=json&count=10'));
+    $content = ['chat_id' => $chat_id, 'text' => 'Random wachtwoord: '.$wachtwoord->char[1]];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 if ($text == 'guid') {
-    $guid = json_decode(file_get_contents("https://www.passwordrandom.com/query?command=guid&format=json&count=10"));
-    $content = array('chat_id' => $chat_id, 'text' => "Random guid: " . $guid->char[1]);
+    $guid = json_decode(file_get_contents('https://www.passwordrandom.com/query?command=guid&format=json&count=10'));
+    $content = ['chat_id' => $chat_id, 'text' => 'Random guid: '.$guid->char[1]];
     $telegram->sendMessage($content);
     $send = true;
 }
 
-
 //Geeft het chat id van de huidige groep weer
 if ($text == 'chatid') {
-    $content = array('chat_id' => $chat_id, 'text' => "Chat id van deze groep: " . $chat_id);
+    $content = ['chat_id' => $chat_id, 'text' => 'Chat id van deze groep: '.$chat_id];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -388,13 +283,13 @@ if ($text == 'chatid') {
 
 if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
     if ($chat_id == getenv('verjaardagenGroupId')) {
-        include("cl_verjaardagen.php");
+        include 'cl_verjaardagen.php';
         $v = new verjaardag();
-        $content = array('chat_id' => $chat_id, 'text' => $v->getVerjaardagTekst());
+        $content = ['chat_id' => $chat_id, 'text' => $v->getVerjaardagTekst()];
         $telegram->sendMessage($content);
         $send = true;
     } else {
-        $content = array('chat_id' => $chat_id, 'text' => "Geen verjaardagsinformatie in deze groep");
+        $content = ['chat_id' => $chat_id, 'text' => 'Geen verjaardagsinformatie in deze groep'];
         $telegram->sendMessage($content);
         $send = true;
     }
@@ -402,10 +297,10 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
 
 if ($telegram->Location()) {
     $locatieGebruiker = $telegram->Location();
-    $adviesJson = getAdviesArray($locatieGebruiker["latitude"], $locatieGebruiker["longitude"]);
+    $adviesJson = getAdviesArray($locatieGebruiker['latitude'], $locatieGebruiker['longitude']);
 
-    $contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name . " zit in de buurt:"];
-    $contentAdviesToelichting = ['chat_id' => $chat_id, 'text' => "Geensnor zegt: '" . $adviesJson[0]->description . "'. Kijk op http://advies.geensnor.nl voor meer adviezen"];
+    $contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name.' zit in de buurt:'];
+    $contentAdviesToelichting = ['chat_id' => $chat_id, 'text' => "Geensnor zegt: '".$adviesJson[0]->description."'. Kijk op http://advies.geensnor.nl voor meer adviezen"];
     $contentLocation = ['chat_id' => $chat_id, 'latitude' => $adviesJson[0]->lat, 'longitude' => $adviesJson[0]->lon];
     $telegram->sendMessage($contentAdviesTitel);
     $telegram->sendLocation($contentLocation);
@@ -413,71 +308,69 @@ if ($telegram->Location()) {
     $send = true;
 }
 
-if ($text == "advies") {
-    $option = array(array($telegram->buildKeyBoardButton("Klik hier om je locatie te delen", $request_contact = false, $request_location = true)));
+if ($text == 'advies') {
+    $option = [[$telegram->buildKeyBoardButton('Klik hier om je locatie te delen', $request_contact = false, $request_location = true)]];
     $keyb = $telegram->buildKeyBoard($option, $onetime = false);
-    $content = array('chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => "Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.");
+    $content = ['chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.'];
     $telegram->sendMessage($content);
     $send = true;
 }
 
-
-
-if ($text == "nieuwste weetje") {
+if ($text == 'nieuwste weetje') {
     $weetjesArray = json_decode(file_get_contents($weetjesLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
         $antwoord = end($weetjesArray);
     } else {
-        $antwoord = "Kan geen nieuw weetje ophalen. De weetjes json is niet helemaal lekker.";
+        $antwoord = 'Kan geen nieuw weetje ophalen. De weetjes json is niet helemaal lekker.';
     }
     $send = true;
 }
 
-if ($text  == "weetje") {
+if ($text == 'weetje') {
     $weetjesArray = json_decode(file_get_contents($weetjesLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
         $randKey = array_rand($weetjesArray, 1);
         $antwoord = $weetjesArray[$randKey];
     } else {
-        $antwoord = "Kan geen weetje ophalen. De weetjes json is niet helemaal lekker.";
+        $antwoord = 'Kan geen weetje ophalen. De weetjes json is niet helemaal lekker.';
     }
     $send = true;
 }
 
-if ($text  == "brabants" || $text  == "alaaf" || $text  == "brabant" || $text  == "wa zedde gij") {
+if ($text == 'brabants' || $text == 'alaaf' || $text == 'brabant' || $text == 'wa zedde gij') {
     $brabantsArray = json_decode(file_get_contents($brabantsLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
         $randKey = array_rand($brabantsArray, 1);
         $antwoord = $brabantsArray[$randKey];
     } else {
-        $antwoord = "Kan geen brabants ophalen. De brabant json is niet helemaal lekker.";
+        $antwoord = 'Kan geen brabants ophalen. De brabant json is niet helemaal lekker.';
     }
     $send = true;
 }
 
-if ($text  == "dooddoener") {
+if ($text == 'dooddoener') {
     $dooddoenerArray = json_decode(file_get_contents($dooddoenerLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
         $randKey = array_rand($dooddoenerArray, 1);
         $antwoord = $dooddoenerArray[$randKey];
     } else {
-        $antwoord = "Kan geen dooddoener vinden. De json file is naar de vaantjes";
+        $antwoord = 'Kan geen dooddoener vinden. De json file is naar de vaantjes';
     }
     $send = true;
 }
 
-if ($text  == "verveel" || $text  == "wat zal ik doen") {
+if ($text == 'verveel' || $text == 'wat zal ik doen') {
     $verveelArray = json_decode(file_get_contents($verveelLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
         $randKey = array_rand($verveelArray, 1);
         $antwoord = $verveelArray[$randKey];
     } else {
-        $antwoord = "Verveel je je ja? Nou, ik kan je ook niet helpen want ik kan de json met leuke dingen om te doen niet vinden.";
+        $antwoord = 'Verveel je je ja? Nou, ik kan je ook niet helpen want ik kan de json met leuke dingen om te doen niet vinden.';
     }
     $send = true;
 }
 
-if ($text  == "haiku") {
+if ($text == 'haiku') {
     $haikuArray = json_decode(file_get_contents($haikuLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
         $randKey = array_rand($haikuArray, 1);
@@ -488,7 +381,7 @@ if ($text  == "haiku") {
     $send = true;
 }
 
-if ($text == "nieuwste haiku") {
+if ($text == 'nieuwste haiku') {
     $haikuArray = json_decode(file_get_contents($haikuLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
         $antwoord = end($haikuArray);
@@ -498,47 +391,43 @@ if ($text == "nieuwste haiku") {
     $send = true;
 }
 
-if ($text == "corona" || $text == "covid") {
+if ($text == 'corona' || $text == 'covid') {
     $covidObject = json_decode(file_get_contents($covidLocatie));
 
-    if (substr($covidObject->positiveCases->trend, 0, 1) == "-") {
+    if (substr($covidObject->positiveCases->trend, 0, 1) == '-') {
         $displayTrend = substr($covidObject->positiveCases->trend, 1);
-        $trendText = $displayTrend . " minder";
+        $trendText = $displayTrend.' minder';
     } else {
-        $trendText = $covidObject->positiveCases->trend . " meer";
+        $trendText = $covidObject->positiveCases->trend.' meer';
     }
 
-    $antwoord = "Op " . date("d-m-Y", strtotime($covidObject->numbersDate)) . " zijn er " . $covidObject->positiveCases->new . " besmettingen gemeld. Dat zijn er " . $trendText . " dan de dag ervoor.";
+    $antwoord = 'Op '.date('d-m-Y', strtotime($covidObject->numbersDate)).' zijn er '.$covidObject->positiveCases->new.' besmettingen gemeld. Dat zijn er '.$trendText.' dan de dag ervoor.';
     $send = true;
 }
 
-if ($text == "vaccinaties" || $text == "vaccin") {
+if ($text == 'vaccinaties' || $text == 'vaccin') {
     $covidObject = json_decode(file_get_contents($covidLocatie));
-    $antwoord = "Tot " . date("d-m-Y", strtotime($covidObject->updatedAt)) . " hebben " . $covidObject->vaccinations->total . " mensen een vaccin in hun arm gehad. Dat zijn er " . $covidObject->vaccinations->new . " meer dan de dag ervoor. Ongeveer " . round($covidObject->vaccinations->percentageOfPopulation * 100, 2) . "% van Nederland is nu gevaccineerd.";
+    $antwoord = 'Tot '.date('d-m-Y', strtotime($covidObject->updatedAt)).' hebben '.$covidObject->vaccinations->total.' mensen een vaccin in hun arm gehad. Dat zijn er '.$covidObject->vaccinations->new.' meer dan de dag ervoor. Ongeveer '.round($covidObject->vaccinations->percentageOfPopulation * 100, 2).'% van Nederland is nu gevaccineerd.';
     $send = true;
 }
 
-if ($text == "voornaam" || $text == "naam" || $text == "babynaam") {
+if ($text == 'voornaam' || $text == 'naam' || $text == 'babynaam') {
     $voornaamObject = json_decode(file_get_contents($voornaamLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
         $randKey = array_rand($voornaamObject, 1);
         $antwoord = $voornaamObject[$randKey]->naam;
     } else {
-        $antwoord = "De namen zijn foetsie";
+        $antwoord = 'De namen zijn foetsie';
     }
     $send = true;
 }
 
-
-if ($text == strtolower("mop")) {
-
+if ($text == strtolower('mop')) {
     $antwoord = getMop();
     $send = true;
 }
 
-
-
-if ($text == "1337") {
+if ($text == '1337') {
     $dateString = date('y-m-d H:i:s');
 
     //Tijdzonde conversie, voor het geval de server niet op onze tijdzone zit
@@ -556,7 +445,7 @@ if ($text == "1337") {
         $dayCompensator = 1;
     }
 
-    $dayDate = date("y-m-d", strtotime("+ $dayCompensator day"));
+    $dayDate = date('y-m-d', strtotime("+ $dayCompensator day"));
 
     //Verschil berekenen en in tekst zetten
     $completedTime = new DateTime("$dayDate 13:37:00", new DateTimeZone($timeZone));
@@ -568,18 +457,18 @@ if ($text == "1337") {
     $send = true;
 }
 
-if (in_array($text, array("winnen", "prijzenparade"))) {
+if (in_array($text, ['winnen', 'prijzenparade'])) {
     $prijzenparade_url = get_prijzen_parade_url();
     if ($prijzenparade_url) {
-        $antwoord = "De link van de Tweakers December Prijzen Parade van vandaag is: " . $prijzenparade_url;
+        $antwoord = 'De link van de Tweakers December Prijzen Parade van vandaag is: '.$prijzenparade_url;
     } else {
-        $antwoord = "Helaas, voor vandaag is er geen prijzenlink beschikbaar. Probeer het morgen nog eens!";
+        $antwoord = 'Helaas, voor vandaag is er geen prijzenlink beschikbaar. Probeer het morgen nog eens!';
     }
     $send = true;
 }
 
 //Tourpoule. Functie staat in apart bestand.
-if (in_array($text, array("tourpoule", "tour", "poule"))) {
+if (in_array($text, ['tourpoule', 'tour', 'poule'])) {
     // $tourInfo = getTourInfo();
     // if ($tourInfo) {
     //     $antwoord = $tourInfo;
@@ -587,23 +476,22 @@ if (in_array($text, array("tourpoule", "tour", "poule"))) {
     //     $antwoord = "Er is even geen tourpoule info nu.";
     // }
     // Dit hierboven is allemaal vet, maar het werkt natuurlijk weer net niet...
-    $antwoord = "Check https://www.geensnor.nl/tourpoule voor alle info!";
+    $antwoord = 'Check https://www.geensnor.nl/tourpoule voor alle info!';
     $send = true;
 }
 
-
-if (!$send) {
+if (! $send) {
     //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
     foreach ($antwoordenArray as $key => $value) {
         if (strstr($text, strtolower($antwoordenArray[$key]->trigger)) || strstr($text, ucfirst($antwoordenArray[$key]->trigger))) {
-            echo $text . " " . $key . " antwoord: " . $antwoordenArray[$key]->antwoord;
+            echo $text.' '.$key.' antwoord: '.$antwoordenArray[$key]->antwoord;
             $antwoord = $antwoordenArray[$key]->antwoord;
             $send = true;
         }
     }
 
     //Daarna kijken naar de losse woorden
-    if (!$send) {
+    if (! $send) {
         foreach ($losseWoorden as $wKey => $wValue) {
             foreach ($antwoordenArray as $key => $value) {
                 if (strstr($losseWoorden[$wKey], strtolower($antwoordenArray[$key]->trigger)) || strstr($losseWoorden[$wKey], ucfirst($antwoordenArray[$key]->trigger))) {
@@ -616,7 +504,7 @@ if (!$send) {
 }
 
 //Random antwoord geven als hij niets weet...
-if (!$send && $text) {
+if (! $send && $text) {
     $randKey = array_rand($antwoordenArray, 1);
     $antwoord = $antwoordenArray[$randKey]->antwoord;
 
