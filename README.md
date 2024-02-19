@@ -17,10 +17,8 @@ Bot heeft een config.php nodig om wat settings uit op te halen. Hernoem config_e
 
 ## Linten
 
-`vendor/bin/phplint`
+`./vendor/bin/pint`
 
-## Fixer
+## Testen
 
-Soort Prettier
-
-`vendor/bin/php-cs-fixer fix .`
+`./vendor/bin/pest`
