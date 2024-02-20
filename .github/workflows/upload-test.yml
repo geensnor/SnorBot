@@ -6,8 +6,11 @@ on:
 
 name: Upload Snorbot test
 jobs:
+  test:
+    uses: ./.github/workflows/test.yml
   web-deploy:
     name: 🎉 Deploy
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
