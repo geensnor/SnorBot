@@ -1,0 +1,21 @@
+on: [pull_request, workflow_call]
+name: Test with Pest
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+  test:
+    needs: [lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3.0
+          tools: composer:v2
+          coverage: xdebug
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+      - name: Run test
+        run: ./vendor/bin/pest
