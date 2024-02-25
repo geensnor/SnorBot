@@ -37,7 +37,7 @@ if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
         if (count($koersen->racesToday) == 1) {
             $sendText .= 'Vandaag wordt '.$koersen->racesToday[0].' gereden';
         } else {
-            $sendText .= "Vandaag worde de volgende koersen gereden:\n";
+            $sendText .= "Vandaag worden de volgende koersen gereden:\n";
             foreach ($koersen->racesToday as $raceToday) {
                 $sendText .= ' - '.$raceToday."\n";
             }
