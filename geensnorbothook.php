@@ -3,10 +3,12 @@
 date_default_timezone_set('Europe/Amsterdam');
 include 'config.php';
 include __DIR__.'/vendor/autoload.php';
+
 include 'advies.php';
 include 'prijzenparade.php';
 include 'tourpoule.php';
 include 'functies.php';
+include 'wielrennen.php';
 
 $telegram = new Telegram(getenv('telegramId'));
 
@@ -26,6 +28,35 @@ $chat_id = $telegram->ChatID();
 $losseWoorden = explode(' ', $text);
 $antwoord = '';
 $send = false;
+
+//Wielrenkoersen
+if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
+    $koersen = getPresentCyclingRaces();
+    if ($koersen->racesToday) {
+        $sendText = "**Het is koers!**\n\n";
+        if (count($koersen->racesToday) == 1) {
+            $sendText .= 'Vandaag wordt '.$koersen->racesToday[0].' gereden';
+        } else {
+            $sendText .= "Vandaag de volgende koersen gereden:\n";
+            foreach ($koersen->racesToday as $raceToday) {
+                $sendText .= ' - '.$raceToday."\n";
+            }
+
+        }
+        $sendText .= "\n\n";
+    } else {
+        $sendText .= "Er worden vandaag geen koersen gereden\n\n";
+    }
+    $sendText .= "Binnenkort starten:\n";
+
+    foreach ($koersen->futureRaces as $raceFuture) {
+        $sendText .= ' - '.$raceFuture->dateString.': '.$raceFuture->name.' dat is over '.$raceFuture->intervalString."\n";
+    }
+
+    $content = ['chat_id' => $chat_id, 'text' => $sendText, 'parse_mode' => 'Markdown'];
+    $telegram->sendMessage($content);
+    $send = true;
+}
 
 //Dag van de - Start
 if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van' || $text == 'dagvan') {
@@ -441,7 +472,7 @@ if ($text == '1337') {
 
     //Truukje te zorgen dat hij altijd het verschil met een toekomstige tijd berekent (anders neemt ie vandaag)
     $dayCompensator = 0;
-    if (14 <= $currentHour or ($currentHour == 13 and $currentMinute > 36)) {
+    if ($currentHour >= 14 or ($currentHour == 13 and $currentMinute > 36)) {
         $dayCompensator = 1;
     }
 
