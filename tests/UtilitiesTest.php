@@ -1,6 +1,6 @@
 <?php
 
-include 'utilities.php';
+require_once 'utilities.php';
 
 test('Naar nederlanse datum formatteren', function () {
     expect(getFormattedDate('20240304'))->toBe('4 maart');
