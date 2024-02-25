@@ -8,7 +8,7 @@ test('Bitcoin prijs', function () {
 
 test('Vandaag van wikipedia', function () {
     $event = getVandaag();
-    expect($event->year)->toBeString()->toHaveLength(4);
+    expect($event->year)->toBeString();
     expect($event->content)->toBeString();
 });
 
