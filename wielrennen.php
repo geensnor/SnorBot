@@ -1,16 +1,16 @@
 <?php
 
-include 'utilities.php';
+require_once 'utilities.php';
 
 include __DIR__.'/vendor/autoload.php';
 
 use ICal\ICal;
 
-function getPresentCyclingRaces(): object
+function getPresentCyclingRaces(string $calendarLocation): object
 {
     $presentCyclingRaces = new stdClass();
 
-    $ical = new ICal('https://www.wielerkrant.be/wielrennen/wielerkalender24.ics', [
+    $ical = new ICal($calendarLocation, [
         'defaultSpan' => 2,     // Default value
         'defaultWeekStart' => 'MO',  // Default value
         'disableCharacterReplacement' => false, // Default value
@@ -33,18 +33,20 @@ function getPresentCyclingRaces(): object
 
     //Wedstrijden die in de toekomst starten
     $racesFutureiCal = $ical->eventsFromRange('tomorrow', 'next year');
-    foreach ($racesFutureiCal as $race) {
+    if ($racesFutureiCal) {
+        foreach ($racesFutureiCal as $race) {
 
-        $raceObject = new stdClass();
-        $raceObject->name = $race->summary;
-        $raceObject->dateString = getFormattedDate($race->dtstart);
+            $raceObject = new stdClass();
+            $raceObject->name = $race->summary;
+            $raceObject->dateString = getFormattedDate($race->dtstart);
 
-        $raceObject->intervalString = getFormattedIntervalDays(date('Ymd'), $race->dtstart);
+            $raceObject->intervalString = getFormattedIntervalDays(date('Ymd'), $race->dtstart);
 
-        $racesFuture[] = $raceObject;
+            $racesFuture[] = $raceObject;
 
+        }
+        $presentCyclingRaces->futureRaces = array_slice($racesFuture, 0, 5);
     }
-    $presentCyclingRaces->futureRaces = array_slice($racesFuture, 0, 5);
 
     return $presentCyclingRaces;
 }

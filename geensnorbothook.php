@@ -21,6 +21,7 @@ $haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/
 $brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/brabants.json';
 $covidLocatie = 'https://raw.githubusercontent.com/hungrxyz/infected-data/main/data/latest/national.json';
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
+$wielrenKalender = 'https://www.wielerkrant.be/wielrennen/wielerkalender24.ics';
 
 $text = strtolower(ltrim($telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
@@ -31,7 +32,7 @@ $send = false;
 
 //Wielrenkoersen
 if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
-    $koersen = getPresentCyclingRaces();
+    $koersen = getPresentCyclingRaces($wielrenKalender);
     if ($koersen->racesToday) {
         $sendText = "**Het is koers!**\n\n";
         if (count($koersen->racesToday) == 1) {
