@@ -37,7 +37,6 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
                 $koersenTekstBinnenkort .= ' Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).'.';
             }
         }
-
     }
 
     if ($koersenTekst) {
