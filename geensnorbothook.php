@@ -32,29 +32,10 @@ $send = false;
 
 //Wielrenkoersen
 if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
-    $koersen = getPresentCyclingRaces($wielrenKalender);
-    if ($koersen->racesToday) {
-        $sendText = "**Het is koers!**\n\n";
-        if (count($koersen->racesToday) == 1) {
-            $sendText .= 'Vandaag wordt '.$koersen->racesToday[0].' gereden';
-        } else {
-            $sendText .= "Vandaag worden de volgende koersen gereden:\n";
-            foreach ($koersen->racesToday as $raceToday) {
-                $sendText .= ' - '.$raceToday."\n";
-            }
+    $parsedICS = getParsedCalendar($wielrenKalender);
 
-        }
-        $sendText .= "\n\n";
-    } else {
-        $sendText .= "Er worden vandaag geen koersen gereden\n\n";
-    }
-    $sendText .= "Binnenkort starten:\n";
 
-    foreach ($koersen->futureRaces as $raceFuture) {
-        $sendText .= ' - '.$raceFuture->dateString.': '.$raceFuture->name.' dat is over '.$raceFuture->intervalString."\n";
-    }
-
-    $content = ['chat_id' => $chat_id, 'text' => $sendText, 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => getKoersenTekst($parsedICS, date("Ymd")), 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }

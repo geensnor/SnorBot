@@ -4,51 +4,55 @@ require_once 'utilities.php';
 
 include __DIR__.'/vendor/autoload.php';
 
-use ICal\ICal;
-
-function getPresentCyclingRaces(string $calendarLocation): object
+function getKoersenTekst(array $parsedICS, string $referentieDatum): string
 {
-    $presentCyclingRaces = new stdClass();
+    $koersenTekst = '';
+    $koersenTekstBinnenkort = '';
+    foreach ($parsedICS as $koers) {
+        //Actuele koersen
+        if ($koers->dtstart == $referentieDatum && $koers->dtend == $referentieDatum + 1) {//Eendaagse koers, vandaag
+            $koersenTekst .= '\nVandaag wordt '.$koers->summary.' gereden.';
+        } elseif ($koers->dtstart <= $referentieDatum && $koers->dtend - 1 >= $referentieDatum) {//Meerdaagse koers, vandaag bezig
 
-    $ical = new ICal($calendarLocation, [
-        'defaultSpan' => 2,     // Default value
-        'defaultWeekStart' => 'MO',  // Default value
-        'disableCharacterReplacement' => false, // Default value
-        'filterDaysAfter' => null,  // Default value
-        'filterDaysBefore' => true,  // Default value
-        'httpUserAgent' => null,  // Default value
-        'skipRecurrence' => false, // Default value
-    ]);
+            if ($koers->dtstart == $referentieDatum) {//Meerdaagse koers, en de start is vandaag
+                $koersenTekst .= '\nVandaag start '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend)));
 
-    //Wedstrijden die nu bezig zijn
-    $racesTodayiCal = $ical->eventsFromInterval('today');
-    if ($racesTodayiCal) {
-        foreach ($racesTodayiCal as $race) {
+            } elseif ($koers->dtend - 1 == $referentieDatum) {
 
-            $racesToday[] = $race->summary;
+                $koersenTekst .= '\nVandaag is de finish van '.$koers->summary.'.';
 
-        }
-        $presentCyclingRaces->racesToday = $racesToday;
-    }
-
-    //Wedstrijden die in de toekomst starten
-    $racesFutureiCal = $ical->eventsFromRange('tomorrow', 'next year');
-    if ($racesFutureiCal) {
-        foreach ($racesFutureiCal as $race) {
-
-            $raceObject = new stdClass();
-            $raceObject->name = $race->summary;
-            $raceObject->dateString = getFormattedDate($race->dtstart);
-
-            $raceObject->intervalString = getFormattedIntervalDays(date('Ymd'), $race->dtstart);
-
-            $racesFuture[] = $raceObject;
+            } else {//Meerdaagse koers en hij is eerder gestart
+                $dagVanKoers = $referentieDatum - $koers->dtstart + 1;
+                $koersenTekst .= '\nVandaag is dag '.$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).'.';
+            }
 
         }
-        $presentCyclingRaces->futureRaces = array_slice($racesFuture, 0, 5);
+
+        //Binnenkort
+        if (strtotime($koers->dtstart) > strtotime($referentieDatum) && strtotime($koers->dtstart) < strtotime('+2 week', strtotime($referentieDatum))) {
+
+            $koersenTekstBinnenkort .= '\n'.getFormattedDate(strtotime($koers->dtstart)).' start '.$koers->summary.'.';
+            if ((strtotime($koers->dtend) - strtotime($koers->dtstart)) > 86400) {
+                //echo "\n".$koers->dtend." - ".getFormattedDate(strtotime("-1 days", strtotime($koers->dtend)));
+                $koersenTekstBinnenkort .= ' Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).'.';
+            }
+        }
+
     }
 
-    return $presentCyclingRaces;
+
+
+    if ($koersenTekst) {
+        $koersenTekst = '**Het is koers!**\n'.$koersenTekst;
+    } else {
+        $koersenTekst = 'Er wordt vandaag niet gekoerst.';
+    }
+
+    if ($koersenTekstBinnenkort) {
+        $koersenTekst .= '\n\nBinnenkort:'.$koersenTekstBinnenkort;
+    }
+
+    return $koersenTekst;
 }
 
 function getCyclingNews()
