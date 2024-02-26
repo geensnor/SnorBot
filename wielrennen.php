@@ -23,7 +23,7 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
 
             } else {//Meerdaagse koers en hij is eerder gestart
                 $dagVanKoers = $referentieDatum - $koers->dtstart + 1;
-                $koersenTekst .= "\n Vandaag is dag ".$dagVanKoers." van ".$koers->summary.". Deze duurt tot en met ".getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).".";
+                $koersenTekst .= "\n Vandaag is dag ".$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).'.';
             }
 
         }
@@ -31,10 +31,10 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
         //Binnenkort
         if (strtotime($koers->dtstart) > strtotime($referentieDatum) && strtotime($koers->dtstart) < strtotime('+2 week', strtotime($referentieDatum))) {
 
-            $koersenTekstBinnenkort .= "\n- ".getFormattedDate(strtotime($koers->dtstart))." start ".$koers->summary.".";
+            $koersenTekstBinnenkort .= "\n- ".getFormattedDate(strtotime($koers->dtstart)).' start '.$koers->summary.'.';
             if ((strtotime($koers->dtend) - strtotime($koers->dtstart)) > 86400) {
 
-                $koersenTekstBinnenkort .= " Deze duurt tot en met ".getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).".";
+                $koersenTekstBinnenkort .= ' Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).'.';
             }
         }
 
