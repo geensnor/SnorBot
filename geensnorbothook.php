@@ -34,8 +34,7 @@ $send = false;
 if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
     $parsedICS = getParsedCalendar($wielrenKalender);
 
-
-    $content = ['chat_id' => $chat_id, 'text' => getKoersenTekst($parsedICS, date("Ymd")), 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => getKoersenTekst($parsedICS, date('Ymd')), 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }

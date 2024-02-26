@@ -40,8 +40,6 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
 
     }
 
-
-
     if ($koersenTekst) {
         $koersenTekst = '**Het is koers!**\n'.$koersenTekst;
     } else {
