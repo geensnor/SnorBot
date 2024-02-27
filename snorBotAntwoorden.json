@@ -48,10 +48,6 @@
     "antwoord": "Deze bot geeft interessante weetjes, dooddoeners en nog wat anderen dingen maar die moet je maar zelf uitvinden. Hier staat de code: https://github.com/geensnor/SnorBot"
   },
   {
-    "trigger": "wielrennen",
-    "antwoord": "Wierennen is vet. Geensnor staat ermee vol: https://geensnor.netlify.app/pages/alle_berichten.html#Wielrennerij"
-  },
-  {
     "trigger": "advies",
     "antwoord": "Alle adviezen van geensnor staan op https://advies.geensnor.nl"
   },

@@ -3,10 +3,12 @@
 date_default_timezone_set('Europe/Amsterdam');
 include 'config.php';
 include __DIR__.'/vendor/autoload.php';
+
 include 'advies.php';
 include 'prijzenparade.php';
 include 'tourpoule.php';
 include 'functies.php';
+include 'wielrennen.php';
 
 $telegram = new Telegram(getenv('telegramId'));
 
@@ -19,6 +21,7 @@ $haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/
 $brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/brabants.json';
 $covidLocatie = 'https://raw.githubusercontent.com/hungrxyz/infected-data/main/data/latest/national.json';
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
+$wielrenKalender = 'https://www.wielerkrant.be/wielrennen/wielerkalender24.ics';
 
 $text = strtolower(ltrim($telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
@@ -26,6 +29,16 @@ $chat_id = $telegram->ChatID();
 $losseWoorden = explode(' ', $text);
 $antwoord = '';
 $send = false;
+
+//Wielrenkoersen
+if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
+    $parsedICS = getParsedCalendar($wielrenKalender);
+    $koersTekst = getKoersenTekst($parsedICS, date('Ymd'));
+
+    $content = ['chat_id' => $chat_id, 'text' => $koersTekst, 'parse_mode' => 'Markdown'];
+    $telegram->sendMessage($content);
+    $send = true;
+}
 
 //Dag van de - Start
 if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $text == 'dag van' || $text == 'dagvan') {
@@ -441,7 +454,7 @@ if ($text == '1337') {
 
     //Truukje te zorgen dat hij altijd het verschil met een toekomstige tijd berekent (anders neemt ie vandaag)
     $dayCompensator = 0;
-    if (14 <= $currentHour or ($currentHour == 13 and $currentMinute > 36)) {
+    if ($currentHour >= 14 or ($currentHour == 13 and $currentMinute > 36)) {
         $dayCompensator = 1;
     }
 
