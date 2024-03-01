@@ -35,7 +35,12 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
             //Binnenkort
             if (strtotime($koers->dtstart) > strtotime($referentieDatum) && strtotime($koers->dtstart) < strtotime('+2 week', strtotime($referentieDatum))) {
 
-                $koersenTekstBinnenkort .= "\n- ".getFormattedDate(strtotime($koers->dtstart)).' start '.$koers->summary.'.';
+                if (strtotime($koers->dtstart) == strtotime('+1 day', strtotime('today'))) {
+                    $startTekst = 'morgen';
+                } else {
+                    $startTekst = getFormattedDate(strtotime($koers->dtstart));
+                }
+                $koersenTekstBinnenkort .= "\n- ".$startTekst.' start '.$koers->summary.'.';
                 if ((strtotime($koers->dtend) - strtotime($koers->dtstart)) > 86400) {
 
                     $koersenTekstBinnenkort .= ' Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).'.';
