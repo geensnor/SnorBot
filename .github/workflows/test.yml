@@ -14,7 +14,8 @@ jobs:
         with:
           php-version: 8.3.0
           tools: composer:v2
-          coverage: xdebug
+          ini-values: pcov.directory=.
+          coverage: pcov
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
       - name: Run test
