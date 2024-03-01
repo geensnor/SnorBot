@@ -1,5 +1,5 @@
 name: Fix Code Style
-on: [push,workflow_call]
+on: [workflow_call]
 jobs:
   laravel-pint:
     runs-on: ubuntu-latest
