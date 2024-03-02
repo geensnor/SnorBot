@@ -55,7 +55,7 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
         }
 
         if ($koersenTekstBinnenkort) {
-            $koersenTekst .= "\n Binnenkort:".$koersenTekstBinnenkort;
+            $koersenTekst .= "\n\n Binnenkort:".$koersenTekstBinnenkort;
         }
 
         return $koersenTekst;
