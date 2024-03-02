@@ -15,15 +15,15 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
         foreach ($parsedICS as $koers) {
             //Actuele koersen
             if ($koers->dtstart == $referentieDatum && $koers->dtend == $referentieDatum + 1) {//Eendaagse koers, vandaag
-                $koersenTekst .= ' \n Vandaag wordt '.$koers->summary.' gereden.';
+                $koersenTekst .= " \n Vandaag wordt ".$koers->summary.' gereden.';
             } elseif ($koers->dtstart <= $referentieDatum && $koers->dtend - 1 >= $referentieDatum) {//Meerdaagse koers, vandaag bezig
 
                 if ($koers->dtstart == $referentieDatum) {//Meerdaagse koers, en de start is vandaag
-                    $koersenTekst .= ' \n Vandaag start '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend)));
+                    $koersenTekst .= " \n Vandaag start ".$koers->summary.'. Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend)));
 
                 } elseif ($koers->dtend - 1 == $referentieDatum) {
 
-                    $koersenTekst .= '\n Vandaag is de finish van '.$koers->summary.'.';
+                    $koersenTekst .= "\n Vandaag is de finish van ".$koers->summary.'.';
 
                 } else {//Meerdaagse koers en hij is eerder gestart
                     $dagVanKoers = $referentieDatum - $koers->dtstart + 1;
@@ -55,7 +55,7 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
         }
 
         if ($koersenTekstBinnenkort) {
-            $koersenTekst .= "\nBinnenkort:".$koersenTekstBinnenkort;
+            $koersenTekst .= "\n\n Binnenkort:".$koersenTekstBinnenkort;
         }
 
         return $koersenTekst;
