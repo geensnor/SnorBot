@@ -107,8 +107,8 @@ if ($text == 'random snack' || $text == 'snack') {
 // Goedemorgen! Een dag overzicht!
 if ($text == 'goedemorgen' || $text == 'goede morgen') {
     $dagVanDeText = getDagVanDe();
-    $currentDate = date('Y-m-d');
-    $goedeMorgenText = 'Goedemorgen, hier volgt het dagoverzicht van' .$currentDate . "(".getWeekNumberToday().")";
+    $currentDate = date('d-m-Y');
+    $goedeMorgenText = '<strong>Goedemorgen!</strong><br>Hier volgt het dagoverzicht van ' .$currentDate . "(".getWeekNumberToday().")";
     if ($dagVanDeText) {
         $goedeMorgenText .= "\n\n".$dagVanDeText;
     }
