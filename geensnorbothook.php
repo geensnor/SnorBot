@@ -227,6 +227,14 @@ if ($text == 'hacker') {
 }
 //hackerNieuws hierboven
 
+//Week number
+if ($text == 'week') {
+    $content = ['chat_id' => $chat_id, 'text' => getWeekNumberToday(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+
+    $send = true;
+}
+
 //Is het al 5 uur?
 if ($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
     $content = ['chat_id' => $chat_id, 'text' => 'Nee, het is '.date('H:i:s')];
