@@ -88,3 +88,12 @@ function getVandaag(): object
 
     return $todayResult->events[array_rand($todayResult->events)];
 }
+
+function getWeekNumberToday()
+{
+    $currentDate = date('Y-m-d');
+    $timestamp = strtotime($currentDate);
+    $weekNumber = date('W', $timestamp);
+
+    return $weekNumber;
+}
