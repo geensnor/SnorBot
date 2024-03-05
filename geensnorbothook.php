@@ -107,13 +107,13 @@ if ($text == 'random snack' || $text == 'snack') {
 // Goedemorgen! Een dag overzicht!
 if ($text == 'goedemorgen' || $text == 'goede morgen') {
     $dagVanDeText = getDagVanDe();
-
-    $goedeMorgenText = 'Goedemorgen, hier volgt het dagoverzicht ...';
+    $currentDate = date('Y-m-d');
+    $goedeMorgenText = 'Goedemorgen, hier volgt het dagoverzicht van' .$currentDate . "("getWeekNumberToday()")";
     if ($dagVanDeText) {
         $goedeMorgenText .= "\n\n".$dagVanDeText;
     }
 
-    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews()."\n\n".getWeekNumberToday();
+    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews();
 
     $content = ['chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
