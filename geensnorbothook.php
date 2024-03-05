@@ -19,7 +19,6 @@ $dooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/ma
 $verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/verveellijst.json';
 $haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/haiku.json';
 $brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/brabants.json';
-$covidLocatie = 'https://raw.githubusercontent.com/hungrxyz/infected-data/main/data/latest/national.json';
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/wielerkalender24.ics';
 
@@ -409,26 +408,6 @@ if ($text == 'nieuwste haiku') {
     } else {
         $antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
     }
-    $send = true;
-}
-
-if ($text == 'corona' || $text == 'covid') {
-    $covidObject = json_decode(file_get_contents($covidLocatie));
-
-    if (substr($covidObject->positiveCases->trend, 0, 1) == '-') {
-        $displayTrend = substr($covidObject->positiveCases->trend, 1);
-        $trendText = $displayTrend.' minder';
-    } else {
-        $trendText = $covidObject->positiveCases->trend.' meer';
-    }
-
-    $antwoord = 'Op '.date('d-m-Y', strtotime($covidObject->numbersDate)).' zijn er '.$covidObject->positiveCases->new.' besmettingen gemeld. Dat zijn er '.$trendText.' dan de dag ervoor.';
-    $send = true;
-}
-
-if ($text == 'vaccinaties' || $text == 'vaccin') {
-    $covidObject = json_decode(file_get_contents($covidLocatie));
-    $antwoord = 'Tot '.date('d-m-Y', strtotime($covidObject->updatedAt)).' hebben '.$covidObject->vaccinations->total.' mensen een vaccin in hun arm gehad. Dat zijn er '.$covidObject->vaccinations->new.' meer dan de dag ervoor. Ongeveer '.round($covidObject->vaccinations->percentageOfPopulation * 100, 2).'% van Nederland is nu gevaccineerd.';
     $send = true;
 }
 
