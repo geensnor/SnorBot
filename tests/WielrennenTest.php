@@ -22,6 +22,5 @@ test('Er wordt een koers gereden op de gekozen datum.', function () {
 
 test('Er start morgen een koers', function () {
     $parsedICS = json_decode(file_get_contents('tests/fixtures/cyclingCalendar2024.json'));
-    expect(getKoersenTekst($parsedICS, '20240301'))->
-    toContain('morgen');
+    expect(getKoersenTekst($parsedICS, '20240301'))->toContain('morgen');
 });
