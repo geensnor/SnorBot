@@ -95,5 +95,5 @@ function getWeekNumberToday()
     $timestamp = strtotime($currentDate);
     $weekNumber = date('W', $timestamp);
 
-    return 'Weeknummer:'.$weekNumber;
+    return 'Weeknummer: '.$weekNumber;
 }
