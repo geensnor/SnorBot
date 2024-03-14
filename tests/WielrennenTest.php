@@ -26,5 +26,5 @@ test('Er start morgen een koers', function () {
 
 test('Datum van koersen in de toekomst is correct', function () {
     $parsedICS = json_decode(file_get_contents('tests/fixtures/cyclingCalendar2024.json'));
-    expect(getKoersenTekst($parsedICS, '20240314'))->toContain('15 maart start Milano');
+    expect(getKoersenTekst($parsedICS, '20240314'))->toContain('16 maart start Milano');
 });
