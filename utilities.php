@@ -21,15 +21,12 @@ function getParsedCalendar(string $calendarLocation): array
 
 }
 
-function getFormattedDate(int $date): string
+function getFormattedDate(object $dateObject): string
 {
     $maandNamenEngels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     $maandNamenNederlands = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
 
-    $dateObject = DateTime::createFromFormat('U', $date);
-
     return str_replace($maandNamenEngels, $maandNamenNederlands, $dateObject->format('j F'));
-
 }
 
 function getFormattedIntervalDays(string $startDate, string $endDate): string
