@@ -95,5 +95,12 @@ function getWeekNumberToday()
     $timestamp = strtotime($currentDate);
     $weekNumber = date('W', $timestamp);
 
-    return 'Weeknummer: '.$weekNumber;
+    return 'week '.$weekNumber;
+}
+
+function getPI()
+{
+    $pi = pi();
+
+    return $pi;
 }

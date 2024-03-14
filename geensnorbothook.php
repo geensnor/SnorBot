@@ -233,6 +233,14 @@ if ($text == 'week') {
     $send = true;
 }
 
+//PI number
+if ($text == 'pi') {
+    $content = ['chat_id' => $chat_id, 'text' => getPI(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+
+    $send = true;
+}
+
 //Is het al 5 uur?
 if ($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
     $content = ['chat_id' => $chat_id, 'text' => 'Nee, het is '.date('H:i:s')];
