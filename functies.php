@@ -97,3 +97,11 @@ function getWeekNumberToday()
 
     return 'week '.$weekNumber;
 }
+
+function getPI() 
+{
+    $pi = pi();
+    
+    return $pi;
+}
+    
