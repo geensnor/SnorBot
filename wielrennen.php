@@ -33,7 +33,7 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
             }
 
             //Binnenkort
-            if (strtotime($koers->dtstart) > strtotime($referentieDatum) && strtotime($koers->dtstart) < strtotime('+2 week', strtotime($referentieDatum))) {
+            if (strtotime($koers->dtstart) > strtotime($referentieDatum) && strtotime($koers->dtstart) < strtotime('+1 week', strtotime($referentieDatum))) {
                 if ($koers->dtstart == date('Ymd', strtotime('+1 day', strtotime($referentieDatum)))) {
                     $startTekst = 'morgen';
                 } else {
