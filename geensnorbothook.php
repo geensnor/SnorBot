@@ -234,7 +234,7 @@ if ($text == 'week') {
 }
 
 //PI number
-if ($text == 'pi') {
+if ($text == 'pi' || $text == 'π') {
     $content = ['chat_id' => $chat_id, 'text' => pi(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
 
