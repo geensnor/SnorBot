@@ -19,7 +19,7 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
             } elseif ($koers->dtstart <= $referentieDatum && $koers->dtend - 1 >= $referentieDatum) {//Meerdaagse koers, vandaag bezig
 
                 if ($koers->dtstart == $referentieDatum) {//Meerdaagse koers, en de start is vandaag
-                    $koersenTekst .= " \n Vandaag start ".$koers->summary.'. Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend)));
+                    $koersenTekst .= " \n Vandaag start ".$koers->summary.'. Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dsend))->modify('-1 day'));
 
                 } elseif ($koers->dtend - 1 == $referentieDatum) {
 
@@ -27,22 +27,22 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
 
                 } else {//Meerdaagse koers en hij is eerder gestart
                     $dagVanKoers = $referentieDatum - $koers->dtstart + 1;
-                    $koersenTekst .= "\n Vandaag is dag ".$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).'.';
+                    $koersenTekst .= "\n Vandaag is dag ".$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dsend))->modify('-1 day')).'.';
                 }
 
             }
 
             //Binnenkort
-            if (strtotime($koers->dtstart) > strtotime($referentieDatum) && strtotime($koers->dtstart) < strtotime('+2 week', strtotime($referentieDatum))) {
+            if (strtotime($koers->dtstart) > strtotime($referentieDatum) && strtotime($koers->dtstart) < strtotime('+1 week', strtotime($referentieDatum))) {
                 if ($koers->dtstart == date('Ymd', strtotime('+1 day', strtotime($referentieDatum)))) {
                     $startTekst = 'morgen';
                 } else {
-                    $startTekst = getFormattedDate(strtotime($koers->dtstart));
+                    $startTekst = getFormattedDate(DateTime::createFromFormat('Ymd', $koers->dtstart));
                 }
                 $koersenTekstBinnenkort .= "\n- ".$startTekst.' start '.$koers->summary.'.';
                 if ((strtotime($koers->dtend) - strtotime($koers->dtstart)) > 86400) {
 
-                    $koersenTekstBinnenkort .= ' Deze duurt tot en met '.getFormattedDate(strtotime('yesterday', strtotime($koers->dtend))).'.';
+                    $koersenTekstBinnenkort .= ' Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dtend))->modify('-1 day'));
                 }
             }
         }

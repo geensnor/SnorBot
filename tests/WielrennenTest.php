@@ -14,7 +14,6 @@ test('Er wordt geen koers gereden op de gekozen datum.', function () {
 });
 
 test('Er wordt een koers gereden op de gekozen datum.', function () {
-
     $parsedICS = json_decode(file_get_contents('tests/fixtures/cyclingCalendar2024.json'));
     expect(getKoersenTekst($parsedICS, '20240302'))->toStartWith('**Het is koers!**');
 
@@ -23,4 +22,9 @@ test('Er wordt een koers gereden op de gekozen datum.', function () {
 test('Er start morgen een koers', function () {
     $parsedICS = json_decode(file_get_contents('tests/fixtures/cyclingCalendar2024.json'));
     expect(getKoersenTekst($parsedICS, '20240301'))->toContain('morgen');
+});
+
+test('Datum van koersen in de toekomst is correct', function () {
+    $parsedICS = json_decode(file_get_contents('tests/fixtures/cyclingCalendar2024.json'));
+    expect(getKoersenTekst($parsedICS, '20240314'))->toContain('16 maart start Milano');
 });
