@@ -26,7 +26,7 @@ function getFormattedDate(DateTime $dateObject): string
     $maandNamenNederlands = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
     $dagNamenNederlands = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
 
-    return $dagNamenNederlands[$dateObject->format('w')]." ".$dateObject->format('j'). " ".$maandNamenNederlands[$dateObject->format('n')-1];
+    return $dagNamenNederlands[$dateObject->format('w')].' '.$dateObject->format('j').' '.$maandNamenNederlands[$dateObject->format('n') - 1];
 
 }
 
