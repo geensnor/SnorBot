@@ -1,6 +1,7 @@
 {
   "scripts": {
     "refactor": "vendor/bin/rector --dry-run",
+    "refactor:fix": "vendor/bin/rector",
     "check": "vendor/bin/phpstan analyse -l 4 .",
     "lint": "vendor/bin/pint",
     "test": "vendor/bin/pest"

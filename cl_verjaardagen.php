@@ -26,16 +26,19 @@ class verjaardag
         $this->geboortedatums = json_decode(file_get_contents($curlResult[0]->download_url));
     }
 
-    public function getVerjaardagenData()
+    /**
+     * @return array<mixed, array<'dagenTotVerjaardag'|'datumVerjaardag'|'geboortedatum'|'leeftijdDagen'|'leeftijdJaren'|'naam', mixed>>
+     */
+    public function getVerjaardagenData(): array
     {
         $referentieDatum = strtotime(date('Y-m-d'));
-
+        $verjaardagenData = [];
         foreach ($this->geboortedatums as $key => $value) {
-            $verjaardagDitJaar = strtotime(date('Y').date('-m-d', strtotime($this->geboortedatums[$key]->geboortedatum)));
+            $verjaardagDitJaar = strtotime(date('Y').date('-m-d', strtotime((string) $this->geboortedatums[$key]->geboortedatum)));
             $verschil = $verjaardagDitJaar - $referentieDatum;
 
             $persoon['naam'] = $this->geboortedatums[$key]->naam;
-            $persoon['geboortedatum'] = date('d-m-Y', strtotime($this->geboortedatums[$key]->geboortedatum));
+            $persoon['geboortedatum'] = date('d-m-Y', strtotime((string) $this->geboortedatums[$key]->geboortedatum));
             $leeftijdObject = date_diff(date_create($this->geboortedatums[$key]->geboortedatum), date_create(date('Y-m-d')));
             $persoon['leeftijdJaren'] = $leeftijdObject->y;
             $persoon['leeftijdDagen'] = $leeftijdObject->days;
@@ -44,7 +47,7 @@ class verjaardag
                 $persoon['dagenTotVerjaardag'] = round($verschil / 86400);
                 $persoon['datumVerjaardag'] = date('d-m-Y', $verjaardagDitJaar);
             } else {//Verjaardag is al geweest dit jaar
-                $verjaardagVolgendJaar = strtotime(date('Y', strtotime('+1 year')).date('-m-d', strtotime($this->geboortedatums[$key]->geboortedatum)));
+                $verjaardagVolgendJaar = strtotime(date('Y', strtotime('+1 year')).date('-m-d', strtotime((string) $this->geboortedatums[$key]->geboortedatum)));
                 $verschil = $verjaardagVolgendJaar - $referentieDatum;
                 $persoon['dagenTotVerjaardag'] = round($verschil / 86400);
                 $persoon['datumVerjaardag'] = date('d-m-Y', $verjaardagVolgendJaar);
@@ -52,16 +55,14 @@ class verjaardag
             $verjaardagenData[] = $persoon;
         }
 
-        if ($verjaardagenData) {// usort geeft vervelende error als er geen data opgehaald kan worden.
-            usort($verjaardagenData, function ($a, $b) {
-                return $a['dagenTotVerjaardag'] - $b['dagenTotVerjaardag'];
-            });
+        if (count($verjaardagenData) > 0) {// usort geeft vervelende error als er geen data opgehaald kan worden.
+            usort($verjaardagenData, fn (array $a, array $b): float => $a['dagenTotVerjaardag'] - $b['dagenTotVerjaardag']);
         }
 
         return $verjaardagenData;
     }
 
-    public function getVerjaardagTekst()
+    public function getVerjaardagTekst(): string
     {
         $verjaardagenData = $this->getVerjaardagenData();
         if ($verjaardagenData[0]['dagenTotVerjaardag'] == 0) {
@@ -73,8 +74,9 @@ class verjaardag
         }
     }
 
-    public function checkKomendeDagen()
+    public function checkKomendeDagen(): string
     {
+        $returnString = '';
         $verjaardagenData = $this->getVerjaardagenData();
         if ($verjaardagenData[0]['dagenTotVerjaardag'] == 0) {
             $returnString = 'Hoera! '.$verjaardagenData[0]['naam'].' wordt vandaag '.($verjaardagenData[0]['leeftijdJaren']).' jaar oud!';

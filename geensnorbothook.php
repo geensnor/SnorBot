@@ -22,7 +22,7 @@ $brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/mast
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/wielerkalender24.ics';
 
-$text = strtolower(ltrim($telegram->Text(), '/'));
+$text = strtolower(ltrim((string) $telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
 
 $losseWoorden = explode(' ', $text);
@@ -161,8 +161,8 @@ if ($text == 'sywert' || $text == 'sywert van lienden') {
 
 //Hieronder staat 'getal onder de'. Werkt niet in een groep
 
-if (substr($text, 0, 14) == 'getal onder de') {
-    $content = ['chat_id' => $chat_id, 'text' => rand(1, (substr($text, 15) - 1))];
+if (str_starts_with($text, 'getal onder de')) {
+    $content = ['chat_id' => $chat_id, 'text' => random_int(1, ((int) substr($text, 15) - 1))];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -176,7 +176,7 @@ if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 
 if ($text == 'random post' || $text == 'random bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://geensnor.netlify.app/feed.xml'));
-    $randomPostNummer = rand(0, count($geensnorFeed->entry));
+    $randomPostNummer = random_int(0, count($geensnorFeed->entry));
     $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl: ['.$geensnorFeed->entry[$randomPostNummer]->title.']('.$geensnorFeed->entry[$randomPostNummer]->link->attributes()->href.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
@@ -184,9 +184,10 @@ if ($text == 'random post' || $text == 'random bericht') {
 
 // Hieronder de wiki dingen
 
-if (substr($text, 0, 4) == 'wiki') {
+if (str_starts_with($text, 'wiki')) {
     $wikiResult = json_decode(file_get_contents('https://nl.wikipedia.org/w/api.php?action=opensearch&search='.substr($text, 5).'&limit=10&namespace=0&format=json'));
     if ($wikiResult[1]) {
+        $htmlList = '';
         foreach ($wikiResult[1] as $key => $value) {
             $htmlList .= '<a href="'.$wikiResult[3][$key].'">'.$wikiResult[1][$key]."</a>\n";
         }
@@ -251,7 +252,7 @@ if ($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
 
 if ($text == 'xkcd') {
     $xkcdData = json_decode(file_get_contents('https://xkcd.com/info.0.json'));
-    $randomComicNumber = rand(0, $xkcdData->num);
+    $randomComicNumber = random_int(0, $xkcdData->num);
     $randomComicObject = json_decode(file_get_contents('http://xkcd.com/'.$randomComicNumber.'/info.0.json'));
     $content = ['chat_id' => $chat_id, 'photo' => $randomComicObject->img];
     $telegram->sendPhoto($content);
@@ -267,7 +268,7 @@ if ($text == 'xkcd nieuwste') {
 }
 
 if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archillect'])) {
-    $randomId = rand(1, 408749);
+    $randomId = random_int(1, 408749);
     $randomPageURL = 'https://archillect.com/'.$randomId;
     $randomPageSource = file_get_contents($randomPageURL);
 
@@ -490,7 +491,7 @@ if (in_array($text, ['tourpoule', 'tour', 'poule'])) {
 if (! $send) {
     //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
     foreach ($antwoordenArray as $key => $value) {
-        if (strstr($text, strtolower($antwoordenArray[$key]->trigger)) || strstr($text, ucfirst($antwoordenArray[$key]->trigger))) {
+        if (strstr($text, strtolower((string) $antwoordenArray[$key]->trigger)) || strstr($text, ucfirst((string) $antwoordenArray[$key]->trigger))) {
             echo $text.' '.$key.' antwoord: '.$antwoordenArray[$key]->antwoord;
             $antwoord = $antwoordenArray[$key]->antwoord;
             $send = true;
@@ -501,7 +502,7 @@ if (! $send) {
     if (! $send) {
         foreach ($losseWoorden as $wKey => $wValue) {
             foreach ($antwoordenArray as $key => $value) {
-                if (strstr($losseWoorden[$wKey], strtolower($antwoordenArray[$key]->trigger)) || strstr($losseWoorden[$wKey], ucfirst($antwoordenArray[$key]->trigger))) {
+                if (strstr($losseWoorden[$wKey], strtolower((string) $antwoordenArray[$key]->trigger)) || strstr($losseWoorden[$wKey], ucfirst((string) $antwoordenArray[$key]->trigger))) {
                     $antwoord = $antwoordenArray[$key]->antwoord;
                     $send = true;
                 }
