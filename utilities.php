@@ -23,10 +23,11 @@ function getParsedCalendar(string $calendarLocation): array
 
 function getFormattedDate(DateTime $dateObject): string
 {
-    $maandNamenEngels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     $maandNamenNederlands = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+    $dagNamenNederlands = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
 
-    return str_replace($maandNamenEngels, $maandNamenNederlands, $dateObject->format('j F'));
+    return $dagNamenNederlands[$dateObject->format('w')].' '.$dateObject->format('j').' '.$maandNamenNederlands[$dateObject->format('n') - 1];
+
 }
 
 function getFormattedIntervalDays(string $startDate, string $endDate): string
