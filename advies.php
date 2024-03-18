@@ -1,6 +1,6 @@
 <?php
 
-function distanceGeoPoints($lat1, $lng1, $lat2, $lng2)
+function distanceGeoPoints($lat1, $lng1, $lat2, $lng2): float
 {
     $earthRadius = 3958.75; //miles
     //$earthRadius = 6.378;
@@ -16,9 +16,8 @@ function distanceGeoPoints($lat1, $lng1, $lat2, $lng2)
 
     // from miles
     $meterConversion = 1.609;
-    $geopointDistance = $dist * $meterConversion;
 
-    return $geopointDistance;
+    return $dist * $meterConversion;
     //return $dist;
 }
 
@@ -30,9 +29,7 @@ function getAdviesArray($inputLat, $inputLon)
         $adviesArray[$key]->distance = round(distanceGeoPoints($inputLat, $inputLon, $adviesArray[$key]->lat, $adviesArray[$key]->lon), 2);
     }
 
-    usort($adviesArray, function ($a, $b) {
-        return $a->distance - $b->distance;
-    });
+    usort($adviesArray, fn ($a, $b): int|float => $a->distance - $b->distance);
 
     return $adviesArray;
 }

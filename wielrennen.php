@@ -4,7 +4,7 @@ require_once 'utilities.php';
 
 include __DIR__.'/vendor/autoload.php';
 
-function getKoersenTekst(array $parsedICS, string $referentieDatum): string
+function getKoersenTekst(array $parsedICS, int $referentieDatum): string
 {
 
     if (! isset($parsedICS[0])) {
@@ -33,14 +33,14 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
             }
 
             //Binnenkort
-            if (strtotime($koers->dtstart) > strtotime($referentieDatum) && strtotime($koers->dtstart) < strtotime('+1 week', strtotime($referentieDatum))) {
+            if (strtotime((string) $koers->dtstart) > strtotime($referentieDatum) && strtotime((string) $koers->dtstart) < strtotime('+1 week', strtotime($referentieDatum))) {
                 if ($koers->dtstart == date('Ymd', strtotime('+1 day', strtotime($referentieDatum)))) {
                     $startTekst = 'morgen';
                 } else {
                     $startTekst = getFormattedDate(DateTime::createFromFormat('Ymd', $koers->dtstart));
                 }
                 $koersenTekstBinnenkort .= "\n- ".$startTekst.' start '.$koers->summary.'.';
-                if ((strtotime($koers->dtend) - strtotime($koers->dtstart)) > 86400) {
+                if ((strtotime((string) $koers->dtend) - strtotime((string) $koers->dtstart)) > 86400) {
 
                     $koersenTekstBinnenkort .= ' Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dtend))->modify('-1 day'));
                 }
@@ -61,7 +61,7 @@ function getKoersenTekst(array $parsedICS, string $referentieDatum): string
     }
 }
 
-function getCyclingNews()
+function getCyclingNews(): string
 {
     $nuxml = simplexml_load_file('http://feeds.nos.nl/nossportwielrennen');
 

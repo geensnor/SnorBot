@@ -15,8 +15,16 @@ Bot heeft een config.php nodig om wat settings uit op te halen. Hernoem config_e
 
 ## Linten
 
-`./vendor/bin/pint`
+`componser lint`
 
 ## Testen
 
-`./vendor/bin/pest`
+`composer test`
+
+## Automatisch refactoren
+
+`composer refactor`
+
+## Checken
+
+`composer check`

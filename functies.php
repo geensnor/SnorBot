@@ -1,6 +1,6 @@
 <?php
 
-function getBitcoinPrice()
+function getBitcoinPrice(): string
 {
     $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
     $jsonData = file_get_contents($url);
@@ -9,7 +9,7 @@ function getBitcoinPrice()
     return 'Bitcoin prijs: € '.number_format($response->data->rates->EUR, 2, ',', '.');
 }
 
-function getEthereumPrice()
+function getEthereumPrice(): string
 {
     $url = 'https://api.coinbase.com/v2/exchange-rates?currency=ETH';
     $jsonData = file_get_contents($url);
@@ -42,14 +42,14 @@ function getDagVanDe()
     }
 }
 
-function getNews()
+function getNews(): string
 {
     $nuxml = simplexml_load_file('https://feeds.nos.nl/nosnieuwsalgemeen');
 
     return "Laatste nieuws van nos.nl: \n[".$nuxml->channel->item[0]->title.']('.$nuxml->channel->item[0]->link.')';
 }
 
-function getHackerNews()
+function getHackerNews(): string
 {
     $hackernewsxml = simplexml_load_file('https://hnrss.org/newest');
 
@@ -63,23 +63,23 @@ function getMop()
     return $jsonMop->joke->joke;
 }
 
-function getWeather()
+function getWeather(): string
 {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
 
     return "Het weer:\n[".$weerObject->liveweer[0]->verw.'](https://www.knmi.nl/nederland-nu/weer/verwachtingen)';
 }
 
-function getWaarschuwing()
+function getWaarschuwing(): string
 {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
 
     return "Waarschuwing!\n[".$weerObject->liveweer[0]->lkop.'](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)';
 }
 
-function getDaysSince($date)
+function getDaysSince($date): float
 {
-    return floor((time() - strtotime($date)) / (60 * 60 * 24));
+    return floor((time() - strtotime((string) $date)) / (60 * 60 * 24));
 }
 
 function getVandaag(): object
@@ -89,7 +89,7 @@ function getVandaag(): object
     return $todayResult->events[array_rand($todayResult->events)];
 }
 
-function getWeekNumberToday()
+function getWeekNumberToday(): string
 {
     $currentDate = date('Y-m-d');
     $timestamp = strtotime($currentDate);

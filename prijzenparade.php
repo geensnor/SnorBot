@@ -1,6 +1,6 @@
 <?php
 
-function isToday($date_str)
+function isToday($date_str): bool
 {
     // based on https://stackoverflow.com/a/25623230/204807
     $today = new DateTime();
@@ -20,7 +20,7 @@ function get_prijzen_parade_url()
     foreach ($rss->channel->item as $item) {
         $title = $item->title;
         $publication_date = $item->pubDate;
-        if (strpos($title, '.Actie - December Prijzen') === 0 && isToday($publication_date)) {
+        if (str_starts_with($title, '.Actie - December Prijzen') && isToday($publication_date)) {
             return $item->link;
         }
     }
