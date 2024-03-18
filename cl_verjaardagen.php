@@ -1,4 +1,5 @@
 <?php
+
 class verjaardag
 {
     public $geboortedatums;
@@ -85,6 +86,3 @@ class verjaardag
         return $returnString;
     }
 }
-
-?>
-

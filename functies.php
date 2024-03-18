@@ -35,7 +35,7 @@ function getDagVanDe()
         }
     }
 
-    if ($dagText) {
+    if (isset($dagText)) {
         return $dagText;
     } else {
         return false;
