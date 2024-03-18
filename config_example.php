@@ -8,6 +8,3 @@ putenv('telegramId=XXX');
 putenv('verjaardagenGroupId=XXX');
 putenv('environment=Test');
 putenv('githubToken=XXX');
-
-?>
-
