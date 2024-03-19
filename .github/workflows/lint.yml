@@ -1,7 +1,7 @@
 name: Fix Code Style
 on: [workflow_call]
 jobs:
-  laravel-pint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
