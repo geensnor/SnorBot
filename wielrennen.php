@@ -2,8 +2,6 @@
 
 require_once 'utilities.php';
 
-include __DIR__.'/vendor/autoload.php';
-
 function getKoersenTekst(array $parsedICS, int $referentieDatum): string
 {
 
@@ -19,7 +17,7 @@ function getKoersenTekst(array $parsedICS, int $referentieDatum): string
             } elseif ($koers->dtstart <= $referentieDatum && $koers->dtend - 1 >= $referentieDatum) {//Meerdaagse koers, vandaag bezig
 
                 if ($koers->dtstart == $referentieDatum) {//Meerdaagse koers, en de start is vandaag
-                    $koersenTekst .= " \n Vandaag start ".$koers->summary.'. Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dsend))->modify('-1 day'));
+                    $koersenTekst .= " \n Vandaag start ".$koers->summary.'. Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dtend))->modify('-1 day'));
 
                 } elseif ($koers->dtend - 1 == $referentieDatum) {
 
@@ -27,7 +25,7 @@ function getKoersenTekst(array $parsedICS, int $referentieDatum): string
 
                 } else {//Meerdaagse koers en hij is eerder gestart
                     $dagVanKoers = $referentieDatum - $koers->dtstart + 1;
-                    $koersenTekst .= "\n Vandaag is dag ".$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dsend))->modify('-1 day')).'.';
+                    $koersenTekst .= "\n Vandaag is dag ".$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(DateTime::createFromFormat('Ymd', $koers->dtend)->modify('-1 day')).'.';
                 }
 
             }
