@@ -15,3 +15,10 @@ test('Vandaag van wikipedia', function (): void {
 test('Mop', function (): void {
     expect(getMop())->toBeString();
 });
+
+
+test('Het weer', function (): void {
+    include 'config.php';//Voor de API key
+    $weer = getWeather();
+    expect($weer)->toBeString();
+});
