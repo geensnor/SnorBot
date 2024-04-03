@@ -34,7 +34,7 @@ $send = false;
 if (in_array($text, ['brandstof', 'benzine', 'brandstof prijzen', 'euro95'])) {
     $brandstofObject = getFuelPrices();
 
-    $brandstofTekst = 'Een liter Euro 95 kost nu gemiddeld € '.$brandstofObject->averagePrice.".\nDe [".$brandstofObject->lowestPriceStation->organization.' in '.$brandstofObject->lowestPriceStation->town.'](https://maps.google.com/?q='.$brandstofObject->lowestPriceStation->gps[0].','.$brandstofObject->lowestPriceStation->gps[1].') is het goedkoopst met € '.$brandstofObject->lowestPriceStation->price.". \nDe [".$brandstofObject->highestPriceStation->organization.' in '.$brandstofObject->highestPriceStation->town.'](https://maps.google.com/?q='.$brandstofObject->highestPriceStation->gps[0].','.$brandstofObject->highestPriceStation->gps[1].') is het duurst met € '.$brandstofObject->highestPriceStation->price.'.';
+    $brandstofTekst = 'Een liter Euro 95 kost nu gemiddeld € '.$brandstofObject->averagePrice.".\n[".$brandstofObject->lowestPriceStation->organization.' in '.$brandstofObject->lowestPriceStation->town.'](https://maps.google.com/?q='.$brandstofObject->lowestPriceStation->gps[0].','.$brandstofObject->lowestPriceStation->gps[1].') is het goedkoopst met € '.$brandstofObject->lowestPriceStation->price.". \n[".$brandstofObject->highestPriceStation->organization.' in '.$brandstofObject->highestPriceStation->town.'](https://maps.google.com/?q='.$brandstofObject->highestPriceStation->gps[0].','.$brandstofObject->highestPriceStation->gps[1].') is het duurst met € '.$brandstofObject->highestPriceStation->price.'.';
 
     $content = ['chat_id' => $chat_id, 'text' => $brandstofTekst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
