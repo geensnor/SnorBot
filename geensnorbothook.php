@@ -34,7 +34,7 @@ $send = false;
 if (in_array($text, ['brandstof', 'benzine', 'brandstof prijzen', 'euro95'])) {
     $brandstofObject = getFuelPrices();
 
-    $brandstofTekst = 'Een liter Euro 95 kost nu gemiddeld € '.$brandstofObject->averagePrice.".\n De ".$brandstofObject->lowestPriceStation->organization.' in '.$brandstofObject->lowestPriceStation->town.' is het goedkoopst met € '.$brandstofObject->lowestPriceStation->price.". \n De ".$brandstofObject->highestPriceStation->organization.' in '.$brandstofObject->highestPriceStation->town.' is het duurst met € '.$brandstofObject->highestPriceStation->price.'.';
+    $brandstofTekst = 'Een liter Euro 95 kost nu gemiddeld € '.$brandstofObject->averagePrice.".\nDe ".$brandstofObject->lowestPriceStation->organization.' in '.$brandstofObject->lowestPriceStation->town.' is het goedkoopst met € '.$brandstofObject->lowestPriceStation->price.". \nDe ".$brandstofObject->highestPriceStation->organization.' in '.$brandstofObject->highestPriceStation->town.' is het duurst met € '.$brandstofObject->highestPriceStation->price.'.';
 
     $content = ['chat_id' => $chat_id, 'text' => $brandstofTekst, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
