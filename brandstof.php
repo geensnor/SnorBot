@@ -28,7 +28,7 @@ function getFuelPrices(): object
 
     $fuelObject = new stdClass();
 
-    $fuelObject->averagePrice = $total / count($brandstofResponse);
+    $fuelObject->averagePrice = round($total / count($brandstofResponse), 3);
     $fuelObject->lowestPriceStation = $lowestPriceStation;
 
     $fuelObject->highestPriceStation = $highestPriceStation;
