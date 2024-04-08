@@ -45,7 +45,7 @@ if (in_array($text, ['brandstof', 'benzine', 'brandstof prijzen', 'euro95'])) {
 //Wielrenkoersen
 if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
     $parsedICS = getParsedCalendar($wielrenKalender);
-    $koersTekst = getKoersenTekst($parsedICS, date('Ymd'));
+    $koersTekst = getKoersenTekst($parsedICS, (int) date('Ymd'));
 
     $content = ['chat_id' => $chat_id, 'text' => $koersTekst, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);

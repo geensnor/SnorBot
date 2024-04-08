@@ -31,8 +31,8 @@ function getKoersenTekst(array $parsedICS, int $referentieDatum): string
             }
 
             //Binnenkort
-            if (strtotime((string) $koers->dtstart) > strtotime($referentieDatum) && strtotime((string) $koers->dtstart) < strtotime('+1 week', strtotime($referentieDatum))) {
-                if ($koers->dtstart == date('Ymd', strtotime('+1 day', strtotime($referentieDatum)))) {
+            if (strtotime((string) $koers->dtstart) > strtotime((string) $referentieDatum) && strtotime((string) $koers->dtstart) < strtotime('+1 week', strtotime((string) $referentieDatum))) {
+                if ($koers->dtstart == date('Ymd', strtotime('+1 day', strtotime((string) $referentieDatum)))) {
                     $startTekst = 'morgen';
                 } else {
                     $startTekst = getFormattedDate(DateTime::createFromFormat('Ymd', $koers->dtstart));
