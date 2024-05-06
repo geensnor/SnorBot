@@ -1,8 +1,6 @@
 {
   "scripts": {
-    "refactor": "vendor/bin/rector --dry-run",
-    "refactor:fix": "vendor/bin/rector",
-    "check": "vendor/bin/phpstan analyse -l 4 .",
+    "check": "vendor/bin/phpstan analyse -l 5 .",
     "lint": "vendor/bin/pint",
     "test": "vendor/bin/pest"
   },
@@ -13,12 +11,12 @@
   "require-dev": {
     "pestphp/pest": "^1.23",
     "laravel/pint": "^1.5",
-    "rector/rector": "^1.0",
     "phpstan/phpstan": "^1.10"
   },
   "config": {
     "allow-plugins": {
-      "pestphp/pest-plugin": true
+      "pestphp/pest-plugin": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   }
 }
