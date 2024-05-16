@@ -30,6 +30,19 @@ $losseWoorden = explode(' ', $text);
 $antwoord = '';
 $send = false;
 
+//Kabinet
+
+if (strpos($text, "kabinet") || $text == "kabinet") {
+
+    $kabinetTekst = getKabinet();
+
+    $content = ['chat_id' => $chat_id, 'text' => $kabinetTekst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+    $send = true;
+
+}
+
+
 //Brandstofprijzen
 if (in_array($text, ['brandstof', 'benzine', 'brandstof prijzen', 'euro95'])) {
     $brandstofObject = getFuelPrices();
