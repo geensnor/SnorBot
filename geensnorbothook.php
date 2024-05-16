@@ -32,7 +32,7 @@ $send = false;
 
 //Kabinet
 
-if (strpos($text, "kabinet") || $text == "kabinet") {
+if (strpos($text, 'kabinet') || $text == 'kabinet') {
 
     $kabinetTekst = getKabinet();
 
@@ -41,7 +41,6 @@ if (strpos($text, "kabinet") || $text == "kabinet") {
     $send = true;
 
 }
-
 
 //Brandstofprijzen
 if (in_array($text, ['brandstof', 'benzine', 'brandstof prijzen', 'euro95'])) {
