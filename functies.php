@@ -51,7 +51,6 @@ function getBitcoinPrice(): string
     return 'Bitcoin prijs: € '.number_format($bitcoinPrice, 2, ',', '.');
 }
 
-
 function getEthereumPrice(): string
 {
     $url = 'https://api.coinbase.com/v2/exchange-rates?currency=ETH';
