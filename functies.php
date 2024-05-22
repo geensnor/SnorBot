@@ -21,7 +21,7 @@ function getBitcoinPrice(): string
 
     return 'Bitcoin prijs: € '.number_format($response->data->rates->EUR, 2, ',', '.');
 }
-*/
+
 function getBitcoinPrice(): string
 {
     $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
@@ -48,6 +48,12 @@ function getBitcoinPrice(): string
 
     // Return the formatted price
     return 'Bitcoin prijs: € ' . number_format($bitcoinPrice, 2, ',', '.');
+}
+*/
+function getBitcoinPrice(): string
+{
+    $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
+    return file_get_contents($url);
 }
 
 function getEthereumPrice(): string
