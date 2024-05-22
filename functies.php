@@ -20,19 +20,19 @@ function getBitcoinPrice(): string
 
     // Check if the data was fetched correctly
     if ($jsonData === false) {
-        return 'Error fetching data from kucoin';
+        return 'ojee, kucoin doet het niet';
     }
 
     $response = json_decode($jsonData);
 
     // Check if the JSON was decoded correctly
     if ($response === null) {
-        return 'Error decoding JSON data';
+        return 'ojee, kucoin geeft geen valide json';
     }
 
     // Ensure we are accessing the correct properties
     if (! isset($response->data->last)) {
-        return 'Error: Last rate not found in response';
+        return 'ojee, geen laatste waarde in de json ';
     }
 
     $bitcoinPrice = $response->data->last;
@@ -48,19 +48,19 @@ function getEthereumPrice(): string
 
     // Check if the data was fetched correctly
     if ($jsonData === false) {
-        return 'Error fetching data from kucoin';
+        return 'ojee, kucoin doet het niet';
     }
 
     $response = json_decode($jsonData);
 
     // Check if the JSON was decoded correctly
     if ($response === null) {
-        return 'Error decoding JSON data';
+        return 'ojee, kucoin geeft geen valide json';
     }
 
     // Ensure we are accessing the correct properties
     if (! isset($response->data->last)) {
-        return 'Error: last rate not found in response';
+        return 'ojee, geen laatste waarde in de json';
     }
 
     $ethPrice = $response->data->last;
