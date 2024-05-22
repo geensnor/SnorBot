@@ -25,7 +25,7 @@ function getBitcoinPrice(): string
 
 function getBitcoinPrice(): string
 {
-    $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
+    $url = 'https://api.kucoin.com/api/v1/market/stats?symbol=BTC-EUR';
     $jsonData = file_get_contents($url);
 
     // Check if the data was fetched correctly
@@ -45,20 +45,13 @@ function getBitcoinPrice(): string
         return 'Error: EUR rate not found in response';
     }
 
-    $bitcoinPrice = $response->data->rates->EUR;
+    $bitcoinPrice = $response->data->last;
 
     // Return the formatted price
     return 'Bitcoin prijs: € '.number_format($bitcoinPrice, 2, ',', '.');
 }
 
-/*
-function getBitcoinPrice(): string
-{
-    $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
 
-    return file_get_contents($url);
-}
-*/
 function getEthereumPrice(): string
 {
     $url = 'https://api.coinbase.com/v2/exchange-rates?currency=ETH';
