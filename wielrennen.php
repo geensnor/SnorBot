@@ -13,19 +13,19 @@ function getKoersenTekst(array $parsedICS, int $referentieDatum): string
         foreach ($parsedICS as $koers) {
             //Actuele koersen
             if ($koers->dtstart == $referentieDatum && $koers->dtend == $referentieDatum + 1) {//Eendaagse koers, vandaag
-                $koersenTekst .= " \n Vandaag wordt ".$koers->summary.' gereden.';
+                $koersenTekst .= " \nVandaag wordt ".$koers->summary.' gereden.';
             } elseif ($koers->dtstart <= $referentieDatum && $koers->dtend - 1 >= $referentieDatum) {//Meerdaagse koers, vandaag bezig
 
                 if ($koers->dtstart == $referentieDatum) {//Meerdaagse koers, en de start is vandaag
-                    $koersenTekst .= " \n Vandaag start ".$koers->summary.'. Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dtend))->modify('-1 day'));
+                    $koersenTekst .= " \nVandaag start ".$koers->summary.'. Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dtend))->modify('-1 day'));
 
                 } elseif ($koers->dtend - 1 == $referentieDatum) {
 
-                    $koersenTekst .= "\n Vandaag is de finish van ".$koers->summary.'.';
+                    $koersenTekst .= "\nVandaag is de finish van ".$koers->summary.'.';
 
                 } else {//Meerdaagse koers en hij is eerder gestart
                     $dagVanKoers = $referentieDatum - $koers->dtstart + 1;
-                    $koersenTekst .= "\n Vandaag is dag ".$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(DateTime::createFromFormat('Ymd', $koers->dtend)->modify('-1 day')).'.';
+                    $koersenTekst .= "\nVandaag is dag ".$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(DateTime::createFromFormat('Ymd', $koers->dtend)->modify('-1 day')).'.';
                 }
 
             }
@@ -52,7 +52,7 @@ function getKoersenTekst(array $parsedICS, int $referentieDatum): string
         }
 
         if ($koersenTekstBinnenkort) {
-            $koersenTekst .= "\n\n Binnenkort:".$koersenTekstBinnenkort;
+            $koersenTekst .= "\n\nBinnenkort:".$koersenTekstBinnenkort;
         }
 
         return $koersenTekst;
