@@ -12,7 +12,7 @@ function getKabinet(): string
     }
 
 }
-
+/*
 function getBitcoinPrice(): string
 {
     $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
@@ -20,6 +20,34 @@ function getBitcoinPrice(): string
     $response = json_decode($jsonData);
 
     return 'Bitcoin prijs: € '.number_format($response->data->rates->EUR, 2, ',', '.');
+}
+*/
+function getBitcoinPrice(): string
+{
+    $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
+    $jsonData = file_get_contents($url);
+    
+    // Check if the data was fetched correctly
+    if ($jsonData === false) {
+        return 'Error fetching data from Coinbase';
+    }
+
+    $response = json_decode($jsonData);
+
+    // Check if the JSON was decoded correctly
+    if ($response === null) {
+        return 'Error decoding JSON data';
+    }
+
+    // Ensure we are accessing the correct properties
+    if (!isset($response->data->rates->EUR)) {
+        return 'Error: EUR rate not found in response';
+    }
+
+    $bitcoinPrice = $response->data->rates->EUR;
+
+    // Return the formatted price
+    return 'Bitcoin prijs: € ' . number_format($bitcoinPrice, 2, ',', '.');
 }
 
 function getEthereumPrice(): string
