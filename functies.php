@@ -26,7 +26,7 @@ function getBitcoinPrice(): string
 {
     $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
     $jsonData = file_get_contents($url);
-    
+
     // Check if the data was fetched correctly
     if ($jsonData === false) {
         return 'Error fetching data from Coinbase';
@@ -40,14 +40,14 @@ function getBitcoinPrice(): string
     }
 
     // Ensure we are accessing the correct properties
-    if (!isset($response->data->rates->EUR)) {
+    if (! isset($response->data->rates->EUR)) {
         return 'Error: EUR rate not found in response';
     }
 
     $bitcoinPrice = $response->data->rates->EUR;
 
     // Return the formatted price
-    return 'Bitcoin prijs: € ' . number_format($bitcoinPrice, 2, ',', '.');
+    return 'Bitcoin prijs: € '.number_format($bitcoinPrice, 2, ',', '.');
 }
 
 function getEthereumPrice(): string
