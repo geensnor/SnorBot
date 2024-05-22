@@ -41,7 +41,7 @@ function getBitcoinPrice(): string
     }
 
     // Ensure we are accessing the correct properties
-    if (! isset($response->data->rates->EUR)) {
+    if (! isset($response->data->last)) {
         return 'Error: EUR rate not found in response';
     }
 
