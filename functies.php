@@ -30,7 +30,7 @@ function getBitcoinPrice(): string
 
     // Check if the data was fetched correctly
     if ($jsonData === false) {
-        return 'Error fetching data from Coinbase';
+        return 'Error fetching data from kucoin';
     }
 
     $response = json_decode($jsonData);
