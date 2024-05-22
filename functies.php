@@ -53,6 +53,7 @@ function getBitcoinPrice(): string
 function getBitcoinPrice(): string
 {
     $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
+
     return file_get_contents($url);
 }
 
