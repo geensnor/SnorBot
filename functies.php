@@ -12,16 +12,6 @@ function getKabinet(): string
     }
 
 }
-/*
-function getBitcoinPrice(): string
-{
-    $url = 'https://api.coinbase.com/v2/exchange-rates?currency=BTC';
-    $jsonData = file_get_contents($url);
-    $response = json_decode($jsonData);
-
-    return 'Bitcoin prijs: € '.number_format($response->data->rates->EUR, 2, ',', '.');
-}
-*/
 
 function getBitcoinPrice(): string
 {
@@ -42,7 +32,7 @@ function getBitcoinPrice(): string
 
     // Ensure we are accessing the correct properties
     if (! isset($response->data->last)) {
-        return 'Error: EUR rate not found in response';
+        return 'Error: Last rate not found in response';
     }
 
     $bitcoinPrice = $response->data->last;
@@ -53,18 +43,30 @@ function getBitcoinPrice(): string
 
 function getEthereumPrice(): string
 {
-    $url = 'https://api.coinbase.com/v2/exchange-rates?currency=ETH';
+    $url = 'https://api.kucoin.com/api/v1/market/stats?symbol=ETH-EUR';
     $jsonData = file_get_contents($url);
+
+    // Check if the data was fetched correctly
+    if ($jsonData === false) {
+        return 'Error fetching data from kucoin';
+    }
+
     $response = json_decode($jsonData);
 
-    if ($response && isset($response->data->rates->EUR)) {
-        $price = $response->data->rates->EUR;
-        // $percentage24Hour = round($response->data->rates->EUR_change_percentage * 100, 2);
-
-        return 'Ethereum prijs: € '.number_format($price, 2, ',', '.');
-    } else {
-        return 'Error: Unable to retrieve the ETH price.';
+    // Check if the JSON was decoded correctly
+    if ($response === null) {
+        return 'Error decoding JSON data';
     }
+
+    // Ensure we are accessing the correct properties
+    if (! isset($response->data->last)) {
+        return 'Error: last rate not found in response';
+    }
+
+    $ethPrice = $response->data->last;
+
+    // Return the formatted price
+    return 'Ethereum prijs: € '.number_format($ethPrice, 2, ',', '.');
 }
 
 function getDagVanDe()
