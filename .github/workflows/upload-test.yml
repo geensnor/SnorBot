@@ -1,7 +1,7 @@
 on:
   push:
-    branches:
-      - test
+    branches-ignore:
+      - master
   workflow_dispatch:
 
 name: Upload Snorbot test
