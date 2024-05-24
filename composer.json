@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "check": "vendor/bin/phpstan analyse -l 5 .",
+    "check": "vendor/bin/phpstan analyse",
     "lint": "vendor/bin/pint",
     "test": "vendor/bin/pest"
   },

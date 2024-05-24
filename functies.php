@@ -2,14 +2,15 @@
 
 function getKabinet(): string
 {
-
+    $kabinetBericht = "";
     $nosFeed = simplexml_load_file('https://feeds.nos.nl/nosnieuwspolitiek');
     foreach ($nosFeed->channel->item as $nosItem) {
         if (strpos($nosItem->description, 'kabinet') || strpos($nosItem->description, 'asiel') || strpos($nosItem->description, 'stikstof')) {
-            return '['.$nosItem->title.']('.$nosItem->link.')';
-
+            $kabinetBericht = '['.$nosItem->title.']('.$nosItem->link.')';
+            break;
         }
     }
+    return $kabinetBericht;
 
 }
 
