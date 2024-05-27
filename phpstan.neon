@@ -1,5 +1,4 @@
 parameters:
-	phpVersion: 80399
 	level: 5
 	paths:
 		- .
