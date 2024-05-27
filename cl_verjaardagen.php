@@ -56,7 +56,7 @@ class verjaardag
         }
 
         if (count($verjaardagenData) > 0) {// usort geeft vervelende error als er geen data opgehaald kan worden.
-            usort($verjaardagenData, fn (array $a, array $b): int => $a['dagenTotVerjaardag'] - $b['dagenTotVerjaardag']);
+            usort($verjaardagenData, fn (array $a, array $b): int => (int)($a['dagenTotVerjaardag'] - $b['dagenTotVerjaardag']));
         }
 
         return $verjaardagenData;
