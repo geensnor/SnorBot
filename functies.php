@@ -2,7 +2,7 @@
 
 function getKabinet(): string
 {
-    $kabinetBericht = "";
+    $kabinetBericht = '';
     $nosFeed = simplexml_load_file('https://feeds.nos.nl/nosnieuwspolitiek');
     foreach ($nosFeed->channel->item as $nosItem) {
         if (strpos($nosItem->description, 'kabinet') || strpos($nosItem->description, 'asiel') || strpos($nosItem->description, 'stikstof')) {
@@ -10,6 +10,7 @@ function getKabinet(): string
             break;
         }
     }
+
     return $kabinetBericht;
 
 }
