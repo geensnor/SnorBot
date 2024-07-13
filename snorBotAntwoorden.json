@@ -446,5 +446,9 @@
   {
     "trigger": "melk",
     "antwoord": "de witter motor"
+  },
+  {
+    "trigger": "anthem",
+    "antwoord": "https://dedigitaletuin.nl/assets/geensnor_anthem.mp3"
   }
 ]
