@@ -15,11 +15,11 @@ $telegram = new Telegram(getenv('telegramId'));
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
-$weetjesLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/weetjes.json';
-$dooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/dooddoeners.json';
-$verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/verveellijst.json';
-$haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/haiku.json';
-$brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DigitaleTuin/master/_data/brabants.json';
+$weetjesLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/weetjes.json';
+$dooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/dooddoeners.json';
+$verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/verveellijst.json';
+$haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/haiku.json';
+$brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/brabants.json';
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/wielerkalender24.ics';
 
