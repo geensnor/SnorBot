@@ -1,0 +1,27 @@
+[
+  {
+    "naam": "Alice",
+    "geboortedatum": "1984-03-01",
+    "voorkeursgeslacht": "V"
+  },
+  {
+    "naam": "Bob",
+    "geboortedatum": "1994-01-02",
+    "voorkeursgeslacht": "M"
+  },
+  {
+    "naam": "Henk",
+    "geboortedatum": "1999-01-02",
+    "voorkeursgeslacht": "M"
+  },
+  {
+    "naam": "Marieke",
+    "geboortedatum": "1987-01-01",
+    "voorkeursgeslacht": "V"
+  },
+  {
+    "naam": "Jan",
+    "geboortedatum": "1981-01-01",
+    "voorkeursgeslacht": "M"
+  }
+]
