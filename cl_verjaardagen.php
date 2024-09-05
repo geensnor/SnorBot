@@ -79,7 +79,7 @@ class verjaardag
         if ($verjaardagenData[0]->dagenTotVerjaardag == 0) { //Vandaag iemand jarig
             if (isset($verjaardagenData[1]->dagenTotVerjaardag) && $verjaardagenData[1]->dagenTotVerjaardag == 0) {//Twee jarigen vandaag
 
-                return 'Hoera! '.$verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn vandaag jarig! '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren).' jaar oud. Gefeliciteerd beide!';
+                return 'Hoera! '.$verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn vandaag jarig! '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren + 1).' jaar oud. Gefeliciteerd beide!';
             } else {//Een jarige vandaag
 
                 return 'Hoera! '.$verjaardagenData[0]->naam.' wordt vandaag '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud!';
@@ -97,7 +97,7 @@ class verjaardag
         } else {//Vandaag en morgen is niemand jarig. Dan maar uit de toekomst ophalen
             if (isset($verjaardagenData[1]->dagenTotVerjaardag) && ($verjaardagenData[0]->dagenTotVerjaardag == $verjaardagenData[1]->dagenTotVerjaardag)) {//Twee jarigen in de toekomst
 
-                return $verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn over '.$verjaardagenData[0]->dagenTotVerjaardag.' dagen jarig. Zij zijn de volgende die jarig zijn. '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren).' jaar oud.';
+                return $verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn over '.$verjaardagenData[0]->dagenTotVerjaardag.' dagen jarig. Zij zijn de volgende die jarig zijn. '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren + 1).' jaar oud.';
 
             } else {
 
