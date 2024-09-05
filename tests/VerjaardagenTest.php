@@ -17,9 +17,7 @@ test('Eén jarige vandaag', function (): void {
 test('Eén jarige morgen', function (): void {
     $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
-
     $v->setGeboortedatums($verjaardagenJSON);
-
     $testDate = new DateTime('2024-03-02 00:00:00');
     $verjaardagTekst = $v->getVerjaardagTekst($testDate);
 
