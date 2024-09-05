@@ -43,7 +43,7 @@ test('Twee jarigen vandaag', function (): void {
     $testDate = new DateTime('2024-01-02 00:00:00');
     $verjaardagTekst = $v->getVerjaardagTekst($testDate);
 
-    expect($verjaardagTekst)->toBe('Hoera! Bob en Henk zijn vandaag jarig! Bob wordt 30 en Henk wordt 24 jaar oud. Gefeliciteerd beide!');
+    expect($verjaardagTekst)->toBe('Hoera! Bob en Henk zijn vandaag jarig! Bob wordt 30 en Henk wordt 25 jaar oud. Gefeliciteerd beide!');
 });
 
 test('Twee jarigen morgen', function (): void {
@@ -65,5 +65,5 @@ test('Twee jarigen over een tijd', function (): void {
     $testDate = new DateTime('2024-01-12 00:00:00');
     $verjaardagTekst = $v->getVerjaardagTekst($testDate);
 
-    expect($verjaardagTekst)->toBe('Marieke en Jan zijn over 21 dagen jarig. Zij zijn de volgende die jarig zijn. Marieke wordt 37 jaar oud en Jan wordt 42 jaar oud.');
+    expect($verjaardagTekst)->toBe('Marieke en Jan zijn over 21 dagen jarig. Zij zijn de volgende die jarig zijn. Marieke wordt 37 jaar oud en Jan wordt 43 jaar oud.');
 });
