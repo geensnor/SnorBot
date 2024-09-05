@@ -1,7 +1,7 @@
 [
   {
     "naam": "Alice",
-    "geboortedatum": "1984-03-01",
+    "geboortedatum": "1984-03-03",
     "voorkeursgeslacht": "V"
   },
   {
@@ -16,12 +16,12 @@
   },
   {
     "naam": "Marieke",
-    "geboortedatum": "1987-01-01",
+    "geboortedatum": "1987-02-02",
     "voorkeursgeslacht": "V"
   },
   {
     "naam": "Jan",
-    "geboortedatum": "1981-01-01",
+    "geboortedatum": "1981-02-02",
     "voorkeursgeslacht": "M"
   }
 ]

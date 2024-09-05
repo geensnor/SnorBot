@@ -338,8 +338,12 @@ if ($text == 'chatid') {
 if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
     if ($chat_id == getenv('verjaardagenGroupId')) {
         include 'cl_verjaardagen.php';
+
+        $nu = new DateTime();
+
         $v = new verjaardag();
-        $content = ['chat_id' => $chat_id, 'text' => $v->getVerjaardagTekst()];
+        $v->getVerjaardagen();
+        $content = ['chat_id' => $chat_id, 'text' => $v->getVerjaardagTekst($nu)];
         $telegram->sendMessage($content);
         $send = true;
     } else {
