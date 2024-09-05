@@ -340,7 +340,7 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
         include 'cl_verjaardagen.php';
 
         $nu = new DateTime();
-        $vandaag = new DateTime($nu->format('Y-m-d'));//Dit is een beetje funky. Maar anders sprint hij van dag op en neer.
+        $vandaag = new DateTime($nu->format('Y-m-d')); //Dit is een beetje funky. Maar anders sprint hij van dag op en neer.
 
         $v = new verjaardag();
         $v->getVerjaardagen();
