@@ -2,9 +2,16 @@
 
 class verjaardag
 {
-    public $geboortedatums;
+    private $geboortedatums;
 
-    public function __construct()
+    //Geboortedatums apart zetten voor het testen
+    public function setGeboortedatums(array $geboortedatums): void
+    {
+        $this->geboortedatums = $geboortedatums;
+    }
+
+    //Geboortedatums uit GitHub Repo halen
+    public function getVerjaardagen(): void
     {
         $GithHubAPIUrl = 'https://api.github.com/repos/reithose/geboortedatums/contents/';
 
@@ -26,65 +33,83 @@ class verjaardag
         $this->geboortedatums = json_decode(file_get_contents($curlResult[0]->download_url));
     }
 
-    /**
-     * @return array<mixed, array<'dagenTotVerjaardag'|'datumVerjaardag'|'geboortedatum'|'leeftijdDagen'|'leeftijdJaren'|'naam', mixed>>
-     */
-    public function getVerjaardagenData(): array
+    public function getVerjaardagenData(DateTime $referentieDatum): array
     {
-        $referentieDatum = strtotime(date('Y-m-d'));
         $verjaardagenData = [];
         foreach ($this->geboortedatums as $key => $value) {
-            $verjaardagDitJaar = strtotime(date('Y').date('-m-d', strtotime((string) $this->geboortedatums[$key]->geboortedatum)));
-            $verschil = $verjaardagDitJaar - $referentieDatum;
 
-            $persoon['naam'] = $this->geboortedatums[$key]->naam;
-            $persoon['geboortedatum'] = date('d-m-Y', strtotime((string) $this->geboortedatums[$key]->geboortedatum));
-            $leeftijdObject = date_diff(date_create($this->geboortedatums[$key]->geboortedatum), date_create(date('Y-m-d')));
-            $persoon['leeftijdJaren'] = $leeftijdObject->y;
-            $persoon['leeftijdDagen'] = $leeftijdObject->days;
+            if (isset($this->geboortedatums[$key]->geboortedatum)) {
+                $geboortedatumDateTime = DateTime::createFromFormat('Y-m-d', $this->geboortedatums[$key]->geboortedatum);
 
-            if ($verschil >= 0) {
-                $persoon['dagenTotVerjaardag'] = round($verschil / 86400);
-                $persoon['datumVerjaardag'] = date('d-m-Y', $verjaardagDitJaar);
-            } else {//Verjaardag is al geweest dit jaar
-                $verjaardagVolgendJaar = strtotime(date('Y', strtotime('+1 year')).date('-m-d', strtotime((string) $this->geboortedatums[$key]->geboortedatum)));
-                $verschil = $verjaardagVolgendJaar - $referentieDatum;
-                $persoon['dagenTotVerjaardag'] = round($verschil / 86400);
-                $persoon['datumVerjaardag'] = date('d-m-Y', $verjaardagVolgendJaar);
+
+                $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
+
+
+                if ($geboortedatumDateTime->format('md') >= $referentieDatum->format('md')) {
+
+                    $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
+
+                    $persoon = new stdClass();
+
+                    $persoon->naam = $this->geboortedatums[$key]->naam;
+                    $persoon->geboortedatum = $geboortedatumDateTime->format('d-m-Y');
+                    $leeftijdObject = date_diff($geboortedatumDateTime, $referentieDatum);
+                    $persoon->leeftijdJaren = $leeftijdObject->y;
+
+                    $verjaardagObject = date_diff($verjaardagDitJaar, $referentieDatum);
+
+                    $persoon->dagenTotVerjaardag = $verjaardagObject->days;
+
+
+                    $persoon->datumVerjaardag = $verjaardagDitJaar->format('d-m-Y');
+
+                    $verjaardagenData[] = $persoon;
+                }
+
+                if (count($verjaardagenData) > 0) {// usort geeft vervelende error als er geen data opgehaald kan worden.
+                    usort($verjaardagenData, fn ($a, $b): int => (int) ($a->dagenTotVerjaardag - $b->dagenTotVerjaardag));
+                }
             }
-            $verjaardagenData[] = $persoon;
-        }
-
-        if (count($verjaardagenData) > 0) {// usort geeft vervelende error als er geen data opgehaald kan worden.
-            usort($verjaardagenData, fn (array $a, array $b): int => (int) ($a['dagenTotVerjaardag'] - $b['dagenTotVerjaardag']));
         }
 
         return $verjaardagenData;
     }
 
-    public function getVerjaardagTekst(): string
+    public function getVerjaardagTekst(DateTime $referentieDatum): string
     {
-        $verjaardagenData = $this->getVerjaardagenData();
-        if ($verjaardagenData[0]['dagenTotVerjaardag'] == 0) {
-            return 'Hoera! '.$verjaardagenData[0]['naam'].' wordt vandaag '.($verjaardagenData[0]['leeftijdJaren']).' jaar oud!';
-        } elseif ($verjaardagenData[0]['dagenTotVerjaardag'] == 1) {
-            return $verjaardagenData[0]['naam'].' is de volgende die jarig is. Hij/zij wordt morgen ('.$verjaardagenData[0]['datumVerjaardag'].') '.($verjaardagenData[0]['leeftijdJaren'] + 1).' jaar!';
-        } else {
-            return $verjaardagenData[0]['naam'].' is de volgende die jarig is. Hij/zij wordt over '.$verjaardagenData[0]['dagenTotVerjaardag'].' dagen ('.$verjaardagenData[0]['datumVerjaardag'].') '.($verjaardagenData[0]['leeftijdJaren'] + 1).' jaar. ';
-        }
-    }
+        $verjaardagenData = $this->getVerjaardagenData($referentieDatum);
 
-    public function checkKomendeDagen(): string
-    {
-        $returnString = '';
-        $verjaardagenData = $this->getVerjaardagenData();
-        if ($verjaardagenData[0]['dagenTotVerjaardag'] == 0) {
-            $returnString = 'Hoera! '.$verjaardagenData[0]['naam'].' wordt vandaag '.($verjaardagenData[0]['leeftijdJaren']).' jaar oud!';
-        }
-        if ($verjaardagenData[0]['dagenTotVerjaardag'] == 1) {
-            $returnString = 'Morgen wordt '.$verjaardagenData[0]['naam'].' al weer '.($verjaardagenData[0]['leeftijdJaren'] + 1).' jaar oud!';
+
+        if ($verjaardagenData[0]->dagenTotVerjaardag == 0) { //Vandaag iemand jarig
+            if (isset($verjaardagenData[1]->dagenTotVerjaardag) && $verjaardagenData[1]->dagenTotVerjaardag == 0) {//Twee jarigen vandaag
+
+                return 'Hoera! '.$verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn vandaag jarig! '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren).' jaar oud. Gefeliciteerd beide!';
+            } else {//Een jarige vandaag
+
+                return 'Hoera! '.$verjaardagenData[0]->naam.' wordt vandaag '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud!';
+            }
+        } elseif ($verjaardagenData[0]->dagenTotVerjaardag == 1) {//Morgen iemand jarig
+            if (isset($verjaardagenData[1]->dagenTotVerjaardag) && $verjaardagenData[1]->dagenTotVerjaardag == 1) {//Twee jarigen morgen
+
+                return 'Morgen zijn '.$verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' jarig! '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren + 1).'.';
+
+            } else { //Een jarige morgen
+
+                return $verjaardagenData[0]->naam.' is de volgende die jarig is. Hij/zij wordt morgen ('.$verjaardagenData[0]->datumVerjaardag.') '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar!';
+            }
+
+        } else {//Vandaag en morgen is niemand jarig. Dan maar uit de toekomst ophalen
+            if (isset($verjaardagenData[1]->dagenTotVerjaardag) && ($verjaardagenData[0]->dagenTotVerjaardag == $verjaardagenData[1]->dagenTotVerjaardag)) {//Twee jarigen in de toekomst
+
+                return $verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn over '.$verjaardagenData[0]->dagenTotVerjaardag.' dagen jarig. Zij zijn de volgende die jarig zijn. '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren).' jaar oud.';
+
+            } else {
+
+                return $verjaardagenData[0]->naam.' is de volgende die jarig is. Hij/zij wordt over '.$verjaardagenData[0]->dagenTotVerjaardag.' dagen ('.$verjaardagenData[0]->datumVerjaardag.'), '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar.';
+
+            }
         }
 
-        return $returnString;
+
     }
 }
