@@ -41,9 +41,7 @@ class verjaardag
             if (isset($this->geboortedatums[$key]->geboortedatum)) {
                 $geboortedatumDateTime = DateTime::createFromFormat('Y-m-d', $this->geboortedatums[$key]->geboortedatum);
 
-
                 $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
-
 
                 if ($geboortedatumDateTime->format('md') >= $referentieDatum->format('md')) {
 
@@ -59,7 +57,6 @@ class verjaardag
                     $verjaardagObject = date_diff($verjaardagDitJaar, $referentieDatum);
 
                     $persoon->dagenTotVerjaardag = $verjaardagObject->days;
-
 
                     $persoon->datumVerjaardag = $verjaardagDitJaar->format('d-m-Y');
 
@@ -78,7 +75,6 @@ class verjaardag
     public function getVerjaardagTekst(DateTime $referentieDatum): string
     {
         $verjaardagenData = $this->getVerjaardagenData($referentieDatum);
-
 
         if ($verjaardagenData[0]->dagenTotVerjaardag == 0) { //Vandaag iemand jarig
             if (isset($verjaardagenData[1]->dagenTotVerjaardag) && $verjaardagenData[1]->dagenTotVerjaardag == 0) {//Twee jarigen vandaag
@@ -109,7 +105,6 @@ class verjaardag
 
             }
         }
-
 
     }
 }
