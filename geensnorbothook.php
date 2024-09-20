@@ -523,7 +523,6 @@ if (! $send) {
     //Eerst op de hele zin/alle woorden zoeken ($text). Dit werkt voor geen meter....
     foreach ($antwoordenArray as $key => $value) {
         if (strstr($text, strtolower((string) $antwoordenArray[$key]->trigger)) || strstr($text, ucfirst((string) $antwoordenArray[$key]->trigger))) {
-            echo $text.' '.$key.' antwoord: '.$antwoordenArray[$key]->antwoord;
             $antwoord = $antwoordenArray[$key]->antwoord;
             $send = true;
         }
