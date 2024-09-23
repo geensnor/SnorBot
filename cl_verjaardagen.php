@@ -13,7 +13,7 @@ class verjaardag
     //Geboortedatums uit GitHub Repo halen
     public function getVerjaardagen(): void
     {
-        $GithHubAPIUrl = 'https://api.github.com/repos/reithose/geboortedatums/contents/';
+        $GithHubAPIUrl = 'https://api.github.com/repos/reithose/snorbot-extra/contents/';
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
