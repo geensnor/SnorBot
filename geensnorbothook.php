@@ -354,6 +354,21 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
     }
 }
 
+if (preg_match('/.*\d{4}.*/', $text)) {//Controleren of er in de vraag vier cijfers (jaartal...) in een string voorkomt. Dan beschouwen we het maar als een jaartal...
+    if ($chat_id == getenv('verjaardagenGroupId')) {
+        $v = new weekend();
+        $content = ['chat_id' => $chat_id, 'text' => $v->getWeekendText($text)];
+        $telegram->sendMessage($content);
+        $send = true;
+
+    } else {
+        $content = ['chat_id' => $chat_id, 'text' => 'Hier kan ik niets over zeggen.'];
+        $telegram->sendMessage($content);
+        $send = true;
+    }
+
+}
+
 if ($telegram->Location()) {
     $locatieGebruiker = $telegram->Location();
     $adviesJson = getAdviesArray($locatieGebruiker['latitude'], $locatieGebruiker['longitude']);
@@ -417,6 +432,7 @@ if ($text == 'dooddoener') {
     }
     $send = true;
 }
+
 
 if ($text == 'verveel' || $text == 'wat zal ik doen') {
     $verveelArray = json_decode(file_get_contents($verveelLocatie));
