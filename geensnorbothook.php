@@ -433,7 +433,6 @@ if ($text == 'dooddoener') {
     $send = true;
 }
 
-
 if ($text == 'verveel' || $text == 'wat zal ik doen') {
     $verveelArray = json_decode(file_get_contents($verveelLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {

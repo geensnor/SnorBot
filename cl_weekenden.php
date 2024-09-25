@@ -33,18 +33,19 @@ class weekend
                 return $weekend;
             }
         }
+
         return false;
     }
 
     public function getWeekendText(string $text): string
     {
-        preg_match("/\d{4}/", $text, $matches);//Vier cijfers uit de vraag vissen
+        preg_match("/\d{4}/", $text, $matches); //Vier cijfers uit de vraag vissen
         if (isset($matches[0])) {
             $weekendObject = $this->getWeekendByJaar($matches[0]);
             if ($weekendObject) {
-                return "In ".$weekendObject->jaar." gingen we naar ".$weekendObject->plaats.": ".$weekendObject->omschrijving;
+                return 'In '.$weekendObject->jaar.' gingen we naar '.$weekendObject->plaats.': '.$weekendObject->omschrijving;
             } else {
-                return "In ".$matches[0]." gingen we geen weekend weg";
+                return 'In '.$matches[0].' gingen we geen weekend weg';
             }
         }
     }
