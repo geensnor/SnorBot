@@ -356,6 +356,8 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
 
 if (preg_match('/.*\d{4}.*/', $text)) {//Controleren of er in de vraag vier cijfers (jaartal...) in een string voorkomt. Dan beschouwen we het maar als een jaartal...
     if ($chat_id == getenv('verjaardagenGroupId')) {
+
+        include 'cl_weekenden.php';
         $v = new weekend();
         $content = ['chat_id' => $chat_id, 'text' => $v->getWeekendText($text)];
         $telegram->sendMessage($content);
