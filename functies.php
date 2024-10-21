@@ -78,7 +78,6 @@ function getDagVanDe()
     $dagVanDeArray = json_decode(file_get_contents($dagVanDeLocatie));
 
     foreach ($dagVanDeArray as $key => $value) {
-        echo "<br>lala:".$dagVanDeArray[$key]->dag;
         if ($dagVanDeArray[$key]->dag == date('d-m')) {
             $dagText = 'Het is vandaag '.$dagVanDeArray[$key]->onderwerp;
 
