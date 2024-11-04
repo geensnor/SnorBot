@@ -18,11 +18,10 @@ class TweedeKamer
         } else {
 
             $activiteitenResponse = json_decode($activiteitenResponseContent);
-            if (!$activiteitenResponse->value) {
+            if (! $activiteitenResponse->value) {
                 return 'Er is vandaag niet veel te doen in de Tweede Kamer';
             } else {
                 $randomActiviteit = $activiteitenResponse->value[array_rand($activiteitenResponse->value)];
-
 
                 $activiteitObject = new stdClass();
                 $activiteitObject->soort = $randomActiviteit->Soort;
