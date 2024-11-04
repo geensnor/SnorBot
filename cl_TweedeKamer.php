@@ -43,6 +43,6 @@ class TweedeKamer
 
         return 'Het laatste geschenk van '.$geschenkObject->datum.' is voor ['.$geschenkObject->naam.'](https://berthub.eu/tkconv/persoon.html?nummer='.$geschenkObject->nummer.') uit '.$geschenkObject->woonplaats.':
         
-        '.$geschenkObject->tekst;
+    '.$geschenkObject->tekst;
     }
 }
