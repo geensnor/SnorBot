@@ -1,6 +1,7 @@
 <?php
 
 date_default_timezone_set('Europe/Amsterdam');
+
 include 'config.php';
 include __DIR__.'/vendor/autoload.php';
 
@@ -37,6 +38,18 @@ if (strpos($text, 'kabinet') || $text == 'kabinet') {
     $kabinetTekst = getKabinet();
 
     $content = ['chat_id' => $chat_id, 'text' => $kabinetTekst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+    $send = true;
+
+}
+
+if (strpos($text, 'geschenk')) {
+
+    include 'cl_TweedeKamer.php';
+
+    $tk = new TweedeKamer();
+
+    $content = ['chat_id' => $chat_id, 'text' => $tk->getGeschenkTekst(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
 
