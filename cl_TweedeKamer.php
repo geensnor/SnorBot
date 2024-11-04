@@ -22,11 +22,9 @@ class TweedeKamer
 
             $geschenkResponse = json_decode(file_get_contents('https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/PersoonGeschenk?&$expand=%20Persoon&$orderby=Datum%20desc', false, stream_context_create($arrContextOptions)));
 
-
         } catch (Exception $e) {
 
         }
-
 
         $geschenkResponse = json_decode(file_get_contents('https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/PersoonGeschenk?&$expand=%20Persoon&$orderby=Datum%20desc', false, stream_context_create($arrContextOptions)));
 
