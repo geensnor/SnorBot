@@ -2,23 +2,45 @@
 
 class TweedeKamer
 {
-    public function getActiviteit(DateTime $datum)
+    private $arrContextOptions = [
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ];
+
+    public function getRandomActiviteitOpDag(DateTime $datum): object|string
     {
-        //https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Activiteit?$filter=date(Datum)%20eq%202024-11-04
-        //TODO: alles
+
+        $activiteitenResponseContent = file_get_contents('https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Activiteit?$filter=date(Datum)%20eq%20'.$datum->format('Y-m-d'), false, stream_context_create($this->arrContextOptions));
+        if ($activiteitenResponseContent === false) {
+            return 'Ophalen van de activiteiten gaat niet helemaal goed.';
+        } else {
+
+            $activiteitenResponse = json_decode($activiteitenResponseContent);
+            if (!$activiteitenResponse->value) {
+                return 'Er is vandaag niet veel te doen in de Tweede Kamer';
+            } else {
+                $randomActiviteit = $activiteitenResponse->value[array_rand($activiteitenResponse->value)];
+
+
+                $activiteitObject = new stdClass();
+                $activiteitObject->soort = $randomActiviteit->Soort;
+                $aanvangtijdObject = new DateTime($randomActiviteit->Aanvangstijd);
+
+                $activiteitObject->tijd = $aanvangtijdObject->format('H:i');
+                $activiteitObject->onderwerp = $randomActiviteit->Onderwerp;
+
+                return $activiteitObject;
+            }
+        }
+
     }
 
     public function getGeschenk(): object|string
     {
 
-        $arrContextOptions = [
-            'ssl' => [
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-            ],
-        ];
-
-        $geschenkResponseContent = file_get_contents('https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/PersoonGeschenk?&$expand=%20Persoon&$orderby=Datum%20desc', false, stream_context_create($arrContextOptions));
+        $geschenkResponseContent = file_get_contents('https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/PersoonGeschenk?&$expand=%20Persoon&$orderby=Datum%20desc', false, stream_context_create($this->arrContextOptions));
 
         if ($geschenkResponseContent === false) {
             return 'Ophalen van de geschenken gaat niet helemaal goed.';
@@ -39,9 +61,15 @@ class TweedeKamer
         }
     }
 
-    public function getActiviteitTekst()
+    public function getActiviteitTekst(DateTime $datum): string
     {
-        //TODO zie: getActiviteit
+        $randomActiviteit = $this->getRandomActiviteitOpDag($datum);
+        if (is_object($randomActiviteit)) {
+            return 'Er gebeurt weer van alles in de Tweede Kamer. Zo is er om '.$randomActiviteit->tijd.' een '.$randomActiviteit->soort.' over '.$randomActiviteit->onderwerp;
+        } else {
+            return $randomActiviteit;
+        }
+
     }
 
     public function getGeschenkTekst(): string

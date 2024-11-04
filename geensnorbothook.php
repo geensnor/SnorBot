@@ -55,6 +55,17 @@ if (strpos($text, 'geschenk') !== false) {
 
 }
 
+if (strpos($text, 'activiteit') !== false) {
+
+    include 'cl_TweedeKamer.php';
+
+    $tk = new TweedeKamer();
+
+    $content = ['chat_id' => $chat_id, 'text' => $tk->getRandomActiviteitOpDag(new DateTime()), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+    $send = true;
+
+}
 //Brandstofprijzen
 //De brandstofprijzen staan uit, want de site doet het niet meer
 // if (in_array($text, ['brandstof', 'benzine', 'brandstof prijzen', 'euro95'])) {
