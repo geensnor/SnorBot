@@ -43,7 +43,7 @@ if (strpos($text, 'kabinet') || $text == 'kabinet') {
 
 }
 
-if (strpos($text, 'geschenk')) {
+if (strpos($text, 'geschenk') || $text == 'geschenk') {
 
     include 'cl_TweedeKamer.php';
 

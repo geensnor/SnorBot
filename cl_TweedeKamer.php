@@ -41,8 +41,7 @@ class TweedeKamer
     {
         $geschenkObject = $this->getGeschenk();
 
-        return 'Het laatste geschenk is voor <a href=
-https://berthub.eu/tkconv/persoon.html?nummer='.$geschenkObject->nummer.'>'.$geschenkObject->naam.'</a> uit '.$geschenkObject->woonplaats.'. 
- Geschenk van '.$geschenkObject->datum." :\n".$geschenkObject->tekst;
+        return 'Het laatste geschenk is voor ['.$geschenkObject->naam.'](https://berthub.eu/tkconv/persoon.html?nummer='.$geschenkObject->nummer.') uit '.$geschenkObject->woonplaats.'. 
+ Geschenk van '.$geschenkObject->datum.":\n\n".$geschenkObject->tekst;
     }
 }
