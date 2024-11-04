@@ -18,6 +18,16 @@ class TweedeKamer
             ],
         ];
 
+        try {
+
+            $geschenkResponse = json_decode(file_get_contents('https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/PersoonGeschenk?&$expand=%20Persoon&$orderby=Datum%20desc', false, stream_context_create($arrContextOptions)));
+
+
+        } catch (Exception $e) {
+
+        }
+
+
         $geschenkResponse = json_decode(file_get_contents('https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/PersoonGeschenk?&$expand=%20Persoon&$orderby=Datum%20desc', false, stream_context_create($arrContextOptions)));
 
         $geschenkObject = new stdClass();
@@ -41,6 +51,6 @@ class TweedeKamer
     {
         $geschenkObject = $this->getGeschenk();
 
-        return 'Het laatste geschenk van '.$geschenkObject->datum.' is voor ['.$geschenkObject->naam.'](https://berthub.eu/tkconv/persoon.html?nummer='.$geschenkObject->nummer.') uit '.$geschenkObject->woonplaats.': '.$geschenkObject->tekst;
+        return 'Het laatste geschenk voor kamerleden is van '.$geschenkObject->datum.'. ['.$geschenkObject->naam.'](https://berthub.eu/tkconv/persoon.html?nummer='.$geschenkObject->nummer.') uit '.$geschenkObject->woonplaats.' kreeg: '.$geschenkObject->tekst;
     }
 }

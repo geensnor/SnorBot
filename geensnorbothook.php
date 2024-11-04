@@ -33,7 +33,7 @@ $send = false;
 
 //Kabinet
 
-if (strpos($text, 'kabinet') || $text == 'kabinet') {
+if (strpos($text, 'kabinet') !== false) {
 
     $kabinetTekst = getKabinet();
 
@@ -43,7 +43,7 @@ if (strpos($text, 'kabinet') || $text == 'kabinet') {
 
 }
 
-if (strpos($text, 'geschenk') || $text == 'geschenk') {
+if (strpos($text, 'geschenk') !== false) {
 
     include 'cl_TweedeKamer.php';
 
