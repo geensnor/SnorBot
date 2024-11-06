@@ -61,7 +61,7 @@ if (strpos($text, 'activiteit') !== false) {
 
     $tk = new TweedeKamer();
 
-    $content = ['chat_id' => $chat_id, 'text' => $tk->getRandomActiviteitOpDag(new DateTime()), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $content = ['chat_id' => $chat_id, 'text' => $tk->getActiviteitTekst(new DateTime()), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
 
