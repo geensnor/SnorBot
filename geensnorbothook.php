@@ -162,7 +162,14 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
         $goedeMorgenText .= "\n\n".$dagVanDeText;
     }
 
-    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews();
+    //Goede morgen tweede kamer!
+
+    include 'cl_TweedeKamer.php';
+
+    $tk = new TweedeKamer();
+
+    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews()."\n\n".$tk->getActiviteitTekst(new DateTime());
+
 
     $content = ['chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
