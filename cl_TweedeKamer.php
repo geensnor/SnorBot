@@ -68,7 +68,7 @@ class TweedeKamer
         } else {
             return $randomActiviteit;
         }
-
+    }
 
     public function getGeschenkTekst(): string
     {
