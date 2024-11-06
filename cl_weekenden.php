@@ -2,6 +2,13 @@
 
 class weekend
 {
+    private array $weekenden;
+
+    public function setWeekenden(array $weekenden): void
+    {
+        $this->weekenden = $weekenden;
+    }
+
     //Weekenden uit GitHub Repo halen
     public function getWeekenden(): array
     {
@@ -21,32 +28,41 @@ class weekend
         }
 
         curl_close($curl);
+        var_dump(
+            json_decode(file_get_contents($curlResult[1]->download_url))
+        );
 
         return json_decode(file_get_contents($curlResult[1]->download_url));
     }
 
-    public function getWeekendByJaar(int $jaar): bool|object
+    public function getWeekendByJaar(int $jaar): ?object
     {
-        $weekendArray = $this->getWeekenden();
-        foreach ($weekendArray as $weekend) {
+        if (! isset($this->weekenden)) {
+            $this->getWeekenden();
+        }
+
+        foreach ($this->weekenden as $weekend) {
             if ($weekend->jaar == $jaar) {
                 return $weekend;
             }
         }
 
-        return false;
+        return null;
     }
 
     public function getWeekendText(string $text): string
     {
         preg_match("/\d{4}/", $text, $matches); //Vier cijfers uit de vraag vissen
         if (isset($matches[0])) {
-            $weekendObject = $this->getWeekendByJaar($matches[0]);
-            if ($weekendObject) {
+            $weekendObject = $this->getWeekendByJaar((int) $matches[0]);
+            if (is_object($weekendObject)) {
                 return 'In '.$weekendObject->jaar.' gingen we naar '.$weekendObject->plaats.': '.$weekendObject->omschrijving;
             } else {
                 return 'In '.$matches[0].' gingen we geen weekend weg';
             }
+
         }
+
+        return 'Dit is geen jaartal';
     }
 }
