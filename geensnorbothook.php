@@ -43,7 +43,9 @@ if (strpos($text, 'kabinet') !== false) {
 
 }
 
+
 if (strpos($text, 'geschenk') !== false) {
+
 
     include 'cl_TweedeKamer.php';
 
@@ -54,6 +56,7 @@ if (strpos($text, 'geschenk') !== false) {
     $send = true;
 
 }
+
 
 if (strpos($text, 'activiteit') !== false) {
 
@@ -66,18 +69,6 @@ if (strpos($text, 'activiteit') !== false) {
     $send = true;
 
 }
-//Brandstofprijzen
-//De brandstofprijzen staan uit, want de site doet het niet meer
-// if (in_array($text, ['brandstof', 'benzine', 'brandstof prijzen', 'euro95'])) {
-//     $brandstofObject = getFuelPrices();
-
-//     $brandstofTekst = 'Een liter Euro 95 kost nu gemiddeld € '.$brandstofObject->averagePrice.".\n[".$brandstofObject->lowestPriceStation->organization.' in '.$brandstofObject->lowestPriceStation->town.'](https://maps.google.com/?q='.$brandstofObject->lowestPriceStation->gps[0].','.$brandstofObject->lowestPriceStation->gps[1].') is het goedkoopst met € '.$brandstofObject->lowestPriceStation->price.". \n[".$brandstofObject->highestPriceStation->organization.' in '.$brandstofObject->highestPriceStation->town.'](https://maps.google.com/?q='.$brandstofObject->highestPriceStation->gps[0].','.$brandstofObject->highestPriceStation->gps[1].') is het duurst met € '.$brandstofObject->highestPriceStation->price.'.';
-
-//     $content = ['chat_id' => $chat_id, 'text' => $brandstofTekst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
-//     $telegram->sendMessage($content);
-//     $send = true;
-
-// }
 
 //Wielrenkoersen
 if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
@@ -95,7 +86,7 @@ if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $tex
     if ($dagVanDeText) {
         $sendText = $dagVanDeText;
     } else {
-        $sendText = "Ik heb geen idee waar het vandaag een dag van is. Maar op bijvoorbeeld https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen.\n\nDe lijst van de bot staat op Github: https://github.com/geensnor/DigitaleTuin/blob/master/_data/dagvande.json, dus ga je gang!";
+        $sendText = "Ik heb geen idee waar het vandaag een dag van is. Maar op bijvoorbeeld https://www.beleven.org/feesten/ en https://www.fijnedagvan.nl/overzicht/kalender/ staan heel veel dagen.\n\nDe lijst van de bot staat op Github: https://github.com/geensnor/DeDigitaleTuin/blob/main/src/content/data/dagvande.json, dus ga je gang!";
     }
 
     $content = ['chat_id' => $chat_id, 'text' => $sendText, 'disable_web_page_preview' => true];

@@ -69,11 +69,11 @@ class TweedeKamer
             return $randomActiviteit;
         }
 
-    }
 
     public function getGeschenkTekst(): string
     {
         $geschenkObject = $this->getGeschenk();
+
         if (is_object($geschenkObject)) {
 
             return 'Het laatste geschenk voor kamerleden is van '.$geschenkObject->datum.'. ['.$geschenkObject->naam.'](https://berthub.eu/tkconv/persoon.html?nummer='.$geschenkObject->nummer.') uit '.$geschenkObject->woonplaats.' kreeg: '.$geschenkObject->tekst;
