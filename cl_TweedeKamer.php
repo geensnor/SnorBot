@@ -64,7 +64,7 @@ class TweedeKamer
     {
         $randomActiviteit = $this->getRandomActiviteitOpDag($datum);
         if (is_object($randomActiviteit)) {
-            return 'Er gebeurt weer van alles in de Tweede Kamer. Zo is er vandaag om '.$randomActiviteit->tijd.' een '.$randomActiviteit->soort.' over '.$randomActiviteit->onderwerp;
+            return 'Er gebeurt vandaag weer van alles in de Tweede Kamer. Zo is er om '.$randomActiviteit->tijd.' een '.$randomActiviteit->soort.' over '.$randomActiviteit->onderwerp;
         } else {
             return $randomActiviteit;
         }
