@@ -43,9 +43,7 @@ if (strpos($text, 'kabinet') !== false) {
 
 }
 
-
 if (strpos($text, 'geschenk') !== false) {
-
 
     include 'cl_TweedeKamer.php';
 
@@ -56,7 +54,6 @@ if (strpos($text, 'geschenk') !== false) {
     $send = true;
 
 }
-
 
 if (strpos($text, 'activiteit') !== false) {
 
