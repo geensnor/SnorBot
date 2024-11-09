@@ -23,7 +23,7 @@ class TweedeKamer
             } else {
                 $randomActiviteit = $activiteitenResponse->value[array_rand($activiteitenResponse->value)];
 
-                $activiteitObject = new stdClass();
+                $activiteitObject = new stdClass;
                 $activiteitObject->soort = $randomActiviteit->Soort;
                 $aanvangtijdObject = new DateTime($randomActiviteit->Aanvangstijd);
 
@@ -47,7 +47,7 @@ class TweedeKamer
 
             $geschenkResponse = json_decode($geschenkResponseContent);
 
-            $geschenkObject = new stdClass();
+            $geschenkObject = new stdClass;
             $geschenkObject->tekst = $geschenkResponse->value[0]->Omschrijving;
             $geschenkObject->naam = $geschenkResponse->value[0]->Persoon->Roepnaam.($geschenkResponse->value[0]->Persoon->Tussenvoegsel ? ' '.$geschenkResponse->value[0]->Persoon->Tussenvoegsel.' ' : ' ').$geschenkResponse->value[0]->Persoon->Achternaam;
             $geschenkObject->nummer = $geschenkResponse->value[0]->Persoon->Nummer;
