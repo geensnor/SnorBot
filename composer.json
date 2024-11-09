@@ -9,7 +9,7 @@
     "johngrogg/ics-parser": "^3"
   },
   "require-dev": {
-    "pestphp/pest": "^1.23",
+    "pestphp/pest": "^3.5.1",
     "laravel/pint": "^1.5",
     "phpstan/phpstan": "^1.10"
   },
