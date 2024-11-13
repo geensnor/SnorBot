@@ -1,7 +1,9 @@
 {
   "scripts": {
-    "check": "vendor/bin/phpstan analyse",
-    "lint": "vendor/bin/pint",
+    "check": [
+      "vendor/bin/pint",
+      "phpstan analyze"
+    ],
     "test": "vendor/bin/pest"
   },
   "require": {
@@ -9,14 +11,13 @@
     "johngrogg/ics-parser": "^3"
   },
   "require-dev": {
-    "pestphp/pest": "^1.23",
+    "pestphp/pest": "^3.5.1",
     "laravel/pint": "^1.5",
     "phpstan/phpstan": "^1.10"
   },
   "config": {
     "allow-plugins": {
-      "pestphp/pest-plugin": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "pestphp/pest-plugin": true
     }
   }
 }

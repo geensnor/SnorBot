@@ -22,7 +22,6 @@ class TweedeKamer
                 return 'Er is vandaag niet veel te doen in de Tweede Kamer';
             } else {
                 $randomActiviteit = $activiteitenResponse->value[array_rand($activiteitenResponse->value)];
-
                 $activiteitObject = new stdClass();
                 $activiteitObject->soort = $randomActiviteit->Soort;
                 $aanvangtijdObject = new DateTime($randomActiviteit->Aanvangstijd);
@@ -75,7 +74,6 @@ class TweedeKamer
         $geschenkObject = $this->getGeschenk();
 
         if (is_object($geschenkObject)) {
-
             return 'Het laatste geschenk voor kamerleden is van '.$geschenkObject->datum.'. ['.$geschenkObject->naam.'](https://berthub.eu/tkconv/persoon.html?nummer='.$geschenkObject->nummer.') uit '.$geschenkObject->woonplaats.' kreeg: '.$geschenkObject->tekst;
         } else {
             return $geschenkObject;

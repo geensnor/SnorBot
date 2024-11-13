@@ -12,7 +12,6 @@ function getKabinet(): string
     }
 
     return $kabinetBericht;
-
 }
 
 function getBitcoinPrice(): string
@@ -80,7 +79,6 @@ function getDagVanDe()
     foreach ($dagVanDeArray as $key => $value) {
         if ($dagVanDeArray[$key]->dag == date('d-m')) {
             $dagText = 'Het is vandaag '.$dagVanDeArray[$key]->onderwerp;
-
         }
     }
 

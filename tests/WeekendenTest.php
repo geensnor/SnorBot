@@ -3,7 +3,6 @@
 include 'cl_weekenden.php';
 
 test('Weekendtekst voor tekst met jaartal', function (): void {
-
     $weekend = new weekend();
     $weekendenJSON = json_decode(file_get_contents('tests/fixtures/weekenden.json'));
     $weekend->setWeekenden($weekendenJSON);

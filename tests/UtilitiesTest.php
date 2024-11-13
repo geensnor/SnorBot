@@ -4,7 +4,6 @@ require_once 'utilities.php';
 
 test('Unix timestamp naar nederlanse datum formatteren', function (): void {
     expect(getFormattedDate(DateTime::createFromFormat('Ymd', '20240226')))->toBe('maandag 26 februari');
-
 });
 
 test('Interval in dagen in het nederlands voor 1 dag', function (): void {

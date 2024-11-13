@@ -15,19 +15,14 @@ function getKoersenTekst(array $parsedICS, int $referentieDatum): string
             if ($koers->dtstart == $referentieDatum && $koers->dtend == $referentieDatum + 1) {//Eendaagse koers, vandaag
                 $koersenTekst .= " \nVandaag wordt ".$koers->summary.' gereden.';
             } elseif ($koers->dtstart <= $referentieDatum && $koers->dtend - 1 >= $referentieDatum) {//Meerdaagse koers, vandaag bezig
-
                 if ($koers->dtstart == $referentieDatum) {//Meerdaagse koers, en de start is vandaag
                     $koersenTekst .= " \nVandaag start ".$koers->summary.'. Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dtend))->modify('-1 day'));
-
                 } elseif ($koers->dtend - 1 == $referentieDatum) {
-
                     $koersenTekst .= "\nVandaag is de finish van ".$koers->summary.'.';
-
                 } else {//Meerdaagse koers en hij is eerder gestart
                     $dagVanKoers = $referentieDatum - $koers->dtstart + 1;
                     $koersenTekst .= "\nVandaag is dag ".$dagVanKoers.' van '.$koers->summary.'. Deze duurt tot en met '.getFormattedDate(DateTime::createFromFormat('Ymd', $koers->dtend)->modify('-1 day')).'.';
                 }
-
             }
 
             //Binnenkort
@@ -39,7 +34,6 @@ function getKoersenTekst(array $parsedICS, int $referentieDatum): string
                 }
                 $koersenTekstBinnenkort .= "\n- ".$startTekst.' start '.$koers->summary.'.';
                 if ((strtotime((string) $koers->dtend) - strtotime((string) $koers->dtstart)) > 86400) {
-
                     $koersenTekstBinnenkort .= ' Deze duurt tot en met '.getFormattedDate((DateTime::createFromFormat('Ymd', $koers->dtend))->modify('-1 day'));
                 }
             }
