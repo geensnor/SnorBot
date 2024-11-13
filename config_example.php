@@ -1,4 +1,5 @@
 <?php
+
 /*
 Hernoem dit bestand naar config.php en vervangen de XXX-en hieronder door je keys/id's/ditjes/datjes
 */

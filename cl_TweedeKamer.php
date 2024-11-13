@@ -16,7 +16,6 @@ class TweedeKamer
         if ($activiteitenResponseContent === false) {
             return 'Ophalen van de activiteiten gaat niet helemaal goed.';
         } else {
-
             $activiteitenResponse = json_decode($activiteitenResponseContent);
             if (! $activiteitenResponse->value) {
                 return 'Er is vandaag niet veel te doen in de Tweede Kamer';
@@ -33,7 +32,6 @@ class TweedeKamer
                 return $activiteitObject;
             }
         }
-
     }
 
     public function getGeschenk(): object|string
@@ -44,7 +42,6 @@ class TweedeKamer
         if ($geschenkResponseContent === false) {
             return 'Ophalen van de geschenken gaat niet helemaal goed.';
         } else {
-
             $geschenkResponse = json_decode($geschenkResponseContent);
 
             $geschenkObject = new stdClass;
@@ -75,7 +72,6 @@ class TweedeKamer
         $geschenkObject = $this->getGeschenk();
 
         if (is_object($geschenkObject)) {
-
             return 'Het laatste geschenk voor kamerleden is van '.$geschenkObject->datum.'. ['.$geschenkObject->naam.'](https://berthub.eu/tkconv/persoon.html?nummer='.$geschenkObject->nummer.') uit '.$geschenkObject->woonplaats.' kreeg: '.$geschenkObject->tekst;
         } else {
             return $geschenkObject;

@@ -37,14 +37,12 @@ class verjaardag
     {
         $verjaardagenData = [];
         foreach ($this->geboortedatums as $key => $value) {
-
             if (isset($this->geboortedatums[$key]->geboortedatum)) {
                 $geboortedatumDateTime = DateTime::createFromFormat('Y-m-d', $this->geboortedatums[$key]->geboortedatum);
 
                 $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
 
                 if ($geboortedatumDateTime->format('md') >= $referentieDatum->format('md')) {
-
                     $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
 
                     $persoon = new stdClass;
@@ -78,33 +76,22 @@ class verjaardag
 
         if ($verjaardagenData[0]->dagenTotVerjaardag == 0) { //Vandaag iemand jarig
             if (isset($verjaardagenData[1]->dagenTotVerjaardag) && $verjaardagenData[1]->dagenTotVerjaardag == 0) {//Twee jarigen vandaag
-
                 return 'Hoera! '.$verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn vandaag jarig! '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren + 1).' jaar oud. Gefeliciteerd beide!';
             } else {//Een jarige vandaag
-
                 return 'Hoera! '.$verjaardagenData[0]->naam.' wordt vandaag '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud!';
             }
         } elseif ($verjaardagenData[0]->dagenTotVerjaardag == 1) {//Morgen iemand jarig
             if (isset($verjaardagenData[1]->dagenTotVerjaardag) && $verjaardagenData[1]->dagenTotVerjaardag == 1) {//Twee jarigen morgen
-
                 return 'Morgen zijn '.$verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' jarig! '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren + 1).'.';
-
             } else { //Een jarige morgen
-
                 return $verjaardagenData[0]->naam.' is de volgende die jarig is. Hij/zij wordt morgen ('.$verjaardagenData[0]->datumVerjaardag.') '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar!';
             }
-
         } else {//Vandaag en morgen is niemand jarig. Dan maar uit de toekomst ophalen
             if (isset($verjaardagenData[1]->dagenTotVerjaardag) && ($verjaardagenData[0]->dagenTotVerjaardag == $verjaardagenData[1]->dagenTotVerjaardag)) {//Twee jarigen in de toekomst
-
                 return $verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn over '.$verjaardagenData[0]->dagenTotVerjaardag.' dagen jarig. Zij zijn de volgende die jarig zijn. '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar oud en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren + 1).' jaar oud.';
-
             } else {
-
                 return $verjaardagenData[0]->naam.' is de volgende die jarig is. Hij/zij wordt over '.$verjaardagenData[0]->dagenTotVerjaardag.' dagen ('.$verjaardagenData[0]->datumVerjaardag.'), '.($verjaardagenData[0]->leeftijdJaren + 1).' jaar.';
-
             }
         }
-
     }
 }

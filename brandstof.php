@@ -23,7 +23,6 @@ function getFuelPrices(): object
         }
 
         $total = $total + $tankstation->price;
-
     }
 
     $fuelObject = new stdClass;
@@ -34,5 +33,4 @@ function getFuelPrices(): object
     $fuelObject->highestPriceStation = $highestPriceStation;
 
     return $fuelObject;
-
 }

@@ -60,7 +60,6 @@ class weekend
             } else {
                 return 'In '.$matches[0].' gingen we geen weekend weg';
             }
-
         }
 
         return 'Dit is geen jaartal';

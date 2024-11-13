@@ -34,17 +34,14 @@ $send = false;
 //Kabinet
 
 if (strpos($text, 'kabinet') !== false) {
-
     $kabinetTekst = getKabinet();
 
     $content = ['chat_id' => $chat_id, 'text' => $kabinetTekst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
-
 }
 
 if (strpos($text, 'geschenk') !== false) {
-
     include 'cl_TweedeKamer.php';
 
     $tk = new TweedeKamer;
@@ -52,11 +49,9 @@ if (strpos($text, 'geschenk') !== false) {
     $content = ['chat_id' => $chat_id, 'text' => $tk->getGeschenkTekst(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
-
 }
 
 if (strpos($text, 'activiteit') !== false) {
-
     include 'cl_TweedeKamer.php';
 
     $tk = new TweedeKamer;
@@ -64,7 +59,6 @@ if (strpos($text, 'activiteit') !== false) {
     $content = ['chat_id' => $chat_id, 'text' => $tk->getActiviteitTekst(new DateTime), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
-
 }
 
 //Wielrenkoersen
@@ -374,19 +368,16 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
 
 if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in de vraag vier cijfers (jaartal...) in een string voorkomt. Dan beschouwen we het maar als een jaartal. Behalve als het natuurlijk 1337 is....
     if ($chat_id == getenv('verjaardagenGroupId')) {
-
         include 'cl_weekenden.php';
         $v = new weekend;
         $content = ['chat_id' => $chat_id, 'text' => $v->getWeekendText($text)];
         $telegram->sendMessage($content);
         $send = true;
-
     } else {
         $content = ['chat_id' => $chat_id, 'text' => 'Hier kan ik niets over zeggen.'];
         $telegram->sendMessage($content);
         $send = true;
     }
-
 }
 
 if ($telegram->Location()) {

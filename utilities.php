@@ -18,7 +18,6 @@ function getParsedCalendar(string $calendarLocation): array
     ]);
 
     return $ical->events();
-
 }
 
 function getFormattedDate(DateTime $dateObject): string
@@ -27,7 +26,6 @@ function getFormattedDate(DateTime $dateObject): string
     $dagNamenNederlands = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
 
     return $dagNamenNederlands[$dateObject->format('w')].' '.$dateObject->format('j').' '.$maandNamenNederlands[$dateObject->format('n') - 1];
-
 }
 
 function getFormattedIntervalDays(string $startDate, string $endDate): string
@@ -43,5 +41,4 @@ function getFormattedIntervalDays(string $startDate, string $endDate): string
     } else {
         return $interval->days.' dagen';
     }
-
 }
