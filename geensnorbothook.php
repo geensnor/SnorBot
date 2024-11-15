@@ -246,7 +246,16 @@ if ($text == 'nieuws') {
 
     $send = true;
 }
-//Nieuws hierboven
+
+// thuisarts nieuws
+if ($text == 'thuisarts') {
+    $content = ['chat_id' => $chat_id, 'text' => getThuisarts(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+
+    $send = true;
+}
+getThuisarts
+//Wielrenieuws
 
 if ($text == 'wielrennieuws') {
     $content = ['chat_id' => $chat_id, 'text' => getCyclingNews(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
