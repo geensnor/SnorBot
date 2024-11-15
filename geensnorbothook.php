@@ -254,7 +254,7 @@ if ($text == 'thuisarts') {
 
     $send = true;
 }
-getThuisarts
+
 //Wielrenieuws
 
 if ($text == 'wielrennieuws') {
