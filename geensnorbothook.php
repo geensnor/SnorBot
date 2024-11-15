@@ -44,7 +44,7 @@ if (strpos($text, 'kabinet') !== false) {
 if (strpos($text, 'geschenk') !== false) {
     include 'cl_TweedeKamer.php';
 
-    $tk = new TweedeKamer;
+    $tk = new TweedeKamer();
 
     $content = ['chat_id' => $chat_id, 'text' => $tk->getGeschenkTekst(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
@@ -54,11 +54,12 @@ if (strpos($text, 'geschenk') !== false) {
 if (strpos($text, 'activiteit') !== false) {
     include 'cl_TweedeKamer.php';
 
-    $tk = new TweedeKamer;
+    $tk = new TweedeKamer();
 
-    $content = ['chat_id' => $chat_id, 'text' => $tk->getActiviteitTekst(new DateTime), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $content = ['chat_id' => $chat_id, 'text' => $tk->getActiviteitTekst(new DateTime()), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
+
 }
 
 //Wielrenkoersen
@@ -147,10 +148,9 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
     //Goede morgen tweede kamer!
 
     include 'cl_TweedeKamer.php';
+    $tk = new TweedeKamer();
 
-    $tk = new TweedeKamer;
-
-    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews()."\n\n".$tk->getActiviteitTekst(new DateTime);
+    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews()."\n\n".$tk->getActiviteitTekst(new DateTime());
 
     $content = ['chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
@@ -360,10 +360,10 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
     if ($chat_id == getenv('verjaardagenGroupId')) {
         include 'cl_verjaardagen.php';
 
-        $nu = new DateTime;
+        $nu = new DateTime();
         $vandaag = new DateTime($nu->format('Y-m-d')); //Dit is een beetje funky. Maar anders sprint hij van dag op en neer.
 
-        $v = new verjaardag;
+        $v = new verjaardag();
         $v->getVerjaardagen();
         $content = ['chat_id' => $chat_id, 'text' => $v->getVerjaardagTekst($vandaag)];
         $telegram->sendMessage($content);
@@ -378,7 +378,7 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
 if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in de vraag vier cijfers (jaartal...) in een string voorkomt. Dan beschouwen we het maar als een jaartal. Behalve als het natuurlijk 1337 is....
     if ($chat_id == getenv('verjaardagenGroupId')) {
         include 'cl_weekenden.php';
-        $v = new weekend;
+        $v = new weekend();
         $content = ['chat_id' => $chat_id, 'text' => $v->getWeekendText($text)];
         $telegram->sendMessage($content);
         $send = true;
