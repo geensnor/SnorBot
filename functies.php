@@ -144,3 +144,10 @@ function getWeekNumberToday(): string
 
     return 'week '.$weekNumber;
 }
+
+function getThuisarts(): string
+{
+    $thuisartsrss = simplexml_load_file('https://www.thuisarts.nl/rss.xml');
+
+    return "Laatste bericht op thuisarts.nl: \n[".$thuisartsrss->channel->item[0]->title.']('.$thuisartsrss->channel->item[0]->link.')';
+}
