@@ -192,7 +192,7 @@ if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'])) {
 //Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
 
 if ($text == 'sywert' || $text == 'sywert van lienden') {
-    $antwoord = 'Het is '.getDaysSince('06-06-2021').' dagen geleden dat Sywert van Lienden beloofde om de 9 miljoen euro die hij onterecht verdiende aan een goed doel te schenken.';
+    $antwoord = 'Het is '.getDaysSince('06-06-2021').' dagen geleden dat Sywert van Lienden beloofde om het rendement van de 9 miljoen euro die hij onterecht verdiende, aan een goed doel te schenken.';
 
     $send = true;
 }
