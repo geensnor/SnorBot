@@ -451,4 +451,9 @@
     "trigger": "anthem",
     "antwoord": "Onze geensnor anthem! https://www.dedigitaletuin.nl/geensnor_anthem.mp3"
   }
+  ,
+  {
+    "trigger": "joepie joepie",
+    "antwoord": "dat ging echt topie"
+  }
 ]
