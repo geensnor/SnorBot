@@ -14,8 +14,9 @@
             <source dsn=".">
                 <path>.</path>
             </source>
-            <ignore hidden="true" symlinks="true">
+            <ignore>
                 <path>vendor/**/*</path>
+                <path>tests/**/*</path>
             </ignore>
             <markers>
                 <marker>TODO</marker>
