@@ -2,8 +2,10 @@ name: Generate PHP Documentation
 on: [push]
 
 jobs:
-  phpdoc:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,13 +26,21 @@ jobs:
       - name: Generate Documentation
         run: phpdoc
 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
-        environment:
-          name: github-pages
-          url: ${{steps.deployment.outputs.page_url}}
-        runs-on: ubuntu-latest
-        needs: build
-        steps:
-          - name: Deploy to GitHub Pages
-            id: deployment
-            uses: actions/deploy-pages@v4
+        id: deployment
+        uses: actions/deploy-pages@v4
