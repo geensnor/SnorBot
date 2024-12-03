@@ -15,16 +15,6 @@ jobs:
           coverage: none
           tools: phive
 
-      - name: Cache Composer dependencies
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
-      - name: Install Composer Dependencies
-        run: composer install --no-progress
-
       - name: Install PHPDocumentor
         run: |
           wget https://phpdoc.org/phpDocumentor.phar
