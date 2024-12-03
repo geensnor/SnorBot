@@ -1,6 +1,7 @@
 composer.phar
 .DS_Store
 vendor/
+docs/
 config.php
 test.php
 .phpunit.result.cache
