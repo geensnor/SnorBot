@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Een classe die wat spullen van de tweede kamer API ophaalt
+ */
 class TweedeKamer
 {
     private $arrContextOptions = [
@@ -9,6 +12,16 @@ class TweedeKamer
         ],
     ];
 
+    /**
+     * getRandomActiviteitOpDag
+     *
+     * Geeft een willekeurige activiteit van de tweede kamer terug op basis van een datum
+     *
+     * @param  mixed  $datum
+     * @return object
+     *
+     * @todo De boel nog eens een keer flink aanpakken!
+     */
     public function getRandomActiviteitOpDag(DateTime $datum): object|string
     {
 
@@ -35,6 +48,11 @@ class TweedeKamer
 
     }
 
+    /**
+     * getGeschenk
+     *
+     * @return object
+     */
     public function getGeschenk(): object|string
     {
 

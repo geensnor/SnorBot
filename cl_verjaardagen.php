@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * verjaardag
+ */
 class verjaardag
 {
     private $geboortedatums;
@@ -10,7 +13,11 @@ class verjaardag
         $this->geboortedatums = $geboortedatums;
     }
 
-    //Geboortedatums uit GitHub Repo halen
+    /**
+     * getVerjaardagen
+     *
+     * Geboortedatums uit GitHub Repo halen
+     */
     public function getVerjaardagen(): void
     {
         $GithHubAPIUrl = 'https://api.github.com/repos/reithose/snorbot-extra/contents/';
