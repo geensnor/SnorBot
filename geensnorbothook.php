@@ -11,6 +11,7 @@ include 'tourpoule.php';
 include 'functies.php';
 include 'wielrennen.php';
 include 'brandstof.php';
+include 'energie.php';
 
 $telegram = new Telegram(getenv('telegramId'));
 
@@ -182,6 +183,14 @@ if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood'
     $send = true;
 }
 
+if (in_array($text, ['energie', 'energiemix'])) {
+    $energieData = getEnergie();
+    $content = ['chat_id' => $chat_id, 'text' => 'Op dit moment wordt in Nederland '.$energieData->renewablePercentage.'% van de energie opgewekt uit hernieuwbare bronnen. '.$energieData->powerProductionBreakdown->wind.' MW komt uit windenergie, '.$energieData->powerProductionBreakdown->solar.' MW uit zonne-energie.', 'parse_mode' => 'Markdown'];
+    $telegram->sendMessage($content);
+    $send = true;
+
+}
+
 if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'])) {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
     $content = ['chat_id' => $chat_id, 'text' => 'Het is '.$weerObject->liveweer[0]->temp.' graden, maar het voelt als '.$weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown'];
@@ -190,7 +199,6 @@ if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'])) {
 }
 
 //Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
-
 if ($text == 'sywert' || $text == 'sywert van lienden') {
     $antwoord = 'Het is '.getDaysSince('06-06-2021').' dagen geleden dat Sywert van Lienden beloofde om het rendement van de 9 miljoen euro die hij onterecht verdiende, aan een goed doel te schenken.';
 
