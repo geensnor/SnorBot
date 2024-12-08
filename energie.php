@@ -5,8 +5,6 @@
  *
  * Haalt een hele berg data op van de API van electricitymap.org en geeft die hele berg data in een object terug.
  * Hier staat wat je er allemaal nog meer mee kan: https://docs.electricitymaps.com
- *
- * @return object
  */
 function getEnergie(): object
 {
