@@ -11,6 +11,7 @@ include 'tourpoule.php';
 include 'functies.php';
 include 'wielrennen.php';
 include 'brandstof.php';
+include 'energie.php';
 
 $telegram = new Telegram(getenv('telegramId'));
 
