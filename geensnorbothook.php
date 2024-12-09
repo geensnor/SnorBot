@@ -183,9 +183,9 @@ if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood'
     $send = true;
 }
 
-if (in_array($text, ['energie', 'energiemix'])) {
+if (in_array($text, ['energie', 'energiemix', 'electriciteit'])) {
     $energieData = getEnergie();
-    $content = ['chat_id' => $chat_id, 'text' => 'Op dit moment wordt in Nederland '.$energieData->renewablePercentage.'% van de energie opgewekt uit hernieuwbare bronnen. '.$energieData->powerProductionBreakdown->wind.' MW komt uit windenergie, '.$energieData->powerProductionBreakdown->solar.' MW uit zonne-energie.', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'Op dit moment wordt in Nederland '.$energieData->renewablePercentage.'% van de electriciteit opgewekt uit hernieuwbare bronnen. '.$energieData->powerProductionBreakdown->wind.' MW komt uit windenergie, '.$energieData->powerProductionBreakdown->solar.' MW uit zonne-energie.', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 
