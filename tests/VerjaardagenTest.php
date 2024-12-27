@@ -3,7 +3,7 @@
 include 'cl_verjaardagen.php';
 
 test('Eén jarige vandaag', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
 
     $v->setGeboortedatums($verjaardagenJSON);
@@ -15,7 +15,7 @@ test('Eén jarige vandaag', function (): void {
 });
 
 test('Eén jarige morgen', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
     $testDate = new DateTime('2024-03-02 00:00:00');
@@ -25,7 +25,7 @@ test('Eén jarige morgen', function (): void {
 });
 
 test('Eén jarige over een tijd', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
     $testDate = new DateTime('2024-02-10 00:00:00');
@@ -34,7 +34,7 @@ test('Eén jarige over een tijd', function (): void {
 });
 
 test('Twee jarigen vandaag', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
 
@@ -45,7 +45,7 @@ test('Twee jarigen vandaag', function (): void {
 });
 
 test('Twee jarigen morgen', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
 
@@ -56,7 +56,7 @@ test('Twee jarigen morgen', function (): void {
 });
 
 test('Twee jarigen over een tijd', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
 

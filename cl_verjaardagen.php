@@ -52,7 +52,7 @@ class verjaardag
                 if ($geboortedatumDateTime->format('md') >= $referentieDatum->format('md')) {
                     $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
 
-                    $persoon = new stdClass;
+                    $persoon = new stdClass();
 
                     $persoon->naam = $this->geboortedatums[$key]->naam;
                     $persoon->geboortedatum = $geboortedatumDateTime->format('d-m-Y');

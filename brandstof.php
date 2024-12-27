@@ -5,10 +5,10 @@ function getFuelPrices(): object
 
     $brandstofResponse = json_decode(file_get_contents('https://www.tankplanner.nl/api/v1/price/euro95/'));
 
-    $lowestPriceStation = new stdClass;
+    $lowestPriceStation = new stdClass();
     $lowestPriceStation->price = INF;
 
-    $highestPriceStation = new stdClass;
+    $highestPriceStation = new stdClass();
     $highestPriceStation->price = -INF;
 
     $total = 0;
@@ -25,7 +25,7 @@ function getFuelPrices(): object
         $total = $total + $tankstation->price;
     }
 
-    $fuelObject = new stdClass;
+    $fuelObject = new stdClass();
 
     $fuelObject->averagePrice = round($total / count($brandstofResponse), 3);
     $fuelObject->lowestPriceStation = $lowestPriceStation;
