@@ -17,7 +17,7 @@ class TweedeKamer
      *
      * Geeft een willekeurige activiteit van de tweede kamer terug op basis van een datum
      *
-     * @param  mixed  $datum
+     * @param  DateTime $datum
      * @return object
      *
      * @todo De boel nog eens een keer flink aanpakken!

@@ -23,11 +23,9 @@ function getEnergie(): object
     if (curl_errno($curl)) {
         $error = curl_error($curl);
         echo "Error: $error";
+        return (object) [];
     } else {
         $data = json_decode($response);
-        curl_close($curl);
-
         return $data;
     }
-
 }
