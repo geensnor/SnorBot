@@ -5,3 +5,4 @@ docs/
 config.php
 test.php
 .phpunit.result.cache
+./docscache
