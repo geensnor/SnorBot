@@ -65,3 +65,13 @@ test('Twee jarigen over een tijd', function (): void {
 
     expect($verjaardagTekst)->toBe('Marieke en Jan zijn over 21 dagen jarig. Zij zijn de volgende die jarig zijn. Marieke wordt 37 jaar oud en Jan wordt 43 jaar oud.');
 });
+
+test('Verjaardag over jaargrens heen', function (): void {
+    $v = new verjaardag();
+    $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
+    $v->setGeboortedatums($verjaardagenJSON);
+    $testDate = new DateTime('2024-12-30 10:00:00');
+    $verjaardagTekst = $v->getVerjaardagTekst($testDate);
+
+    expect($verjaardagTekst)->toBe('Bob en Henk zijn over 2 dagen jarig. Zij zijn de volgende die jarig zijn. Bob wordt 31 jaar oud en Henk wordt 26 jaar oud.');
+});

@@ -49,24 +49,34 @@ class verjaardag
 
                 $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
 
-                if ($geboortedatumDateTime->format('md') >= $referentieDatum->format('md')) {
-                    $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
+                $persoon = new stdClass();
 
-                    $persoon = new stdClass();
+                $persoon->naam = $this->geboortedatums[$key]->naam;
+                $persoon->geboortedatum = $geboortedatumDateTime->format('d-m-Y');
+                $leeftijdObject = date_diff($geboortedatumDateTime, $referentieDatum);
+                $persoon->leeftijdJaren = $leeftijdObject->y;
+                $verjaardagObject = date_diff($verjaardagDitJaar, $referentieDatum);
 
-                    $persoon->naam = $this->geboortedatums[$key]->naam;
-                    $persoon->geboortedatum = $geboortedatumDateTime->format('d-m-Y');
-                    $leeftijdObject = date_diff($geboortedatumDateTime, $referentieDatum);
-                    $persoon->leeftijdJaren = $leeftijdObject->y;
 
-                    $verjaardagObject = date_diff($verjaardagDitJaar, $referentieDatum);
-
-                    $persoon->dagenTotVerjaardag = $verjaardagObject->days;
-
+                if ($verjaardagDitJaar < $referentieDatum) {//Als de verjaardag al is geweest dit jaar, naar volgend jaar kijken
+                    $volgendeVerjaardag = DateTime::createFromFormat('Ymd', ($referentieDatum->format('Y') + 1).$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
+                    $persoon->datumVerjaardag = $volgendeVerjaardag->format('d-m-Y');
+                } else {
+                    $volgendeVerjaardag = $verjaardagDitJaar;
                     $persoon->datumVerjaardag = $verjaardagDitJaar->format('d-m-Y');
-
-                    $verjaardagenData[] = $persoon;
                 }
+
+
+                $verjaardagObject = date_diff($volgendeVerjaardag, $referentieDatum);
+                $persoon->dagenTotVerjaardag = $verjaardagObject->days;
+
+
+
+
+
+
+                $verjaardagenData[] = $persoon;
+                // }
 
                 if (count($verjaardagenData) > 0) {// usort geeft vervelende error als er geen data opgehaald kan worden.
                     usort($verjaardagenData, fn ($a, $b): int => (int) ($a->dagenTotVerjaardag - $b->dagenTotVerjaardag));
@@ -80,7 +90,7 @@ class verjaardag
     public function getVerjaardagTekst(DateTime $referentieDatum): string
     {
         $verjaardagenData = $this->getVerjaardagenData($referentieDatum);
-
+        var_dump($verjaardagenData);
         if ($verjaardagenData[0]->dagenTotVerjaardag == 0) { //Vandaag iemand jarig
             if (isset($verjaardagenData[1]->dagenTotVerjaardag) && $verjaardagenData[1]->dagenTotVerjaardag == 0) {//Twee jarigen vandaag
                 return 'Hoera! '.$verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn vandaag jarig! '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren + 1).' jaar oud. Gefeliciteerd beide!';
