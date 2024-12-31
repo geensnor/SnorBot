@@ -90,7 +90,6 @@ class verjaardag
     public function getVerjaardagTekst(DateTime $referentieDatum): string
     {
         $verjaardagenData = $this->getVerjaardagenData($referentieDatum);
-        var_dump($verjaardagenData);
         if ($verjaardagenData[0]->dagenTotVerjaardag == 0) { //Vandaag iemand jarig
             if (isset($verjaardagenData[1]->dagenTotVerjaardag) && $verjaardagenData[1]->dagenTotVerjaardag == 0) {//Twee jarigen vandaag
                 return 'Hoera! '.$verjaardagenData[0]->naam.' en '.$verjaardagenData[1]->naam.' zijn vandaag jarig! '.$verjaardagenData[0]->naam.' wordt '.($verjaardagenData[0]->leeftijdJaren + 1).' en '.$verjaardagenData[1]->naam.' wordt '.($verjaardagenData[1]->leeftijdJaren + 1).' jaar oud. Gefeliciteerd beide!';
