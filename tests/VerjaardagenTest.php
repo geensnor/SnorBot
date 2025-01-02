@@ -73,5 +73,5 @@ test('Verjaardag over jaargrens heen', function (): void {
     $testDate = new DateTime('2024-12-30 10:00:00');
     $verjaardagTekst = $v->getVerjaardagTekst($testDate);
 
-    expect($verjaardagTekst)->toBe('Bob en Henk zijn over 2 dagen jarig. Zij zijn de volgende die jarig zijn. Bob wordt 31 jaar oud en Henk wordt 26 jaar oud.');
+    expect($verjaardagTekst)->toBe('Bob en Henk zijn over 3 dagen jarig. Zij zijn de volgende die jarig zijn. Bob wordt 31 jaar oud en Henk wordt 26 jaar oud.');
 });
