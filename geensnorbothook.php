@@ -63,7 +63,7 @@ if (strpos($text, 'activiteit') !== false) {
 }
 
 //Wielrenkoersen
-if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
+if (in_array($text, ['koers', 'koersen', 'wielrennen'], true)) {
     $parsedICS = getParsedCalendar($wielrenKalender);
     $koersTekst = getKoersenTekst($parsedICS, (int) date('Ymd'));
 
@@ -88,7 +88,7 @@ if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $tex
 //Dag van de - Einde
 
 //Historische gebeurtenissen van wikipedia
-if (in_array($text, ['vandaag', 'geschiedenis', 'deze dag'])) {
+if (in_array($text, ['vandaag', 'geschiedenis', 'deze dag'], true)) {
     $event = getVandaag();
 
     $sendText = '**Vandaag in '.$event->year."**:\n".$event->content;
@@ -182,7 +182,7 @@ if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood'
     $send = true;
 }
 
-if (in_array($text, ['energie', 'energiemix', 'electriciteit'])) {
+if (in_array($text, ['energie', 'energiemix', 'electriciteit'], true)) {
     $energieData = getEnergie();
     $content = ['chat_id' => $chat_id, 'text' => 'Op dit moment wordt in Nederland '.$energieData->renewablePercentage.'% van de electriciteit opgewekt uit hernieuwbare bronnen. '.$energieData->powerProductionBreakdown->wind.' MW komt uit windenergie, '.$energieData->powerProductionBreakdown->solar.' MW uit zonne-energie.', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
@@ -190,7 +190,7 @@ if (in_array($text, ['energie', 'energiemix', 'electriciteit'])) {
 
 }
 
-if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'])) {
+if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'], true)) {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
     $content = ['chat_id' => $chat_id, 'text' => 'Het is '.$weerObject->liveweer[0]->temp.' graden, maar het voelt als '.$weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
@@ -321,7 +321,7 @@ if ($text == 'xkcd nieuwste') {
     $send = true;
 }
 
-if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archillect'])) {
+if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archillect'], true)) {
     $randomId = random_int(1, 408749);
     $randomPageURL = 'https://archillect.com/'.$randomId;
     $randomPageSource = file_get_contents($randomPageURL);
@@ -538,7 +538,7 @@ if ($text == '1337') {
     $send = true;
 }
 
-if (in_array($text, ['winnen', 'prijzenparade'])) {
+if (in_array($text, ['winnen', 'prijzenparade'], true)) {
     $prijzenparade_url = get_prijzen_parade_url();
     if ($prijzenparade_url) {
         $antwoord = 'De link van de Tweakers December Prijzen Parade van vandaag is: '.$prijzenparade_url;
@@ -549,7 +549,7 @@ if (in_array($text, ['winnen', 'prijzenparade'])) {
 }
 
 //Tourpoule. Functie staat in apart bestand.
-if (in_array($text, ['tourpoule', 'tour', 'poule'])) {
+if (in_array($text, ['tourpoule', 'tour', 'poule'], true)) {
     // $tourInfo = getTourInfo();
     // if ($tourInfo) {
     //     $antwoord = $tourInfo;
