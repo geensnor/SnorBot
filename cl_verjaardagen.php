@@ -70,17 +70,9 @@ class verjaardag
                 $verjaardagObject = date_diff($volgendeVerjaardag, $referentieDatum);
                 $persoon->dagenTotVerjaardag = $verjaardagObject->days;
 
-
-
-
-
-
                 $verjaardagenData[] = $persoon;
-                // }
+                usort($verjaardagenData, fn ($a, $b): int => (int) ($a->dagenTotVerjaardag - $b->dagenTotVerjaardag));
 
-                if (count($verjaardagenData) > 0) {// usort geeft vervelende error als er geen data opgehaald kan worden.
-                    usort($verjaardagenData, fn ($a, $b): int => (int) ($a->dagenTotVerjaardag - $b->dagenTotVerjaardag));
-                }
             }
         }
 
