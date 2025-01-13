@@ -12,7 +12,7 @@ test('Geschenken Tweede Kamer ophalen', function () {
 
 test('Activiteitentekst op een zondag, zonder activiteiten', function () {
     $tk = new TweedeKamer();
-    $tijd = new DateTime('2024-11-03T16:00:00+01:00'); //Is een zondag
+    $tijd = new DateTime('2025-01-12T16:00:00+01:00'); //Is een zondag
     $activiteitTekst = $tk->getActiviteitTekst($tijd);
     expect($activiteitTekst)->toContain('Er is vandaag niet veel te doen in de Tweede Kamer');
 });
