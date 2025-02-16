@@ -22,7 +22,7 @@ $verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/mai
 $haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/haiku.json';
 $brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/brabants.json';
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
-$wielrenKalender = 'https://www.wielerkrant.be/wielrennen/wielerkalender24.ics';
+$wielrenKalender = 'https://www.wielerkrant.be/wielrennen/kalender.ics';
 
 $text = strtolower(ltrim((string) $telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();

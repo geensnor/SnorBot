@@ -15,6 +15,6 @@ test('Interval in dagen in het nederlands voor meerdere dagen', function (): voi
 });
 
 test('Wielrenkalender URL werkt', function (): void {
-    $parsedCalendar = getParsedCalendar('https://www.wielerkrant.be/wielrennen/wielerkalender24.ics');
+    $parsedCalendar = getParsedCalendar('https://www.wielerkrant.be/wielrennen/kalender.ics');
     expect($parsedCalendar[0]->summary)->not->toBeNull();
-})->skip('nog geen nieuwe wielrenkalender voor 2025 en de oude is weg');
+});
