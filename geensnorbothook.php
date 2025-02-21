@@ -192,7 +192,7 @@ if (in_array($text, ['energie', 'energiemix', 'electriciteit'], true)) {
 
 if (in_array($text, ['stroom', 'stroomprijs'], true)) {
     $stroomObject = json_decode(file_get_contents('https://www.geensnor.nl/api/stroom/index.php?key='.getenv('stroomKey')));
-    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment  '.str_replace(".", ",", $stroomObject->currentPrice) .' cent.', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment '.str_replace(".", ",", $stroomObject->currentPrice) .' euro per kWh.', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
