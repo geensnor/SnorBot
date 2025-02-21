@@ -190,6 +190,13 @@ if (in_array($text, ['energie', 'energiemix', 'electriciteit'], true)) {
 
 }
 
+if (in_array($text, ['stroom', 'stroomprijs'], true)) {
+    $stroomObject = json_decode(file_get_contents('https://www.geensnor.nl/api/stroom/index.php?key='.getenv('stroomKey')));
+    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment '.str_replace(".", ",", $stroomObject->currentPrice) .' euro per kWh.', 'parse_mode' => 'Markdown'];
+    $telegram->sendMessage($content);
+    $send = true;
+}
+
 if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'], true)) {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
     $content = ['chat_id' => $chat_id, 'text' => 'Het is '.$weerObject->liveweer[0]->temp.' graden, maar het voelt als '.$weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown'];
