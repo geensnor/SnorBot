@@ -12,7 +12,7 @@ function getKoersenTekst(array $parsedICS, int $referentieDatum): string
         $koersenTekstBinnenkort = '';
         foreach ($parsedICS as $koers) {
             //Actuele koersen
-            if ($koers->dtstart == $referentieDatum && $koers->dtend == $referentieDatum + 1) {//Eendaagse koers, vandaag
+            if ($koers->dtstart == $referentieDatum && $koers->dtend == $referentieDatum) {//Eendaagse koers, vandaag
                 $koersenTekst .= " \nVandaag wordt ".$koers->summary.' gereden.';
             } elseif ($koers->dtstart <= $referentieDatum && $koers->dtend - 1 >= $referentieDatum) {//Meerdaagse koers, vandaag bezig
                 if ($koers->dtstart == $referentieDatum) {//Meerdaagse koers, en de start is vandaag
