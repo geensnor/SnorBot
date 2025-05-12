@@ -194,7 +194,13 @@ if (in_array($text, ['stroom', 'stroomprijs'], true)) {
     $stroomObject = json_decode(file_get_contents('https://www.geensnor.nl/api/stroom/index.php?key='.getenv('stroomKey')));
     $highestPriceTimeFormatted = (new DateTime($stroomObject->rangePriceToday->highest->time))->format('H:i');
     $lowestPriceTimeFormatted = (new DateTime($stroomObject->rangePriceToday->lowest->time))->format('H:i');
-    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment '.str_replace(".", ",", $stroomObject->currentPrice) .' euro per kWh. De hoogste prijs van vandaag is '.str_replace(".", ",", $stroomObject->rangePriceToday->highest->price) .' om '.$highestPriceTimeFormatted.'. De laagste is '.str_replace(".", ",", $stroomObject->rangePriceToday->lowest->price) .' om '.$lowestPriceTimeFormatted.'.', 'parse_mode' => 'Markdown'];
+    if ($stroomObject->negativePriceToday) {
+        $negativePriceText = "Tussen ".(new DateTime($stroomObject->negativePriceToday->start))->format('H:i')." en ".(new DateTime($stroomObject->negativePriceToday->end))->format('H:i')." is de stroomprijs negatief";
+    } else {
+        $negativePriceText = '';
+    }
+
+    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment '.str_replace(".", ",", $stroomObject->currentPrice) .' euro per kWh. De hoogste prijs van vandaag is '.str_replace(".", ",", $stroomObject->rangePriceToday->highest->price) .' om '.$highestPriceTimeFormatted.'. De laagste is '.str_replace(".", ",", $stroomObject->rangePriceToday->lowest->price) .' om '.$lowestPriceTimeFormatted.'. '.$negativePriceText, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
