@@ -321,7 +321,7 @@
   },
   {
     "trigger": "ath",
-    "antwoord": "De All Time High van de Bitcoin was op 17 december 2024. Hij was toen € 106.249,35 waard."
+    "antwoord": "De All Time High van de Bitcoin was op 21 mei 2025. Hij was toen € €96.803,65 waard."
   },
   {
     "trigger": "precies",
@@ -450,8 +450,7 @@
   {
     "trigger": "anthem",
     "antwoord": "Onze geensnor anthem! https://www.dedigitaletuin.nl/geensnor_anthem.mp3"
-  }
-  ,
+  },
   {
     "trigger": "joepie joepie",
     "antwoord": "dat ging echt topie"
