@@ -604,8 +604,7 @@ if ($text == 'tussenstand') {
     $json = file_get_contents('https://www.geensnor.nl/tourpoule/rankingData/2025/giro/stagesRanking.json');
     $data = json_decode($json, true);
 
-    $laatsteEtappe = end($data);
-    $tussenstand = $laatsteEtappe['pointsAfterStage'];
+    $tussenstand = $data[0]['pointsAfterStage'];
 
     // Sorteer op punten, hoogste eerst
     arsort($tussenstand);
