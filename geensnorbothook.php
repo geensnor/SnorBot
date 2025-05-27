@@ -618,6 +618,10 @@ if ($text == 'tussenstand') {
     $telegram->sendMessage($content);
     $send = true;
 
+    
+    $telegram->sendMessage($content);
+
+    $send = true;
 }
 
 
