@@ -598,6 +598,35 @@ if (! $send) {
     }
 }
 
+// poel tussenstand
+
+if ($text == 'tussenstand') {
+    $json = file_get_contents('https://www.geensnor.nl/tourpoule/rankingData/2025/giro/stagesRanking.json');
+    $data = json_decode($json, true);
+
+    $laatsteEtappe = end($data);
+    $tussenstand = $laatsteEtappe['pointsAfterStage'];
+
+    // Sorteer op punten, hoogste eerst
+    arsort($tussenstand);
+
+    $response = "*Huidige tussenstand:*\n";
+    foreach ($tussenstand as $naam => $punten) {
+        $response .= trim($naam) . ": " . $punten . "\n";
+    }
+
+    $content = [
+        'chat_id' => $chat_id,
+        'text' => $response,
+        'parse_mode' => 'Markdown',
+        'disable_web_page_preview' => true
+    ];
+    $telegram->sendMessage($content);
+
+    $send = true;
+}
+
+
 //Random antwoord geven als hij niets weet...
 if (! $send && $text) {
     $randKey = array_rand($antwoordenArray, 1);
