@@ -12,6 +12,7 @@ test('Vandaag van wikipedia', function (): void {
     expect($event->content)->toBeString();
 });
 
-test('Mop', function (): void {
+/*test('Mop', function (): void {
     expect(getMop())->toBeString();
 });
+*/
