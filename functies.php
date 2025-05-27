@@ -103,12 +103,15 @@ function getHackerNews(): string
     return "Laatste bericht op hackernews: \n[".$hackernewsxml->channel->item[0]->title.']('.$hackernewsxml->channel->item[0]->link.')';
 }
 
+/* - api lijkt het niet meer te doen ? 27-5
+
 function getMop()
 {
     $jsonMop = json_decode(file_get_contents('https://moppenbot.nl/api/random/'));
 
     return $jsonMop->joke->joke;
 }
+    */
 
 function getWeather(): string
 {
