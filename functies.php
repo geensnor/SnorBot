@@ -159,7 +159,7 @@ function getCurrentTourName(): string
 {
     // Load the currentTour.yaml file
     $currentTourYaml = file_get_contents('https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/data/currentTour.yaml');
-    $currentTourData = yaml_decode($currentTourYaml);
+    $currentTourData = yaml_parse_file($currentTourYaml);
 
     // Get the currentTourLocation from the data
     $currentTourLocation = $currentTourData['currentTourLocation'];
@@ -169,7 +169,7 @@ function getCurrentTourName(): string
 
     // Load the tourConfig.yaml file
     $tourConfigYaml = file_get_contents($tourConfigUrl);
-    $tourConfigData = yaml_decode($tourConfigYaml);
+    $tourConfigData = yaml_parse_file($tourConfigYaml);
 
     // Get the name of the tour
     $tourName = $tourConfigData['name'];
