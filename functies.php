@@ -155,25 +155,25 @@ function getThuisarts(): string
     return "Laatste bericht op thuisarts.nl: \n[".$thuisartsrss->channel->item[0]->title.']('.$thuisartsrss->channel->item[0]->link.')';
 }
 
-function getCurrentTourName(): string 
+function getCurrentTourName(): string
 {
     // Load the currentTour.yaml file
-$currentTourYaml = file_get_contents('https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/data/currentTour.yaml');
-$currentTourData = yaml_parse($currentTourYaml);
+    $currentTourYaml = file_get_contents('https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/data/currentTour.yaml');
+    $currentTourData = yaml_parse($currentTourYaml);
 
-// Get the currentTourLocation from the data
-$currentTourLocation = $currentTourData['currentTourLocation'];
+    // Get the currentTourLocation from the data
+    $currentTourLocation = $currentTourData['currentTourLocation'];
 
-// Construct the URL to the tourConfig.yaml file
-$tourConfigUrl = 'https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/data' . $currentTourLocation . '/tourConfig.yaml';
+    // Construct the URL to the tourConfig.yaml file
+    $tourConfigUrl = 'https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/data' . $currentTourLocation . '/tourConfig.yaml';
 
-// Load the tourConfig.yaml file
-$tourConfigYaml = file_get_contents($tourConfigUrl);
-$tourConfigData = yaml_parse($tourConfigYaml);
+    // Load the tourConfig.yaml file
+    $tourConfigYaml = file_get_contents($tourConfigUrl);
+    $tourConfigData = yaml_parse($tourConfigYaml);
 
-// Get the name of the tour
-$tourName = $tourConfigData['name'];
+    // Get the name of the tour
+    $tourName = $tourConfigData['name'];
 
-// Output the tour name
-return $tourName;
+    // Output the tour name
+    return $tourName;
 }
