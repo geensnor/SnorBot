@@ -8,8 +8,8 @@ Documentatie: [https://geensnor.github.io/SnorBot/](https://geensnor.github.io/S
 
 ## Lijsten
 
-De SnorBot maakt gebruik van allerlei handige lijsten. Deze staan hier:
-[https://www.dedigitaletuin.nl/lijsten/](https://www.dedigitaletuin.nl/lijsten/)
+De SnorBot maakt gebruik van allerlei handige lijsten. Die komen uit De Digitale Tuin:
+[https://www.dedigitaletuin.nl/](https://www.dedigitaletuin.nl/)
 
 ## Settings
 
