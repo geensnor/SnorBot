@@ -3,7 +3,7 @@
 date_default_timezone_set('Europe/Amsterdam');
 
 include 'config.php';
-include __DIR__.'/vendor/autoload.php';
+include __DIR__ . '/vendor/autoload.php';
 
 include 'advies.php';
 include 'prijzenparade.php';
@@ -59,7 +59,6 @@ if (strpos($text, 'activiteit') !== false) {
     $content = ['chat_id' => $chat_id, 'text' => $tk->getActiviteitTekst(new DateTime()), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
-
 }
 
 //Wielrenkoersen
@@ -91,7 +90,7 @@ if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $tex
 if (in_array($text, ['vandaag', 'geschiedenis', 'deze dag'], true)) {
     $event = getVandaag();
 
-    $sendText = '**Vandaag in '.$event->year."**:\n".$event->content;
+    $sendText = '**Vandaag in ' . $event->year . "**:\n" . $event->content;
 
     $content = ['chat_id' => $chat_id, 'text' => $sendText, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
@@ -140,9 +139,9 @@ if ($text == 'random snack' || $text == 'snack') {
 // Goedemorgen! Een dag overzicht!
 if ($text == 'goedemorgen' || $text == 'goede morgen') {
     $dagVanDeText = getDagVanDe();
-    $goedeMorgenText = "Goedemorgen! \nHier volgt het dagoverzicht van ".date('d-m-Y').' ('.getWeekNumberToday().')';
+    $goedeMorgenText = "Goedemorgen! \nHier volgt het dagoverzicht van " . date('d-m-Y') . ' (' . getWeekNumberToday() . ')';
     if ($dagVanDeText) {
-        $goedeMorgenText .= "\n\n".$dagVanDeText;
+        $goedeMorgenText .= "\n\n" . $dagVanDeText;
     }
 
     //Goede morgen tweede kamer!
@@ -150,7 +149,7 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
     include 'cl_TweedeKamer.php';
     $tk = new TweedeKamer();
 
-    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews()."\n\n".$tk->getActiviteitTekst(new DateTime());
+    $goedeMorgenText .= "\n\nDe koersen:\n" . getBitcoinPrice() . "\n" . getEthereumPrice() . "\n\n" . getWeather() . "\n\n" . getWaarschuwing() . "\n\n" . getNews() . "\n\n" . $tk->getActiviteitTekst(new DateTime());
 
     $content = ['chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
@@ -160,7 +159,7 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
 
 // Crypto overzicht
 if ($text == 'crypto') {
-    $content = ['chat_id' => $chat_id, 'text' => getBitcoinPrice()." \n".getEthereumPrice()];
+    $content = ['chat_id' => $chat_id, 'text' => getBitcoinPrice() . " \n" . getEthereumPrice()];
     $telegram->sendMessage($content);
 
     $send = true;
@@ -184,37 +183,36 @@ if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood'
 
 if (in_array($text, ['energie', 'energiemix', 'electriciteit'], true)) {
     $energieData = getEnergie();
-    $content = ['chat_id' => $chat_id, 'text' => 'Op dit moment wordt in Nederland '.$energieData->renewablePercentage.'% van de electriciteit opgewekt uit hernieuwbare bronnen. '.$energieData->powerProductionBreakdown->wind.' MW komt uit windenergie, '.$energieData->powerProductionBreakdown->solar.' MW uit zonne-energie.', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'Op dit moment wordt in Nederland ' . $energieData->renewablePercentage . '% van de electriciteit opgewekt uit hernieuwbare bronnen. ' . $energieData->powerProductionBreakdown->wind . ' MW komt uit windenergie, ' . $energieData->powerProductionBreakdown->solar . ' MW uit zonne-energie.', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
-
 }
 
 if (in_array($text, ['stroom', 'stroomprijs'], true)) {
-    $stroomObject = json_decode(file_get_contents('https://www.geensnor.nl/api/stroom/index.php?key='.getenv('stroomKey')));
+    $stroomObject = json_decode(file_get_contents('https://www.geensnor.nl/api/stroom/index.php?key=' . getenv('stroomKey')));
     $highestPriceTimeFormatted = (new DateTime($stroomObject->rangePriceToday->highest->time))->format('H:i');
     $lowestPriceTimeFormatted = (new DateTime($stroomObject->rangePriceToday->lowest->time))->format('H:i');
     if ($stroomObject->negativePriceToday) {
-        $negativePriceText = "Tussen ".(new DateTime($stroomObject->negativePriceToday->start))->format('H:i')." en ".(new DateTime($stroomObject->negativePriceToday->end))->format('H:i')." is de stroomprijs negatief";
+        $negativePriceText = "Tussen " . (new DateTime($stroomObject->negativePriceToday->start))->format('H:i') . " en " . (new DateTime($stroomObject->negativePriceToday->end))->format('H:i') . " is de stroomprijs negatief";
     } else {
         $negativePriceText = '';
     }
 
-    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment '.str_replace(".", ",", $stroomObject->currentPrice) .' euro per kWh. De hoogste prijs van vandaag is '.str_replace(".", ",", $stroomObject->rangePriceToday->highest->price) .' om '.$highestPriceTimeFormatted.'. De laagste is '.str_replace(".", ",", $stroomObject->rangePriceToday->lowest->price) .' om '.$lowestPriceTimeFormatted.'. '.$negativePriceText, 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment ' . str_replace(".", ",", $stroomObject->currentPrice) . ' euro per kWh. De hoogste prijs van vandaag is ' . str_replace(".", ",", $stroomObject->rangePriceToday->highest->price) . ' om ' . $highestPriceTimeFormatted . '. De laagste is ' . str_replace(".", ",", $stroomObject->rangePriceToday->lowest->price) . ' om ' . $lowestPriceTimeFormatted . '. ' . $negativePriceText, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'], true)) {
-    $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
-    $content = ['chat_id' => $chat_id, 'text' => 'Het is '.$weerObject->liveweer[0]->temp.' graden, maar het voelt als '.$weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown'];
+    $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=' . getenv('meteoserverKey')));
+    $content = ['chat_id' => $chat_id, 'text' => 'Het is ' . $weerObject->liveweer[0]->temp . ' graden, maar het voelt als ' . $weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 //Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
 if ($text == 'sywert' || $text == 'sywert van lienden') {
-    $antwoord = 'Het is '.getDaysSince('06-06-2021').' dagen geleden dat Sywert van Lienden beloofde om het rendement van de 9 miljoen euro die hij onterecht verdiende, aan een goed doel te schenken.';
+    $antwoord = 'Het is ' . getDaysSince('06-06-2021') . ' dagen geleden dat Sywert van Lienden beloofde om het rendement van de 9 miljoen euro die hij onterecht verdiende, aan een goed doel te schenken.';
 
     $send = true;
 }
@@ -229,7 +227,7 @@ if (str_starts_with($text, 'getal onder de')) {
 
 if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://geensnor.netlify.app/feed.xml'));
-    $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl: ['.$geensnorFeed->entry[0]->title.']('.$geensnorFeed->entry[0]->link->attributes()->href.')', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl: [' . $geensnorFeed->entry[0]->title . '](' . $geensnorFeed->entry[0]->link->attributes()->href . ')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -237,7 +235,7 @@ if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 if ($text == 'random post' || $text == 'random bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://geensnor.netlify.app/feed.xml'));
     $randomPostNummer = random_int(0, count($geensnorFeed->entry));
-    $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl: ['.$geensnorFeed->entry[$randomPostNummer]->title.']('.$geensnorFeed->entry[$randomPostNummer]->link->attributes()->href.')', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl: [' . $geensnorFeed->entry[$randomPostNummer]->title . '](' . $geensnorFeed->entry[$randomPostNummer]->link->attributes()->href . ')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -245,15 +243,15 @@ if ($text == 'random post' || $text == 'random bericht') {
 // Hieronder de wiki dingen
 
 if (str_starts_with($text, 'wiki')) {
-    $wikiResult = json_decode(file_get_contents('https://nl.wikipedia.org/w/api.php?action=opensearch&search='.substr($text, 5).'&limit=10&namespace=0&format=json'));
+    $wikiResult = json_decode(file_get_contents('https://nl.wikipedia.org/w/api.php?action=opensearch&search=' . substr($text, 5) . '&limit=10&namespace=0&format=json'));
     if ($wikiResult[1]) {
         $htmlList = '';
         foreach ($wikiResult[1] as $key => $value) {
-            $htmlList .= '<a href="'.$wikiResult[3][$key].'">'.$wikiResult[1][$key]."</a>\n";
+            $htmlList .= '<a href="' . $wikiResult[3][$key] . '">' . $wikiResult[1][$key] . "</a>\n";
         }
-        $content = ['chat_id' => $chat_id, 'text' => 'Ah, je wil iets van <strong>'.substr($text, 5)."</strong> weten. Dit vond ik op Wikipedia:\n\n".$htmlList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => true];
+        $content = ['chat_id' => $chat_id, 'text' => 'Ah, je wil iets van <strong>' . substr($text, 5) . "</strong> weten. Dit vond ik op Wikipedia:\n\n" . $htmlList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => true];
     } else {
-        $content = ['chat_id' => $chat_id, 'text' => 'Ah, je wil iets van *'.substr($text, 5).'* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia', 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+        $content = ['chat_id' => $chat_id, 'text' => 'Ah, je wil iets van *' . substr($text, 5) . '* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia', 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     }
 
     $telegram->sendMessage($content);
@@ -313,7 +311,7 @@ if ($text == 'pi' || $text == 'π') {
 
 //Is het al 5 uur?
 if ($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
-    $content = ['chat_id' => $chat_id, 'text' => 'Nee, het is '.date('H:i:s')];
+    $content = ['chat_id' => $chat_id, 'text' => 'Nee, het is ' . date('H:i:s')];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -322,7 +320,7 @@ if ($text == 'is het al vijf uur' || $text == 'is het al 5 uur') {
 if ($text == 'xkcd') {
     $xkcdData = json_decode(file_get_contents('https://xkcd.com/info.0.json'));
     $randomComicNumber = random_int(0, $xkcdData->num);
-    $randomComicObject = json_decode(file_get_contents('http://xkcd.com/'.$randomComicNumber.'/info.0.json'));
+    $randomComicObject = json_decode(file_get_contents('http://xkcd.com/' . $randomComicNumber . '/info.0.json'));
     $content = ['chat_id' => $chat_id, 'photo' => $randomComicObject->img];
     $telegram->sendPhoto($content);
     $antwoord = "Random XKCD comic. Typ 'xkcd nieuwste' voor de nieuwste";
@@ -338,7 +336,7 @@ if ($text == 'xkcd nieuwste') {
 
 if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archillect'], true)) {
     $randomId = random_int(1, 408749);
-    $randomPageURL = 'https://archillect.com/'.$randomId;
+    $randomPageURL = 'https://archillect.com/' . $randomId;
     $randomPageSource = file_get_contents($randomPageURL);
 
     $start = stripos($randomPageSource, 'ii') + 9;
@@ -348,7 +346,7 @@ if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archi
     $content = ['chat_id' => $chat_id, 'photo' => substr($randomPageSource, $start, $length)];
     $telegram->sendPhoto($content);
 
-    $content = ['chat_id' => $chat_id, 'text' => '[bron]('.$randomPageURL.')', 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $content = ['chat_id' => $chat_id, 'text' => '[bron](' . $randomPageURL . ')', 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
 
     $telegram->sendMessage($content);
 
@@ -357,21 +355,21 @@ if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archi
 
 if ($text == 'genereer wachtwoord') {
     $wachtwoord = json_decode(file_get_contents('https://www.passwordrandom.com/query?command=password&format=json&count=10'));
-    $content = ['chat_id' => $chat_id, 'text' => 'Random wachtwoord: '.$wachtwoord->char[1]];
+    $content = ['chat_id' => $chat_id, 'text' => 'Random wachtwoord: ' . $wachtwoord->char[1]];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 if ($text == 'guid') {
     $guid = json_decode(file_get_contents('https://www.passwordrandom.com/query?command=guid&format=json&count=10'));
-    $content = ['chat_id' => $chat_id, 'text' => 'Random guid: '.$guid->char[1]];
+    $content = ['chat_id' => $chat_id, 'text' => 'Random guid: ' . $guid->char[1]];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 //Geeft het chat id van de huidige groep weer
 if ($text == 'chatid') {
-    $content = ['chat_id' => $chat_id, 'text' => 'Chat id van deze groep: '.$chat_id];
+    $content = ['chat_id' => $chat_id, 'text' => 'Chat id van deze groep: ' . $chat_id];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -397,7 +395,7 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
     }
 }
 
-if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in de vraag vier cijfers (jaartal...) in een string voorkomt. Dan beschouwen we het maar als een jaartal. Behalve als het natuurlijk 1337 is....
+if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') { //Controleren of er in de vraag vier cijfers (jaartal...) in een string voorkomt. Dan beschouwen we het maar als een jaartal. Behalve als het natuurlijk 1337 is....
     if ($chat_id == getenv('verjaardagenGroupId')) {
         include 'cl_weekenden.php';
         $v = new weekend();
@@ -415,8 +413,8 @@ if ($telegram->Location()) {
     $locatieGebruiker = $telegram->Location();
     $adviesJson = getAdviesArray($locatieGebruiker['latitude'], $locatieGebruiker['longitude']);
 
-    $contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name.' zit in de buurt:'];
-    $contentAdviesToelichting = ['chat_id' => $chat_id, 'text' => "Geensnor zegt: '".$adviesJson[0]->description."'. Kijk op http://advies.geensnor.nl voor meer adviezen"];
+    $contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name . ' zit in de buurt:'];
+    $contentAdviesToelichting = ['chat_id' => $chat_id, 'text' => "Geensnor zegt: '" . $adviesJson[0]->description . "'. Kijk op http://advies.geensnor.nl voor meer adviezen"];
     $contentLocation = ['chat_id' => $chat_id, 'latitude' => $adviesJson[0]->lat, 'longitude' => $adviesJson[0]->lon];
     $telegram->sendMessage($contentAdviesTitel);
     $telegram->sendLocation($contentLocation);
@@ -556,7 +554,7 @@ if ($text == '1337') {
 if (in_array($text, ['winnen', 'prijzenparade'], true)) {
     $prijzenparade_url = get_prijzen_parade_url();
     if ($prijzenparade_url) {
-        $antwoord = 'De link van de Tweakers December Prijzen Parade van vandaag is: '.$prijzenparade_url;
+        $antwoord = 'De link van de Tweakers December Prijzen Parade van vandaag is: ' . $prijzenparade_url;
     } else {
         $antwoord = 'Helaas, voor vandaag is er geen prijzenlink beschikbaar. Probeer het morgen nog eens!';
     }
@@ -609,10 +607,11 @@ if ($text == 'tussenstand') {
     // Sorteer op punten, hoogste eerst
     arsort($tussenstand);
 
-    $response = "*Huidige tussenstand:*\n";
+    $response = "Tourname: " . getCurrentTourName() . "\n\n*Huidige tussenstand:*\n";
     foreach ($tussenstand as $naam => $punten) {
         $response .= trim($naam) . ": " . $punten . "\n";
     }
+
 
     $content = ['chat_id' => $chat_id, 'text' => $response, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
