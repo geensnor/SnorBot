@@ -617,11 +617,6 @@ if ($text == 'tussenstand') {
     $content = ['chat_id' => $chat_id, 'text' => $response, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
-
-
-    $telegram->sendMessage($content);
-
-    $send = true;
 }
 
 
