@@ -103,13 +103,6 @@ function getHackerNews(): string
     return "Laatste bericht op hackernews: \n[".$hackernewsxml->channel->item[0]->title.']('.$hackernewsxml->channel->item[0]->link.')';
 }
 
-function getMop()
-{
-    $jsonMop = json_decode(file_get_contents('https://moppenbot.nl/api/random/'));
-
-    return $jsonMop->joke->joke;
-}
-
 function getWeather(): string
 {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
