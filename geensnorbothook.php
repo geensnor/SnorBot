@@ -516,11 +516,6 @@ if ($text == 'voornaam' || $text == 'naam' || $text == 'babynaam') {
     $send = true;
 }
 
-if ($text == strtolower('mop')) {
-    $antwoord = getMop();
-    $send = true;
-}
-
 if ($text == '1337') {
     $dateString = date('y-m-d H:i:s');
 
