@@ -613,7 +613,6 @@ if ($text == 'tussenstand') {
     $send = true;
 }
 
-
 //Random antwoord geven als hij niets weet...
 if (! $send && $text) {
     $randKey = array_rand($antwoordenArray, 1);

@@ -6,7 +6,7 @@ function getKabinet(): string
     $nosFeed = simplexml_load_file('https://feeds.nos.nl/nosnieuwspolitiek');
     foreach ($nosFeed->channel->item as $nosItem) {
         if (strpos($nosItem->description, 'kabinet') || strpos($nosItem->description, 'asiel') || strpos($nosItem->description, 'stikstof')) {
-            $kabinetBericht = '['.$nosItem->title.']('.$nosItem->link.')';
+            $kabinetBericht = '[' . $nosItem->title . '](' . $nosItem->link . ')';
             break;
         }
     }
@@ -39,7 +39,7 @@ function getBitcoinPrice(): string
     $bitcoinPrice = $response->data->last;
 
     // Return the formatted price
-    return 'Bitcoin prijs: € '.number_format($bitcoinPrice, 2, ',', '.');
+    return 'Bitcoin prijs: € ' . number_format($bitcoinPrice, 2, ',', '.');
 }
 
 function getEthereumPrice(): string
@@ -67,7 +67,7 @@ function getEthereumPrice(): string
     $ethPrice = $response->data->last;
 
     // Return the formatted price
-    return 'Ethereum prijs: € '.number_format($ethPrice, 2, ',', '.');
+    return 'Ethereum prijs: € ' . number_format($ethPrice, 2, ',', '.');
 }
 
 function getDagVanDe()
@@ -78,7 +78,7 @@ function getDagVanDe()
 
     foreach ($dagVanDeArray as $key => $value) {
         if ($dagVanDeArray[$key]->dag == date('d-m')) {
-            $dagText = 'Het is vandaag '.$dagVanDeArray[$key]->onderwerp;
+            $dagText = 'Het is vandaag ' . $dagVanDeArray[$key]->onderwerp;
         }
     }
 
@@ -93,28 +93,28 @@ function getNews(): string
 {
     $nuxml = simplexml_load_file('https://feeds.nos.nl/nosnieuwsalgemeen');
 
-    return "Laatste nieuws van nos.nl: \n[".$nuxml->channel->item[0]->title.']('.$nuxml->channel->item[0]->link.')';
+    return "Laatste nieuws van nos.nl: \n[" . $nuxml->channel->item[0]->title . '](' . $nuxml->channel->item[0]->link . ')';
 }
 
 function getHackerNews(): string
 {
     $hackernewsxml = simplexml_load_file('https://hnrss.org/newest');
 
-    return "Laatste bericht op hackernews: \n[".$hackernewsxml->channel->item[0]->title.']('.$hackernewsxml->channel->item[0]->link.')';
+    return "Laatste bericht op hackernews: \n[" . $hackernewsxml->channel->item[0]->title . '](' . $hackernewsxml->channel->item[0]->link . ')';
 }
 
 function getWeather(): string
 {
-    $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
+    $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=' . getenv('meteoserverKey')));
 
-    return "Het weer:\n[".$weerObject->liveweer[0]->verw.'](https://www.knmi.nl/nederland-nu/weer/verwachtingen)';
+    return "Het weer:\n[" . $weerObject->liveweer[0]->verw . '](https://www.knmi.nl/nederland-nu/weer/verwachtingen)';
 }
 
 function getWaarschuwing(): string
 {
-    $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
+    $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key=' . getenv('meteoserverKey')));
 
-    return "Waarschuwing!\n[".$weerObject->liveweer[0]->lkop.'](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)';
+    return "Waarschuwing!\n[" . $weerObject->liveweer[0]->lkop . '](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)';
 }
 
 function getDaysSince($date): float
@@ -124,7 +124,7 @@ function getDaysSince($date): float
 
 function getVandaag(): object
 {
-    $todayResult = json_decode(file_get_contents('https://events.historylabs.io/date?day='.date('j').'&month='.date('n')));
+    $todayResult = json_decode(file_get_contents('https://events.historylabs.io/date?day=' . date('j') . '&month=' . date('n')));
 
     return $todayResult->events[array_rand($todayResult->events)];
 }
@@ -135,35 +135,73 @@ function getWeekNumberToday(): string
     $timestamp = strtotime($currentDate);
     $weekNumber = date('W', $timestamp);
 
-    return 'week '.$weekNumber;
+    return 'week ' . $weekNumber;
 }
 
 function getThuisarts(): string
 {
     $thuisartsrss = simplexml_load_file('https://www.thuisarts.nl/rss.xml');
 
-    return "Laatste bericht op thuisarts.nl: \n[".$thuisartsrss->channel->item[0]->title.']('.$thuisartsrss->channel->item[0]->link.')';
+    return "Laatste bericht op thuisarts.nl: \n[" . $thuisartsrss->channel->item[0]->title . '](' . $thuisartsrss->channel->item[0]->link . ')';
+}
+
+function getCurrentTourLocation(): string
+{
+    $currentTourYaml = file_get_contents('https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/data/currentTour.yaml');
+    // gebruik onze eigen yamp parser
+    $currentTourData = parseYaml($currentTourYaml);
+    $currentTourLocation = $currentTourData['currentTourLocation'];
+
+    return $currentTourLocation;
 }
 
 function getCurrentTourName(): string
 {
-    // Load the currentTour.yaml file
-    $currentTourYaml = file_get_contents('https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/data/currentTour.yaml');
-    $currentTourData = yaml_parse_file($currentTourYaml);
-
-    // Get the currentTourLocation from the data
-    $currentTourLocation = $currentTourData['currentTourLocation'];
-
-    // Construct the URL to the tourConfig.yaml file
+    $currentTourLocation = getCurrentTourLocation();
     $tourConfigUrl = 'https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/data' . $currentTourLocation . '/tourConfig.yaml';
 
-    // Load the tourConfig.yaml file
     $tourConfigYaml = file_get_contents($tourConfigUrl);
-    $tourConfigData = yaml_parse_file($tourConfigYaml);
+    $tourConfigData = parseYaml($tourConfigYaml);
 
-    // Get the name of the tour
-    $tourName = $tourConfigData['name'];
+    if (array_key_exists('name', $tourConfigData)) {
+        $tourName = $tourConfigData['name'];
+    } else {
+        $tourName = 'Unknown';
+    }
 
-    // Output the tour name
     return $tourName;
+}
+
+// Omdat we geen standaard yaml parser hebben, heeft cursor er 1 voor ons gemaakt
+
+function parseYaml(string $yamlString): array
+{
+    $lines = explode("\n", $yamlString);
+    $data = [];
+    $currentKey = null;
+    $currentValue = null;
+
+    foreach ($lines as $line) {
+        $trimmedLine = trim($line);
+        if ($trimmedLine === '') {
+            continue;
+        }
+
+        if (strpos($trimmedLine, ':') !== false) {
+            $parts = explode(':', $trimmedLine, 2);
+            $key = trim($parts[0]);
+            $value = trim($parts[1]);
+            $data[$key] = $value;
+            $currentKey = $key;
+            $currentValue = $value;
+        } else {
+            if ($currentKey !== null) {
+                $data[$currentKey] .= "\n" . $trimmedLine;
+                $currentValue .= "\n" . $trimmedLine;
+            }
+            // Optionally, else: handle unexpected format
+        }
+    }
+
+    return $data;
 }
