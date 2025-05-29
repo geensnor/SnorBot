@@ -602,7 +602,7 @@ if ($text == 'tussenstand') {
     // Sorteer op punten, hoogste eerst
     arsort($tussenstand);
 
-    $response = "Tourname: " . getCurrentTourName() . "\n\n*Huidige tussenstand:*\n";
+    $response = "De huidige tussenstand in de " . getCurrentTourName() . ":\n";
     foreach ($tussenstand as $naam => $punten) {
         $response .= trim($naam) . ": " . $punten . "\n";
     }
