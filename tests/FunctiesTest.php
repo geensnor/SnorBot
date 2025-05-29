@@ -11,4 +11,3 @@ test('Vandaag van wikipedia', function (): void {
     expect($event->year)->toBeString();
     expect($event->content)->toBeString();
 });
-
