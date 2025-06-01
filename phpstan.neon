@@ -4,3 +4,12 @@ parameters:
 		- .
 	excludePaths:
 		- vendor/*
+		- test.php
+	ignoreErrors:
+		- '#Calling putenv\(\) is forbidden, might overwrite existing variables.#'
+includes:
+	- vendor/spaze/phpstan-disallowed-calls/extension.neon
+	- vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
+	- vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
+	- vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
+	- vendor/spaze/phpstan-disallowed-calls/disallowed-loose-calls.neon

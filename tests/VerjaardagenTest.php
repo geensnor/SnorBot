@@ -3,7 +3,7 @@
 include 'cl_verjaardagen.php';
 
 test('Eén jarige vandaag', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
 
     $v->setGeboortedatums($verjaardagenJSON);
@@ -15,7 +15,7 @@ test('Eén jarige vandaag', function (): void {
 });
 
 test('Eén jarige morgen', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
     $testDate = new DateTime('2024-03-02 00:00:00');
@@ -25,7 +25,7 @@ test('Eén jarige morgen', function (): void {
 });
 
 test('Eén jarige over een tijd', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
     $testDate = new DateTime('2024-02-10 00:00:00');
@@ -34,7 +34,7 @@ test('Eén jarige over een tijd', function (): void {
 });
 
 test('Twee jarigen vandaag', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
 
@@ -45,7 +45,7 @@ test('Twee jarigen vandaag', function (): void {
 });
 
 test('Twee jarigen morgen', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
 
@@ -56,7 +56,7 @@ test('Twee jarigen morgen', function (): void {
 });
 
 test('Twee jarigen over een tijd', function (): void {
-    $v = new verjaardag;
+    $v = new verjaardag();
     $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
     $v->setGeboortedatums($verjaardagenJSON);
 
@@ -64,4 +64,14 @@ test('Twee jarigen over een tijd', function (): void {
     $verjaardagTekst = $v->getVerjaardagTekst($testDate);
 
     expect($verjaardagTekst)->toBe('Marieke en Jan zijn over 21 dagen jarig. Zij zijn de volgende die jarig zijn. Marieke wordt 37 jaar oud en Jan wordt 43 jaar oud.');
+});
+
+test('Verjaardag over jaargrens heen', function (): void {
+    $v = new verjaardag();
+    $verjaardagenJSON = json_decode(file_get_contents('tests/fixtures/verjaardagen.json'));
+    $v->setGeboortedatums($verjaardagenJSON);
+    $testDate = new DateTime('2024-12-30 00:00:00');
+    $verjaardagTekst = $v->getVerjaardagTekst($testDate);
+
+    expect($verjaardagTekst)->toBe('Bob en Henk zijn over 3 dagen jarig. Zij zijn de volgende die jarig zijn. Bob wordt 31 jaar oud en Henk wordt 26 jaar oud.');
 });

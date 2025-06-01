@@ -3,7 +3,7 @@
 function isToday($date_str): bool
 {
     // based on https://stackoverflow.com/a/25623230/204807
-    $today = new DateTime;
+    $today = new DateTime();
     $today->setTime(0, 0, 0);
     $match_date = new DateTime($date_str);
     $match_date->setTime(0, 0, 0);

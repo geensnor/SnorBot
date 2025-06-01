@@ -1,0 +1,2277 @@
+[
+    {
+        "summary": "Volta a Catalunya (World Tour)",
+        "dtstart": "20250324",
+        "dtend": "20250330",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250324T000000",
+        "dtend_tz": "20250330T000000",
+        "uid": "37739",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Volta a Catalunya 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37739"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250324",
+                1742770800,
+                "20250324"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250330",
+                1743289200,
+                "20250330"
+            ],
+            "summary_array": [
+                [],
+                "Volta a Catalunya (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/volta-a-catalunya\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/volta-a-catalunya\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Volta a Catalunya 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/volta-a-catalunya\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/volta-a-catalunya\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Classic Brugge-De Panne (World Tour)",
+        "dtstart": "20250326",
+        "dtend": "20250326",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250326T000000",
+        "dtend_tz": "20250326T000000",
+        "uid": "37740",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Classic Brugge-De Panne 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37740"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250326",
+                1742943600,
+                "20250326"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250326",
+                1742943600,
+                "20250326"
+            ],
+            "summary_array": [
+                [],
+                "Classic Brugge-De Panne (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/classic-brugge-de-panne\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/classic-brugge-de-panne\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Classic Brugge-De Panne 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/classic-brugge-de-panne\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/classic-brugge-de-panne\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "E3 Saxo Bank Classic (World Tour)",
+        "dtstart": "20250328",
+        "dtend": "20250328",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250328T000000",
+        "dtend_tz": "20250328T000000",
+        "uid": "37741",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over E3 Saxo Bank Classic 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37741"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250328",
+                1743116400,
+                "20250328"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250328",
+                1743116400,
+                "20250328"
+            ],
+            "summary_array": [
+                [],
+                "E3 Saxo Bank Classic (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/e3-saxo-bank-classic\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/e3-saxo-bank-classic\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over E3 Saxo Bank Classic 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/e3-saxo-bank-classic\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/e3-saxo-bank-classic\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Gent - Wevelgem (World Tour)",
+        "dtstart": "20250330",
+        "dtend": "20250330",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250330T000000",
+        "dtend_tz": "20250330T000000",
+        "uid": "37742",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Gent - Wevelgem 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37742"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250330",
+                1743289200,
+                "20250330"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250330",
+                1743289200,
+                "20250330"
+            ],
+            "summary_array": [
+                [],
+                "Gent - Wevelgem (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/gent-wevelgem\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/gent-wevelgem\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Gent - Wevelgem 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/gent-wevelgem\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/gent-wevelgem\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Dwars door Vlaanderen (World Tour)",
+        "dtstart": "20250402",
+        "dtend": "20250402",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250402T000000",
+        "dtend_tz": "20250402T000000",
+        "uid": "37743",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Dwars door Vlaanderen 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37743"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250402",
+                1743544800,
+                "20250402"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250402",
+                1743544800,
+                "20250402"
+            ],
+            "summary_array": [
+                [],
+                "Dwars door Vlaanderen (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/dwars-door-vlaanderen\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/dwars-door-vlaanderen\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Dwars door Vlaanderen 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/dwars-door-vlaanderen\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/dwars-door-vlaanderen\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Ronde van Vlaanderen (World Tour)",
+        "dtstart": "20250406",
+        "dtend": "20250406",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250406T000000",
+        "dtend_tz": "20250406T000000",
+        "uid": "37744",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Ronde van Vlaanderen 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37744"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250406",
+                1743890400,
+                "20250406"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250406",
+                1743890400,
+                "20250406"
+            ],
+            "summary_array": [
+                [],
+                "Ronde van Vlaanderen (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/ronde-van-vlaanderen\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/ronde-van-vlaanderen\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Ronde van Vlaanderen 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/ronde-van-vlaanderen\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/ronde-van-vlaanderen\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Itzulia Basque Country (World Tour)",
+        "dtstart": "20250407",
+        "dtend": "20250412",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250407T000000",
+        "dtend_tz": "20250412T000000",
+        "uid": "37745",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Itzulia Basque Country 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37745"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250407",
+                1743976800,
+                "20250407"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250412",
+                1744408800,
+                "20250412"
+            ],
+            "summary_array": [
+                [],
+                "Itzulia Basque Country (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/itzulia-basque-country\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/itzulia-basque-country\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Itzulia Basque Country 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/itzulia-basque-country\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/itzulia-basque-country\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Paris - Roubaix (World Tour)",
+        "dtstart": "20250413",
+        "dtend": "20250413",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250413T000000",
+        "dtend_tz": "20250413T000000",
+        "uid": "37746",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Paris - Roubaix 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37746"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250413",
+                1744495200,
+                "20250413"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250413",
+                1744495200,
+                "20250413"
+            ],
+            "summary_array": [
+                [],
+                "Paris - Roubaix (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/paris-roubaix\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/paris-roubaix\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Paris - Roubaix 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/paris-roubaix\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/paris-roubaix\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Amstel Gold Race (World Tour)",
+        "dtstart": "20250420",
+        "dtend": "20250420",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250420T000000",
+        "dtend_tz": "20250420T000000",
+        "uid": "37747",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Amstel Gold Race 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37747"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250420",
+                1745100000,
+                "20250420"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250420",
+                1745100000,
+                "20250420"
+            ],
+            "summary_array": [
+                [],
+                "Amstel Gold Race (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/amstel-gold-race\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/amstel-gold-race\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Amstel Gold Race 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/amstel-gold-race\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/amstel-gold-race\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "La Fleche Wallonne (World Tour)",
+        "dtstart": "20250423",
+        "dtend": "20250423",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250423T000000",
+        "dtend_tz": "20250423T000000",
+        "uid": "37748",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over La Fleche Wallonne 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37748"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250423",
+                1745359200,
+                "20250423"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250423",
+                1745359200,
+                "20250423"
+            ],
+            "summary_array": [
+                [],
+                "La Fleche Wallonne (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/la-fleche-wallonne\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/la-fleche-wallonne\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over La Fleche Wallonne 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/la-fleche-wallonne\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/la-fleche-wallonne\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Liege-Bastogne-Liege (World Tour)",
+        "dtstart": "20250427",
+        "dtend": "20250427",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250427T000000",
+        "dtend_tz": "20250427T000000",
+        "uid": "37749",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Liege-Bastogne-Liege 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37749"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250427",
+                1745704800,
+                "20250427"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250427",
+                1745704800,
+                "20250427"
+            ],
+            "summary_array": [
+                [],
+                "Liege-Bastogne-Liege (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/liege-bastogne-liege\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/liege-bastogne-liege\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Liege-Bastogne-Liege 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/liege-bastogne-liege\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/liege-bastogne-liege\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Tour de Romandie (World Tour)",
+        "dtstart": "20250429",
+        "dtend": "20250504",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250429T000000",
+        "dtend_tz": "20250504T000000",
+        "uid": "37750",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Tour de Romandie 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37750"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250429",
+                1745877600,
+                "20250429"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250504",
+                1746309600,
+                "20250504"
+            ],
+            "summary_array": [
+                [],
+                "Tour de Romandie (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/tour-de-romandie\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/tour-de-romandie\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Tour de Romandie 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/tour-de-romandie\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/tour-de-romandie\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Eschborn-Frankfurt (World Tour)",
+        "dtstart": "20250501",
+        "dtend": "20250501",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250501T000000",
+        "dtend_tz": "20250501T000000",
+        "uid": "37751",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Eschborn-Frankfurt 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37751"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250501",
+                1746050400,
+                "20250501"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250501",
+                1746050400,
+                "20250501"
+            ],
+            "summary_array": [
+                [],
+                "Eschborn-Frankfurt (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/eschborn-frankfurt\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/eschborn-frankfurt\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Eschborn-Frankfurt 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/eschborn-frankfurt\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/eschborn-frankfurt\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Giro d&#039;Italia (World Tour)",
+        "dtstart": "20250509",
+        "dtend": "20250601",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250509T000000",
+        "dtend_tz": "20250601T000000",
+        "uid": "37752",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Giro d&#039;Italia 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37752"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250509",
+                1746741600,
+                "20250509"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250601",
+                1748728800,
+                "20250601"
+            ],
+            "summary_array": [
+                [],
+                "Giro d&#039;Italia (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/giro-ditalia\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/giro-ditalia\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Giro d&#039;Italia 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/giro-ditalia\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/giro-ditalia\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Criterium du Dauphine (World Tour)",
+        "dtstart": "20250608",
+        "dtend": "20250615",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250608T000000",
+        "dtend_tz": "20250615T000000",
+        "uid": "37753",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Criterium du Dauphine 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37753"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250608",
+                1749333600,
+                "20250608"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250615",
+                1749938400,
+                "20250615"
+            ],
+            "summary_array": [
+                [],
+                "Criterium du Dauphine (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/criterium-du-dauphine\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/criterium-du-dauphine\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Criterium du Dauphine 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/criterium-du-dauphine\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/criterium-du-dauphine\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Tour de Suisse (World Tour)",
+        "dtstart": "20250615",
+        "dtend": "20250622",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250615T000000",
+        "dtend_tz": "20250622T000000",
+        "uid": "37754",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Tour de Suisse 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37754"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250615",
+                1749938400,
+                "20250615"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250622",
+                1750543200,
+                "20250622"
+            ],
+            "summary_array": [
+                [],
+                "Tour de Suisse (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/tour-de-suisse\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/tour-de-suisse\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Tour de Suisse 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/tour-de-suisse\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/tour-de-suisse\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Tour de France (World Tour)",
+        "dtstart": "20250705",
+        "dtend": "20250727",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250705T000000",
+        "dtend_tz": "20250727T000000",
+        "uid": "37755",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Tour de France 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37755"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250705",
+                1751666400,
+                "20250705"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250727",
+                1753567200,
+                "20250727"
+            ],
+            "summary_array": [
+                [],
+                "Tour de France (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/tour-de-france\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/tour-de-france\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Tour de France 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/tour-de-france\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/tour-de-france\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Donostia San Sebastian Klasikoa (World Tour)",
+        "dtstart": "20250802",
+        "dtend": "20250802",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250802T000000",
+        "dtend_tz": "20250802T000000",
+        "uid": "37756",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Donostia San Sebastian Klasikoa 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37756"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250802",
+                1754085600,
+                "20250802"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250802",
+                1754085600,
+                "20250802"
+            ],
+            "summary_array": [
+                [],
+                "Donostia San Sebastian Klasikoa (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/donostia-san-sebastian-klasikoa\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/donostia-san-sebastian-klasikoa\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Donostia San Sebastian Klasikoa 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/donostia-san-sebastian-klasikoa\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/donostia-san-sebastian-klasikoa\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Tour de Pologne (World Tour)",
+        "dtstart": "20250804",
+        "dtend": "20250810",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250804T000000",
+        "dtend_tz": "20250810T000000",
+        "uid": "37757",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Tour de Pologne 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37757"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250804",
+                1754258400,
+                "20250804"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250810",
+                1754776800,
+                "20250810"
+            ],
+            "summary_array": [
+                [],
+                "Tour de Pologne (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/tour-de-pologne\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/tour-de-pologne\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Tour de Pologne 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/tour-de-pologne\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/tour-de-pologne\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Renewi Tour (World Tour)",
+        "dtstart": "20250820",
+        "dtend": "20250824",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250820T000000",
+        "dtend_tz": "20250824T000000",
+        "uid": "37758",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Renewi Tour 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37758"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250820",
+                1755640800,
+                "20250820"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250824",
+                1755986400,
+                "20250824"
+            ],
+            "summary_array": [
+                [],
+                "Renewi Tour (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/renewi-tour\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/renewi-tour\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Renewi Tour 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/renewi-tour\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/renewi-tour\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Vuelta a Espana (World Tour)",
+        "dtstart": "20250823",
+        "dtend": "20250914",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250823T000000",
+        "dtend_tz": "20250914T000000",
+        "uid": "37759",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Vuelta a Espana 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37759"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250823",
+                1755900000,
+                "20250823"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250914",
+                1757800800,
+                "20250914"
+            ],
+            "summary_array": [
+                [],
+                "Vuelta a Espana (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/vuelta-a-espana\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/vuelta-a-espana\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Vuelta a Espana 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/vuelta-a-espana\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/vuelta-a-espana\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Bretagne Classic - Ouest-France (World Tour)",
+        "dtstart": "20250831",
+        "dtend": "20250831",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250831T000000",
+        "dtend_tz": "20250831T000000",
+        "uid": "37760",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Bretagne Classic - Ouest-France 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37760"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250831",
+                1756591200,
+                "20250831"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250831",
+                1756591200,
+                "20250831"
+            ],
+            "summary_array": [
+                [],
+                "Bretagne Classic - Ouest-France (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/bretagne-classic-ouest-france\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/bretagne-classic-ouest-france\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Bretagne Classic - Ouest-France 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/bretagne-classic-ouest-france\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/bretagne-classic-ouest-france\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "European Championship TT (European Championship)",
+        "dtstart": "20250911",
+        "dtend": "20250911",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250911T000000",
+        "dtend_tz": "20250911T000000",
+        "uid": "37770",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over European Championship TT 2025 (European Championship).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37770"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250911",
+                1757541600,
+                "20250911"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250911",
+                1757541600,
+                "20250911"
+            ],
+            "summary_array": [
+                [],
+                "European Championship TT (European Championship)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/european-championship\/european-championship-tt\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/european-championship\/european-championship-tt\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over European Championship TT 2025 (European Championship)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/european-championship\/european-championship-tt\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/european-championship\/european-championship-tt\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "European Championship TT (European Championship)",
+        "dtstart": "20250911",
+        "dtend": "20250911",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250911T000000",
+        "dtend_tz": "20250911T000000",
+        "uid": "37772",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over European Championship TT 2025 (European Championship).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37772"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250911",
+                1757541600,
+                "20250911"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250911",
+                1757541600,
+                "20250911"
+            ],
+            "summary_array": [
+                [],
+                "European Championship TT (European Championship)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/european-championship-w\/european-championship-tt-w\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/european-championship-w\/european-championship-tt-w\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over European Championship TT 2025 (European Championship)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/european-championship-w\/european-championship-tt-w\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/european-championship-w\/european-championship-tt-w\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Grand Prix Cycliste de Quebec (World Tour)",
+        "dtstart": "20250912",
+        "dtend": "20250912",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250912T000000",
+        "dtend_tz": "20250912T000000",
+        "uid": "37761",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Grand Prix Cycliste de Quebec 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37761"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250912",
+                1757628000,
+                "20250912"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250912",
+                1757628000,
+                "20250912"
+            ],
+            "summary_array": [
+                [],
+                "Grand Prix Cycliste de Quebec (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/grand-prix-cycliste-de-quebec\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/grand-prix-cycliste-de-quebec\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Grand Prix Cycliste de Quebec 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/grand-prix-cycliste-de-quebec\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/grand-prix-cycliste-de-quebec\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Grand Prix Cycliste de Montreal (World Tour)",
+        "dtstart": "20250914",
+        "dtend": "20250914",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250914T000000",
+        "dtend_tz": "20250914T000000",
+        "uid": "37762",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Grand Prix Cycliste de Montreal 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37762"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250914",
+                1757800800,
+                "20250914"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250914",
+                1757800800,
+                "20250914"
+            ],
+            "summary_array": [
+                [],
+                "Grand Prix Cycliste de Montreal (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/grand-prix-cycliste-de-montreal\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/grand-prix-cycliste-de-montreal\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Grand Prix Cycliste de Montreal 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/grand-prix-cycliste-de-montreal\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/grand-prix-cycliste-de-montreal\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "European Championship RR (European Championship)",
+        "dtstart": "20250914",
+        "dtend": "20250914",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250914T000000",
+        "dtend_tz": "20250914T000000",
+        "uid": "37773",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over European Championship RR 2025 (European Championship).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37773"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250914",
+                1757800800,
+                "20250914"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250914",
+                1757800800,
+                "20250914"
+            ],
+            "summary_array": [
+                [],
+                "European Championship RR (European Championship)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/european-championship-w\/european-championship-rr-w\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/european-championship-w\/european-championship-rr-w\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over European Championship RR 2025 (European Championship)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/european-championship-w\/european-championship-rr-w\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/european-championship-w\/european-championship-rr-w\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "European Championship RR (European Championship)",
+        "dtstart": "20250915",
+        "dtend": "20250915",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250915T000000",
+        "dtend_tz": "20250915T000000",
+        "uid": "37771",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over European Championship RR 2025 (European Championship).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37771"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250915",
+                1757887200,
+                "20250915"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250915",
+                1757887200,
+                "20250915"
+            ],
+            "summary_array": [
+                [],
+                "European Championship RR (European Championship)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/european-championship\/european-championship-rr\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/european-championship\/european-championship-rr\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over European Championship RR 2025 (European Championship)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/european-championship\/european-championship-rr\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/european-championship\/european-championship-rr\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "WK Tijdrijden (Wereldkampioenschap)",
+        "dtstart": "20250921",
+        "dtend": "20250921",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250921T000000",
+        "dtend_tz": "20250921T000000",
+        "uid": "37765",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over WK Tijdrijden 2025 (Wereldkampioenschap).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37765"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250921",
+                1758405600,
+                "20250921"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250921",
+                1758405600,
+                "20250921"
+            ],
+            "summary_array": [
+                [],
+                "WK Tijdrijden (Wereldkampioenschap)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/wk\/wk-tijdrijden\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/wk\/wk-tijdrijden\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over WK Tijdrijden 2025 (Wereldkampioenschap)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/wk\/wk-tijdrijden\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/wk\/wk-tijdrijden\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "WK Tijdrijden (Wereldkampioenschap)",
+        "dtstart": "20250921",
+        "dtend": "20250921",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250921T000000",
+        "dtend_tz": "20250921T000000",
+        "uid": "37767",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over WK Tijdrijden 2025 (Wereldkampioenschap).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37767"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250921",
+                1758405600,
+                "20250921"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250921",
+                1758405600,
+                "20250921"
+            ],
+            "summary_array": [
+                [],
+                "WK Tijdrijden (Wereldkampioenschap)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/wereldkampioenschap-vrouwen\/wk-tijdrijden-vrouwen\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/wereldkampioenschap-vrouwen\/wk-tijdrijden-vrouwen\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over WK Tijdrijden 2025 (Wereldkampioenschap)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/wereldkampioenschap-vrouwen\/wk-tijdrijden-vrouwen\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/wereldkampioenschap-vrouwen\/wk-tijdrijden-vrouwen\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "World Championship - Mixed Relay TTT (Wereldkampioenschap)",
+        "dtstart": "20250924",
+        "dtend": "20250924",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250924T000000",
+        "dtend_tz": "20250924T000000",
+        "uid": "37769",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over World Championship - Mixed Relay TTT 2025 (Wereldkampioenschap).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37769"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250924",
+                1758664800,
+                "20250924"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250924",
+                1758664800,
+                "20250924"
+            ],
+            "summary_array": [
+                [],
+                "World Championship - Mixed Relay TTT (Wereldkampioenschap)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/wereldkampioenschap-gemengd\/world-championship-mixed-relay-ttt\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/wereldkampioenschap-gemengd\/world-championship-mixed-relay-ttt\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over World Championship - Mixed Relay TTT 2025 (Wereldkampioenschap)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/wereldkampioenschap-gemengd\/world-championship-mixed-relay-ttt\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/wereldkampioenschap-gemengd\/world-championship-mixed-relay-ttt\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "WK Weg (Wereldkampioenschap)",
+        "dtstart": "20250927",
+        "dtend": "20250927",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250927T000000",
+        "dtend_tz": "20250927T000000",
+        "uid": "37768",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over WK Weg 2025 (Wereldkampioenschap).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37768"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250927",
+                1758924000,
+                "20250927"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250927",
+                1758924000,
+                "20250927"
+            ],
+            "summary_array": [
+                [],
+                "WK Weg (Wereldkampioenschap)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/wereldkampioenschap-vrouwen\/wk-vrouwen\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/wereldkampioenschap-vrouwen\/wk-vrouwen\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over WK Weg 2025 (Wereldkampioenschap)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/wereldkampioenschap-vrouwen\/wk-vrouwen\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/wereldkampioenschap-vrouwen\/wk-vrouwen\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "WK Weg (Wereldkampioenschap)",
+        "dtstart": "20250928",
+        "dtend": "20250928",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20250928T000000",
+        "dtend_tz": "20250928T000000",
+        "uid": "37766",
+        "created": null,
+        "last_modified": null,
+        "description": "WK wielrennen 2025 bij Wielerkrant. Volg het WK wielrennen Glasgow - programma, parcours, uitslagen en meer. Lees het laatste WK wielrennen nieuws bij Wielerkrant.be",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37766"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250928",
+                1759010400,
+                "20250928"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20250928",
+                1759010400,
+                "20250928"
+            ],
+            "summary_array": [
+                [],
+                "WK Weg (Wereldkampioenschap)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/wk\/wk-weg\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/wk\/wk-weg\/2025",
+            "description_array": [
+                [],
+                "WK wielrennen 2025 bij Wielerkrant. Volg het WK wielrennen Glasgow - programma, parcours, uitslagen en meer. Lees het laatste WK wielrennen nieuws bij Wielerkrant.be"
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/wk\/wk-weg\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/wk\/wk-weg\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Il Lombardia (World Tour)",
+        "dtstart": "20251011",
+        "dtend": "20251011",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20251011T000000",
+        "dtend_tz": "20251011T000000",
+        "uid": "37763",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Il Lombardia 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37763"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20251011",
+                1760133600,
+                "20251011"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20251011",
+                1760133600,
+                "20251011"
+            ],
+            "summary_array": [
+                [],
+                "Il Lombardia (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/il-lombardia\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/il-lombardia\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Il Lombardia 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/il-lombardia\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/il-lombardia\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    },
+    {
+        "summary": "Tour of Guangxi (World Tour)",
+        "dtstart": "20251014",
+        "dtend": "20251019",
+        "duration": null,
+        "dtstamp": "20250330T180049Z",
+        "dtstart_tz": "20251014T000000",
+        "dtend_tz": "20251019T000000",
+        "uid": "37764",
+        "created": null,
+        "last_modified": null,
+        "description": "Alle nieuws en info over Tour of Guangxi 2025 (World Tour).",
+        "location": null,
+        "sequence": null,
+        "status": null,
+        "transp": null,
+        "organizer": null,
+        "attendee": null,
+        "additionalProperties": {
+            "uid_array": [
+                [],
+                "37764"
+            ],
+            "dtstamp_array": [
+                [],
+                "20250330T180049Z"
+            ],
+            "dtstart_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20251014",
+                1760392800,
+                "20251014"
+            ],
+            "dtend_array": [
+                {
+                    "VALUE": "DATE"
+                },
+                "20251019",
+                1760824800,
+                "20251019"
+            ],
+            "summary_array": [
+                [],
+                "Tour of Guangxi (World Tour)"
+            ],
+            "url_array": [
+                [],
+                "https:\/\/www.wielerkrant.be\/world-tour\/tour-of-guangxi\/2025"
+            ],
+            "url": "https:\/\/www.wielerkrant.be\/world-tour\/tour-of-guangxi\/2025",
+            "description_array": [
+                [],
+                "Alle nieuws en info over Tour of Guangxi 2025 (World Tour)."
+            ],
+            "https_array": [
+                [],
+                "\/\/www.wielerkrant.be\/world-tour\/tour-of-guangxi\/2025",
+                [],
+                "\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+            ],
+            "https": "\/\/www.wielerkrant.be\/world-tour\/tour-of-guangxi\/2025,\/\/www.wielerkrant.be\/nieuws\/ontvangen"
+        }
+    }
+]

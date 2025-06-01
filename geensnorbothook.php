@@ -10,7 +10,7 @@ include 'prijzenparade.php';
 include 'tourpoule.php';
 include 'functies.php';
 include 'wielrennen.php';
-include 'brandstof.php';
+include 'energie.php';
 
 $telegram = new Telegram(getenv('telegramId'));
 
@@ -22,7 +22,7 @@ $verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/mai
 $haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/haiku.json';
 $brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/brabants.json';
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
-$wielrenKalender = 'https://www.wielerkrant.be/wielrennen/wielerkalender24.ics';
+$wielrenKalender = 'https://www.wielerkrant.be/wielrennen/kalender.ics';
 
 $text = strtolower(ltrim((string) $telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
@@ -44,7 +44,7 @@ if (strpos($text, 'kabinet') !== false) {
 if (strpos($text, 'geschenk') !== false) {
     include 'cl_TweedeKamer.php';
 
-    $tk = new TweedeKamer;
+    $tk = new TweedeKamer();
 
     $content = ['chat_id' => $chat_id, 'text' => $tk->getGeschenkTekst(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
@@ -54,16 +54,16 @@ if (strpos($text, 'geschenk') !== false) {
 if (strpos($text, 'activiteit') !== false) {
     include 'cl_TweedeKamer.php';
 
-    $tk = new TweedeKamer;
+    $tk = new TweedeKamer();
 
-    $content = ['chat_id' => $chat_id, 'text' => $tk->getActiviteitTekst(new DateTime), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $content = ['chat_id' => $chat_id, 'text' => $tk->getActiviteitTekst(new DateTime()), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
 
 }
 
 //Wielrenkoersen
-if (in_array($text, ['koers', 'koersen', 'wielrennen'])) {
+if (in_array($text, ['koers', 'koersen', 'wielrennen'], true)) {
     $parsedICS = getParsedCalendar($wielrenKalender);
     $koersTekst = getKoersenTekst($parsedICS, (int) date('Ymd'));
 
@@ -88,7 +88,7 @@ if ($text == 'dag van de' || $text == 'het is vandaag' || $text == 'dag' || $tex
 //Dag van de - Einde
 
 //Historische gebeurtenissen van wikipedia
-if (in_array($text, ['vandaag', 'geschiedenis', 'deze dag'])) {
+if (in_array($text, ['vandaag', 'geschiedenis', 'deze dag'], true)) {
     $event = getVandaag();
 
     $sendText = '**Vandaag in '.$event->year."**:\n".$event->content;
@@ -148,9 +148,9 @@ if ($text == 'goedemorgen' || $text == 'goede morgen') {
     //Goede morgen tweede kamer!
 
     include 'cl_TweedeKamer.php';
-    $tk = new TweedeKamer;
+    $tk = new TweedeKamer();
 
-    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews()."\n\n".$tk->getActiviteitTekst(new DateTime);
+    $goedeMorgenText .= "\n\nDe koersen:\n".getBitcoinPrice()."\n".getEthereumPrice()."\n\n".getWeather()."\n\n".getWaarschuwing()."\n\n".getNews()."\n\n".$tk->getActiviteitTekst(new DateTime());
 
     $content = ['chat_id' => $chat_id, 'text' => $goedeMorgenText, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
@@ -182,7 +182,30 @@ if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood'
     $send = true;
 }
 
-if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'])) {
+if (in_array($text, ['energie', 'energiemix', 'electriciteit'], true)) {
+    $energieData = getEnergie();
+    $content = ['chat_id' => $chat_id, 'text' => 'Op dit moment wordt in Nederland '.$energieData->renewablePercentage.'% van de electriciteit opgewekt uit hernieuwbare bronnen. '.$energieData->powerProductionBreakdown->wind.' MW komt uit windenergie, '.$energieData->powerProductionBreakdown->solar.' MW uit zonne-energie.', 'parse_mode' => 'Markdown'];
+    $telegram->sendMessage($content);
+    $send = true;
+
+}
+
+if (in_array($text, ['stroom', 'stroomprijs'], true)) {
+    $stroomObject = json_decode(file_get_contents('https://www.geensnor.nl/api/stroom/index.php?key='.getenv('stroomKey')));
+    $highestPriceTimeFormatted = (new DateTime($stroomObject->rangePriceToday->highest->time))->format('H:i');
+    $lowestPriceTimeFormatted = (new DateTime($stroomObject->rangePriceToday->lowest->time))->format('H:i');
+    if ($stroomObject->negativePriceToday) {
+        $negativePriceText = "Tussen ".(new DateTime($stroomObject->negativePriceToday->start))->format('H:i')." en ".(new DateTime($stroomObject->negativePriceToday->end))->format('H:i')." is de stroomprijs negatief";
+    } else {
+        $negativePriceText = '';
+    }
+
+    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment '.str_replace(".", ",", $stroomObject->currentPrice) .' euro per kWh. De hoogste prijs van vandaag is '.str_replace(".", ",", $stroomObject->rangePriceToday->highest->price) .' om '.$highestPriceTimeFormatted.'. De laagste is '.str_replace(".", ",", $stroomObject->rangePriceToday->lowest->price) .' om '.$lowestPriceTimeFormatted.'. '.$negativePriceText, 'parse_mode' => 'Markdown'];
+    $telegram->sendMessage($content);
+    $send = true;
+}
+
+if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'], true)) {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
     $content = ['chat_id' => $chat_id, 'text' => 'Het is '.$weerObject->liveweer[0]->temp.' graden, maar het voelt als '.$weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
@@ -190,7 +213,6 @@ if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'])) {
 }
 
 //Hieronder het aantal dagen dat Sywert ons geld nog niet heeft terug betaald.
-
 if ($text == 'sywert' || $text == 'sywert van lienden') {
     $antwoord = 'Het is '.getDaysSince('06-06-2021').' dagen geleden dat Sywert van Lienden beloofde om het rendement van de 9 miljoen euro die hij onterecht verdiende, aan een goed doel te schenken.';
 
@@ -314,7 +336,7 @@ if ($text == 'xkcd nieuwste') {
     $send = true;
 }
 
-if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archillect'])) {
+if (in_array($text, ['plaatje', 'random plaatje', 'vet plaatje', 'kunst', 'archillect'], true)) {
     $randomId = random_int(1, 408749);
     $randomPageURL = 'https://archillect.com/'.$randomId;
     $randomPageSource = file_get_contents($randomPageURL);
@@ -360,10 +382,10 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
     if ($chat_id == getenv('verjaardagenGroupId')) {
         include 'cl_verjaardagen.php';
 
-        $nu = new DateTime;
+        $nu = new DateTime();
         $vandaag = new DateTime($nu->format('Y-m-d')); //Dit is een beetje funky. Maar anders sprint hij van dag op en neer.
 
-        $v = new verjaardag;
+        $v = new verjaardag();
         $v->getVerjaardagen();
         $content = ['chat_id' => $chat_id, 'text' => $v->getVerjaardagTekst($vandaag)];
         $telegram->sendMessage($content);
@@ -378,7 +400,7 @@ if ($text == 'verjaardag' || $text == 'jarig' || $text == 'verjaardagen') {
 if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in de vraag vier cijfers (jaartal...) in een string voorkomt. Dan beschouwen we het maar als een jaartal. Behalve als het natuurlijk 1337 is....
     if ($chat_id == getenv('verjaardagenGroupId')) {
         include 'cl_weekenden.php';
-        $v = new weekend;
+        $v = new weekend();
         $content = ['chat_id' => $chat_id, 'text' => $v->getWeekendText($text)];
         $telegram->sendMessage($content);
         $send = true;
@@ -531,7 +553,7 @@ if ($text == '1337') {
     $send = true;
 }
 
-if (in_array($text, ['winnen', 'prijzenparade'])) {
+if (in_array($text, ['winnen', 'prijzenparade'], true)) {
     $prijzenparade_url = get_prijzen_parade_url();
     if ($prijzenparade_url) {
         $antwoord = 'De link van de Tweakers December Prijzen Parade van vandaag is: '.$prijzenparade_url;
@@ -542,7 +564,7 @@ if (in_array($text, ['winnen', 'prijzenparade'])) {
 }
 
 //Tourpoule. Functie staat in apart bestand.
-if (in_array($text, ['tourpoule', 'tour', 'poule'])) {
+if (in_array($text, ['tourpoule', 'tour', 'poule'], true)) {
     // $tourInfo = getTourInfo();
     // if ($tourInfo) {
     //     $antwoord = $tourInfo;
@@ -575,6 +597,28 @@ if (! $send) {
         }
     }
 }
+
+// poel tussenstand
+
+if ($text == 'tussenstand') {
+    $json = file_get_contents('https://www.geensnor.nl/tourpoule/rankingData/2025/giro/stagesRanking.json');
+    $data = json_decode($json, true);
+
+    $tussenstand = $data[0]['pointsAfterStage'];
+
+    // Sorteer op punten, hoogste eerst
+    arsort($tussenstand);
+
+    $response = "*Huidige tussenstand:*\n";
+    foreach ($tussenstand as $naam => $punten) {
+        $response .= trim($naam) . ": " . $punten . "\n";
+    }
+
+    $content = ['chat_id' => $chat_id, 'text' => $response, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+    $send = true;
+}
+
 
 //Random antwoord geven als hij niets weet...
 if (! $send && $text) {

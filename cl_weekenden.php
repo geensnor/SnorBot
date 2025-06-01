@@ -28,10 +28,6 @@ class weekend
         }
 
         curl_close($curl);
-        var_dump(
-            json_decode(file_get_contents($curlResult[1]->download_url))
-        );
-
         return json_decode(file_get_contents($curlResult[1]->download_url));
     }
 
