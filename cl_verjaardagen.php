@@ -1,5 +1,8 @@
 <?php
 
+include_once 'cl_persoon.php';
+
+
 /**
  * verjaardag
  */
@@ -40,6 +43,12 @@ class verjaardag
         $this->geboortedatums = json_decode(file_get_contents($curlResult[0]->download_url));
     }
 
+    /**
+     * getVerjaardagenData
+     *
+     * Berekent de verjaardagen data op basis van de referentie datum
+     * @return persoon[]
+     */
     public function getVerjaardagenData(DateTime $referentieDatum): array
     {
         $verjaardagenData = [];
@@ -49,7 +58,7 @@ class verjaardag
 
                 $verjaardagDitJaar = DateTime::createFromFormat('Ymd', $referentieDatum->format('Y').$geboortedatumDateTime->format('m').$geboortedatumDateTime->format('d'));
 
-                $persoon = new stdClass();
+                $persoon = new persoon();
 
                 $persoon->naam = $this->geboortedatums[$key]->naam;
                 $persoon->geboortedatum = $geboortedatumDateTime->format('d-m-Y');
@@ -79,6 +88,11 @@ class verjaardag
         return $verjaardagenData;
     }
 
+    /**
+     * getVerjaardagTekst
+     *
+     * Retourneert de tekst voor de verjaardagen op basis van de referentie datum
+     */
     public function getVerjaardagTekst(DateTime $referentieDatum): string
     {
         $verjaardagenData = $this->getVerjaardagenData($referentieDatum);
