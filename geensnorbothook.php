@@ -18,6 +18,7 @@ $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
 $weetjesLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/weetjes.json';
 $dooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/dooddoeners.json';
+$politiekeDooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/politieke-dooddoeners.json';
 $verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/verveellijst.json';
 $haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/haiku.json';
 $brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/brabants.json';
@@ -471,6 +472,17 @@ if ($text == 'dooddoener') {
         $antwoord = $dooddoenerArray[$randKey];
     } else {
         $antwoord = 'Kan geen dooddoener vinden. De json file is naar de vaantjes';
+    }
+    $send = true;
+}
+
+if (in_array($text, ['politieke dooddoener', 'debat', 'oneliner'], true)) {
+    $politiekedooddoenerArray = json_decode(file_get_contents($politiekeDooddoenerLocatie));
+    if (json_last_error() === JSON_ERROR_NONE) {
+        $randKey = array_rand($politiekedooddoenerArray, 1);
+        $antwoord = $politiekedooddoenerArray[$randKey];
+    } else {
+        $antwoord = 'Kan geen politieke dooddoener vinden. De json file is naar de vaantjes';
     }
     $send = true;
 }
