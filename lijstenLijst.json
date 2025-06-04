@@ -1,0 +1,45 @@
+[
+  {
+    "naam": "Weetjes",
+    "lijstURL": "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/weetjes.json",
+    "willekeurig": ["weetje"],
+    "laatste": ["nieuwste weetje"]
+  },
+  {
+    "naam": "Haiku's",
+    "lijstURL": "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/haiku.json",
+    "willekeurig": ["haiku"],
+    "laatste": ["nieuwste haiku", "laatste haiku"]
+  },
+  {
+    "naam": "Dooddoeners",
+    "lijstURL": "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/dooddoeners.json",
+    "willekeurig": ["dooddoener"]
+  },
+  {
+    "naam": "Politieke clichées",
+    "lijstURL": "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/politieke-cliches.json",
+    "willekeurig": [
+      "politieke dooddoener",
+      "debat",
+      "oneliner",
+      "clichee",
+      "clichée"
+    ]
+  },
+  {
+    "naam": "Verveling",
+    "lijstURL": "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/verveellijst.json",
+    "willekeurig": [
+      "verveeling",
+      "verveel",
+      "wat zal ik doen",
+      "wat zal ik eens doen"
+    ]
+  },
+  {
+    "naam": "Brabants",
+    "lijstURL": "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/brabants.json",
+    "willekeurig": ["brabants", "alaaf", "brabant", "wa zedde gij"]
+  }
+]
