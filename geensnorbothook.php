@@ -18,7 +18,7 @@ $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
 $weetjesLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/weetjes.json';
 $dooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/dooddoeners.json';
-$politiekeDooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/politieke-dooddoeners.json';
+$politiekeClichesLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/politieke-cliches.json';
 $verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/verveellijst.json';
 $haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/haiku.json';
 $brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/brabants.json';
@@ -201,7 +201,7 @@ if (in_array($text, ['stroom', 'stroomprijs'], true)) {
         $negativePriceText = '';
     }
 
-    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment '.str_replace(".", ",", $stroomObject->currentPrice) .' euro per kWh. De hoogste prijs van vandaag is '.str_replace(".", ",", $stroomObject->rangePriceToday->highest->price) .' om '.$highestPriceTimeFormatted.'. De laagste is '.str_replace(".", ",", $stroomObject->rangePriceToday->lowest->price) .' om '.$lowestPriceTimeFormatted.'. '.$negativePriceText, 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'De stroomprijs van Tibber is op dit moment '.str_replace(".", ",", $stroomObject->currentPrice).' euro per kWh. De hoogste prijs van vandaag is '.str_replace(".", ",", $stroomObject->rangePriceToday->highest->price).' om '.$highestPriceTimeFormatted.'. De laagste is '.str_replace(".", ",", $stroomObject->rangePriceToday->lowest->price).' om '.$lowestPriceTimeFormatted.'. '.$negativePriceText, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -476,13 +476,13 @@ if ($text == 'dooddoener') {
     $send = true;
 }
 
-if (in_array($text, ['politieke dooddoener', 'debat', 'oneliner'], true)) {
-    $politiekedooddoenerArray = json_decode(file_get_contents($politiekeDooddoenerLocatie));
+if (in_array($text, ['politieke dooddoener', 'debat', 'oneliner', 'clichee', 'clichée'], true)) {
+    $politiekeClichesArray = json_decode(file_get_contents($politiekeClichesLocatie));
     if (json_last_error() === JSON_ERROR_NONE) {
-        $randKey = array_rand($politiekedooddoenerArray, 1);
-        $antwoord = $politiekedooddoenerArray[$randKey];
+        $randKey = array_rand($politiekeClichesArray, 1);
+        $antwoord = $politiekeClichesArray[$randKey];
     } else {
-        $antwoord = 'Kan geen politieke dooddoener vinden. De json file is naar de vaantjes';
+        $antwoord = 'Kan geen politiek clichée vinden. De json file is naar de vaantjes';
     }
     $send = true;
 }
