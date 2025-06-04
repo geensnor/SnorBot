@@ -1,10 +1,11 @@
 {
   "preset": "psr12",
-  "rules": {
+    "rules": {
         "binary_operator_spaces": {
             "default": "single_space",
-            "=": "single_space",
-            ".": "no_space"
+            "operators": {
+                ".": null
+            }
         }
     }
 }
