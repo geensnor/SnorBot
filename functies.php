@@ -122,6 +122,11 @@ function getDaysSince($date): float
     return floor((time() - strtotime((string) $date)) / (60 * 60 * 24));
 }
 
+/**
+ * Haalt een historisch event op van vandaag
+ *
+ * @todo events.historylabs.io is doet het op dit moment niet meer zo goed.
+ */
 function getVandaag(): object
 {
     $todayResult = json_decode(file_get_contents('https://events.historylabs.io/date?day='.date('j').'&month='.date('n')));
