@@ -16,12 +16,6 @@ $telegram = new Telegram(getenv('telegramId'));
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
-$weetjesLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/weetjes.json';
-$dooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/dooddoeners.json';
-$politiekeClichesLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/politieke-cliches.json';
-$verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/verveellijst.json';
-$haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/haiku.json';
-$brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/brabants.json';
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/kalender.ics';
 
@@ -31,6 +25,14 @@ $chat_id = $telegram->ChatID();
 $losseWoorden = explode(' ', $text);
 $antwoord = '';
 $send = false;
+
+$antwoordSimpeleLijst = getItemSimpeleLijst($text, 'lijstenLijst.json');
+
+if ($antwoordSimpeleLijst) {
+    $content = ['chat_id' => $chat_id, 'text' => $antwoordSimpeleLijst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+    $send = true;
+}
 
 //Kabinet
 
@@ -430,27 +432,6 @@ if ($text == 'advies') {
     $keyb = $telegram->buildKeyBoard($option, $onetime = false);
     $content = ['chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.'];
     $telegram->sendMessage($content);
-    $send = true;
-}
-
-if ($text == 'nieuwste weetje') {
-    $weetjesArray = json_decode(file_get_contents($weetjesLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $antwoord = end($weetjesArray);
-    } else {
-        $antwoord = 'Kan geen nieuw weetje ophalen. De weetjes json is niet helemaal lekker.';
-    }
-    $send = true;
-}
-
-if ($text == 'weetje') {
-    $weetjesArray = json_decode(file_get_contents($weetjesLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $randKey = array_rand($weetjesArray, 1);
-        $antwoord = $weetjesArray[$randKey];
-    } else {
-        $antwoord = 'Kan geen weetje ophalen. De weetjes json is niet helemaal lekker.';
-    }
     $send = true;
 }
 
