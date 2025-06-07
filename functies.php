@@ -122,6 +122,11 @@ function getDaysSince($date): float
     return floor((time() - strtotime((string) $date)) / (60 * 60 * 24));
 }
 
+/**
+ * Haalt een historisch event op van vandaag
+ *
+ * @todo events.historylabs.io is doet het op dit moment niet meer zo goed.
+ */
 function getVandaag(): object
 {
     $todayResult = json_decode(file_get_contents('https://events.historylabs.io/date?day='.date('j').'&month='.date('n')));
@@ -143,4 +148,46 @@ function getThuisarts(): string
     $thuisartsrss = simplexml_load_file('https://www.thuisarts.nl/rss.xml');
 
     return "Laatste bericht op thuisarts.nl: \n[".$thuisartsrss->channel->item[0]->title.']('.$thuisartsrss->channel->item[0]->link.')';
+}
+
+/**
+ * Geef een item uit een van de simpele lijsten
+ *
+ * Simpele lijsten zijn JSON bestanden die alleen een array van strings bevatten.
+ *
+ * @param string $tekst String waarop gezocht moet worden
+ * @param string $lijstenLijstURL String van de url van de lijsten lijst. De lijsten lijst is een lijst met lijsten.
+ * @return string|bool Geeft het gevonden item terug als string, of false als er geen item gevonden is.
+ */
+function getItemSimpeleLijst(string $tekst, string $lijstenLijstURL): string|bool
+{
+    $simpeleLijsten = json_decode(file_get_contents($lijstenLijstURL));
+
+    if ($simpeleLijsten === null) {
+        return 'Kan geen lijsten lijst ophalen. Ongeldige JSON: '.$lijstenLijstURL;
+    } else {
+
+        foreach ($simpeleLijsten as $lijst) {
+            if ($lijst->willekeurig && in_array($tekst, $lijst->willekeurig, true)) {
+                $gevondenLijst = json_decode(file_get_contents($lijst->lijstURL), true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $randKey = array_rand($gevondenLijst, 1);
+                    return $gevondenLijst[$randKey];
+                } else {
+                    return 'Kan geen '.$lijst->naam.' ophalen. De JSON is niet helemaal lekker.';
+                }
+            } elseif ($lijst->laatste && in_array($tekst, $lijst->laatste, true)) {
+                $gevondenLijst = json_decode(file_get_contents($lijst->lijstURL), true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+
+                    return  end($gevondenLijst);
+                } else {
+                    return 'Kan geen '.$lijst->naam.' ophalen. De JSON is niet helemaal lekker.';
+                }
+
+            }
+        }
+
+        return false;
+    }
 }

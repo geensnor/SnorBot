@@ -1,0 +1,8 @@
+[
+  {
+    "naam": "Testlijst",
+    "lijstURL": "tests/fixtures/simpeleLijst.json",
+    "willekeurig": ["willekeurig"],
+    "laatste": ["laatste"]
+  }
+]

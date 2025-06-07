@@ -16,12 +16,6 @@ $telegram = new Telegram(getenv('telegramId'));
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
-$weetjesLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/weetjes.json';
-$dooddoenerLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/dooddoeners.json';
-$politiekeClichesLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/politieke-cliches.json';
-$verveelLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/verveellijst.json';
-$haikuLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/haiku.json';
-$brabantsLocatie = 'https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/main/src/content/data/brabants.json';
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/kalender.ics';
 
@@ -31,6 +25,14 @@ $chat_id = $telegram->ChatID();
 $losseWoorden = explode(' ', $text);
 $antwoord = '';
 $send = false;
+
+$antwoordSimpeleLijst = getItemSimpeleLijst($text, 'lijstenLijst.json');
+
+if ($antwoordSimpeleLijst) {
+    $content = ['chat_id' => $chat_id, 'text' => $antwoordSimpeleLijst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+    $send = true;
+}
 
 //Kabinet
 
@@ -430,92 +432,6 @@ if ($text == 'advies') {
     $keyb = $telegram->buildKeyBoard($option, $onetime = false);
     $content = ['chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.'];
     $telegram->sendMessage($content);
-    $send = true;
-}
-
-if ($text == 'nieuwste weetje') {
-    $weetjesArray = json_decode(file_get_contents($weetjesLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $antwoord = end($weetjesArray);
-    } else {
-        $antwoord = 'Kan geen nieuw weetje ophalen. De weetjes json is niet helemaal lekker.';
-    }
-    $send = true;
-}
-
-if ($text == 'weetje') {
-    $weetjesArray = json_decode(file_get_contents($weetjesLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $randKey = array_rand($weetjesArray, 1);
-        $antwoord = $weetjesArray[$randKey];
-    } else {
-        $antwoord = 'Kan geen weetje ophalen. De weetjes json is niet helemaal lekker.';
-    }
-    $send = true;
-}
-
-if ($text == 'brabants' || $text == 'alaaf' || $text == 'brabant' || $text == 'wa zedde gij') {
-    $brabantsArray = json_decode(file_get_contents($brabantsLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $randKey = array_rand($brabantsArray, 1);
-        $antwoord = $brabantsArray[$randKey];
-    } else {
-        $antwoord = 'Kan geen brabants ophalen. De brabant json is niet helemaal lekker.';
-    }
-    $send = true;
-}
-
-if ($text == 'dooddoener') {
-    $dooddoenerArray = json_decode(file_get_contents($dooddoenerLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $randKey = array_rand($dooddoenerArray, 1);
-        $antwoord = $dooddoenerArray[$randKey];
-    } else {
-        $antwoord = 'Kan geen dooddoener vinden. De json file is naar de vaantjes';
-    }
-    $send = true;
-}
-
-if (in_array($text, ['politieke dooddoener', 'debat', 'oneliner', 'clichee', 'clichée'], true)) {
-    $politiekeClichesArray = json_decode(file_get_contents($politiekeClichesLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $randKey = array_rand($politiekeClichesArray, 1);
-        $antwoord = $politiekeClichesArray[$randKey];
-    } else {
-        $antwoord = 'Kan geen politiek clichée vinden. De json file is naar de vaantjes';
-    }
-    $send = true;
-}
-
-if ($text == 'verveel' || $text == 'wat zal ik doen') {
-    $verveelArray = json_decode(file_get_contents($verveelLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $randKey = array_rand($verveelArray, 1);
-        $antwoord = $verveelArray[$randKey];
-    } else {
-        $antwoord = 'Verveel je je ja? Nou, ik kan je ook niet helpen want ik kan de json met leuke dingen om te doen niet vinden.';
-    }
-    $send = true;
-}
-
-if ($text == 'haiku') {
-    $haikuArray = json_decode(file_get_contents($haikuLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $randKey = array_rand($haikuArray, 1);
-        $antwoord = $haikuArray[$randKey];
-    } else {
-        $antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
-    }
-    $send = true;
-}
-
-if ($text == 'nieuwste haiku') {
-    $haikuArray = json_decode(file_get_contents($haikuLocatie));
-    if (json_last_error() === JSON_ERROR_NONE) {
-        $antwoord = end($haikuArray);
-    } else {
-        $antwoord = "De JSON is stuk \nde haiku's zijn verdwenen \nwie kan mij helpen?";
-    }
     $send = true;
 }
 
