@@ -38,7 +38,7 @@ function getTodayRanking(): string
         $place++;
     }
 
-    return "*Uitslag etappe ".$pouleResult->lastUpdate->stageNumber.": ".$pouleResult->stageToday->route."*\n\n".$rankingReturn."\nZie de volledige uitslag op: [geensnor.nl/tourpoule/](https://www.geensnor.nl/tourpoule/)";
+    return "*Score etappe ".$pouleResult->lastUpdate->stageNumber.": ".$pouleResult->stageToday->route."*\n\n".$rankingReturn."\nZie de volledige uitslag op: [geensnor.nl/tourpoule/](https://www.geensnor.nl/tourpoule/)";
 }
 
 /**
