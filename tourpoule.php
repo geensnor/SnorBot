@@ -1,31 +1,22 @@
 <?php
 
-function getTourRanking($tourLocation, string $tourName): string
+/**
+ * Maakt een mooi overzicht van de Geensnor Tourpoule deelnemers
+ *
+ * Haalt de ranking informatie op van de Geensnor Tourpoule API maakt er een lijst van
+ *
+ * @return string Lijst van deelnemers met hun punten
+ */
+function getTourRanking(): string
 {
-    $ranking = json_decode(file_get_contents('https://www.geensnor.nl/tourpoule/rankingData/2021/tour-du-test/totalRanking.json'));
+    $pouleResult = json_decode(file_get_contents('https://www.geensnor.nl/tourpoule/api/summaryToday/'));
 
+    $place = 1;
     $rankingReturn = '';
-    foreach ($ranking as $rank) {
-        $rankingReturn .= $rank->userName.': '.$rank->points." \n";
+    foreach ($pouleResult->ranking as $rank) {
+        $rankingReturn .= $place.". ".html_entity_decode($rank->user).": ".$rank->totalPoints." \n";
+        $place++;
     }
 
-    return 'Klassement Geensnor Tourpoule: '.$tourName." \n\n".$rankingReturn."\n\n[https://www.geensnor.nl/tourpoule/](https://www.geensnor.nl/tourpoule/)";
-}
-
-function getTourInfo(): string
-{
-    $currentTourLocationJSON = json_decode(file_get_contents('https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main/currentTour.json'));
-    $tourConfig = json_decode(file_get_contents('https://raw.githubusercontent.com/geensnor/Geensnor-Tourpoule-Data/main'.$currentTourLocationJSON->currentTourLocation.'/tourConfig.json'));
-
-    if ($tourConfig->status != 'open') {
-        $returnText = 'De volgende tour is '.$tourConfig->name.' die op '.$tourConfig->start." start. \nZodra er meer renners bekend zijn, kun je je eigen team maken op \n[https://www.geensnor.nl/tourpoule/](https://www.geensnor.nl/tourpoule/)";
-    } else {//Tour is geopend.
-        if (strtotime((string) $tourConfig->start) < time()) {
-            $returnText = getTourRanking($currentTourLocationJSON->currentTourLocation, $tourConfig->name);
-        } else {
-            $returnText = 'Je kan je team voor '.$tourConfig->name." samenstellen op https://www.geensnor.nl/tourpoule. (even toegangscode regelen...) \nJe hebt de tijd tot de start op ".$tourConfig->start;
-        }
-    }
-
-    return $returnText;
+    return "*Klassement Geensnor Tourpoule*\n\n".$rankingReturn."\nBijgewerkt tot en met etappe ".$pouleResult->lastUpdate->stageNumber." op ".$pouleResult->lastUpdate->stageDate."\nZie de volledige uitslag op: [geensnor.nl/tourpoule/](https://www.geensnor.nl/tourpoule/)";
 }

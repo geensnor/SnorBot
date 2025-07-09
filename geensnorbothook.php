@@ -487,15 +487,10 @@ if (in_array($text, ['winnen', 'prijzenparade'], true)) {
 }
 
 //Tourpoule. Functie staat in apart bestand.
-if (in_array($text, ['tourpoule', 'tour', 'poule'], true)) {
-    // $tourInfo = getTourInfo();
-    // if ($tourInfo) {
-    //     $antwoord = $tourInfo;
-    // } else {
-    //     $antwoord = "Er is even geen tourpoule info nu.";
-    // }
-    // Dit hierboven is allemaal vet, maar het werkt natuurlijk weer net niet...
-    $antwoord = 'Check https://www.geensnor.nl/tourpoule voor alle info!';
+if (in_array($text, ['tourpoule', 'tour', 'poule', 'stand poule', 'stand tourpoule'], true)) {
+
+    $content = ['chat_id' => $chat_id, 'text' => getTourRanking(), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
     $send = true;
 }
 
