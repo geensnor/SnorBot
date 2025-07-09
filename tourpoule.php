@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Maakt een mooi overzicht van de Geensnor Tourpoule deelnemers
+ *
+ * Haalt de ranking informatie op van de Geensnor Tourpoule API maakt er een lijst van
+ *
+ * @return string Lijst van deelnemers met hun punten
+ */
 function getTourRanking(): string
 {
     $pouleResult = json_decode(file_get_contents('https://www.geensnor.nl/tourpoule/api/summaryToday/'));
