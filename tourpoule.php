@@ -13,8 +13,35 @@ function getTourRanking(): string
 
     $place = 1;
     $rankingReturn = '';
+
+    // Verzamel alle namen en punten om de maximale lengte te bepalen
+    $maxNameLen = 0;
+    $maxPointsLen = 0;
     foreach ($pouleResult->ranking as $rank) {
-        $rankingReturn .= $place.". ".html_entity_decode($rank->user).": ".$rank->totalPoints." \n";
+        $nameLen = mb_strlen(html_entity_decode($rank->user));
+        $pointsLen = mb_strlen((string)$rank->totalPoints);
+        if ($nameLen > $maxNameLen) {
+            $maxNameLen = $nameLen;
+        }
+        if ($pointsLen > $maxPointsLen) {
+            $maxPointsLen = $pointsLen;
+        }
+    }
+
+    // Bouw de uitgelijnde lijst op
+    foreach ($pouleResult->ranking as $rank) {
+        $name = html_entity_decode($rank->user);
+        $points = $rank->totalPoints;
+        // Bereken het aantal punten dat nodig is om op te vullen
+        $dotsCount = ($maxNameLen - mb_strlen($name)) + 3; // 3 extra voor vaste spatie na naam
+        $dots = str_repeat('.', $dotsCount);
+        $rankingReturn .= sprintf(
+            "`%2d. %s%s %{$maxPointsLen}d`\n",
+            $place,
+            $name,
+            $dots,
+            $points
+        );
         $place++;
     }
 
