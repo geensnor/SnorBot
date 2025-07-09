@@ -7,7 +7,7 @@ function getTourRanking(): string
     $place = 1;
     $rankingReturn = '';
     foreach ($pouleResult->ranking as $rank) {
-        $rankingReturn .= $place.". ".$rank->user.": ".$rank->totalPoints." \n";
+        $rankingReturn .= $place.". ".html_entity_decode($rank->user).": ".$rank->totalPoints." \n";
         $place++;
     }
 
