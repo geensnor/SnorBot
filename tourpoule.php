@@ -11,5 +11,5 @@ function getTourRanking(): string
         $place++;
     }
 
-    return "```Klassement Geensnor Tourpoule:  \n\n".$rankingReturn."\n\n[geensnor.nl/tourpoule/](https://www.geensnor.nl/tourpoule/)```";
+    return "Klassement Geensnor Tourpoule:  \n\n".$rankingReturn."\n\n[geensnor.nl/tourpoule/](https://www.geensnor.nl/tourpoule/)";
 }
