@@ -32,10 +32,14 @@ function getTourRanking(): string
     foreach ($pouleResult->ranking as $rank) {
         $name = html_entity_decode($rank->user);
         $points = $rank->totalPoints;
+        // Bereken het aantal punten dat nodig is om op te vullen
+        $dotsCount = ($maxNameLen - mb_strlen($name)) + 3; // 3 extra voor vaste spatie na naam
+        $dots = str_repeat('.', $dotsCount);
         $rankingReturn .= sprintf(
-            "`%2d. %-{$maxNameLen}s %{$maxPointsLen}d`\n",
+            "`%2d. %s%s %{$maxPointsLen}d`\n",
             $place,
             $name,
+            $dots,
             $points
         );
         $place++;
