@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Maakt een mooi overzicht van het uitslag van de laatste etappe van de Geensnor Tourpoule
+ *
+ * Haalt de uitslag informatie op van de Geensnor Tourpoule API maakt er een lijst van
+ *
+ * @return string Lijst van deelnemers met hun score in de laatste etappe
+ */
 function getTodayRanking(): string
 {
     $pouleResult = json_decode(file_get_contents('https://www.geensnor.nl/tourpoule/api/summaryToday/'));
@@ -7,34 +14,8 @@ function getTodayRanking(): string
     $place = 1;
     $rankingReturn = '';
 
-    // Verzamel alle namen en punten om de maximale lengte te bepalen
-    $maxNameLen = 0;
-    $maxPointsLen = 0;
-    foreach ($pouleResult->latestStageUserRanking as $todayRank) {
-        $nameLen = mb_strlen($todayRank->name);
-        $pointsLen = mb_strlen((string)$todayRank->points);
-        if ($nameLen > $maxNameLen) {
-            $maxNameLen = $nameLen;
-        }
-        if ($pointsLen > $maxPointsLen) {
-            $maxPointsLen = $pointsLen;
-        }
-    }
-
-    // Bouw de uitgelijnde lijst op
-    foreach ($pouleResult->latestStageUserRanking as $todayRank) {
-        $name = html_entity_decode($todayRank->name);
-        $points = $todayRank->points;
-        // Bereken het aantal punten dat nodig is om op te vullen
-        $dotsCount = ($maxNameLen - mb_strlen($name)) + 3; // 3 extra voor vaste spatie na naam
-        $dots = str_repeat('.', $dotsCount);
-        $rankingReturn .= sprintf(
-            "`%2d. %s%s %{$maxPointsLen}d`\n",
-            $place,
-            $name,
-            $dots,
-            $points
-        );
+    foreach ($pouleResult->latestStageUserRanking as $rank) {
+        $rankingReturn .= $place.". ".html_entity_decode($rank->name).": ".$rank->points." \n";
         $place++;
     }
 
@@ -42,7 +23,7 @@ function getTodayRanking(): string
 }
 
 /**
- * Maakt een mooi overzicht van de Geensnor Tourpoule deelnemers
+ * Maakt een mooi overzicht van het Geensnor Tourpoule klassement
  *
  * Haalt de ranking informatie op van de Geensnor Tourpoule API maakt er een lijst van
  *
@@ -54,35 +35,8 @@ function getTourRanking(): string
 
     $place = 1;
     $rankingReturn = '';
-
-    // Verzamel alle namen en punten om de maximale lengte te bepalen
-    $maxNameLen = 0;
-    $maxPointsLen = 0;
     foreach ($pouleResult->ranking as $rank) {
-        $nameLen = mb_strlen(html_entity_decode($rank->user));
-        $pointsLen = mb_strlen((string)$rank->totalPoints);
-        if ($nameLen > $maxNameLen) {
-            $maxNameLen = $nameLen;
-        }
-        if ($pointsLen > $maxPointsLen) {
-            $maxPointsLen = $pointsLen;
-        }
-    }
-
-    // Bouw de uitgelijnde lijst op
-    foreach ($pouleResult->ranking as $rank) {
-        $name = html_entity_decode($rank->user);
-        $points = $rank->totalPoints;
-        // Bereken het aantal punten dat nodig is om op te vullen
-        $dotsCount = ($maxNameLen - mb_strlen($name)) + 3; // 3 extra voor vaste spatie na naam
-        $dots = str_repeat('.', $dotsCount);
-        $rankingReturn .= sprintf(
-            "`%2d. %s%s %{$maxPointsLen}d`\n",
-            $place,
-            $name,
-            $dots,
-            $points
-        );
+        $rankingReturn .= $place.". ".html_entity_decode($rank->user).": ".$rank->totalPoints." \n";
         $place++;
     }
 
