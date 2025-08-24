@@ -79,12 +79,8 @@ Bot heeft een config.php nodig om wat settings uit op te halen. Hernoem config_e
 
 ## **Persoonlijk & Sociaal**
 - `/verjaardag` of `/jarig` of `/verjaardagen` - Krijg verjaardagsinformatie (groepsspecifiek)
-- `/voornaam` of `/naam` of `/babynaam` - Krijg willekeurige voornaam suggestie
 - `/goedemorgen` of `/goede morgen` - Krijg ochtendoverzicht met weer, crypto, nieuws en activiteiten
 
-## **Locatie & Advies**
-- `/advies` - Vraag locatiegebaseerd advies (vereist locatiedeling)
-- *Locatie delen* - Krijg advies in de buurt wanneer locatie wordt gedeeld
 
 ## **Hulpmiddelen**
 - `/getal onder de [nummer]` - Genereer willekeurig nummer onder opgegeven waarde
@@ -112,12 +108,7 @@ De bot reageert ook op verschillende conversatie triggers zoals:
 - Onderwerpen (`website`, `strava`, `git`, `recepten`, `eten`, etc.)
 
 ## **Speciale Functies**
-- **Jaar vragen** (elk 4-cijferig jaar) - Krijg weekendinformatie voor dat jaar (groepsspecifiek)
 - **Willekeurige reacties** - Als geen commando overeenkomt, geeft de bot een willekeurige reactie uit zijn database
 
 ## **Opmerkingen**
 - Sommige commando's zijn groepsspecifiek (zoals verjaardagen en weekendinformatie)
-- De bot ondersteunt zowel `/commando` als `commando` formaten
-- Locatiegebaseerde functies vereisen locatiedeling toestemming
-- Veel commando's geven informatie in Markdown formaat met links en opmaak
-
