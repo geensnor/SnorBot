@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f61d804949780483f904acb7ec34fd0",
+    "content-hash": "b022e7ef363aa03037ba5f17b74ebff6",
     "packages": [
         {
             "name": "eleirbag89/telegrambotphp",
@@ -1716,20 +1716,15 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.27",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "3a6e423c076ab39dfedc307e2ac627ef579db162"
-            },
+            "version": "2.1.38",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/3a6e423c076ab39dfedc307e2ac627ef579db162",
-                "reference": "3a6e423c076ab39dfedc307e2ac627ef579db162",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/dfaf1f530e1663aa167bc3e52197adb221582629",
+                "reference": "dfaf1f530e1663aa167bc3e52197adb221582629",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0"
+                "php": "^7.4|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -1770,7 +1765,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-21T20:51:45+00:00"
+            "time": "2026-01-30T17:12:46+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
