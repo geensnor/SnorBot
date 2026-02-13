@@ -19,5 +19,5 @@ test('Tekst schandaal', function (): void {
     $schandalenLijst = new schandalenLijst(__DIR__.'/fixtures/schandalen.json');
     $schandaal = $schandalenLijst->getLaatsteSchandaal();
     $tekst = schandaalTekst::geefTekstLaatste($schandaal);
-    expect($tekst)->toContain('Het laastste Meta schandaal:');
+    expect($tekst)->toContain('Het meest recente Meta schandaal van');
 });
