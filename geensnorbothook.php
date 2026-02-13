@@ -37,7 +37,7 @@ if ($antwoordSimpeleLijst) {
 
 //Meta schandalen
 if (in_array($text, ['random schandaal', 'schandaal', 'meta'], true)) {
-    include 'cl_MetaSchandalen.php';
+    include 'cl_metaSchandalen.php';
     $schandalenLijst = new schandalenLijst($metaSchandalenLocatie);
     $schandaal = $schandalenLijst->getWillekeurigSchandaal();
     $tekst = schandaalTekst::geefTekstRandom($schandaal);
