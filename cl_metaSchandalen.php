@@ -92,12 +92,12 @@ class schandaalTekst
 {
     public static function geefTekstRandom(schandaal $schandaal): string
     {
-        return "In {$schandaal->datum} was er een schandaal:\n {$schandaal->schandaal}\n\n bron: {$schandaal->bron}";
+        return "Schandaal van {$schandaal->datum}:\n{$schandaal->schandaal}\n\n bron: [{$schandaal->bron}]({$schandaal->url})";
     }
 
     public static function geefTekstLaatste(schandaal $schandaal): string
     {
-        return "Het laastste Meta schandaal: \n {$schandaal->schandaal}\n\n bron: {$schandaal->bron}";
+        return "Het laastste Meta schandaal:\n{$schandaal->schandaal}\n\n bron: {$schandaal->bron}";
     }
 
 }
