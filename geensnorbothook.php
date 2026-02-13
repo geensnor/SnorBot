@@ -41,7 +41,7 @@ if (in_array($text, ['random schandaal', 'schandaal', 'meta'], true)) {
     $schandalenLijst = new schandalenLijst($metaSchandalenLocatie);
     $schandaal = $schandalenLijst->getWillekeurigSchandaal();
     $tekst = schandaalTekst::geefTekstRandom($schandaal);
-    $telegram->sendMessage(['chat_id' => $chat_id, 'text' => $tekst, 'disable_web_page_preview' => true]);
+    $telegram->sendMessage(['chat_id' => $chat_id, 'text' => $tekst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true]);
     $send = true;
 
 }
