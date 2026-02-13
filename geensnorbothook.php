@@ -386,13 +386,6 @@ if ($text == 'genereer wachtwoord') {
     $send = true;
 }
 
-if ($text == 'guid') {
-    $guid = json_decode(file_get_contents('https://www.passwordrandom.com/query?command=guid&format=json&count=10'));
-    $content = ['chat_id' => $chat_id, 'text' => 'Random guid: '.$guid->char[1]];
-    $telegram->sendMessage($content);
-    $send = true;
-}
-
 //Geeft het chat id van de huidige groep weer
 if ($text == 'chatid') {
     $content = ['chat_id' => $chat_id, 'text' => 'Chat id van deze groep: '.$chat_id];
