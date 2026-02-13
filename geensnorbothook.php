@@ -18,6 +18,7 @@ $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/kalender.ics';
+$metaSchandalenLocatie = "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/refs/heads/main/src/content/data/facebook-schandalen.json";
 
 $text = strtolower(ltrim((string) $telegram->Text(), '/'));
 $chat_id = $telegram->ChatID();
@@ -32,6 +33,26 @@ if ($antwoordSimpeleLijst) {
     $content = ['chat_id' => $chat_id, 'text' => $antwoordSimpeleLijst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
+}
+
+//Meta schandalen
+if (in_array($text, ['random schandaal', 'schandaal', 'meta'], true)) {
+    include 'cl_metaSchandalen.php';
+    $schandalenLijst = new schandalenLijst($metaSchandalenLocatie);
+    $schandaal = $schandalenLijst->getWillekeurigSchandaal();
+    $tekst = schandaalTekst::geefTekstRandom($schandaal);
+    $telegram->sendMessage(['chat_id' => $chat_id, 'text' => $tekst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true]);
+    $send = true;
+}
+
+if (in_array($text, ['recentste schandaal', 'laatste schandaal', 'meta is een kutbedrijf', 'as van het kwaad'], true)) {
+    include 'cl_metaSchandalen.php';
+    $schandalenLijst = new schandalenLijst($metaSchandalenLocatie);
+    $schandaal = $schandalenLijst->getLaatsteSchandaal();
+    $tekst = schandaalTekst::geefTekstLaatste($schandaal);
+    $telegram->sendMessage(['chat_id' => $chat_id, 'text' => $tekst, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true]);
+    $send = true;
+
 }
 
 //Kabinet
