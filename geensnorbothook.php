@@ -45,7 +45,7 @@ if (in_array($text, ['random schandaal', 'schandaal', 'meta'], true)) {
     $send = true;
 }
 
-if (in_array($text, ['recentste schandaal', 'laatste schandaal', 'meta is een kutbedrijf'], true)) {
+if (in_array($text, ['recentste schandaal', 'laatste schandaal', 'meta is een kutbedrijf', 'as van het kwaad'], true)) {
     include 'cl_metaSchandalen.php';
     $schandalenLijst = new schandalenLijst($metaSchandalenLocatie);
     $schandaal = $schandalenLijst->getLaatsteSchandaal();
