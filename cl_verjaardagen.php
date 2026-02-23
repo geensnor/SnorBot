@@ -30,7 +30,7 @@ class verjaardag
         curl_setopt($curl, CURLOPT_USERPWD, 'reithose:'.getenv('githubToken'));
         curl_setopt($curl, CURLOPT_USERAGENT, 'User-Agent: reithose');
         curl_setopt($curl, CURLOPT_URL, $GithHubAPIUrl);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
         if (! curl_exec($curl)) {
             exit('Error: "'.curl_error($curl).'" - Code: '.curl_errno($curl));
