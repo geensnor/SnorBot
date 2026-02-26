@@ -454,5 +454,9 @@
   {
     "trigger": "joepie joepie",
     "antwoord": "dat ging echt topie"
+  },
+  {
+    "trigger": "nado",
+    "antwoord": "Negeren, afleiden, dreigen, omkopen"
   }
 ]
