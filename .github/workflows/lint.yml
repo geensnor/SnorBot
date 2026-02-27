@@ -1,4 +1,4 @@
-name: Fix Code Style
+name: Lint en secret scanning
 on: [workflow_call]
 jobs:
   lint:
@@ -6,6 +6,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Secret Scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+         extra_args: --results=verified,unknown
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
