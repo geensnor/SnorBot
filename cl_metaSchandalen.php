@@ -10,7 +10,7 @@ class schandalenLijst
 {
     private array $schandalen;
 
-    public function __construct($jsonLokatie)
+    public function __construct(string $jsonLokatie)
     {
         $this->schandalen = json_decode(file_get_contents($jsonLokatie));
     }

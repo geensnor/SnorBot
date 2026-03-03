@@ -1,3 +1,10 @@
+includes:
+	- vendor/spaze/phpstan-disallowed-calls/extension.neon
+	- vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
+	- vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
+	- vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
+	- vendor/spaze/phpstan-disallowed-calls/disallowed-loose-calls.neon
+	- vendor/tomasvotruba/type-coverage/config/extension.neon
 parameters:
 	level: 5
 	paths:
@@ -7,9 +14,8 @@ parameters:
 		- test.php
 	ignoreErrors:
 		- '#Calling putenv\(\) is forbidden, might overwrite existing variables.#'
-includes:
-	- vendor/spaze/phpstan-disallowed-calls/extension.neon
-	- vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
-	- vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
-	- vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
-	- vendor/spaze/phpstan-disallowed-calls/disallowed-loose-calls.neon
+	type_coverage:
+		return: 70
+		param: 70
+		property: 70
+

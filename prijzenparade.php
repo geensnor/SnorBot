@@ -1,6 +1,6 @@
 <?php
 
-function isToday($date_str): bool
+function isToday(string $date_str): bool
 {
     // based on https://stackoverflow.com/a/25623230/204807
     $today = new DateTime();

@@ -15,7 +15,9 @@
     "pestphp/pest": "^3.5.1",
     "laravel/pint": "^1.5",
     "phpstan/phpstan": "^2.1",
-    "spaze/phpstan-disallowed-calls": "^4.0"
+    "spaze/phpstan-disallowed-calls": "^4.0",
+    "spatie/pest-plugin-snapshots": "^2.3",
+    "tomasvotruba/type-coverage": "^2.1"
   },
   "config": {
     "allow-plugins": {
