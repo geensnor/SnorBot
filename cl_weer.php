@@ -20,7 +20,7 @@ class Weer
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'x-access-token: openuv-5rnrmrbpnrdo-io',
+            'x-access-token: .getenv('openuv'),
         ]);
 
         $response = curl_exec($ch);
