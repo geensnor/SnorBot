@@ -207,6 +207,7 @@ if ($text == 'waarschuwing' || $text == 'waarschuwingen' || $text == 'code rood'
 }
 
 if (in_array($text, ['zon', 'uv', 'uv index', 'zonnebrand', 'smeren'], true)) {
+    include 'cl_weer.php';
     $weer = new Weer();
     $uvObject = $weer->getUvData();
     $content = ['chat_id' => $chat_id, 'text' => $weer->getUvText($uvObject), 'parse_mode' => 'Markdown'];
