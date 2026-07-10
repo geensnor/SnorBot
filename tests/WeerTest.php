@@ -1,6 +1,6 @@
 <?php
 
-include 'cl_Weer.php';
+include 'cl_weer.php';
 
 test('UV index tekst ziet er goed uit', function () {
     $weer = new Weer();
