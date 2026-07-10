@@ -64,9 +64,9 @@ class Weer
         if ($uvNow < 2) {
             return 'De UV index is op dit moment maar '.$uvNow.', je kan prima zonder te smeren de zon in. Als de zon er uberhaupt is.';
         } elseif ($uvNow < 4) {
-            return 'De UV index is op dit moment'.$uvNow.' let toch een beetje op en smeer je voor de zekerheid in. Met een normale huid kun je toch nog '.$saveExposureTime.' minuten in de zon.';
+            return 'De UV index is op dit moment '.$uvNow.' let toch een beetje op en smeer je voor de zekerheid in. Met een normale huid kun je toch nog '.$saveExposureTime.' minuten in de zon.';
         } elseif ($uvNow < 6) {
-            return 'De UV index is op dit moment'.$uvNow.' het gaat dus hard nu. Met een normale huid kun je nu maar '.$saveExposureTime.' minuten in de zon.';
+            return 'De UV index is op dit moment '.$uvNow.' het gaat dus hard nu. Met een normale huid kun je nu maar '.$saveExposureTime.' minuten in de zon.';
         } else {
             return 'De UV index is nu maar liefst '.$uvNow.'. Echt heel goed smeren! Met een normale huid kun je nu maar '.$saveExposureTime.' minuten in de zon voordat je volledig verschroeid.';
         }
