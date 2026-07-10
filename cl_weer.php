@@ -1,13 +1,9 @@
 <?php
 
-$weer = new Weer();
-$uvObject = $weer->getUvData();
-
-
 /**
  * Een klasse die dingen ophaalt die met het weer te maken hebben
  *
- * @todo Meer weer methoden toevoegen die nog verspreid zijn over de codebase
+ * @todo Meer weer methoden toevoegen die nog verspreid zijn over de codebase. Doet nu alleen iets met de UV index
  */
 class Weer
 {
@@ -91,6 +87,14 @@ class Weer
             return 'De maximale UV index vandaag is '.$uvMax.' om '.$uvMaxTime.' uur. Dat is echt heel veel.';
         }
     }
+
+    /**
+     * getUvText
+     *
+     * Plakt de tekst van de UV index nu en de maximale UV index vandaag aan elkaar
+     *
+     * @return string
+     */
 
     public function getUvText(stdClass $uvData): string
     {
