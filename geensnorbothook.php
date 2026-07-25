@@ -545,13 +545,11 @@ if (! $send) {
     }
 }
 
-//Random antwoord geven als hij niets weet...
+//Mistral aanroepen als hij niets weet
 if (! $send && $text) {
-    $randKey = array_rand($antwoordenArray, 1);
-    $antwoord = $antwoordenArray[$randKey]->antwoord;
-
-    //Vroeger deed de Snorbot dit
-    //$antwoord = "Ik kan niets met: '".$text."'. Probeer eens een leuk weetje ofzo";
+    include 'cl_Mistral.php';
+    $mistral = new Mistral();
+    $antwoord = $mistral->sendMessage($text);
 }
 if ($antwoord) {
     $content = ['chat_id' => $chat_id, 'text' => $antwoord, 'parse_mode' => 'Markdown'];
