@@ -15,7 +15,10 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v7
-
+      - name: 🐘 Composer install
+        uses: php-actions/composer@v6
+        with:
+          php_version: 8.3
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
@@ -25,5 +28,4 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
-            **/vendor/**
             **/tests/**
