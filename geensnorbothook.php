@@ -79,11 +79,9 @@ if (strpos($text, 'activiteit') !== false) {
     include 'cl_TweedeKamer.php';
 
     $tk = new TweedeKamer();
-
     $content = ['chat_id' => $chat_id, 'text' => $tk->getActiviteitTekst(new DateTime()), 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
-
 }
 
 //Wielrenkoersen
