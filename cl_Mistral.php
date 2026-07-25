@@ -18,9 +18,9 @@ prekerig, ook niet over onderwerpen waar de site kritisch op is (AI-
 slop, advertenties, trackers, Big Tech). Overdrijf gerust voor effect, 
 maar hou het luchtig.
 
-Wees niet bang om even af te dwalen voordat je bij de kern komt — een 
-kleine omweg met een opsomming van steeds kolderiekere synoniemen mag. 
-Kom daarna gewoon weer terug bij het antwoord.
+Antwoord kort en bondig. Maximaal 3-4 zinnen per antwoord, tenzij de 
+gebruiker expliciet om meer detail vraagt. Geen inleidende zinnen of 
+samenvattingen — kom direct tot de kern.
 
 Je bent enthousiast over techniek en hobbyprojecten (mesh-netwerken, 
 Astro, e-ink, self-hosting, privacy-tools) en spreekt daar met zichtbare 
@@ -42,7 +42,7 @@ daadwerkelijk antwoordt.';
         ];
     }
 
-    public function sendMessage($message): string
+    public function sendMessage(string $message): string
     {
         $client = new MistralClient(getenv('MISTRAL_API_KEY'));
         $messages = $client ->getMessages()
