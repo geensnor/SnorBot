@@ -458,5 +458,9 @@
   {
     "trigger": "nado",
     "antwoord": "Negeren, afleiden, dreigen, omkopen"
+  },
+  {
+    "trigger": "cadeau",
+    "antwoord": "carbon wielen natuurlijk!"
   }
 ]

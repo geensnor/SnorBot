@@ -5,11 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Secret Scanning
         uses: trufflesecurity/trufflehog@main
         with:
-         extra_args: --results=verified,unknown
+          extra_args: --results=verified,unknown
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -21,7 +21,7 @@ jobs:
       - name: Run Laravel Pint
         run: ./vendor/bin/pint
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: Apply Laravel Pint changes
         env:
