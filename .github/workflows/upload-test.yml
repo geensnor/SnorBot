@@ -18,7 +18,9 @@ jobs:
       - name: 🐘 Composer install
         uses: php-actions/composer@v6
         with:
+          php-version: 8.4.0
           php_extensions: zip
+          args: --no-dev
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
@@ -28,4 +30,5 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            **/.github*/**
             **/tests/**
