@@ -3,6 +3,7 @@
 declare(strict_types=1);
 include __DIR__.'/vendor/autoload.php';
 include 'config.php';
+
 use Partitech\PhpMistral\Clients\Mistral\MistralClient;
 
 class Mistral
@@ -44,13 +45,20 @@ daadwerkelijk antwoordt.';
 
     public function sendMessage(string $message): string
     {
-        $client = new MistralClient(getenv('MISTRAL_API_KEY'));
-        $messages = $client ->getMessages()
-                            ->addSystemMessage(content: $this->systemMessage)
-                            ->addUserMessage(content: $message);
+        try {
+            $apiKey = getenv('MISTRAL_API_KEY');
+            if ($apiKey === false) {
+                throw new \RuntimeException("MISTRAL_API_KEY ontbreekt in omgevingsvariabelen.");
+            }
+            $client = new MistralClient($apiKey);
+            $messages = $client->getMessages()
+                              ->addSystemMessage(content: $this->systemMessage)
+                              ->addUserMessage(content: $message);
 
-        $response = $client->chat(messages: $messages, params: $this->params);
-        return $response->getMessage();
-
+            $response = $client->chat(messages: $messages, params: $this->params);
+            return $response->getMessage();
+        } catch (\InvalidArgumentException $e) {
+            throw new \RuntimeException("Failed to send message: ".$e->getMessage());
+        }
     }
 }
