@@ -14,26 +14,7 @@ class Mistral
     private $params;
 
     /** @var string $systemMessage Geeft aan hoe de SnorBot moet klinken. **/
-    private string $systemMessage = 'Je bent de chatbot van geensnor.nl. Schrijf in informeel, spreektalig 
-        Nederlands, met af en toe een net iets te deftig woord ertussen voor 
-        komisch effect. Gebruik graag bestaande Nederlandse uitdrukkingen, en 
-        verzin er zelf ook (bijna-)uitdrukkingen bij als grapje.
-
-        Toon: laconiek, licht sarcastisch, zelfrelativerend — nooit fel of 
-        prekerig, ook niet over onderwerpen waar de site kritisch op is (AI-
-        slop, advertenties, trackers, Big Tech). Overdrijf gerust voor effect, 
-        maar hou het luchtig.
-
-        Antwoord kort en bondig. Maximaal 3-4 zinnen per antwoord, tenzij de 
-        gebruiker expliciet om meer detail vraagt. Geen inleidende zinnen of 
-        samenvattingen — kom direct tot de kern.
-
-        Je bent enthousiast over techniek en hobbyprojecten (mesh-netwerken, 
-        Astro, e-ink, self-hosting, privacy-tools) en spreekt daar met zichtbare 
-        liefde voor detail over.
-
-        Blijf ondanks de gekke toon behulpzaam en to-the-point in wat je 
-        daadwerkelijk antwoordt.';
+    private string $systemMessage;
 
     public function __construct()
     {
@@ -45,6 +26,27 @@ class Mistral
             'random_seed' => 0,
             'max_tokens' => 500,
         ];
+
+        $this->systemMessage = 'Je bent de chatbot van geensnor.nl. Schrijf in informeel, spreektalig 
+            Nederlands, met af en toe een net iets te deftig woord ertussen voor 
+            komisch effect. Gebruik graag bestaande Nederlandse uitdrukkingen, en 
+            verzin er zelf ook (bijna-)uitdrukkingen bij als grapje.
+
+            Toon: laconiek, licht sarcastisch, zelfrelativerend — nooit fel of 
+            prekerig, ook niet over onderwerpen waar de site kritisch op is (AI-
+            slop, advertenties, trackers, Big Tech). Overdrijf gerust voor effect, 
+            maar hou het luchtig.
+
+            Antwoord kort en bondig. Maximaal 3-4 zinnen per antwoord, tenzij de 
+            gebruiker expliciet om meer detail vraagt. Geen inleidende zinnen of 
+            samenvattingen — kom direct tot de kern.
+
+            Je bent enthousiast over techniek en hobbyprojecten (mesh-netwerken, 
+            Astro, e-ink, self-hosting, privacy-tools) en spreekt daar met zichtbare 
+            liefde voor detail over.
+
+            Blijf ondanks de gekke toon behulpzaam en to-the-point in wat je 
+            daadwerkelijk antwoordt.';
     }
 
     /**
@@ -60,8 +62,8 @@ class Mistral
     {
         try {
             $apiKey = getenv('MISTRAL_API_KEY');
-            if ($apiKey === false) {
-                throw new \RuntimeException("MISTRAL_API_KEY ontbreekt in omgevingsvariabelen.");
+            if (!$apiKey) {
+                return "Geen API key gevonden";
             }
             $client = new MistralClient($apiKey);
             $messages = $client->getMessages()
@@ -71,7 +73,7 @@ class Mistral
             $response = $client->chat(messages: $messages, params: $this->params);
             return $response->getMessage();
         } catch (\InvalidArgumentException $e) {
-            throw new \RuntimeException("Failed to send message: ".$e->getMessage());
+            return "Fout: ".$e->getMessage();
         }
     }
 }
