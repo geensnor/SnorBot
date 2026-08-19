@@ -4,7 +4,8 @@
       "vendor/bin/pint",
       "phpstan analyze --memory-limit=1G"
     ],
-    "test": "vendor/bin/pest"
+    "test": "vendor/bin/pest",
+    "test:coverage": "vendor/bin/pest --coverage"
   },
   "require": {
     "eleirbag89/telegrambotphp": "^1.3",
