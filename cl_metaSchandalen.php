@@ -27,7 +27,6 @@ class schandalenLijst
             $data->schandaal,
             $data->bron,
             $data->url,
-            $data->archief ?? null
         );
     }
     /**
@@ -69,19 +68,16 @@ class schandaal
         string $schandaal,
         string $bron,
         string $url,
-        ?string $archief = null
     ) {
         $this->datum = $datum;
         $this->schandaal = $schandaal;
         $this->bron = $bron;
         $this->url = $url;
-        $this->archief = $archief;
     }
     public readonly string $datum;
     public readonly string $schandaal;
     public readonly string $bron;
     public readonly string $url;
-    public readonly ?string $archief;
 }
 
 /**
