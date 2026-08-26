@@ -114,7 +114,11 @@ function getWaarschuwing(): string
 {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
 
-    return "Waarschuwing!\n[".$weerObject->liveweer[0]->lkop.'](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)';
+    if (!isset($weerObject->liveweer[0]->lkop) || $weerObject->liveweer[0]->lkop === '') {
+        return "Geen waarschuwingen voor vandaag.";
+    } else {
+        return "Waarschuwing!\n[".$weerObject->liveweer[0]->lkop.'](https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht)';
+    }
 }
 
 function getDaysSince($date): float
