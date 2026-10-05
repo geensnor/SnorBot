@@ -9,7 +9,7 @@ jobs:
   test:
     uses: ./.github/workflows/test.yml
   web-deploy:
-    name: 🎉 Deploy
+    name: 🎉 Deploy naar test
     needs: [test]
     runs-on: ubuntu-latest
     steps:
