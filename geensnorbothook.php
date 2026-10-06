@@ -260,14 +260,14 @@ if (str_starts_with($text, 'getal onder de')) {
 }
 
 if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
-    $geensnorFeed = new SimpleXMLElement(file_get_contents('https://geensnor.netlify.app/feed.xml'));
+    $geensnorFeed = new SimpleXMLElement(file_get_contents('https://blog.geensnor.nl/rss.xml'));
     $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl: ['.$geensnorFeed->entry[0]->title.']('.$geensnorFeed->entry[0]->link->attributes()->href.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
 
 if ($text == 'random post' || $text == 'random bericht') {
-    $geensnorFeed = new SimpleXMLElement(file_get_contents('https://geensnor.netlify.app/feed.xml'));
+    $geensnorFeed = new SimpleXMLElement(file_get_contents('https://blog.geensnor.nl/rss.xml'));
     $randomPostNummer = random_int(0, count($geensnorFeed->entry));
     $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl: ['.$geensnorFeed->entry[$randomPostNummer]->title.']('.$geensnorFeed->entry[$randomPostNummer]->link->attributes()->href.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
