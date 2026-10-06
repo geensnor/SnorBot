@@ -22,11 +22,10 @@ class Mistral
     {
         $this->params = [
             'model' => 'ministral-8b-2512',
-            'temperature' => 1,
-            'top_p' => 1,
+            'temperature' => 0.4,
+            'top_p' => 0.9,
             'safe_prompt' => false,
-            'random_seed' => 0,
-            'max_tokens' => 500,
+            'max_tokens' => 200,
         ];
 
         $this->systemMessage = 'Je bent de chatbot van geensnor.nl. Schrijf in informeel, spreektalig 
