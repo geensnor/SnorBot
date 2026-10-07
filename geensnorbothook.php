@@ -13,6 +13,7 @@ include 'wielrennen.php';
 include 'energie.php';
 
 $telegram = new Telegram(getenv('telegramId'));
+$UpdateType = $telegram->getUpdateType();
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
@@ -34,6 +35,8 @@ if ($antwoordSimpeleLijst) {
     $telegram->sendMessage($content);
     $send = true;
 }
+
+//
 
 //Meta schandalen
 if (in_array($text, ['random schandaal', 'schandaal', 'meta'], true)) {
@@ -436,16 +439,18 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
     }
 }
 
-if ($telegram->Location()) {
-    $locatieGebruiker = $telegram->Location();
-    $adviesJson = getAdviesArray($locatieGebruiker['latitude'], $locatieGebruiker['longitude']);
+//Locatie dingen voor advies
 
-    $contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name.' zit in de buurt:'];
-    $contentAdviesToelichting = ['chat_id' => $chat_id, 'text' => "Geensnor zegt: '".$adviesJson[0]->description."'. Kijk op http://advies.geensnor.nl voor meer adviezen"];
-    $contentLocation = ['chat_id' => $chat_id, 'latitude' => $adviesJson[0]->lat, 'longitude' => $adviesJson[0]->lon];
-    $telegram->sendMessage($contentAdviesTitel);
-    $telegram->sendLocation($contentLocation);
-    $telegram->sendMessage($contentAdviesToelichting);
+if ($updateType == 'location') {
+    //Dit is even een work in progress. Hier moet uiteindelijk een prachtig advies worden gegeven.
+    $latitude = $telegram->Latitude();
+    $longitude = $telegram->Longitude();
+
+    $content = ['text' => '<b>Latitude:</b> '.$latitude, 'parse_mode' => 'HTML','chat_id' => $chat_id];
+    $telegram->sendMessage($content);
+
+    $content = ['text' => '<b>Longtitude:</b> '.$longitude, 'parse_mode' => 'HTML','chat_id' => $chat_id];
+    $telegram->sendMessage($content);
     $send = true;
 }
 
