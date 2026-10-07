@@ -441,11 +441,15 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
 
 //Locatie dingen voor advies
 
+$data = $telegram->getData();
+$log = fopen("log.txt", "w");
+fwrite($log, $data);
+fclose($log);
+
 if ($updateType == 'location') {
     //Dit is even een work in progress. Hier moet uiteindelijk een prachtig advies worden gegeven.
     $content = ['text' => 'Woei locatie! Type: '.$updateType, 'parse_mode' => 'HTML','chat_id' => $chat_id];
     $telegram->sendMessage($content);
-
     $send = true;
 }
 
@@ -553,3 +557,8 @@ if ($antwoord) {
     $content = ['chat_id' => $chat_id, 'text' => $antwoord, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
 }
+
+$data = $telegram->getData();
+$log = fopen("log.txt", "w");
+fwrite($log, $data);
+fclose($log);
