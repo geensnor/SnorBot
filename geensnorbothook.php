@@ -13,7 +13,7 @@ include 'wielrennen.php';
 include 'energie.php';
 
 $telegram = new Telegram(getenv('telegramId'));
-$UpdateType = $telegram->getUpdateType();
+$updateType = $telegram->getUpdateType();
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
@@ -441,14 +441,13 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
 
 //Locatie dingen voor advies
 
-$data = $telegram->getData();
-$log = fopen("log.txt", "w");
-fwrite($log, $data);
-fclose($log);
-
 if ($updateType == 'location') {
     //Dit is even een work in progress. Hier moet uiteindelijk een prachtig advies worden gegeven.
     $content = ['text' => 'Woei locatie! Type: '.$updateType, 'parse_mode' => 'HTML','chat_id' => $chat_id];
+    $data = $telegram->getData();
+    $log = fopen("log.txt", "w");
+    fwrite($log, $data);
+    fclose($log);
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -557,8 +556,3 @@ if ($antwoord) {
     $content = ['chat_id' => $chat_id, 'text' => $antwoord, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
 }
-
-$data = $telegram->getData();
-$log = fopen("log.txt", "w");
-fwrite($log, $data);
-fclose($log);
