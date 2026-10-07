@@ -442,15 +442,26 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
 //Locatie dingen voor advies
 
 if ($updateType == 'location') {
-    //Dit is even een work in progress. Hier moet uiteindelijk een prachtig advies worden gegeven.
-    $content = ['text' => 'Woei locatie! Type: '.$updateType, 'parse_mode' => 'HTML','chat_id' => $chat_id];
-    $data = $telegram->getData();
-    $log = fopen("log.txt", "w");
-    fwrite($log, $data);
-    fclose($log);
-    $telegram->sendMessage($content);
-    $send = true;
+    $location = $telegram->Location();
+    $lat = $location['latitude'];
+    $lon = $location['longitude'];
+
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text'    => "Ik heb je locatie ontvangen: $lat, $lon"
+    ]);
 }
+
+// if ($updateType == 'location') {
+//     //Dit is even een work in progress. Hier moet uiteindelijk een prachtig advies worden gegeven.
+//     $content = ['text' => 'Woei locatie! Type: '.$updateType, 'parse_mode' => 'HTML','chat_id' => $chat_id];
+//     $data = $telegram->getData();
+//     $log = fopen("log.txt", "w");
+//     fwrite($log, $data);
+//     fclose($log);
+//     $telegram->sendMessage($content);
+//     $send = true;
+// }
 
 if ($text == 'advies') {
     $option = [[$telegram->buildKeyBoardButton('Klik hier om je locatie te delen', $request_contact = false, $request_location = true)]];
