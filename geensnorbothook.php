@@ -443,14 +443,9 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
 
 if ($updateType == 'location') {
     //Dit is even een work in progress. Hier moet uiteindelijk een prachtig advies worden gegeven.
-    $latitude = $telegram->Latitude();
-    $longitude = $telegram->Longitude();
-
-    $content = ['text' => '<b>Latitude:</b> '.$latitude, 'parse_mode' => 'HTML','chat_id' => $chat_id];
+    $content = ['text' => 'Woei locatie! Type: '.$updateType, 'parse_mode' => 'HTML','chat_id' => $chat_id];
     $telegram->sendMessage($content);
 
-    $content = ['text' => '<b>Longtitude:</b> '.$longitude, 'parse_mode' => 'HTML','chat_id' => $chat_id];
-    $telegram->sendMessage($content);
     $send = true;
 }
 
