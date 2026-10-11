@@ -464,7 +464,7 @@ if ($text == 'random advies') {
     include 'cl_Locatie.php';
     $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
     $randomHotspot = $collectie->geefRandom();
-    $content = ['chat_id' => $chat_id, 'text' => "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."*\n\n".$randomHotspot->omschrijving, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $content = ['chat_id' => $chat_id, 'text' => "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."\n\n".$randomHotspot->omschrijving, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
 }
