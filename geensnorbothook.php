@@ -5,7 +5,6 @@ date_default_timezone_set('Europe/Amsterdam');
 include 'config.php';
 include __DIR__.'/vendor/autoload.php';
 
-include 'advies.php';
 include 'prijzenparade.php';
 include 'tourpoule.php';
 include 'functies.php';
@@ -17,6 +16,7 @@ $updateType = $telegram->getUpdateType();
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
+$hotspotsGeojsonURL = 'https://www.geensnor.nl/test/locations.geojson'; //nog tijdelijk dit
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/kalender.ics';
 $metaSchandalenLocatie = "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/refs/heads/main/src/content/data/facebook-schandalen.json";
@@ -264,7 +264,7 @@ if (str_starts_with($text, 'getal onder de')) {
 
 if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://blog.geensnor.nl/rss.xml'));
-    $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl: ['.$geensnorFeed->channel->item[0]->title.']('.$geensnorFeed->channel->item[0]->link.')', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl \n\n ['.$geensnorFeed->channel->item[0]->title.']('.$geensnorFeed->channel->item[0]->link.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -272,7 +272,7 @@ if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 if ($text == 'random post' || $text == 'random bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://blog.geensnor.nl/rss.xml'));
     $randomPostNummer = random_int(0, count($geensnorFeed->entry));
-    $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl: '.$geensnorFeed->channel->item[$randomPostNummer]->title.']('.$geensnorFeed->channel->item[$randomPostNummer]->link.')', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl \n\n ['.$geensnorFeed->channel->item[$randomPostNummer]->title.']('.$geensnorFeed->channel->item[$randomPostNummer]->link.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -462,9 +462,9 @@ if ($text == 'advies') {
 
 if ($text == 'random advies') {
     include 'cl_Locatie.php';
-    $collectie = HotspotCollectie::vanBestand('https://www.geensnor.nl/test/locations.geojson');
+    $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
     $randomHotspot = $collectie->geefRandom();
-    $content = ['chat_id' => $chat_id, 'text' => "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam." in ".$randomHotspot->plaatsnaam."*\n\n".$randomHotspot->omschrijving, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $content = ['chat_id' => $chat_id, 'text' => "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."*\n\n".$randomHotspot->omschrijving, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
 }
