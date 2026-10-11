@@ -1,0 +1,124 @@
+{
+  "$schema": "https://geensnor.nl/schemas/geensnor-hotspots-schema.json",
+  "type": "FeatureCollection",
+  "name": "Meer geensnor",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.565301, 51.957834]
+      },
+      "properties": {
+        "name": "Martino IJs",
+        "category": "snackbar",
+        "description": "Winnaar van de Gouden IJsspatel 2013 en 2014! Blijktbaar dus het beste ijs wat je kan krijgen (in Nederland). Het smaakte inderdaad prima. Bovendien niet heel erg duur. Voor 1 bolletje betaal je 1 euro.",
+        "avoid": false,
+        "placeName": "Rhenen",
+        "image": "https://lh3.googleusercontent.com/umsh/AN6v0v7EDI78J31i1eEGodMsupsyn1fwHj0DR1P7-EJ-Pt71w8f3KcImvmuAEX02sg5l7GiwRAnqsa3OfFcoA2Nd0B5cTC4K6vrphqm-aZdOt5irR1nyUKNFevl1loA7jOi69UHlD9-7ARW90sOBgjMVZf6v6xgO-WLZIC0Pw4yFOn9_qvElV8uHem_mBDxrxm2MVRSjKwTReneMOmW6-bEfF4CImgfon437eF8U2vm82hqexASflE2W7Wn0Z_lJA5RBsCpEIznL7oivHWTZzroCRlmriSc"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.042488, 47.800461]
+      },
+      "properties": {
+        "name": "Robert Standl Gastwirtschaft Zum Wilden Mann e.U.",
+        "category": "restaurant",
+        "description": "Heel erg \"Oostenrijks restaurant\". Klederdracht en de hele handel. Goed en goedkoop eten en bier!",
+        "avoid": false,
+        "placeName": "Salzburg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.506334, 46.047562]
+      },
+      "properties": {
+        "name": "Lunch Cafe Marley & Me",
+        "category": "restaurant",
+        "description": "Slissende hipster serveert lekkere pasta. Het heet een \"Lunch Cafe\", maar je kan er prima avondeten. Porties zijn niet gigantisch dus neem een voorgerecht.",
+        "avoid": false,
+        "placeName": "Ljubljana"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [16.381592, 48.211798]
+      },
+      "properties": {
+        "name": "Badeschiff",
+        "category": "restaurant",
+        "description": "Boot in de Donau waarin een zwembad, restaurant en dansschool zitten. Alles in de bekende \"afgeragd chique\" stijl. Aangezien Wenen niet zo hip is, is dit wel een aardige uitzondering. Kaart is erg gevarieerd en het eten (in elk geval de Risotto) is erg lekker.",
+        "avoid": false,
+        "placeName": "Wenen",
+        "image": "https://lh3.googleusercontent.com/umsh/AN6v0v5o14H5Fn8FY1tLlTbc0mi5WVdWEke-HBuFQUr4lj3vE1GepWQE6uR54mvfCQ_3hWpxJNHx_G-h1xYgGC4jP3V_HmaAW2mM9VU_NppuPAj8VWagnJJm_dYd6cwfiMnRCtyL61b-MOBfuY6rBatDAUJRbLlRGdTqS6pe_06aoOesOvB7Tu7YUp-C0sWrP7NUZW9h7YJ-bMUPCo-xgHSkSAPp-yQl_zXtsRe1_opyIjxQvlwFIO4BQs4HJISGjjLb-OcW2hpvUK1ie7zH"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.415628, 50.068312]
+      },
+      "properties": {
+        "name": "Cafeterapie",
+        "category": "restaurant",
+        "description": "Tsjechen hebben volgens mij niet echt een ontbijtcultuur en in Praag is nergens een broodje te krijgen. Dit cafe is daar een uitzondering op. Je kan hier prima ontbijten en de espresso is heerlijk. Ligt een beetje buiten het door toeristen platgelopen centrum. Kost (zoals alles in Praag) helemaal niets.",
+        "avoid": false,
+        "placeName": "Praag",
+        "image": "https://lh3.googleusercontent.com/umsh/AN6v0v6FWBBqXyOa80q6zl7tAhhJ8ywmt8t8re7jVpk09pjpzpUQMWJ_60AycMjlW5f1uHkHtsiVK9XzrtAmoBP6g3G-IHFicquybeo5qTZztNObxGyXYZGaFu4Fvl8pPAovuPAzgcO5IaJcgXjABLp9ktGMMmE4DgB6Msp6Z2mLDWLu3vw_uCxlRmnQV6NM5bSgEJNJ-LF5pdgvBDalBLVRuwH7bVqewa8dp3_YxkdeYDR2HENuOEoRZeqyT459WgLJhZOe5LiiEQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.420024, 50.064415]
+      },
+      "properties": {
+        "name": "Vyšehrad",
+        "category": "overig",
+        "description": "De \"Praagse burcht\" ligt noordelijker en is enorm toeristisch en vol. Deze burcht is kleiner, mooier en veel minder druk. Over de muren kun je prima wandelen en je hebt vrijwel constant een mooi uitzicht over Praag. Als je honger of dorst krijg, zijn er bovendien een paar worst/bier tentjes binnen de burcht.",
+        "avoid": false,
+        "placeName": "Praag",
+        "image": "https://lh3.googleusercontent.com/umsh/AN6v0v5oNPYew7lHDlA6eoPinVU-pPEOnRd6aBUKX-ub4LWrOoJjeNfS7G4rXMe-vufg4GCAWrG0JenuUwpkJzespnB2F99macNa-bsK32r1OZHoyHxYEHlUvcmdaD-KPqQ_RXS0Tz_dsr6B1-z2y2at-f-oMrRN_ahpdHHHnXMeGhRhRXHfOavYDV0hPMk-dZieJoEkwt5fnrDhn5ZTmsf-cNAnGHD8IR2UooqOSD61AsdoIY0sZhabn00URm0kkHUVvBZC4g"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.798226, 47.32378]
+      },
+      "properties": {
+        "name": "Ristorante Pizzeria Giuseppe",
+        "category": "overig",
+        "description": "Veel te vette pizza's in vaag, donker restaurant. Niet doen. Even iets anders zoeken.",
+        "avoid": true,
+        "placeName": "Zell am See"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.410484, 50.088471]
+      },
+      "properties": {
+        "name": "Containall",
+        "category": "bar",
+        "description": "Verstopte biergarten waar Segwaygidsen na hun werk komen blowen. Mooi aan het water en alles wat je van een prima biergarten verwacht. Is tevens gallerie/kunstdingetje.",
+        "avoid": false,
+        "placeName": "Praag",
+        "image": "https://lh3.googleusercontent.com/umsh/AN6v0v5elptWBUnWvRkPzwxTrE1PvDRHvwSPuAVTYHc1881JK7rxVQKkROlxHpC0YLyNU2MEqCiD5gRjq33C4N3Td2xGP9hp9P_re9MwlJyZ4UyoDGzCrapnCMwgTO5w2eLwAMvtiQS6bfVUOGy_u4d-hmW5nRd8JW6D9iLoB4ntE-lwrv5PPI0mi0TzDZFKpPbMlGT8XLrMYsEOdCSAYlZZCveXz2uCE_Q5jaL3eqv0RfB6L6Z5lQjPB54EziJUqVYtiQ8h5fxwz0_ZtsxU"
+      }
+    }
+  ]
+}
