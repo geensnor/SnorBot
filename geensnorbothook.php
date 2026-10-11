@@ -461,6 +461,7 @@ if ($text == 'advies') {
 }
 
 if ($text == 'random advies') {
+    include 'cl_Locatie.php';
     $collectie = HotspotCollectie::vanBestand('https://www.geensnor.nl/test/locations.geojson');
     $randomHotspot = $collectie->geefRandom();
     $content = ['chat_id' => $chat_id, 'text' => $randomHotspot->naam."\n\n".$randomHotspot->omschrijving, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
