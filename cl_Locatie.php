@@ -43,7 +43,7 @@ final readonly class Hotspot
         public bool $vermijden = false,
         public ?string $afbeelding = null,
         public ?string $website = null,
-        public ?\DateTimeImmutable $aangemaaktOp = null,
+        public ?\DateTimeImmutable $bezochtOp = null,
         public ?\DateTimeImmutable $gewijzigdOp = null,
     ) {
     }
@@ -63,7 +63,7 @@ final readonly class Hotspot
             vermijden: $p['avoid'] ?? false,
             afbeelding: $p['image'] ?? null,
             website: $p['website'] ?? null,
-            aangemaaktOp: isset($p['createdAt']) ? new \DateTimeImmutable($p['createdAt']) : null,
+            bezochtOp: isset($p['visitedAt']) ? new \DateTimeImmutable($p['visitedAt']) : null,
             gewijzigdOp: isset($p['updatedAt']) ? new \DateTimeImmutable($p['updatedAt']) : null,
         );
     }
@@ -93,31 +93,6 @@ final readonly class HotspotCollectie
     }
 
     /**
-     * De dichtstbijzijnde hotspot, of null als er geen (geschikte) is.
-     */
-    public function dichtstbij(
-        Locatie $huidig,
-        ?HotspotCategorie $categorie = null,
-    ): ?LocatieBezoek {
-        $beste = null;
-        $kortste = INF;
-
-        foreach ($this->hotspots as $hotspot) {
-            if ($categorie !== null && $hotspot->categorie !== $categorie) {
-                continue;
-            }
-
-            $afstand = $huidig->afstandTot($hotspot->locatie);
-            if ($afstand < $kortste) {
-                $kortste = $afstand;
-                $beste = $hotspot;
-            }
-        }
-
-        return $beste === null ? null : new LocatieBezoek($beste, $kortste);
-    }
-
-    /**
      * De $aantal dichtstbijzijnde hotspots, gesorteerd op afstand.
      *
      * @return list<LocatieBezoek>
@@ -133,6 +108,16 @@ final readonly class HotspotCollectie
 
         return array_slice($bezoeken, 0, $aantal);
     }
+
+    /**
+     * De random hotspot met afstand.
+     *
+     *
+     */
+    public function geefRandom(): Hotspot
+    {
+        return $this->hotspots[array_rand($this->hotspots)];
+    }
 }
 
 final readonly class LocatieBezoek
@@ -140,19 +125,16 @@ final readonly class LocatieBezoek
     public function __construct(
         public Hotspot $hotspot,
         public float $afstand,
-        public ?\DateTimeImmutable $laatstBezocht = null,
     ) {
     }
 
     public static function vanuit(
         Locatie $huidig,
         Hotspot $hotspot,
-        ?\DateTimeImmutable $laatstBezocht = null,
     ): self {
         return new self(
             $hotspot,
             $huidig->afstandTot($hotspot->locatie),
-            $laatstBezocht,
         );
     }
 }

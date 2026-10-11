@@ -452,21 +452,18 @@ if ($updateType == 'location') {
     ]);
 }
 
-// if ($updateType == 'location') {
-//     //Dit is even een work in progress. Hier moet uiteindelijk een prachtig advies worden gegeven.
-//     $content = ['text' => 'Woei locatie! Type: '.$updateType, 'parse_mode' => 'HTML','chat_id' => $chat_id];
-//     $data = $telegram->getData();
-//     $log = fopen("log.txt", "w");
-//     fwrite($log, $data);
-//     fclose($log);
-//     $telegram->sendMessage($content);
-//     $send = true;
-// }
-
 if ($text == 'advies') {
-    $option = [[$telegram->buildKeyBoardButton('Klik hier om je locatie te delen', $request_contact = false, $request_location = true)]];
+    $option = [[$telegram->buildKeyBoardButton('Klik hier om je locatie te delen voor een advies bij jou in de buurt!', $request_contact = false, $request_location = true)]];
     $keyb = $telegram->buildKeyBoard($option, $onetime = false);
     $content = ['chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.'];
+    $telegram->sendMessage($content);
+    $send = true;
+}
+
+if ($text == 'random advies') {
+    $collectie = HotspotCollectie::vanBestand('https://www.geensnor.nl/test/locations.geojson');
+    $randomHotspot = $collectie->geefRandom();
+    $content = ['chat_id' => $chat_id, 'text' => "*${randomHotspot->naam}*\n\n${randomHotspot->omschrijving}", 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     $send = true;
 }
