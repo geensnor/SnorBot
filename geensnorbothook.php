@@ -443,13 +443,16 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
 
 if ($updateType == 'location') {
     $location = $telegram->Location();
-    $lat = $location['latitude'];
-    $lon = $location['longitude'];
+
+    $hotspotDichtbij = $collectie->dichtstbijzijnde(new Locatie($location['latitude'], $location['longitude']), 1);
 
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text'    => "Ik heb je locatie ontvangen: $lat, $lon"
+        'text'    => "".$hotspotDichtbij[0]->hotspot->naam." in ".$hotspotDichtbij[0]->hotspot->plaatsnaam."\n\n".$hotspotDichtbij[0]->hotspot->omschrijving."\n\n[".$hotspotDichtbij[0]->hotspot->website."](".$hotspotDichtbij[0]->hotspot->website.")",
+        'parse_mode' => 'Markdown',
+        'disable_web_page_preview' => true
     ]);
+    $send = true;
 }
 
 if ($text == 'advies') {
@@ -466,12 +469,12 @@ if ($text == 'random advies') {
     $randomHotspot = $collectie->geefRandom();
     $text = "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."\n\n".$randomHotspot->omschrijving;
     if ($randomHotspot->website) {
-        $text .= "\nmeer informatie: [$randomHotspot->website](".$randomHotspot->website.")";
+        $text .= "\n[$randomHotspot->website](".$randomHotspot->website.")";
     }
     $content = ['chat_id' => $chat_id, 'text' => $text, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
     if ($randomHotspot->afbeelding) {
-        $content = ['chat_id' => $chat_id, 'photo' => $randomHotspot->afbeelding, 'caption' => "mooie foto van ".$randomHotspot->naam];
+        $content = ['chat_id' => $chat_id, 'photo' => $randomHotspot->afbeelding];
         $telegram->sendPhoto($content);
     }
     $send = true;
