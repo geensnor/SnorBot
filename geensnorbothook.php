@@ -16,7 +16,7 @@ $updateType = $telegram->getUpdateType();
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
-$hotspotsGeojsonURL = 'https://www.geensnor.nl/test/locations.geojson'; //nog tijdelijk dit
+$hotspotsGeojsonURL = 'https://www.geensnor.nl/test/laarsjes.geojson'; //nog tijdelijk dit
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/kalender.ics';
 $metaSchandalenLocatie = "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/refs/heads/main/src/content/data/facebook-schandalen.json";
@@ -464,8 +464,16 @@ if ($text == 'random advies') {
     include 'cl_Locatie.php';
     $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
     $randomHotspot = $collectie->geefRandom();
-    $content = ['chat_id' => $chat_id, 'text' => "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."\n\n".$randomHotspot->omschrijving, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $text = "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."\n\n".$randomHotspot->omschrijving;
+    if ($randomHotspot->website) {
+        $text .= "\nmeer informatie: [$randomHotspot->website](".$randomHotspot->website.")";
+    }
+    $content = ['chat_id' => $chat_id, 'text' => $text, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     $telegram->sendMessage($content);
+    if ($randomHotspot->afbeelding) {
+        $content = ['chat_id' => $chat_id, 'photo' => $randomHotspot->afbeelding, 'caption' => "mooie foto van ".$randomHotspot->naam];
+        $telegram->sendPhoto($content);
+    }
     $send = true;
 }
 
