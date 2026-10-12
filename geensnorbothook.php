@@ -444,7 +444,7 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
 if ($updateType == 'location') {
     include 'cl_Locatie.php';
     $location = $telegram->Location();
-
+    $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
     $hotspotDichtbij = $collectie->dichtstbijzijnde(new Locatie($location['latitude'], $location['longitude']), 1);
 
     $telegram->sendMessage([
