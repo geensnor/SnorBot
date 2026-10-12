@@ -442,6 +442,7 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
 //Locatie dingen voor advies
 
 if ($updateType == 'location') {
+    include 'cl_Locatie.php';
     $location = $telegram->Location();
 
     $hotspotDichtbij = $collectie->dichtstbijzijnde(new Locatie($location['latitude'], $location['longitude']), 1);
