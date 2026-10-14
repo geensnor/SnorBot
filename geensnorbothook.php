@@ -446,10 +446,16 @@ if ($updateType == 'location') {
     $location = $telegram->Location();
     $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
     $hotspotDichtbij = $collectie->dichtstbijzijnde(new Locatie($location['latitude'], $location['longitude']), 1);
+    $text = "*".$hotspotDichtbij[0]->hotspot->naam."*\n".$hotspotDichtbij[0]->hotspot->plaatsnaam."\n\n".$hotspotDichtbij[0]->hotspot->omschrijving;
 
+    if ($hotspotDichtbij[0]->hotspot->website) {
+        $text .= "\n[".$hotspotDichtbij[0]->hotspot->website."](".$hotspotDichtbij[0]->hotspot->website.")";
+    }
+
+    $text .= "\n\n".round($hotspotDichtbij[0]->afstand, 2)." kilometer hier vandaan.";
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text'    => "".$hotspotDichtbij[0]->hotspot->naam." in ".$hotspotDichtbij[0]->hotspot->plaatsnaam."\n\n".$hotspotDichtbij[0]->hotspot->omschrijving."\n\n[".$hotspotDichtbij[0]->hotspot->website."](".$hotspotDichtbij[0]->hotspot->website.")",
+        'text'    => $text,
         'parse_mode' => 'Markdown',
         'disable_web_page_preview' => true
     ]);
