@@ -446,7 +446,7 @@ if ($updateType == 'location') {
     $location = $telegram->Location();
     $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
     $hotspotDichtbij = $collectie->dichtstbijzijnde(new Locatie($location['latitude'], $location['longitude']), 1);
-    $text = "*".$hotspotDichtbij[0]->hotspot->naam."*\n".$hotspotDichtbij[0]->hotspot->plaatsnaam."\n\n".$hotspotDichtbij[0]->hotspot->omschrijving;
+    $text = "Dichtsbijzijnd advies\n*".$hotspotDichtbij[0]->hotspot->naam."*\n".$hotspotDichtbij[0]->hotspot->plaatsnaam."\n\n".$hotspotDichtbij[0]->hotspot->omschrijving;
 
     if ($hotspotDichtbij[0]->hotspot->website) {
         $text .= "\n[".$hotspotDichtbij[0]->hotspot->website."](".$hotspotDichtbij[0]->hotspot->website.")";
