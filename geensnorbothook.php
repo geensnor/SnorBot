@@ -16,7 +16,6 @@ $updateType = $telegram->getUpdateType();
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
-$hotspotsGeojsonURL = 'https://www.geensnor.nl/test/laarsjes.geojson'; //nog tijdelijk dit
 $voornaamLocatie = 'https://raw.githubusercontent.com/reithose/voornamen/master/voornamen.json';
 $wielrenKalender = 'https://www.wielerkrant.be/wielrennen/kalender.ics';
 $metaSchandalenLocatie = "https://raw.githubusercontent.com/geensnor/DeDigitaleTuin/refs/heads/main/src/content/data/facebook-schandalen.json";
@@ -36,7 +35,6 @@ if ($antwoordSimpeleLijst) {
     $send = true;
 }
 
-//
 
 //Meta schandalen
 if (in_array($text, ['random schandaal', 'schandaal', 'meta'], true)) {
@@ -442,17 +440,16 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
 //Locatie dingen voor advies
 
 if ($updateType == 'location') {
-    include 'cl_Locatie.php';
     $location = $telegram->Location();
-    $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
-    $hotspotDichtbij = $collectie->dichtstbijzijnde(new Locatie($location['latitude'], $location['longitude']), 1);
-    $text = "Dichtsbijzijnd advies\n*".$hotspotDichtbij[0]->hotspot->naam."*\n".$hotspotDichtbij[0]->hotspot->plaatsnaam."\n\n".$hotspotDichtbij[0]->hotspot->omschrijving;
+    $adviesDichtbij = json_decode(file_get_contents("https://advies.geensnor.nl/api/adviesdichtbij.php?latitude=".$location['latitude']."&longitude=".$location['longitude']));
 
-    if ($hotspotDichtbij[0]->hotspot->website) {
-        $text .= "\n[".$hotspotDichtbij[0]->hotspot->website."](".$hotspotDichtbij[0]->hotspot->website.")";
+    $text = "Dichtsbijzijnd advies\n*".$adviesDichtbij[0]->advies->naam."*\n".$adviesDichtbij[0]->advies->plaatsnaam."\n\n".$adviesDichtbij[0]->advies->omschrijving;
+
+    if ($adviesDichtbij[0]->advies->website) {
+        $text .= "\n[".$adviesDichtbij->advies->website."](".$adviesDichtbij->advies->website.")";
     }
 
-    $text .= "\n\n".round($hotspotDichtbij[0]->afstand, 2)." kilometer hier vandaan.";
+    $text .= "\n\n".round($adviesDichtbij->afstand, 2)." kilometer hier vandaan.";
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         'text'    => $text,
@@ -470,22 +467,22 @@ if ($text == 'advies') {
     $send = true;
 }
 
-if ($text == 'random advies') {
-    include 'cl_Locatie.php';
-    $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
-    $randomHotspot = $collectie->geefRandom();
-    $text = "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."\n\n".$randomHotspot->omschrijving;
-    if ($randomHotspot->website) {
-        $text .= "\n[$randomHotspot->website](".$randomHotspot->website.")";
-    }
-    $content = ['chat_id' => $chat_id, 'text' => $text, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
-    $telegram->sendMessage($content);
-    if ($randomHotspot->afbeelding) {
-        $content = ['chat_id' => $chat_id, 'photo' => $randomHotspot->afbeelding];
-        $telegram->sendPhoto($content);
-    }
-    $send = true;
-}
+// if ($text == 'random advies') {
+//     include 'cl_Locatie.php';
+//     $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
+//     $randomHotspot = $collectie->geefRandom();
+//     $text = "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."\n\n".$randomHotspot->omschrijving;
+//     if ($randomHotspot->website) {
+//         $text .= "\n[$randomHotspot->website](".$randomHotspot->website.")";
+//     }
+//     $content = ['chat_id' => $chat_id, 'text' => $text, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+//     $telegram->sendMessage($content);
+//     if ($randomHotspot->afbeelding) {
+//         $content = ['chat_id' => $chat_id, 'photo' => $randomHotspot->afbeelding];
+//         $telegram->sendPhoto($content);
+//     }
+//     $send = true;
+// }
 
 if ($text == 'voornaam' || $text == 'naam' || $text == 'babynaam') {
     $voornaamObject = json_decode(file_get_contents($voornaamLocatie));
