@@ -443,13 +443,13 @@ if ($updateType == 'location') {
     $location = $telegram->Location();
     $adviesDichtbij = json_decode(file_get_contents("https://advies.geensnor.nl/api/adviesdichtbij.php?latitude=".$location['latitude']."&longitude=".$location['longitude']));
 
-    $text = "Dichtsbijzijnd advies\n*".$adviesDichtbij[0]->advies->naam."*\n".$adviesDichtbij[0]->advies->plaatsnaam."\n\n".$adviesDichtbij[0]->advies->omschrijving;
+    $text = "Dichtsbijzijnd advies:\n*".$adviesDichtbij[0]->advies->naam."*\n".$adviesDichtbij[0]->advies->plaatsnaam."\n\n".$adviesDichtbij[0]->advies->omschrijving;
 
     if ($adviesDichtbij[0]->advies->website) {
         $text .= "\n[".$adviesDichtbij->advies->website."](".$adviesDichtbij->advies->website.")";
     }
 
-    $text .= "\n\n".round($adviesDichtbij->afstand, 2)." kilometer hier vandaan.";
+    $text .= "\n\n".round($adviesDichtbij->advies->afstand, 2)." kilometer hier vandaan.";
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         'text'    => $text,
@@ -467,22 +467,21 @@ if ($text == 'advies') {
     $send = true;
 }
 
-// if ($text == 'random advies') {
-//     include 'cl_Locatie.php';
-//     $collectie = HotspotCollectie::vanBestand($hotspotsGeojsonURL);
-//     $randomHotspot = $collectie->geefRandom();
-//     $text = "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$randomHotspot->naam."*\n".$randomHotspot->plaatsnaam."\n\n".$randomHotspot->omschrijving;
-//     if ($randomHotspot->website) {
-//         $text .= "\n[$randomHotspot->website](".$randomHotspot->website.")";
-//     }
-//     $content = ['chat_id' => $chat_id, 'text' => $text, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
-//     $telegram->sendMessage($content);
-//     if ($randomHotspot->afbeelding) {
-//         $content = ['chat_id' => $chat_id, 'photo' => $randomHotspot->afbeelding];
-//         $telegram->sendPhoto($content);
-//     }
-//     $send = true;
-// }
+if ($text == 'random advies') {
+    $adviesRandom = json_decode(file_get_contents("https://advies.geensnor.nl/api/random.php"));
+
+    $text = "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$adviesRandom->naam."*\n".$adviesRandom->plaatsnaam."\n\n".$adviesRandom->omschrijving;
+    if ($adviesRandom->website) {
+        $text .= "\n[$adviesRandom->website](".$adviesRandom->website.")";
+    }
+    $content = ['chat_id' => $chat_id, 'text' => $text, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+    if ($adviesRandom->afbeelding) {
+        $content = ['chat_id' => $chat_id, 'photo' => $adviesRandom->afbeelding];
+        $telegram->sendPhoto($content);
+    }
+    $send = true;
+}
 
 if ($text == 'voornaam' || $text == 'naam' || $text == 'babynaam') {
     $voornaamObject = json_decode(file_get_contents($voornaamLocatie));
