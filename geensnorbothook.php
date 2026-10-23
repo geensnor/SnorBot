@@ -449,7 +449,7 @@ if ($updateType == 'location') {
         $text .= "\n[".$adviesDichtbij[0]->advies->website."](".$adviesDichtbij[0]->advies->website.")";
     }
 
-    $text .= "\n\n".round($adviesDichtbij[0]->advies->afstand, 2)." kilometer hier vandaan. [Wandelroute op OpenStreetMaps](".$adviesDichtbij[0]->advies->OpenStreetMapRoute.")";
+    $text .= "\n\n".round($adviesDichtbij[0]->afstand, 2)." kilometer hier vandaan. [Wandelroute op OpenStreetMaps](".$adviesDichtbij[0]->OpenStreetMapRoute.")";
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         'text'    => $text,
