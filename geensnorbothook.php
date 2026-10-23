@@ -446,10 +446,10 @@ if ($updateType == 'location') {
     $text = "Dichtsbijzijnd advies:\n*".$adviesDichtbij[0]->advies->naam."*\n".$adviesDichtbij[0]->advies->plaatsnaam."\n\n".$adviesDichtbij[0]->advies->omschrijving;
 
     if ($adviesDichtbij[0]->advies->website) {
-        $text .= "\n[".$adviesDichtbij->advies->website."](".$adviesDichtbij->advies->website.")";
+        $text .= "\n[".$adviesDichtbij[0]->advies->website."](".$adviesDichtbij[0]->advies->website.")";
     }
 
-    $text .= "\n\n".round($adviesDichtbij->advies->afstand, 2)." kilometer hier vandaan.";
+    $text .= "\n\n".round($adviesDichtbij[0]->advies->afstand, 2)." kilometer hier vandaan. [Wandelroute op OpenStreetMaps](".$adviesDichtbij[0]->advies->OpenStreetMapRoute.")";
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         'text'    => $text,
