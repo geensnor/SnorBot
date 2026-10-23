@@ -5,7 +5,6 @@ date_default_timezone_set('Europe/Amsterdam');
 include 'config.php';
 include __DIR__.'/vendor/autoload.php';
 
-include 'advies.php';
 include 'prijzenparade.php';
 include 'tourpoule.php';
 include 'functies.php';
@@ -13,6 +12,7 @@ include 'wielrennen.php';
 include 'energie.php';
 
 $telegram = new Telegram(getenv('telegramId'));
+$updateType = $telegram->getUpdateType();
 
 $antwoordenArray = json_decode(file_get_contents('snorBotAntwoorden.json'));
 
@@ -34,6 +34,7 @@ if ($antwoordSimpeleLijst) {
     $telegram->sendMessage($content);
     $send = true;
 }
+
 
 //Meta schandalen
 if (in_array($text, ['random schandaal', 'schandaal', 'meta'], true)) {
@@ -261,7 +262,7 @@ if (str_starts_with($text, 'getal onder de')) {
 
 if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://blog.geensnor.nl/rss.xml'));
-    $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl: ['.$geensnorFeed->channel->item[0]->title.']('.$geensnorFeed->channel->item[0]->link.')', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl \n\n ['.$geensnorFeed->channel->item[0]->title.']('.$geensnorFeed->channel->item[0]->link.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -269,7 +270,7 @@ if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 if ($text == 'random post' || $text == 'random bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://blog.geensnor.nl/rss.xml'));
     $randomPostNummer = random_int(0, count($geensnorFeed->entry));
-    $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl: '.$geensnorFeed->channel->item[$randomPostNummer]->title.']('.$geensnorFeed->channel->item[$randomPostNummer]->link.')', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl \n\n ['.$geensnorFeed->channel->item[$randomPostNummer]->title.']('.$geensnorFeed->channel->item[$randomPostNummer]->link.')', 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -436,24 +437,49 @@ if (preg_match('/.*\d{4}.*/', $text) && $text != '1337') {//Controleren of er in
     }
 }
 
-if ($telegram->Location()) {
-    $locatieGebruiker = $telegram->Location();
-    $adviesJson = getAdviesArray($locatieGebruiker['latitude'], $locatieGebruiker['longitude']);
+//Locatie dingen voor advies
 
-    $contentAdviesTitel = ['chat_id' => $chat_id, 'text' => $adviesJson[0]->name.' zit in de buurt:'];
-    $contentAdviesToelichting = ['chat_id' => $chat_id, 'text' => "Geensnor zegt: '".$adviesJson[0]->description."'. Kijk op http://advies.geensnor.nl voor meer adviezen"];
-    $contentLocation = ['chat_id' => $chat_id, 'latitude' => $adviesJson[0]->lat, 'longitude' => $adviesJson[0]->lon];
-    $telegram->sendMessage($contentAdviesTitel);
-    $telegram->sendLocation($contentLocation);
-    $telegram->sendMessage($contentAdviesToelichting);
+if ($updateType == 'location') {
+    $location = $telegram->Location();
+    $adviesDichtbij = json_decode(file_get_contents("https://advies.geensnor.nl/api/adviesdichtbij.php?latitude=".$location['latitude']."&longitude=".$location['longitude']));
+
+    $text = "Dichtsbijzijnd advies:\n*".$adviesDichtbij[0]->advies->naam."*\n".$adviesDichtbij[0]->advies->plaatsnaam."\n\n".$adviesDichtbij[0]->advies->omschrijving;
+
+    if ($adviesDichtbij[0]->advies->website) {
+        $text .= "\n[".$adviesDichtbij->advies->website."](".$adviesDichtbij->advies->website.")";
+    }
+
+    $text .= "\n\n".round($adviesDichtbij->advies->afstand, 2)." kilometer hier vandaan.";
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text'    => $text,
+        'parse_mode' => 'Markdown',
+        'disable_web_page_preview' => true
+    ]);
     $send = true;
 }
 
 if ($text == 'advies') {
-    $option = [[$telegram->buildKeyBoardButton('Klik hier om je locatie te delen', $request_contact = false, $request_location = true)]];
+    $option = [[$telegram->buildKeyBoardButton('Klik hier om je locatie te delen voor een advies bij jou in de buurt!', $request_contact = false, $request_location = true)]];
     $keyb = $telegram->buildKeyBoard($option, $onetime = false);
     $content = ['chat_id' => $chat_id, 'reply_markup' => $keyb, 'text' => 'Aaaah, je wilt een advies van Geensnor. Goed idee! Druk op de knop hieronder aan te geven waar je bent.'];
     $telegram->sendMessage($content);
+    $send = true;
+}
+
+if ($text == 'random advies') {
+    $adviesRandom = json_decode(file_get_contents("https://advies.geensnor.nl/api/random.php"));
+
+    $text = "Een willekeurig advies van [advies.geensnor.nl](https://advies.geensnor.nl):\n\n*".$adviesRandom->naam."*\n".$adviesRandom->plaatsnaam."\n\n".$adviesRandom->omschrijving;
+    if ($adviesRandom->website) {
+        $text .= "\n[$adviesRandom->website](".$adviesRandom->website.")";
+    }
+    $content = ['chat_id' => $chat_id, 'text' => $text, 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
+    $telegram->sendMessage($content);
+    if ($adviesRandom->afbeelding) {
+        $content = ['chat_id' => $chat_id, 'photo' => $adviesRandom->afbeelding];
+        $telegram->sendPhoto($content);
+    }
     $send = true;
 }
 
