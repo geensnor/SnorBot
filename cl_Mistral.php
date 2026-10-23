@@ -13,10 +13,10 @@ class Mistral
     private string $systemMessage;
 
     /** @var int maximale aantal pogingen bij rate limit */
-    private const MAX_RETRIES = 4;
+    private const int MAX_RETRIES = 4;
 
     /** @var int minimale wachttijd tussen pogingen (seconden), verdubbelt per poging */
-    private const BACKOFF_BASE = 2;
+    private const int BACKOFF_BASE = 2;
 
     public function __construct()
     {

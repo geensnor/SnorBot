@@ -15,6 +15,13 @@ test('Laatste schandaal', function (): void {
     expect($schandaal->bron)->toBe('Tweakers');
 });
 
+test('Random schandaaltekst', function (): void {
+    $schandalenLijst = new schandalenLijst(__DIR__.'/fixtures/schandalen.json');
+    $schandaal = $schandalenLijst->getWillekeurigSchandaal();
+    expect($schandaal)->toBeInstanceOf(schandaal::class);
+    expect(schandaalTekst::geefTekstRandom($schandaal))->toContain('Schandaal van ');
+});
+
 test('Tekst schandaal', function (): void {
     $schandalenLijst = new schandalenLijst(__DIR__.'/fixtures/schandalen.json');
     $schandaal = $schandalenLijst->getLaatsteSchandaal();
