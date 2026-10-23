@@ -15,11 +15,11 @@
     "symfony/http-client": "^8.1"
   },
   "require-dev": {
-    "pestphp/pest": "^3.5.1",
+    "pestphp/pest": "^5.3",
     "laravel/pint": "^1.5",
     "phpstan/phpstan": "^2.1",
     "spaze/phpstan-disallowed-calls": "^4.0",
-    "spatie/pest-plugin-snapshots": "^2.3",
+    "spatie/pest-plugin-snapshots": "^2.4",
     "tomasvotruba/type-coverage": "^2.1",
     "shipmonk/dead-code-detector": "^1.3"
   },
