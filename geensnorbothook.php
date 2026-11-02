@@ -260,9 +260,9 @@ if (str_starts_with($text, 'getal onder de')) {
     $send = true;
 }
 
-if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
+if (in_array($text, ['nieuwste bericht', 'laatste bericht', 'nieuwste post', 'laatste post'], true)) {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://blog.geensnor.nl/rss.xml'));
-    $content = ['chat_id' => $chat_id, 'text' => 'Nieuwste bericht op geensnor.nl \n\n ['.$geensnorFeed->channel->item[0]->title.']('.$geensnorFeed->channel->item[0]->link.')', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => "Nieuwste bericht op geensnor.nl \n\n [".$geensnorFeed->channel->item[0]->title."](".$geensnorFeed->channel->item[0]->link.")", 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -270,7 +270,7 @@ if ($text == 'nieuwste post' || $text == 'nieuwste bericht') {
 if ($text == 'random post' || $text == 'random bericht') {
     $geensnorFeed = new SimpleXMLElement(file_get_contents('https://blog.geensnor.nl/rss.xml'));
     $randomPostNummer = random_int(0, count($geensnorFeed->entry));
-    $content = ['chat_id' => $chat_id, 'text' => 'Een van de laatste 10 berichten op geensnor.nl \n\n ['.$geensnorFeed->channel->item[$randomPostNummer]->title.']('.$geensnorFeed->channel->item[$randomPostNummer]->link.')', 'parse_mode' => 'Markdown'];
+    $content = ['chat_id' => $chat_id, 'text' => "Een van de laatste 10 berichten op geensnor.nl \n\n [".$geensnorFeed->channel->item[$randomPostNummer]->title."](".$geensnorFeed->channel->item[$randomPostNummer]->link.")", 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
@@ -284,7 +284,7 @@ if (str_starts_with($text, 'wiki')) {
         foreach ($wikiResult[1] as $key => $value) {
             $htmlList .= '<a href="'.$wikiResult[3][$key].'">'.$wikiResult[1][$key]."</a>\n";
         }
-        $content = ['chat_id' => $chat_id, 'text' => 'Ah, je wil iets van <strong>'.substr($text, 5)."</strong> weten. Dit vond ik op Wikipedia:\n\n".$htmlList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => true];
+        $content = ['chat_id' => $chat_id, 'text' => "Ah, je wil iets van <strong>".substr($text, 5)."</strong> weten. Dit vond ik op Wikipedia:\n\n".$htmlList, 'parse_mode' => 'HTML', 'disable_web_page_preview' => true];
     } else {
         $content = ['chat_id' => $chat_id, 'text' => 'Ah, je wil iets van *'.substr($text, 5).'* weten. Daar heb ik helaas niets van kunnen vinden op Wikipedia', 'parse_mode' => 'Markdown', 'disable_web_page_preview' => true];
     }
