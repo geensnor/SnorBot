@@ -462,5 +462,9 @@
   {
     "trigger": "cadeau",
     "antwoord": "carbon wielen natuurlijk!"
+  },
+  {
+    "trigger": "meesterklusser",
+    "antwoord": "Floris!"
   }
 ]
