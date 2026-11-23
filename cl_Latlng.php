@@ -20,7 +20,7 @@ class Coordinaten
  */
 class Latlng
 {
-    private const string BASE_URL = 'https://api.latlng.work/api';
+    private const BASE_URL = 'https://api.latlng.work/api';
 
     private string $apiKey;
 
