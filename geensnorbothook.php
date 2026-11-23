@@ -240,7 +240,13 @@ if (in_array($text, ['stroom', 'stroomprijs'], true)) {
 
 if (in_array($text, ['temperatuur', 'koud', 'warm', 'brr'], true)) {
     $weerObject = json_decode(file_get_contents('https://data.meteoserver.nl/api/liveweer.php?locatie=Utrecht&key='.getenv('meteoserverKey')));
-    $content = ['chat_id' => $chat_id, 'text' => 'Het is '.$weerObject->liveweer[0]->temp.' graden, maar het voelt als '.$weerObject->liveweer[0]->gtemp, 'parse_mode' => 'Markdown'];
+    $temp = (float) $weerObject->liveweer[0]->temp;
+    $gtemp = (float) $weerObject->liveweer[0]->gtemp;
+    $formatGraden = static fn (float $graden): string => str_replace('.', ',', (string) $graden).' graden';
+    $tekst = $temp === $gtemp
+        ? 'Het is momenteel '.$formatGraden($temp).', en het voelt ook als '.$formatGraden($gtemp).'.'
+        : 'Het is momenteel '.$formatGraden($temp).', maar het voelt als '.$formatGraden($gtemp).'.';
+    $content = ['chat_id' => $chat_id, 'text' => $tekst, 'parse_mode' => 'Markdown'];
     $telegram->sendMessage($content);
     $send = true;
 }
