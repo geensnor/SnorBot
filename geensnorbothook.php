@@ -10,6 +10,7 @@ include 'tourpoule.php';
 include 'functies.php';
 include 'wielrennen.php';
 include 'energie.php';
+include "cl_Latlng.php";
 
 $telegram = new Telegram(getenv('telegramId'));
 $updateType = $telegram->getUpdateType();
@@ -496,6 +497,29 @@ if ($text == 'random advies') {
     }
     $send = true;
 }
+
+if (preg_match('/^.*\b(advies|eten|restaurant)\b.*?\b(dichtbij|in de buurt van|in|bij)\b(?:\s+(.+))?$/iu', $text, $matches)) {
+
+    $latlng = new Latlng(getenv('latlng'));
+    $data = $latlng->geefCoordinaten(end($matches));
+    $adviesDichtbij = json_decode(file_get_contents("https://advies.geensnor.nl/api/adviesdichtbij.php?latitude=".$data->lat."&longitude=".$data->lng));
+
+    $text = "In de buurt van ".end($matches)." hebben we wel wat:\n*".$adviesDichtbij[0]->advies->naam."*\n".$adviesDichtbij[0]->advies->plaatsnaam."\n\n".$adviesDichtbij[0]->advies->omschrijving;
+
+    if ($adviesDichtbij[0]->advies->website) {
+        $text .= "\n[".$adviesDichtbij[0]->advies->website."](".$adviesDichtbij[0]->advies->website.")";
+    }
+
+
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text'    => $text,
+        'parse_mode' => 'Markdown',
+        'disable_web_page_preview' => true
+    ]);
+    $send = true;
+}
+
 
 if ($text == 'voornaam' || $text == 'naam' || $text == 'babynaam') {
     $voornaamObject = json_decode(file_get_contents($voornaamLocatie));
